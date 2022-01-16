@@ -4,30 +4,18 @@
 
 package frc.robot;
 
-import edu.wpi.first.networktables.LogMessage;
 //import base
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.
 import edu.wpi.first.wpilibj.Timer;
-
-import java.io.Console;
-import java.util.concurrent.DelayQueue;
-
-//import motor libraries - must be installed externally
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 //imported by default
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Controllers;
 
-import frc.robot.modules.motorModules;
+//Custom Imports
+import frc.robot.systems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -97,60 +85,15 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    SmartDashboard.putNumber("FW Pow", 0);
-    SmartDashboard.putNumber("Feeder One Pow", 0);
-    SmartDashboard.putNumber("Feeder Two Pow", 0);
+
   }
 
-  double testMotorPercentOut = 0;
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    
-    if(master.getYButtonPressed()){
-      testMotorPercentOut = SmartDashboard.getNumber("Set Percent Pow", 0);
-      testMotorPercentOut +=0.025;
-      SmartDashboard.putNumber("Set Percent Pow", testMotorPercentOut);
-    }
-    else if(master.getAButtonPressed()){
-      testMotorPercentOut = SmartDashboard.getNumber("Set Percent Pow", 0);
-      testMotorPercentOut -=0.025;
-      SmartDashboard.putNumber("Set Percent Pow", testMotorPercentOut);
-    }
-    else if(master.getXButtonPressed()){
-      testMotorPercentOut = SmartDashboard.getNumber("Set Percent Pow", 0);
-      testMotorPercentOut -=0.05;
-      SmartDashboard.putNumber("Set Percent Pow", testMotorPercentOut);
-    }
-    else if(master.getBButtonPressed()){
-      testMotorPercentOut = SmartDashboard.getNumber("Set Percent Pow", 0);
-      testMotorPercentOut +=0.05;
-      SmartDashboard.putNumber("Set Percent Pow", testMotorPercentOut);
-    }
-    if(master.getRightBumperPressed()){
-      testMotorPercentOut = 0;
-    }
+    System.out.println(master.getLeftY());
+    //Drive.opDrive(master.getRightX(), master.getLeftY());
 
-    if(testMotorPercentOut > 100){
-      testMotorPercentOut = 100;
-    }
-    if(testMotorPercentOut <-100){
-      testMotorPercentOut = -100;
-    }
-    SmartDashboard.putNumber("Motor Output Percent", testMotor_Talon.getMotorOutputPercent()*100);
-    SmartDashboard.putNumber("Motor Output Voltage", testMotor_Talon.getMotorOutputVoltage());
-    SmartDashboard.putNumber("Motor RPM", motorModules.rtnVelocity(testMotor_Talon, 2048));
-    SmartDashboard.putNumber("Motor Temp", testMotor_Talon.getTemperature());
-
-    SmartDashboard.updateValues();
-
-    double motorPercent = SmartDashboard.getNumber("Set Percent Pow", 0);
-
-    double motorVal = Controllers.expo(motorPercent, 1.3, 0, 0);
-  
-    System.out.println("raw: " + motorPercent + "filtered: " + motorVal);
-
-    testMotor_Talon.set(ControlMode.PercentOutput, (motorPercent/100));
   }
 
   /** This function is called once when the robot is disabled. */
