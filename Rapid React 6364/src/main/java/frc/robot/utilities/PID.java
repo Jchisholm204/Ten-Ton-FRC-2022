@@ -3,7 +3,6 @@ package frc.robot.utilities;
 public class PID {
 
     private float kP;
-    private float kI;
     private float kD;
     public int current;
     public int target;
@@ -11,9 +10,8 @@ public class PID {
     private int error_last;
     private int derr;
 
-    public PID(float p, float i, float d, int targ){
+    public PID(float p, float d, int targ){
         kP = p;
-        kI = i;
         kD = d;
 
         target = targ;
@@ -23,9 +21,8 @@ public class PID {
         error_last = 0;
     }
 
-    public void set_vars(float p, float i, float d, int targ){
+    public void set_vars(float p, float d, int targ){
         kP = p;
-        kI = i;
         kD = d;
 
         target = targ;
