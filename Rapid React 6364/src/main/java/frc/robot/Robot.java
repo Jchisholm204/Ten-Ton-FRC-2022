@@ -7,6 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.utilities.Network;
+import edu.wpi.first.wpilibj.DriverStation;
 //import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -31,7 +33,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-
+    try {
+      Network.Jetson.ping();
+    } catch (Exception e) {
+      DriverStation.reportError("Jetson Not Detected: " + e.getMessage(), true);
+    }
     //IO
     io = new IO();
 
