@@ -24,7 +24,7 @@ public class OpIndex extends CommandBase {
 
     @Override
     public void execute(){
-
+        SmartDashboard.putBoolean("PhElectric", indxr.getTopDetector());
 
     }
 
