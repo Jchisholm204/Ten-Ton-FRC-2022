@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 //Import WPI
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 
 //Import Robot Files
 import frc.robot.subsystems.IndexSubsystem;
@@ -20,11 +21,36 @@ public class OpIndex extends CommandBase {
     }
     
     @Override
-    public void initialize(){}
+    public void initialize(){
+        indxr.stop();
+    }
 
     @Override
     public void execute(){
-        SmartDashboard.putBoolean("PhElectric", indxr.getTopDetector());
+
+        //Shoot the Balles when A master Pressed
+        if(Robot.io.master.getAButtonPressed()){
+            indxr.moveTop(ControlMode.PercentOutput, 1);
+            indxr.moveBot(ControlMode.PercentOutput, 1);
+            Timer.delay(10);
+        }
+        else{
+            /** When Not Shooting
+             * If top has ball = stop top
+             *  Else: Intake Top/Bot
+             * If Top AND Bot Have Ball = Stop Bot (Top already stopped)
+             */
+            if(indxr.getTopSensor() == true){
+                indxr.stopTop();
+                if(indxr.getBotSensor() == true){
+                    indxr.stopBot();
+                }
+            }
+            else{
+                indxr.moveTop(ControlMode.PercentOutput, 1);
+                indxr.moveBot(ControlMode.PercentOutput, 1);
+            }
+        }
 
     }
 

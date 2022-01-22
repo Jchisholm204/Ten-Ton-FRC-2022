@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.utilities.Network;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 //import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -42,12 +40,12 @@ public class Robot extends TimedRobot {
       DriverStation.reportError("Jetson Not Detected: " + e.getMessage(), true);
     }
     //IO
-    //io = new IO();
+    io = new IO();
 
     //Container
-    //m_RobotContainer = new RobotContainer();
+    m_RobotContainer = new RobotContainer();
     //m_OpDrive = m_RobotContainer.getOpDriveCommand();
-    //m_OpIndxr = m_RobotContainer.getOpIndexCommand();
+    m_OpIndxr = m_RobotContainer.getOpIndexCommand();
     //m_OpIntake = m_RobotContainer.getOpIntakeCommand();
 
   }
@@ -82,19 +80,17 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {}
 
-  AnalogInput ai = new AnalogInput(0);
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
     //m_OpDrive.schedule();
-    //m_OpIndxr.schedule();
+    m_OpIndxr.schedule();
     //m_OpIntake.schedule();
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    System.out.println(ai.getValue());
   }
 
   /** This function is called once when the robot is disabled. */
