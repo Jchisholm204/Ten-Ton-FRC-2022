@@ -44,7 +44,7 @@ public class OpIntake extends CommandBase {
             intake.setFrontIntake(ControlMode.PercentOutput, 0);
         };
 
-        if(Robot.io.master.getAButton()){
+        if(Robot.io.master.getXButton()){
             intake.setIntake(ControlMode.PercentOutput, -1);
         }
         else if(intake.getRearIntakeState() == true){
