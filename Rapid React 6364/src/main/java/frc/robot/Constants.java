@@ -58,17 +58,24 @@ public final class Constants {
         Controller_Main(0),
         Controller_Partner(1),
 
+        //Drive Motor Ports (can)
         driveRM(0),
         driveRS(0),
         driveLM(0),
         driveLS(0),
 
+        //Intake Motor Ports (can)
         intakeFront(0),
         intakeRear(0),
 
-        //indexPrima(0),
-        indexFeeder(0),
-        indexShooter(0);
+        //Index Motor Ports (can)
+        indexTopMtr(0),
+        indexBotMtr(0),
+
+        //Index PhotoElectric Ports (Analog In)
+        topIntakePE(0),
+        botIntakePE(1);
+
 
         public final int port;
         RobotMap(int port){
