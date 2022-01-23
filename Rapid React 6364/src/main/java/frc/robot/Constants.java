@@ -23,6 +23,9 @@ public final class Constants {
         public static final double mkI = 0;
         public static final double mkD = 0;
         public static final double mkF = 0.0505;
+
+        public static final double bottomPHTriggerValue = 1000;
+        public static final double topPHTriggerValue = 1000;
     }
 
     //Drive Constants
@@ -36,7 +39,7 @@ public final class Constants {
         public static final double LeftkP = 0;
         public static final double LeftkI = 0;
         public static final double LeftkD = 0;
-        public static final double LeftkF = 0.0456;
+        public static final double LeftkF = 0.0500;
         //Drive Characterization
         public static final double ksVolts = 0.22;
         public static final double kvVoltSecondsPerMeter = 1.98;
