@@ -69,8 +69,8 @@ public final class Constants {
         intakeRear(0),
 
         //Index Motor Ports (can)
-        indexTopMtr(0),
-        indexBotMtr(0),
+        indexTopMtr(10),
+        indexBotMtr(01),
 
         //Index PhotoElectric Ports (Analog In)
         topIntakePE(0),

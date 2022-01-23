@@ -43,8 +43,8 @@ public class IndexSubsystem extends SubsystemBase{
         botMtr.configSelectedFeedbackSensor(FeedbackDevice.SoftwareEmulatedSensor); //Set to use Emulated Sensor
 
         //Motor Default Direction Configuration
-        topMtr.setInverted(false);
-        botMtr.setInverted(false);
+        topMtr.setInverted(true);
+        botMtr.setInverted(true);
 
     }
 

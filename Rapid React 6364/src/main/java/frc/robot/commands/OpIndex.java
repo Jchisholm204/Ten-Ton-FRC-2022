@@ -27,29 +27,20 @@ public class OpIndex extends CommandBase {
 
     @Override
     public void execute(){
+        System.out.print(indxr.getBotSensor());
+        System.out.print(" ");
+        System.out.print(indxr.getTopSensor());
+        System.out.print("\n");
+        
 
         //Shoot the Balles when A master Pressed
-        if(Robot.io.master.getAButtonPressed()){
+        if(Robot.io.master.getAButton()){
             indxr.moveTop(ControlMode.PercentOutput, 1);
             indxr.moveBot(ControlMode.PercentOutput, 1);
-            Timer.delay(10);
+            //Timer.delay(2);
         }
         else{
-            /** When Not Shooting
-             * If top has ball = stop top
-             *  Else: Intake Top/Bot
-             * If Top AND Bot Have Ball = Stop Bot (Top already stopped)
-             */
-            if(indxr.getTopSensor() == true){
-                indxr.stopTop();
-                if(indxr.getBotSensor() == true){
-                    indxr.stopBot();
-                }
-            }
-            else{
-                indxr.moveTop(ControlMode.PercentOutput, 1);
-                indxr.moveBot(ControlMode.PercentOutput, 1);
-            }
+            indxr.stop();
         }
 
     }

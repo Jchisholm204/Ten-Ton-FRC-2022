@@ -22,6 +22,7 @@ public class OpIntake extends CommandBase {
     @Override
     public void initialize(){
         intake.startCompressor();
+        intake.raiseIntake(true, true);
     }
 
     @Override
