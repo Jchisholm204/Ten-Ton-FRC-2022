@@ -6,7 +6,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 //Import WPI
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.Timer;
 
 //Import Robot Files
 import frc.robot.subsystems.IndexSubsystem;
@@ -27,27 +26,27 @@ public class OpIndex extends CommandBase {
 
     @Override
     public void execute(){
-        System.out.print(indxr.getBotSensor());
-        System.out.print(" ");
-        System.out.print(indxr.getTopSensor());
+        System.out.print(indxr.getCodex());
         System.out.print("\n");
         
 
         //Shoot the Balles when A master Pressed
-        if(Robot.io.master.getAButton()){
-            indxr.moveTop(ControlMode.PercentOutput, 1);
-            indxr.moveBot(ControlMode.PercentOutput, 1);
-            //Timer.delay(2);
+        if(Robot.io.master.getRightBumperPressed()){
+            indxr.shoot(); 
+        }
+        else if(Robot.io.master.getLeftBumper()){
+            indxr.moveTop(ControlMode.PercentOutput, -0.5);
+            indxr.moveBot(ControlMode.PercentOutput, -0.5);
         }
         else{
-            indxr.stop();
+            indxr.run(0.8, 1);
         }
 
     }
 
     @Override
     public void end(boolean interrupted){
-
+        indxr.stop();
     }
 
     @Override

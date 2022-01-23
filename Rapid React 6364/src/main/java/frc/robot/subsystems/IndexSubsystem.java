@@ -4,16 +4,19 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 //Sensor Imports
 import edu.wpi.first.wpilibj.AnalogInput;
 
 //WPI
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 //Import Robot Files
 import frc.robot.Constants;
+import frc.robot.utilities.InitializeTalon;
 
 
 public class IndexSubsystem extends SubsystemBase{
@@ -21,11 +24,14 @@ public class IndexSubsystem extends SubsystemBase{
     private TalonSRX topMtr;
     private TalonSRX botMtr;
 
-    private static double topPhotoElectricTrigger = 1000;
-    private static double botPhotoElectricTrigger = 1000;
-
     private static AnalogInput topPESensor;
     private static AnalogInput botPESensor;
+
+    private static double topPhotoElectricTrigger = Constants.Index.topPHTriggerValue;
+    private static double botPhotoElectricTrigger = Constants.Index.bottomPHTriggerValue;
+
+    //initialize the codex to track balls inside the intake
+    private static int codex = 0;
 
     public IndexSubsystem() {
         try {
@@ -39,13 +45,79 @@ public class IndexSubsystem extends SubsystemBase{
         botPESensor = new AnalogInput(Constants.RobotMap.botIntakePE.port);
 
         //Motor Sensor Configuration
-        topMtr.configSelectedFeedbackSensor(FeedbackDevice.SoftwareEmulatedSensor); //Set to use Emulated Sensor
-        botMtr.configSelectedFeedbackSensor(FeedbackDevice.SoftwareEmulatedSensor); //Set to use Emulated Sensor
+        InitializeTalon.Index(topMtr, true);
+        InitializeTalon.Index(botMtr, true);
 
-        //Motor Default Direction Configuration
-        topMtr.setInverted(true);
-        botMtr.setInverted(true);
+    }
 
+    /**
+     * Run The Codex Program
+     * @param topMper Top Motor Percent Power [0,1]
+     * @param botMper Bottom Motor Percent Power [0,1]
+     */
+    public void run(double topMper, double botMper){
+
+        if ( getTopSensor() ){ codex = 1; };
+        if ( codex == 1 && getBotSensor() ){ codex = 2; };
+
+        if ( codex == 2 ){
+            topMtr.set(ControlMode.PercentOutput, 0);
+            botMtr.set(ControlMode.PercentOutput, 0);
+        }
+        else if ( codex == 1 ){
+            topMtr.set(ControlMode.PercentOutput, 0);
+            botMtr.set(ControlMode.PercentOutput, botMper);
+        }
+        else if ( codex == 0 ){
+            topMtr.set(ControlMode.PercentOutput, topMper);
+            botMtr.set(ControlMode.PercentOutput, botMper);
+        }
+        else { 
+            DriverStation.reportError("Codex Overload: " + codex, true);
+            codex = 0;
+        };
+
+    }
+
+    /**
+     * Reset The Codex Value
+     */
+    public void reset(){
+        codex = 0;
+    }
+
+    /**
+     * Get The Cargo Stored Within The Indexer Recorded By The Codex
+     * @return The Value Stored Within The Codex
+     */
+    public int getCodex(){
+        return codex;
+    }
+
+    /**
+     * Shoot The Cargo Stored Within The Index (delay = 2sec)
+     */
+    public void shoot(){
+        topMtr.set(ControlMode.PercentOutput, 1);
+        botMtr.set(ControlMode.PercentOutput, 1);
+        codex = 0;
+        Timer.delay(2);
+    }
+
+    /**
+     * Shoot The Cargo Stored Within The Index (delay = 2sec)
+     * @param runTime Delay In Seconds to Run The Indexer
+     */
+    public void shoot(double runTime){
+        topMtr.set(ControlMode.PercentOutput, 1);
+        botMtr.set(ControlMode.PercentOutput, 1);
+        Timer.delay(runTime); 
+    }
+    
+    public void shootSingle(){
+        topMtr.set(ControlMode.PercentOutput, 1);
+        codex = 0;
+        Timer.delay(1);
     }
 
     /**
@@ -120,7 +192,7 @@ public class IndexSubsystem extends SubsystemBase{
      * Get if the Top PhotoElectric Sensor is Triggered
      * @return True if Triggered
      */
-    public boolean getTopSensor(){
+    private boolean getTopSensor(){
         return topPESensor.getValue() > topPhotoElectricTrigger ? true : false;
     }
 
@@ -128,7 +200,7 @@ public class IndexSubsystem extends SubsystemBase{
      * Get if the Bottom PhotoElectric Sensor is Triggered
      * @return True if Triggered
      */
-    public boolean getBotSensor(){
+    private boolean getBotSensor(){
         return botPESensor.getValue() > botPhotoElectricTrigger ? true : false;
     }
 
