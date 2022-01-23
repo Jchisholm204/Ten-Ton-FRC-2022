@@ -44,9 +44,9 @@ public class Robot extends TimedRobot {
 
     //Container
     m_RobotContainer = new RobotContainer();
-    //m_OpDrive = m_RobotContainer.getOpDriveCommand();
+    m_OpDrive = m_RobotContainer.getOpDriveCommand();
     m_OpIndxr = m_RobotContainer.getOpIndexCommand();
-    //m_OpIntake = m_RobotContainer.getOpIntakeCommand();
+    m_OpIntake = m_RobotContainer.getOpIntakeCommand();
 
   }
 
