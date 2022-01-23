@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 //Motor Imports
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import frc.robot.utilities.InitializeTalon;
 
 //Pneumatics
 import edu.wpi.first.wpilibj.Compressor;
@@ -34,9 +35,17 @@ public class IntakeSubsystem extends SubsystemBase {
             DriverStation.reportError("Error Starting Intake Motors: " + ex.getMessage(), true);
         }
 
-        compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-        frontIntakeSolenoid = new Solenoid(0, PneumaticsModuleType.CTREPCM, 1);
-        rearInakeSolenoid = new Solenoid(0, PneumaticsModuleType.CTREPCM, 2);
+        try {
+            compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
+            frontIntakeSolenoid = new Solenoid(0, PneumaticsModuleType.CTREPCM, 1);
+            rearInakeSolenoid = new Solenoid(0, PneumaticsModuleType.CTREPCM, 2);
+        } catch (RuntimeException e){
+            DriverStation.reportError("Error Starting Pneumatics System: " + e.getMessage(), true);
+        }
+
+        InitializeTalon.Intake(intakeFront, false);
+        InitializeTalon.Intake(intakeRear, false);
+
     }
     
     /**
@@ -44,7 +53,7 @@ public class IntakeSubsystem extends SubsystemBase {
      * @param front Lower The Front Intake
      * @param rear Lower The Rear Intake
      */
-    public void lowerIntake(boolean front, boolean rear){
+    public void lower(boolean front, boolean rear){
         if(front){
             frontIntakeSolenoid.set(true);
         }
@@ -58,7 +67,7 @@ public class IntakeSubsystem extends SubsystemBase {
      * @param front Raise the Front Intake
      * @param rear Raise the Rear Intake
      */
-    public void raiseIntake(boolean front, boolean rear){
+    public void raise(boolean front, boolean rear){
         if(front){
             frontIntakeSolenoid.set(false);
         }
@@ -71,7 +80,7 @@ public class IntakeSubsystem extends SubsystemBase {
      * Get if the Intake is Up or Down
      * @return true if down
      */
-    public boolean getFrontIntakeState(){
+    public boolean getFrontState(){
         return frontIntakeSolenoid.get();
     }
 
@@ -79,7 +88,7 @@ public class IntakeSubsystem extends SubsystemBase {
      * Get if the Intake is Up or Down
      * @return true if down
      */
-    public boolean getRearIntakeState(){
+    public boolean getRearState(){
         return rearInakeSolenoid.get();
     }
 
@@ -110,7 +119,7 @@ public class IntakeSubsystem extends SubsystemBase {
      * @param Mode CTRE TalonSRX Control Mode
      * @param pVal Power Value
      */
-    public void setIntake(ControlMode Mode, double pVal){
+    public void set(ControlMode Mode, double pVal){
         intakeFront.set(Mode, pVal);
         intakeRear.set(Mode, pVal);
     }
@@ -120,7 +129,7 @@ public class IntakeSubsystem extends SubsystemBase {
      * @param Mode CTRE Talon SRX Control Mode
      * @param pVal Power Value
      */
-    public void setFrontIntake(ControlMode Mode, double pVal){
+    public void setFront(ControlMode Mode, double pVal){
         intakeFront.set(Mode, pVal);
     }
 
@@ -129,7 +138,7 @@ public class IntakeSubsystem extends SubsystemBase {
      * @param Mode the CTRE Talon SRX Control Mode
      * @param pVal Power Value
      */
-    public void setRearIntake(ControlMode Mode, double pVal){
+    public void setRear(ControlMode Mode, double pVal){
         intakeRear.set(Mode, pVal);
     }
 
@@ -141,7 +150,7 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeFront.set(ControlMode.PercentOutput, 0);
         intakeRear.set(ControlMode.PercentOutput, 0);
         if(withdawl){
-            raiseIntake(true, true);
+            raise(true, true);
         }
     }
 

@@ -22,37 +22,37 @@ public class OpIntake extends CommandBase {
     @Override
     public void initialize(){
         intake.startCompressor();
-        intake.raiseIntake(true, true);
+        intake.raise(true, true);
     }
 
     @Override
     public void execute(){
         
         if(Robot.io.master.getLeftBumperPressed()){
-            intake.raiseIntake(true, true);
+            intake.raise(true, true);
         }
         else if(Robot.io.master.getRightBumperPressed()){
-            intake.lowerIntake(true, true);
+            intake.lower(true, true);
         };
 
         if(Robot.io.master.getBButton()){
-            intake.setIntake(ControlMode.PercentOutput, -1);
+            intake.set(ControlMode.PercentOutput, -1);
         }
-        else if(intake.getFrontIntakeState() == true){
-            intake.setIntake(ControlMode.PercentOutput, 1);
+        else if(intake.getFrontState() == true){
+            intake.setFront(ControlMode.PercentOutput, 1);
         }
         else{
-            intake.setFrontIntake(ControlMode.PercentOutput, 0);
+            intake.setFront(ControlMode.PercentOutput, 0);
         };
 
         if(Robot.io.master.getXButton()){
-            intake.setIntake(ControlMode.PercentOutput, -1);
+            intake.set(ControlMode.PercentOutput, -1);
         }
-        else if(intake.getRearIntakeState() == true){
-            intake.setIntake(ControlMode.PercentOutput, 1);
+        else if(intake.getRearState() == true){
+            intake.set(ControlMode.PercentOutput, 1);
         }
         else{
-            intake.setRearIntake(ControlMode.PercentOutput, 0);
+            intake.setRear(ControlMode.PercentOutput, 0);
         }
 
     }
