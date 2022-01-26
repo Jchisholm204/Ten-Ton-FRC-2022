@@ -3,7 +3,7 @@ package frc.robot.subsystems;
 //Motor Imports
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import frc.robot.utilities.InitializeTalon;
+import frc.robot.utilities.Talon;
 
 //Pneumatics
 import edu.wpi.first.wpilibj.Compressor;
@@ -23,7 +23,7 @@ public class IntakeSubsystem extends SubsystemBase {
     private TalonSRX intakeRear;
 
     public Solenoid frontIntakeSolenoid;
-    public Solenoid rearInakeSolenoid;
+    public Solenoid rearIntakeSolenoid;
 
     private Compressor compressor;
 
@@ -38,13 +38,13 @@ public class IntakeSubsystem extends SubsystemBase {
         try {
             compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
             frontIntakeSolenoid = new Solenoid(0, PneumaticsModuleType.CTREPCM, 1);
-            rearInakeSolenoid = new Solenoid(0, PneumaticsModuleType.CTREPCM, 2);
+            rearIntakeSolenoid = new Solenoid(0, PneumaticsModuleType.CTREPCM, 2);
         } catch (RuntimeException e){
             DriverStation.reportError("Error Starting Pneumatics System: " + e.getMessage(), true);
         }
 
-        InitializeTalon.Intake(intakeFront, false);
-        InitializeTalon.Intake(intakeRear, false);
+        Talon.Initialize.Intake(intakeFront, false);
+        Talon.Initialize.Intake(intakeRear, false);
 
     }
     
@@ -58,7 +58,7 @@ public class IntakeSubsystem extends SubsystemBase {
             frontIntakeSolenoid.set(true);
         }
         if(rear){
-            rearInakeSolenoid.set(true);
+            rearIntakeSolenoid.set(true);
         }
     }
 
@@ -72,7 +72,7 @@ public class IntakeSubsystem extends SubsystemBase {
             frontIntakeSolenoid.set(false);
         }
         if(rear){
-            rearInakeSolenoid.set(false);
+            rearIntakeSolenoid.set(false);
         }
     }
 
@@ -89,7 +89,7 @@ public class IntakeSubsystem extends SubsystemBase {
      * @return true if down
      */
     public boolean getRearState(){
-        return rearInakeSolenoid.get();
+        return rearIntakeSolenoid.get();
     }
 
     /**
@@ -107,7 +107,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     /**
-     * Gets if the Compressor is currently runnning
+     * Gets if the Compressor is currently running
      * @return true if compressor compressing
      */
     public boolean compressorRunning(){
@@ -144,12 +144,12 @@ public class IntakeSubsystem extends SubsystemBase {
 
     /**
      * Stop the Intake
-     * @param withdrawl Move the Intakes Inside the Robot
+     * @param withdrawal Move the Intakes Inside the Robot
      */
-    public void stop(boolean withdawl){
+    public void stop(boolean withdrawal){
         intakeFront.set(ControlMode.PercentOutput, 0);
         intakeRear.set(ControlMode.PercentOutput, 0);
-        if(withdawl){
+        if(withdrawal){
             raise(true, true);
         }
     }

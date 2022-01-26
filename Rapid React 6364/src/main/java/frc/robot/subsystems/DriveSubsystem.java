@@ -23,7 +23,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.DriverStation;
 
 //Import Robot Files
-import frc.robot.utilities.InitializeTalon;
+import frc.robot.utilities.Talon;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase{
@@ -56,10 +56,10 @@ public class DriveSubsystem extends SubsystemBase{
         }
 
         //Initialize Motors
-        InitializeTalon.RightDrive(driveRM);
-        InitializeTalon.RightDrive(driveRS);
-        InitializeTalon.LeftDrive(driveLM);
-        InitializeTalon.LeftDrive(driveLS);
+        Talon.Initialize.RightDrive(driveRM);
+        Talon.Initialize.RightDrive(driveRS);
+        Talon.Initialize.LeftDrive(driveLM);
+        Talon.Initialize.LeftDrive(driveLS);
 
         //Set Drive Brake Modes
         driveRM.setNeutralMode(NeutralMode.Coast);
@@ -140,7 +140,7 @@ public class DriveSubsystem extends SubsystemBase{
      * @return Current Revolutions Per Minute
      */
     public double getRightRPM(){
-        return driveRM.getSelectedSensorVelocity() / Constants.kFalconEncoderUPR * 600.0;
+        return driveRM.getSelectedSensorVelocity() / Talon.rpmConverter;
     }
 
     /**
@@ -148,7 +148,7 @@ public class DriveSubsystem extends SubsystemBase{
      * @return Current Revolutions Per Minute
      */
     public double getLeftRPM(){
-        return driveLM.getSelectedSensorVelocity() / Constants.kFalconEncoderUPR * 600.0;
+        return driveLM.getSelectedSensorVelocity() / Talon.rpmConverter;
     }
 
     /**

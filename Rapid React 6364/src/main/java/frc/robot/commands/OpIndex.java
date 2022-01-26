@@ -1,6 +1,6 @@
 package frc.robot.commands;
 
-//Motor Dependancies
+//Motor Dependencies
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 //Import WPI
@@ -12,41 +12,42 @@ import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.Robot;
 
 public class OpIndex extends CommandBase {
-    private IndexSubsystem indxr;
+    private IndexSubsystem indexer;
 
     public OpIndex(final IndexSubsystem indexSubSys){
-        indxr = indexSubSys;
-        addRequirements(indxr);
+        indexer = indexSubSys;
+        addRequirements(indexer);
     }
     
     @Override
     public void initialize(){
-        indxr.stop();
+        indexer.stop();
     }
 
     @Override
     public void execute(){
-        System.out.print(indxr.getCodex());
-        System.out.print("\n");
+        SmartDashboard.putNumber("Codex", indexer.getCodex());
+        SmartDashboard.putBoolean("topPE", indexer.getTopSensor());
+        SmartDashboard.putBoolean("botPE", indexer.getBotSensor());
         
 
-        //Shoot the Balles when A master Pressed
+        //Shoot the Balls when A master Pressed
         if(Robot.io.master.getRightBumperPressed()){
-            indxr.shoot(); 
+            indexer.shoot();
         }
         else if(Robot.io.master.getLeftBumper()){
-            indxr.moveTop(ControlMode.PercentOutput, -0.5);
-            indxr.moveBot(ControlMode.PercentOutput, -0.5);
+            indexer.moveTop(ControlMode.PercentOutput, -0.5);
+            indexer.moveBot(ControlMode.PercentOutput, -0.5);
         }
         else{
-            indxr.run(0.8, 1);
+            indexer.run(0.8, 1);
         }
 
     }
 
     @Override
     public void end(boolean interrupted){
-        indxr.stop();
+        indexer.stop();
     }
 
     @Override

@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 //Import Robot Files
 import frc.robot.Constants;
-import frc.robot.utilities.InitializeTalon;
+import frc.robot.utilities.Talon;
 
 
 public class IndexSubsystem extends SubsystemBase{
@@ -24,9 +24,6 @@ public class IndexSubsystem extends SubsystemBase{
 
     private static AnalogInput topPESensor;
     private static AnalogInput botPESensor;
-
-    private static double topPhotoElectricTrigger = Constants.Index.topPHTriggerValue;
-    private static double botPhotoElectricTrigger = Constants.Index.bottomPHTriggerValue;
 
     //initialize the codex to track balls inside the intake
     private static int codex = 0;
@@ -43,8 +40,8 @@ public class IndexSubsystem extends SubsystemBase{
         botPESensor = new AnalogInput(Constants.RobotMap.botIntakePE.port);
 
         //Motor Sensor Configuration
-        InitializeTalon.Index(topMtr, true);
-        InitializeTalon.Index(botMtr, true);
+        Talon.Initialize.Index(topMtr, true);
+        Talon.Initialize.Index(botMtr, true);
 
     }
 
@@ -157,7 +154,7 @@ public class IndexSubsystem extends SubsystemBase{
      */
     public double getBotVelocity(boolean get_in_RPM){
         if(get_in_RPM){
-            return botMtr.getSelectedSensorVelocity() / Constants.kFalconEncoderUPR * 600.0;
+            return botMtr.getSelectedSensorVelocity() / Talon.rpmConverter;
         }
         else{
             return botMtr.getSelectedSensorVelocity();
@@ -190,16 +187,16 @@ public class IndexSubsystem extends SubsystemBase{
      * Get if the Top PhotoElectric Sensor is Triggered
      * @return True if Triggered
      */
-    private boolean getTopSensor(){
-        return topPESensor.getValue() > topPhotoElectricTrigger ? true : false;
+    public boolean getTopSensor(){
+        return topPESensor.getValue() > Constants.Index.topPHTriggerValue;
     }
 
     /**
      * Get if the Bottom PhotoElectric Sensor is Triggered
      * @return True if Triggered
      */
-    private boolean getBotSensor(){
-        return botPESensor.getValue() > botPhotoElectricTrigger ? true : false;
+    public boolean getBotSensor(){
+        return botPESensor.getValue() > Constants.Index.bottomPHTriggerValue;
     }
 
 }
