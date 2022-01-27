@@ -7,13 +7,16 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.utilities.Exponential;
 import frc.robot.Robot;
+import frc.robot.mapping.Controller;
 
 //WPI
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.XboxController;
 
 public class OpDrive extends CommandBase{
-    private DriveSubsystem drivef;
+    private final DriveSubsystem drivef;
+    private final XboxController master = Controller.getMaster();
 
     //Exp Controller Variables
     private final double joyDead = 0.050;
@@ -37,8 +40,8 @@ public class OpDrive extends CommandBase{
         SmartDashboard.putNumber("GyroVal", drivef.getAngle());
 
         //Robot Drive Code
-        double Yval = 21000 * Exponential.exponential(Robot.io.master.getLeftY(), driveExp, joyDead, motorMin);
-        double Xval = 21000 * Exponential.exponential(Robot.io.master.getRightX(), driveExp, joyDead, motorMin);
+        double Yval = 21000 * Exponential.exponential(master.getLeftY(), driveExp, joyDead, motorMin);
+        double Xval = 21000 * Exponential.exponential(master.getRightX(), driveExp, joyDead, motorMin);
 
         //Arcade Drive Configuration
         drivef.set(ControlMode.Velocity, (Yval - Xval), (Yval + Xval));

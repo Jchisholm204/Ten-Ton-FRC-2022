@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.mapping;
 
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 
@@ -58,6 +58,9 @@ public final class Constants {
     }
 
     public enum RobotMap {
+
+        // TODO: Finish Assigning CAN IDs
+
         Controller_Main(0),
         Controller_Partner(1),
 
@@ -85,5 +88,5 @@ public final class Constants {
             this.port = port;
         }
     }
-    
+
 }

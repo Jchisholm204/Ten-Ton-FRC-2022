@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 
 //Import Robot Files
 import frc.robot.utilities.Talon;
-import frc.robot.Constants;
+import frc.robot.mapping.Constants;
 
 public class DriveSubsystem extends SubsystemBase{
 

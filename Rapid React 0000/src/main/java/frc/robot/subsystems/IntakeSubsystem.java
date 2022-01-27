@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 //Import Robot Files
-import frc.robot.Constants;
+import frc.robot.mapping.Constants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
@@ -30,7 +30,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public IntakeSubsystem() {
         try {
             intakeFront = new TalonSRX(Constants.RobotMap.intakeFront.port);
-            intakeRear = new TalonSRX(Constants.RobotMap.intakeFront.port);
+            intakeRear = new TalonSRX(Constants.RobotMap.intakeRear.port);
         } catch (RuntimeException ex){
             DriverStation.reportError("Error Starting Intake Motors: " + ex.getMessage(), true);
         }

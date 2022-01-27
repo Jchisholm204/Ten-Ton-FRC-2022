@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 //Import Robot Files
-import frc.robot.Constants;
+import frc.robot.mapping.Constants;
 import frc.robot.utilities.Talon;
 
 

@@ -4,15 +4,18 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 //Import WPI
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 //Import Robot Files
+import frc.robot.mapping.Controller;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Robot;
 
 
 public class OpIntake extends CommandBase {
-    private IntakeSubsystem intake;
+    private final IntakeSubsystem intake;
+    private final XboxController master = Controller.getMaster();
 
     public OpIntake(final IntakeSubsystem intakeSubSys){
         intake = intakeSubSys;
@@ -27,15 +30,17 @@ public class OpIntake extends CommandBase {
 
     @Override
     public void execute(){
-        
-        if(Robot.io.master.getLeftBumperPressed()){
+
+        // TODO: Intake Controller Code
+
+        if(master.getLeftBumperPressed()){
             intake.raise(true, true);
         }
-        else if(Robot.io.master.getRightBumperPressed()){
+        else if(master.getRightBumperPressed()){
             intake.lower(true, true);
         };
 
-        if(Robot.io.master.getBButton()){
+        if(master.getBButton()){
             intake.set(ControlMode.PercentOutput, -1);
         }
         else if(intake.getFrontState() == true){
@@ -45,7 +50,7 @@ public class OpIntake extends CommandBase {
             intake.setFront(ControlMode.PercentOutput, 0);
         };
 
-        if(Robot.io.master.getXButton()){
+        if(master.getXButton()){
             intake.set(ControlMode.PercentOutput, -1);
         }
         else if(intake.getRearState() == true){

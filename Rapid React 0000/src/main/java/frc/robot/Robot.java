@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.utilities.Network;
 import edu.wpi.first.wpilibj.DriverStation;
+import frc.robot.mapping.Controller;
 //import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,7 +24,6 @@ public class Robot extends TimedRobot {
 
   //Container
   public static RobotContainer m_RobotContainer;
-  public static IO io;
   private Command m_OpDrive;
   private Command m_OpIndxr;
   private Command m_OpIntake;
@@ -39,8 +39,6 @@ public class Robot extends TimedRobot {
     } catch (Exception e) {
       DriverStation.reportError("Jetson Not Detected: " + e.getMessage(), true);
     }
-    //IO
-    io = new IO();
 
     //Container
     m_RobotContainer = new RobotContainer();

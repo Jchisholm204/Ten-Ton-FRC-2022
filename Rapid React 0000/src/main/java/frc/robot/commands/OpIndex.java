@@ -6,13 +6,17 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 //Import WPI
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.XboxController;
 
 //Import Robot Files
+import frc.robot.mapping.Controller;
 import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.Robot;
 
 public class OpIndex extends CommandBase {
-    private IndexSubsystem indexer;
+    private final IndexSubsystem indexer;
+    private final XboxController master = Controller.getMaster();
+
 
     public OpIndex(final IndexSubsystem indexSubSys){
         indexer = indexSubSys;
@@ -32,10 +36,10 @@ public class OpIndex extends CommandBase {
         
 
         //Shoot the Balls when A master Pressed
-        if(Robot.io.master.getRightBumperPressed()){
+        if(master.getRightBumperPressed()){
             indexer.shoot();
         }
-        else if(Robot.io.master.getLeftBumper()){
+        else if(master.getLeftBumper()){
             indexer.moveTop(ControlMode.PercentOutput, -0.5);
             indexer.moveBot(ControlMode.PercentOutput, -0.5);
         }
