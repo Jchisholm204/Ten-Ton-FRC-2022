@@ -1,4 +1,5 @@
 import csv
+from hashlib import new
 import os
 from datetime import datetime
 from timeE import getTotalTime
@@ -12,11 +13,15 @@ def numFromList(list, index):
             if list[i] == index:
                 return i
 
-# Create A New User (Creates Log File for Student)
+# Create A New User (Creates Log File for Student), Returns False if the user already exists
 def CreateNewUser(userName):
-    with open(f"{os.getcwd()}/UserFiles/{userName}.csv", "a", newline='') as usrFile:
-        writer = csv.writer(usrFile)
-        writer.writerow(["Date", "Time In", "Time Out", "Time Spent (Seconds)", "Time Toltal (Seconds)"])
+    if (os.path.exists(f"{os.getcwd()}/{userName}.csv") == True):
+        return False
+    else:
+        with open(f"{os.getcwd()}/UserFiles/{userName}.csv", "a", newline='') as usrFile:
+            writer = csv.writer(usrFile)
+            writer.writerow(["Date", "Time In", "Time Out", "Time Spent (Seconds)", "Time Toltal (Seconds)"])
+        return True
 
 # Logs In a User
 def LoginTask(user, timestamp):
@@ -63,9 +68,6 @@ def main():
     DateNow = datetime.strftime(now, "%m/%d/%Y")
     TimeNow = datetime.strftime(now, "%H:%M:%S")
 
-    if(os.path.exists(f"{os.getcwd()}/UserFiles/{userID}.csv") == False):
-        CreateNewUser(userName=userID)
-
     # If User Logged in --> Log User Out
     if userID in loggedInUsers:
         rton = LogoutTask(userID, DateNow, now, TimeNow)
@@ -74,9 +76,17 @@ def main():
 
     # If User NOT Logged In --> Log User In
     else:
+        #Check if the Student is a returning user
+        newUser = CreateNewUser(userName=userID)
+
+        #Log in the User
         LoginTask(userID, datetime.timestamp(now))
+
         # Print to let the user know they logged in successfully
-        print(f"Logged in\n{userID}\n\n")
+        if(newUser == True): # Give alternate messages for new and returning users
+            print(f"Logged in new user:\n{userID}\n\n")
+        else:
+            print(f"Logged in:\n{userID}\n\n")
 
 
 
