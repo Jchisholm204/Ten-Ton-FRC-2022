@@ -120,7 +120,7 @@ public class IndexSubsystem extends SubsystemBase{
      * @param Mode Talon SRX Control Mode
      * @param pVal Power Value
      */
-    public void moveTop(ControlMode Mode, double pVal){
+    public void setTop(ControlMode Mode, double pVal){
         topMtr.set(Mode, pVal);
     }
 
@@ -129,7 +129,7 @@ public class IndexSubsystem extends SubsystemBase{
      * @param Mode Talon SRX Control Mode
      * @param pVal Power Value
      */
-    public void moveBot(ControlMode Mode, double pVal){
+    public void setBot(ControlMode Mode, double pVal){
         botMtr.set(Mode, pVal);
     }
 

@@ -68,16 +68,17 @@ public final class Constants {
         driveLS(0),
 
         //Intake Motor Ports (can)
-        intakeFront(0),
-        intakeRear(0),
+        intakeFront(02),
+        intakeRear(03),
 
         //Index Motor Ports (can)
-        indexTopMtr(10),
-        indexBotMtr(01),
+        indexTopMtr(01),
+        indexBotMtr(00),
 
         //Index PhotoElectric Ports (Analog In)
         topIntakePE(0),
-        botIntakePE(1);
+        botIntakePE(1),
+        PDP(10);
 
 
         public final int port;

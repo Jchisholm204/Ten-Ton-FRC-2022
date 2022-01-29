@@ -23,6 +23,7 @@ public class RobotContainer {
     private final OpDrive operatorDrive = new OpDrive(drive);
     private final OpIndex operatorIndex = new OpIndex(indexer);
     private final OpIntake operatorIntake = new OpIntake(intake);
+    private final SimpleIntakeCommand SimpleOpIntake = new SimpleIntakeCommand(intake);
 
     public RobotContainer(){}
 
@@ -36,5 +37,9 @@ public class RobotContainer {
 
     public Command getOpIntakeCommand(){
         return operatorIntake;
+    }
+
+    public Command getSimpleIntakeCommand(){
+        return SimpleOpIntake;
     }
 }

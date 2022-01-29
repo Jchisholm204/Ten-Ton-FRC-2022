@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.utilities.Network;
@@ -22,11 +21,11 @@ import edu.wpi.first.wpilibj.DriverStation;
 public class Robot extends TimedRobot {
 
   //Container
-  public static RobotContainer m_RobotContainer;
+  public static RobotContainer robotContainer;
   public static IO io;
-  private Command m_OpDrive;
-  private Command m_OpIndxr;
-  private Command m_OpIntake;
+  private Command OpDrive;
+  private Command opIndexer;
+  private Command opIntake;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -43,10 +42,10 @@ public class Robot extends TimedRobot {
     io = new IO();
 
     //Container
-    m_RobotContainer = new RobotContainer();
-    m_OpDrive = m_RobotContainer.getOpDriveCommand();
-    m_OpIndxr = m_RobotContainer.getOpIndexCommand();
-    m_OpIntake = m_RobotContainer.getOpIntakeCommand();
+    robotContainer = new RobotContainer();
+    OpDrive = robotContainer.getOpDriveCommand();
+    opIndexer = robotContainer.getOpIndexCommand();
+    opIntake = robotContainer.getSimpleIntakeCommand();
 
   }
 
@@ -83,9 +82,9 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    //m_OpDrive.schedule();
-    m_OpIndxr.schedule();
-    //m_OpIntake.schedule();
+    //OpDrive.schedule();
+    opIndexer.schedule();
+    opIntake.schedule();
   }
 
   /** This function is called periodically during operator control. */

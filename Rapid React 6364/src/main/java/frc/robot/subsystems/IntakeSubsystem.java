@@ -30,7 +30,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public IntakeSubsystem() {
         try {
             intakeFront = new TalonSRX(Constants.RobotMap.intakeFront.port);
-            intakeRear = new TalonSRX(Constants.RobotMap.intakeFront.port);
+            intakeRear = new TalonSRX(Constants.RobotMap.intakeRear.port);
         } catch (RuntimeException ex){
             DriverStation.reportError("Error Starting Intake Motors: " + ex.getMessage(), true);
         }
