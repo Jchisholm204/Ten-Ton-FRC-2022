@@ -4,10 +4,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import edu.wpi.first.wpilibj.XboxController;
 
 
 public class SimpleIntakeCommand extends CommandBase {
     private final IntakeSubsystem intake;
+
+    private final XboxController master = Robot.robotContainer.getMaster();
 
     public SimpleIntakeCommand(IntakeSubsystem intakeSubsystem) {
         this.intake = intakeSubsystem;
@@ -30,10 +33,10 @@ public class SimpleIntakeCommand extends CommandBase {
      */
     @Override
     public void execute() {
-        if (Robot.io.master.getAButton()){
+        if (master.getAButton()){
             intake.set(ControlMode.PercentOutput, 1);
         }
-        else if(Robot.io.master.getBButton()){
+        else if(master.getBButton()){
             intake.set(ControlMode.PercentOutput, -1);
         }
         else{

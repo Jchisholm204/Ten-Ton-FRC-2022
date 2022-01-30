@@ -50,7 +50,7 @@ public class IndexSubsystem extends SubsystemBase{
      * @param topMper Top Motor Percent Power [0,1]
      * @param botMper Bottom Motor Percent Power [0,1]
      */
-    public void run(double topMper, double botMper){
+    public void runCodex(double topMper, double botMper){
 
         if ( getTopSensor() ){ codex = 1; };
         if ( codex == 1 && getBotSensor() ){ codex = 2; };

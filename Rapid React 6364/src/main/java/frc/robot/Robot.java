@@ -22,7 +22,6 @@ public class Robot extends TimedRobot {
 
   //Container
   public static RobotContainer robotContainer;
-  public static IO io;
   private Command OpDrive;
   private Command opIndexer;
   private Command opIntake;
@@ -38,8 +37,6 @@ public class Robot extends TimedRobot {
     } catch (Exception e) {
       DriverStation.reportError("Jetson Not Detected: " + e.getMessage(), true);
     }
-    //IO
-    io = new IO();
 
     //Container
     robotContainer = new RobotContainer();

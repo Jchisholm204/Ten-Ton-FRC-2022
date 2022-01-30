@@ -2,6 +2,7 @@ package frc.robot;
 
 //Import WPI
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.XboxController;
 
 //Import User Made Commands
 import frc.robot.commands.*;
@@ -15,6 +16,8 @@ import frc.robot.subsystems.*;
  * {@link Robot} should be used for scheduler calls only
  */
 public class RobotContainer {
+
+    private final XboxController master = new XboxController(Constants.RobotMap.Controller_Main.port);
 
     private final DriveSubsystem drive = new DriveSubsystem();
     private final IndexSubsystem indexer = new IndexSubsystem();
@@ -41,5 +44,9 @@ public class RobotContainer {
 
     public Command getSimpleIntakeCommand(){
         return SimpleOpIntake;
+    }
+
+    public XboxController getMaster(){
+        return master;
     }
 }

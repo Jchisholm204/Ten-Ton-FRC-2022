@@ -7,7 +7,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.XboxController;
 
 //Import Robot Files
 import frc.robot.subsystems.IndexSubsystem;
@@ -19,6 +19,8 @@ public class OpIndex extends CommandBase {
     private final IndexSubsystem indexer;
     private final double waitTime = 2; // Seconds To Wait While Shooting
     private double WaitSaveTime;
+
+    private final XboxController master = Robot.robotContainer.getMaster();
 
     public OpIndex(final IndexSubsystem indexSubSys){
         indexer = indexSubSys;
@@ -41,16 +43,16 @@ public class OpIndex extends CommandBase {
         if(Timer.getFPGATimestamp() < (WaitSaveTime + waitTime)){
             //Do Nothing
         }
-        else if(Robot.io.master.getRightBumperPressed()){
+        else if(master.getRightBumperPressed()){
             indexer.shoot();
             WaitSaveTime = Timer.getFPGATimestamp();
         }
-        else if(Robot.io.master.getLeftBumper()){
+        else if(master.getLeftBumper()){
             indexer.setTop(ControlMode.PercentOutput, -0.5);
             indexer.setBot(ControlMode.PercentOutput, -0.5);
         }
         else{
-            indexer.run(0.8, 1);
+            indexer.runCodex(0.8, 1);
         }
 
     }
