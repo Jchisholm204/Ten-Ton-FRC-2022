@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Command;
 
 //Import Robot Files
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.Robot;
 
@@ -18,7 +17,7 @@ import javax.swing.*;
 
 public class OpIndex extends CommandBase {
     private final IndexSubsystem indexer;
-    private final double waitTime = 2; // Time To Wait While Shooting
+    private final double waitTime = 2; // Seconds To Wait While Shooting
     private double WaitSaveTime;
 
     public OpIndex(final IndexSubsystem indexSubSys){
@@ -43,9 +42,7 @@ public class OpIndex extends CommandBase {
             //Do Nothing
         }
         else if(Robot.io.master.getRightBumperPressed()){
-            indexer.setTop(ControlMode.PercentOutput, 1);
-            indexer.setBot(ControlMode.PercentOutput, 1);
-            indexer.reset();
+            indexer.shoot();
             WaitSaveTime = Timer.getFPGATimestamp();
         }
         else if(Robot.io.master.getLeftBumper()){

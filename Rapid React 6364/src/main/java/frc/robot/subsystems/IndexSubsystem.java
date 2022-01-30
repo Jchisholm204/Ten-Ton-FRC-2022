@@ -90,29 +90,18 @@ public class IndexSubsystem extends SubsystemBase{
     }
 
     /**
-     * Shoot The Cargo Stored Within The Index (delay = 2sec)
+     * Move the Index Motors and Reset the Codex
      */
     public void shoot(){
         topMtr.set(ControlMode.PercentOutput, 1);
         botMtr.set(ControlMode.PercentOutput, 1);
         codex = 0;
-        Timer.delay(2);
     }
 
-    /**
-     * Shoot The Cargo Stored Within The Index (delay = 2sec)
-     * @param runTime Delay In Seconds to Run The Indexer
-     */
-    public void shoot(double runTime){
-        topMtr.set(ControlMode.PercentOutput, 1);
-        botMtr.set(ControlMode.PercentOutput, 1);
-        Timer.delay(runTime); 
-    }
     
     public void shootSingle(){
         topMtr.set(ControlMode.PercentOutput, 1);
         codex = 0;
-        Timer.delay(1);
     }
 
     /**
