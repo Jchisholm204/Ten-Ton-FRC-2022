@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a72a33cf-6992-46f0-9391-84998eb8c2b4" name="Default Changelist" comment="" />
+    <list default="true" id="a72a33cf-6992-46f0-9391-84998eb8c2b4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Rapid React 6364 - ReRun Test - PrintWriter.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/Rapid React 6364.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/Rapid_React_6364.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Rapid React 6364/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Rapid React 6364/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,8 +41,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FRC v2 PIDSubsystem" />
-        <option value="FRC v2 Command" />
         <option value="Class" />
+        <option value="FRC v2 Command" />
       </list>
     </option>
   </component>
@@ -49,6 +61,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -56,7 +69,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.other" />
   </component>
   <component name="RunManager" selected="Gradle.Gradle Build">
     <configuration name="Gradle Build" type="GradleRunConfiguration" factoryName="Gradle">
@@ -190,7 +203,7 @@
     </option>
   </component>
   <component name="WpiLibVersionService">
-    <option name="lastChecked" value="20220129134004" />
+    <option name="lastChecked" value="20220130220440" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
