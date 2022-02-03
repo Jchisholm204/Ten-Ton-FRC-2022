@@ -20,8 +20,6 @@ public class OpIndex extends CommandBase {
     private final double waitTime = 2; // Seconds To Wait While Shooting
     private double WaitSaveTime;
 
-    private final XboxController master = Robot.robotContainer.getMaster();
-
     public OpIndex(final IndexSubsystem indexSubSys){
         indexer = indexSubSys;
         addRequirements(indexer);
@@ -45,11 +43,11 @@ public class OpIndex extends CommandBase {
             //Do Nothing
             //Wait For Shot to finish
         }
-        else if(master.getRightBumperPressed()){
+        else if(Robot.robotContainer.master.getRightBumperPressed()){
             indexer.shoot();
             WaitSaveTime = Timer.getFPGATimestamp();
         }
-        else if(master.getLeftBumper()){
+        else if(Robot.robotContainer.master.getLeftBumper()){
             indexer.setTop(ControlMode.PercentOutput, -0.5);
             indexer.setBot(ControlMode.PercentOutput, -0.5);
         }

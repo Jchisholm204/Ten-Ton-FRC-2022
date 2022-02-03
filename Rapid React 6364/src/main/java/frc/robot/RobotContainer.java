@@ -17,7 +17,7 @@ import frc.robot.subsystems.*;
  */
 public class RobotContainer {
 
-    private final XboxController master = new XboxController(Constants.RobotMap.Controller_Main.port);
+    public final XboxController master = new XboxController(Constants.RobotMap.Controller_Main.port);
 
     private final DriveSubsystem drive = new DriveSubsystem();
     private final IndexSubsystem indexer = new IndexSubsystem();

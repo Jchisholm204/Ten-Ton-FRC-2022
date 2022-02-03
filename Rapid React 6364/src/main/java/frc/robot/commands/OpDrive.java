@@ -16,8 +16,6 @@ import edu.wpi.first.wpilibj.XboxController;
 public class OpDrive extends CommandBase{
     private final DriveSubsystem drivef;
 
-    private final XboxController master = Robot.robotContainer.getMaster();
-
     //Exp Controller Variables
     private final double joyDead = 0.050;
     private final double driveExp = 1.7;
@@ -40,8 +38,8 @@ public class OpDrive extends CommandBase{
         SmartDashboard.putNumber("GyroVal", drivef.getAngle());
 
         //Robot Drive Code
-        double Yval = 21000 * Exponential.exponential(master.getLeftY(), driveExp, joyDead, motorMin);
-        double Xval = 21000 * Exponential.exponential(master.getRightX(), driveExp, joyDead, motorMin);
+        double Yval = 21000 * Exponential.exponential(Robot.robotContainer.master.getLeftY(), driveExp, joyDead, motorMin);
+        double Xval = 21000 * Exponential.exponential(Robot.robotContainer.master.getRightX(), driveExp, joyDead, motorMin);
 
         //Arcade Drive Configuration
         drivef.set(ControlMode.Velocity, (Yval - Xval), (Yval + Xval));

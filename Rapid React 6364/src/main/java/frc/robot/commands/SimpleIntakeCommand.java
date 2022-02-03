@@ -4,13 +4,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import edu.wpi.first.wpilibj.XboxController;
 
 
 public class SimpleIntakeCommand extends CommandBase {
     private final IntakeSubsystem intake;
-
-    private final XboxController master = Robot.robotContainer.getMaster();
 
     public SimpleIntakeCommand(IntakeSubsystem intakeSubsystem) {
         this.intake = intakeSubsystem;
@@ -34,10 +31,10 @@ public class SimpleIntakeCommand extends CommandBase {
     @Override
     public void execute() {
         //Front Intake Control
-        if (master.getAButton()){
+        if (Robot.robotContainer.master.getAButton()){
             intake.setFront(ControlMode.PercentOutput, 1);
         }
-        else if(master.getYButton()){
+        else if(Robot.robotContainer.master.getYButton()){
             intake.setFront(ControlMode.PercentOutput, -1);
         }
         else{
@@ -45,10 +42,10 @@ public class SimpleIntakeCommand extends CommandBase {
         }
 
         //Rear intake Control
-        if(master.getBButton()){
+        if(Robot.robotContainer.master.getBButton()){
             intake.setRear(ControlMode.PercentOutput, 1);
         }
-        else if(master.getXButton()){
+        else if(Robot.robotContainer.master.getXButton()){
             intake.setRear(ControlMode.PercentOutput, -1);
         }
         else{

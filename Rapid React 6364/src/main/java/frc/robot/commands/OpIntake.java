@@ -15,8 +15,6 @@ import frc.robot.Robot;
 public class OpIntake extends CommandBase {
     private final IntakeSubsystem intake;
 
-    private final XboxController master = Robot.robotContainer.getMaster();
-
     public OpIntake(final IntakeSubsystem intakeSubSys){
         intake = intakeSubSys;
         addRequirements(intake);
@@ -31,14 +29,14 @@ public class OpIntake extends CommandBase {
     @Override
     public void execute(){
         
-        if(master.getLeftBumperPressed()){
+        if(Robot.robotContainer.master.getLeftBumperPressed()){
             intake.raise(true, true);
         }
-        else if(master.getRightBumperPressed()){
+        else if(Robot.robotContainer.master.getRightBumperPressed()){
             intake.lower(true, true);
         };
 
-        if(master.getBButton()){
+        if(Robot.robotContainer.master.getBButton()){
             intake.set(ControlMode.PercentOutput, -1);
         }
         else if(intake.getFrontState() == true){
@@ -48,7 +46,7 @@ public class OpIntake extends CommandBase {
             intake.setFront(ControlMode.PercentOutput, 0);
         };
 
-        if(master.getXButton()){
+        if(Robot.robotContainer.master.getXButton()){
             intake.set(ControlMode.PercentOutput, -1);
         }
         else if(intake.getRearState() == true){
