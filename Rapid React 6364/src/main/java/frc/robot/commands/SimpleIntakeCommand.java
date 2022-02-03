@@ -33,14 +33,26 @@ public class SimpleIntakeCommand extends CommandBase {
      */
     @Override
     public void execute() {
+        //Front Intake Control
         if (master.getAButton()){
-            intake.set(ControlMode.PercentOutput, 1);
+            intake.setFront(ControlMode.PercentOutput, 1);
         }
-        else if(master.getBButton()){
-            intake.set(ControlMode.PercentOutput, -1);
+        else if(master.getYButton()){
+            intake.setFront(ControlMode.PercentOutput, -1);
         }
         else{
-            intake.set(ControlMode.PercentOutput, 0);
+            intake.setFront(ControlMode.PercentOutput, 0);
+        }
+
+        //Rear intake Control
+        if(master.getBButton()){
+            intake.setRear(ControlMode.PercentOutput, 1);
+        }
+        else if(master.getXButton()){
+            intake.setRear(ControlMode.PercentOutput, -1);
+        }
+        else{
+            intake.setRear(ControlMode.PercentOutput, 0);
         }
     }
 
@@ -60,7 +72,6 @@ public class SimpleIntakeCommand extends CommandBase {
      */
     @Override
     public boolean isFinished() {
-        // TODO: Make this return true when this Command no longer needs to run execute()
         return false;
     }
 

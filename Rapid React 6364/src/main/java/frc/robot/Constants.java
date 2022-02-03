@@ -74,6 +74,7 @@ public final class Constants {
         //Index Motor Ports (can)
         indexTopMtr(01),
         indexBotMtr(00),
+        indexFeedMtr(0), //TODO: configure SRX CAN for Index Feeder Motor
 
         //Index PhotoElectric Ports (Analog In)
         topIntakePE(0),

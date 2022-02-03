@@ -40,8 +40,10 @@ public class OpIndex extends CommandBase {
 
 
 
+        // Shooting | Running Index \\
         if(Timer.getFPGATimestamp() < (WaitSaveTime + waitTime)){
             //Do Nothing
+            //Wait For Shot to finish
         }
         else if(master.getRightBumperPressed()){
             indexer.shoot();
@@ -53,6 +55,14 @@ public class OpIndex extends CommandBase {
         }
         else{
             indexer.runCodex(0.8, 1);
+        }
+
+        //Run Feeder Motor (Sideways Index Module)
+        if(indexer.getCodex() == 2){
+            indexer.setFeed(ControlMode.PercentOutput, 0.1); //Slow down when index full
+        }
+        else{
+            indexer.setFeed(ControlMode.PercentOutput, 1);
         }
 
     }

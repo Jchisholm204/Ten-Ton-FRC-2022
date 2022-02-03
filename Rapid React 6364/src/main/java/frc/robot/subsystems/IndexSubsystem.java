@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.AnalogInput;
 
 //WPI
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 //Import Robot Files
@@ -21,6 +20,7 @@ public class IndexSubsystem extends SubsystemBase{
 
     private TalonSRX topMtr;
     private TalonSRX botMtr;
+    private TalonSRX feedMtr;
 
     private static AnalogInput topPESensor;
     private static AnalogInput botPESensor;
@@ -32,6 +32,7 @@ public class IndexSubsystem extends SubsystemBase{
         try {
             topMtr = new TalonSRX(Constants.RobotMap.indexTopMtr.port);
             botMtr = new TalonSRX(Constants.RobotMap.indexBotMtr.port);
+            feedMtr = new TalonSRX(Constants.RobotMap.indexFeedMtr.port);
         } catch (RuntimeException ex){
             DriverStation.reportError("Error Starting Intake Motors: " + ex.getMessage(), true);
         }
@@ -42,6 +43,7 @@ public class IndexSubsystem extends SubsystemBase{
         //Motor Sensor Configuration
         Talon.Initialize.Index(topMtr, true);
         Talon.Initialize.Index(botMtr, true);
+        Talon.Initialize.Index(feedMtr, false);
 
     }
 
@@ -120,6 +122,10 @@ public class IndexSubsystem extends SubsystemBase{
      */
     public void setBot(ControlMode Mode, double pVal){
         botMtr.set(Mode, pVal);
+    }
+
+    public void setFeed(ControlMode Mode, double pVal){
+        feedMtr.set(Mode, pVal);
     }
 
     /**
