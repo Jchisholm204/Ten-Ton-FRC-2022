@@ -54,8 +54,8 @@ public class IndexSubsystem extends SubsystemBase{
      */
     public void runCodex(double topMper, double botMper){
 
-        if ( getTopSensor() ){ codex = 1; };
-        if ( codex == 1 && getBotSensor() ){ codex = 2; };
+        if ( getTopSensor() && codex == 0){ codex = 1; };
+        if ( getBotSensor() && codex == 1 ){ codex = 2; };
 
         if ( codex == 2 ){
             topMtr.set(ControlMode.PercentOutput, 0);
