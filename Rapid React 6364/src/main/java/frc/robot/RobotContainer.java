@@ -22,6 +22,7 @@ public class RobotContainer {
     private final DriveSubsystem drive = new DriveSubsystem();
     private final IndexSubsystem indexer = new IndexSubsystem();
     private final IntakeSubsystem intake = new IntakeSubsystem();
+    private final HangSubsystem hang = new HangSubsystem();
 
     private final OpDrive operatorDrive = new OpDrive(drive);
     private final OpIndex operatorIndex = new OpIndex(indexer);

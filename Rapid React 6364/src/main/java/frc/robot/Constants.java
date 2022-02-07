@@ -76,6 +76,10 @@ public final class Constants {
         indexBotMtr(00),
         indexFeedMtr(12),
 
+        //Hang Motors
+        hangMtr(00),
+        winchMtr(00),
+
         //Index PhotoElectric Ports (Analog In)
         topIntakePE(0),
         botIntakePE(1),
