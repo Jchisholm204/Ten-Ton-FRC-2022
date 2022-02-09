@@ -11,6 +11,8 @@ public class HangCommand extends CommandBase {
 
     private final HangSubsystem hang;
 
+    private final double proValue = 1950;
+
     public HangCommand(final HangSubsystem hangSubsystem) {
         hang = hangSubsystem;
         addRequirements(hangSubsystem);
@@ -19,13 +21,13 @@ public class HangCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        SmartDashboard.putNumber("Targ", hang.getWinch());
+        SmartDashboard.putNumber("Targ", proValue);
     }
 
     @Override
     public void execute() {
         SmartDashboard.putNumber("Cur", hang.getWinch());
-        hang.setHang(ControlMode.Position, SmartDashboard.getNumber("Targ", hang.getWinch()));
+        hang.setWinch(ControlMode.Position, SmartDashboard.getNumber("Targ", proValue));
 
     }
 

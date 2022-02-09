@@ -21,7 +21,7 @@ public class HangSubsystem extends SubsystemBase {
             DriverStation.reportError("Error Starting Hang Talons: " + e.getMessage(), true);
         }
 
-        Talon.Initialize.Hang(winchMotor, false);
+        Talon.Initialize.Winch(winchMotor, false);
         Talon.Initialize.Hang(hangMotor, false);
 
     }
@@ -33,16 +33,13 @@ public class HangSubsystem extends SubsystemBase {
     public double getWinch(){
         return winchMotor.getSelectedSensorPosition(0);
     }
-    public void setWinchPos(double pos){
-        winchMotor.set(ControlMode.Position, pos);
-    }
 
     public void setHang(ControlMode Mode, double iPow){
         hangMotor.set(Mode, iPow);
     }
 
     public double getHang(){
-        return hangMotor.getSelectedSensorPosition();
+        return hangMotor.getSelectedSensorPosition(0);
     }
 }
 

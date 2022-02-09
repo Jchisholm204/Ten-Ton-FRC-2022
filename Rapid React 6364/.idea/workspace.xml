@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a72a33cf-6992-46f0-9391-84998eb8c2b4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/RobotContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/RobotContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/HangCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/HangCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/HangSubsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/HangSubsystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/utilities/PID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/utilities/PID.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/utilities/Talon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/utilities/Talon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +72,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Gradle.Gradle Deploy">
+  <component name="RunManager" selected="Gradle.Gradle Build">
     <configuration name="Gradle Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -208,22 +204,7 @@
     </option>
   </component>
   <component name="WpiLibVersionService">
-    <option name="lastChecked" value="20220204180045" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/frc/robot/subsystems/HangSubsystem.java</url>
-          <line>32</line>
-          <properties class="frc.robot.subsystems.HangSubsystem" method="getWinch">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <option name="lastChecked" value="20220209092805" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
