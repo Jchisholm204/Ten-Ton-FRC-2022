@@ -74,6 +74,23 @@ public class Talon {
             iMotor.setSelectedSensorPosition(0); // Reset Motor Encoder
         }
 
+        public static void Hang(final TalonFX iMotor, boolean inverted) {
+            iMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor); //Set to use Internal Encoder
+            iMotor.setSensorPhase(false); //Disable Sensor Phase (tuning)
+            iMotor.setInverted(inverted); //Do Not Invert Motor
+            iMotor.configFactoryDefault(); //Use Factory Tune Settings
+            //Output Settings
+            iMotor.configNominalOutputForward(0);
+            iMotor.configNominalOutputReverse(0);
+            iMotor.configPeakOutputForward(1);
+            iMotor.configPeakOutputReverse(-1);
+
+            iMotor.config_kF(Constants.kPIDLoopIdx, 0.05, Constants.kTimeoutMs);
+            iMotor.config_kP(Constants.kPIDLoopIdx, 0.2, Constants.kTimeoutMs);
+            iMotor.config_kI(Constants.kPIDLoopIdx, 0, Constants.kTimeoutMs);
+            iMotor.config_kD(Constants.kPIDLoopIdx, 0, Constants.kTimeoutMs);
+        }
+
         public static void Intake(final TalonSRX iMotor, boolean inverted) {
             iMotor.configSelectedFeedbackSensor(FeedbackDevice.None); //Set Encoder
             iMotor.setInverted(inverted); //Set Motor Invert

@@ -4,11 +4,11 @@ public class PID {
 
     private float kP;
     private float kD;
-    public int current;
-    public int target;
-    private int error;
-    private int error_last;
-    private int derr;
+    public double current;
+    public double target;
+    private double error;
+    private double error_last;
+    private double derr;
 
     public PID(float p, float d, int targ){
         kP = p;

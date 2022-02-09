@@ -78,7 +78,7 @@ public final class Constants {
 
         //Hang Motors
         hangMtr(00),
-        winchMtr(00),
+        winchMtr(13),
 
         //Index PhotoElectric Ports (Analog In)
         topIntakePE(0),

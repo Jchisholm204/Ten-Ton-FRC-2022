@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.HangSubsystem;
+import frc.robot.utilities.PID;
 
 
 public class HangCommand extends CommandBase {
@@ -18,14 +19,14 @@ public class HangCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        SmartDashboard.putNumber("Hang", 0.00);
-        SmartDashboard.putNumber("Winch", 0.00);
+        SmartDashboard.putNumber("Targ", hang.getWinch());
     }
 
     @Override
     public void execute() {
-        hang.setHang(ControlMode.PercentOutput, (SmartDashboard.getNumber("Hang", 0)/100));
-        hang.setWinch(ControlMode.PercentOutput, (SmartDashboard.getNumber("Winch", 0)/100));
+        SmartDashboard.putNumber("Cur", hang.getWinch());
+        hang.setHang(ControlMode.Position, SmartDashboard.getNumber("Targ", hang.getWinch()));
+
     }
 
     @Override

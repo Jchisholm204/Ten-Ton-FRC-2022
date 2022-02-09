@@ -25,6 +25,7 @@ public class Robot extends TimedRobot {
   private Command OpDrive;
   private Command opIndexer;
   private Command opIntake;
+  private Command hangCommand;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -43,6 +44,7 @@ public class Robot extends TimedRobot {
     OpDrive = robotContainer.getOpDriveCommand();
     opIndexer = robotContainer.getOpIndexCommand();
     opIntake = robotContainer.getSimpleIntakeCommand();
+    hangCommand = robotContainer.getHangCommand();
 
   }
 
@@ -82,6 +84,7 @@ public class Robot extends TimedRobot {
     //OpDrive.schedule();
     opIndexer.schedule();
     opIntake.schedule();
+    hangCommand.schedule();
   }
 
   /** This function is called periodically during operator control. */

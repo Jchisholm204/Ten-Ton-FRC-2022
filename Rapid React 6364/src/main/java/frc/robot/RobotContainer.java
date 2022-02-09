@@ -28,6 +28,7 @@ public class RobotContainer {
     private final OpIndex operatorIndex = new OpIndex(indexer);
     private final OpIntake operatorIntake = new OpIntake(intake);
     private final SimpleIntakeCommand SimpleOpIntake = new SimpleIntakeCommand(intake);
+    private final HangCommand hangCommand = new HangCommand(hang);
 
     public RobotContainer(){}
 
@@ -45,6 +46,10 @@ public class RobotContainer {
 
     public Command getSimpleIntakeCommand(){
         return SimpleOpIntake;
+    }
+
+    public Command getHangCommand(){
+        return hangCommand;
     }
 
     public XboxController getMaster(){
