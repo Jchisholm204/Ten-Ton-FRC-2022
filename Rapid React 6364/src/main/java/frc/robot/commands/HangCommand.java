@@ -27,19 +27,17 @@ public class HangCommand extends CommandBase {
     @Override
     public void execute() {
         SmartDashboard.putNumber("Cur", hang.getWinch());
-        hang.setWinch(ControlMode.Position, SmartDashboard.getNumber("Targ", proValue));
+        hang.setWinch(ControlMode.MotionMagic, SmartDashboard.getNumber("Targ", proValue));
 
     }
 
     @Override
     public boolean isFinished() {
-        // TODO: Make this return true when this Command no longer needs to run execute()
         return false;
     }
 
     @Override
     public void end(boolean interrupted) {
-        hang.setHang(ControlMode.PercentOutput, 0);
         hang.setWinch(ControlMode.PercentOutput, 0);
     }
 }

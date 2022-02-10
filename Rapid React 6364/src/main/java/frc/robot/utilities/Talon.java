@@ -3,6 +3,7 @@ package frc.robot.utilities;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import frc.robot.Constants;
@@ -92,20 +93,31 @@ public class Talon {
         }
 
         public static void Winch(final TalonFX iMotor, boolean inverted) {
-            iMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor); //Set to use Internal Encoder
+            TalonFXConfiguration winchConfig = new TalonFXConfiguration(); //Create Motor Configuration
+            winchConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.IntegratedSensor; //Set to use integrated Sensor
+            winchConfig.slot0.kP = 1.0;
+            winchConfig.slot0.kI = 0.0;
+            winchConfig.slot0.kD = 10.0;
+            winchConfig.slot0.kF = 0.0;
+            winchConfig.slot0.integralZone = 0;
+            winchConfig.slot0.allowableClosedloopError = 0;
+            winchConfig.motionAcceleration = 20; //1000
+            winchConfig.motionCruiseVelocity = 2; //100
+            winchConfig.nominalOutputForward = 0;
+            winchConfig.nominalOutputReverse = 0;
+            winchConfig.peakOutputReverse = -1;
+            winchConfig.peakOutputForward = 1;
+            winchConfig.motionCurveStrength = 3;
+
+            iMotor.configFactoryDefault(); //Reset Motor Configuration
+            iMotor.configAllSettings(winchConfig); //Apply new Motor Configuration
+
             iMotor.setSensorPhase(true); // Sensor Phase (tuning)
             iMotor.setInverted(inverted); // Invert Motor?
-            //iMotor.configFactoryDefault(); // Use Factory Tune Settings
-            // Output Settings
-            iMotor.configNominalOutputForward(0);
-            iMotor.configNominalOutputReverse(0);
-            iMotor.configPeakOutputForward(1);
-            iMotor.configPeakOutputReverse(-1);
 
-            iMotor.config_kF(Constants.kPIDLoopIdx, 0.0500, Constants.kTimeoutMs);
-            iMotor.config_kP(Constants.kPIDLoopIdx, 0.25, Constants.kTimeoutMs);
-            iMotor.config_kI(Constants.kPIDLoopIdx, 0, Constants.kTimeoutMs);
-            iMotor.config_kD(Constants.kPIDLoopIdx, 0, Constants.kTimeoutMs);
+            //Set Sensor to not use continuous position
+            iMotor.configFeedbackNotContinuous(false, Constants.kTimeoutMs); //true?false
+
         }
 
         public static void Intake(final TalonSRX iMotor, boolean inverted) {

@@ -7,7 +7,6 @@
     <list default="true" id="a72a33cf-6992-46f0-9391-84998eb8c2b4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/HangCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/HangCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/HangSubsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/HangSubsystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/utilities/Talon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/utilities/Talon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -204,7 +203,7 @@
     </option>
   </component>
   <component name="WpiLibVersionService">
-    <option name="lastChecked" value="20220209092805" />
+    <option name="lastChecked" value="20220210094735" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
