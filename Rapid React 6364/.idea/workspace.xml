@@ -71,7 +71,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Gradle.Gradle Build">
+  <component name="RunManager" selected="Gradle.Gradle Deploy">
     <configuration name="Gradle Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -203,7 +203,7 @@
     </option>
   </component>
   <component name="WpiLibVersionService">
-    <option name="lastChecked" value="20220210094735" />
+    <option name="lastChecked" value="20220210192135" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
