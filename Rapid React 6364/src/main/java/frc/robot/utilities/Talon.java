@@ -143,7 +143,7 @@ public class Talon {
             iMotor.configFactoryDefault(); // Set to Factory Tune Before Applying any kind of user Configuration
             iMotor.configAllSettings(DriveConfiguration(0.050));
 
-            iMotor.setNeutralMode(NeutralMode.Brake);
+            iMotor.setNeutralMode(NeutralMode.Coast);
 
             iMotor.setInverted(true); // Invert Motor
 
@@ -158,7 +158,7 @@ public class Talon {
             iMotor.configFactoryDefault(); // Set to Factory Tune Before Applying any kind of user Configuration
             iMotor.configAllSettings(DriveConfiguration(0.050));
 
-            iMotor.setNeutralMode(NeutralMode.Brake);
+            iMotor.setNeutralMode(NeutralMode.Coast);
 
             iMotor.setInverted(false); // Don't Invert Motor
 

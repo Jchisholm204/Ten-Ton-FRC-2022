@@ -11,7 +11,6 @@ import frc.robot.utilities.Talon;
 public class HangSubsystem extends SubsystemBase {
 
     private TalonFX winchMotor;
-    private TalonFX hangMotor;
 
     public HangSubsystem() {
         try {
@@ -30,14 +29,6 @@ public class HangSubsystem extends SubsystemBase {
 
     public double getWinch(){
         return winchMotor.getSelectedSensorPosition(0);
-    }
-
-    public void setHang(ControlMode Mode, double iPow){
-        hangMotor.set(Mode, iPow);
-    }
-
-    public double getHang(){
-        return hangMotor.getSelectedSensorPosition(0);
     }
 }
 

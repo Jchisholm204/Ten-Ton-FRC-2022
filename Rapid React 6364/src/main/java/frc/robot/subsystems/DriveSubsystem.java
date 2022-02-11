@@ -38,12 +38,12 @@ public class DriveSubsystem extends SubsystemBase{
     private AHRS gyro;
 
     //Declare Others
-    private DifferentialDriveKinematics iKinematics;
-    private DifferentialDriveWheelSpeeds iSpeeds;
-    private DifferentialDriveOdometry iOdometry;
-    private SimpleMotorFeedforward feedforward;
-    private PIDController rightPID;
-    private PIDController leftPID;
+    private final DifferentialDriveKinematics iKinematics;
+    private final DifferentialDriveWheelSpeeds iSpeeds;
+    private final DifferentialDriveOdometry iOdometry;
+    private final SimpleMotorFeedforward feedforward;
+    private final PIDController rightPID;
+    private final PIDController leftPID;
 
     public DriveSubsystem() {
         try {
@@ -60,10 +60,6 @@ public class DriveSubsystem extends SubsystemBase{
         Talon.Initialize.RightDrive(driveRS);
         Talon.Initialize.LeftDrive(driveLM);
         Talon.Initialize.LeftDrive(driveLS);
-
-        //Set Drive Brake Modes
-        driveRM.setNeutralMode(NeutralMode.Coast);
-        driveLM.setNeutralMode(NeutralMode.Coast);
 
         //Set Slave Motors To Follow Masters
         driveRS.follow(driveRM);
