@@ -13,6 +13,11 @@ public class Talon {
 
     public static class Initialize {
 
+        /**
+         * Configuration For CTRE Talon FX Drive Motors
+         * @param feedForward is the minimum motor power the motor needs to move
+         * @return A Configuration Profile For The Drive Motors
+         */
         private static TalonFXConfiguration DriveConfiguration(double feedForward){
             TalonFXConfiguration configuration = new TalonFXConfiguration();
 
@@ -39,6 +44,10 @@ public class Talon {
             return configuration; //Return the Motor Configuration
         }
 
+        /**
+         * The Motor Configuration Profile for the Winch Motor
+         * @return TalonFX Configuration Profile
+         */
         private static TalonFXConfiguration WinchConfiguration(){
 
             TalonFXConfiguration configuration = new TalonFXConfiguration(); //Set up new motor configuration
@@ -66,6 +75,10 @@ public class Talon {
             return configuration; //Return the Motor Configuration
         }
 
+        /**
+         * The Motor Configuration for the Intake Motors
+         * @return Talon SRX Configuration Profile
+         */
         private static TalonSRXConfiguration IntakeConfiguration(){
             TalonSRXConfiguration configuration = new TalonSRXConfiguration();
 
@@ -92,6 +105,10 @@ public class Talon {
             return configuration; //Return the Motor Configuration
         }
 
+        /**
+         * The Motor Configuration Profile for the Index Motors
+         * @return Talon SRX Configuration Profile
+         */
         private static TalonSRXConfiguration IndexConfiguration(){
             TalonSRXConfiguration configuration = new TalonSRXConfiguration();
 
@@ -118,45 +135,81 @@ public class Talon {
             return configuration; //Return the Motor Configuration
         }
 
+        /**
+         * Applies The Right Drive Configuration to a Motor
+         * @param iMotor TalonFX Motor
+         */
         public static void RightDrive(final TalonFX iMotor) {
             iMotor.configFactoryDefault(); // Set to Factory Tune Before Applying any kind of user Configuration
             iMotor.configAllSettings(DriveConfiguration(0.050));
+
+            iMotor.setNeutralMode(NeutralMode.Brake);
+
             iMotor.setInverted(true); // Invert Motor
 
             iMotor.setSelectedSensorPosition(0); // Reset Motor Encoder
         }
 
+        /**
+         * Applies The Left Drive Configuration to a Motor
+         * @param iMotor TalonFX Motor
+         */
         public static void LeftDrive(final TalonFX iMotor) {
             iMotor.configFactoryDefault(); // Set to Factory Tune Before Applying any kind of user Configuration
             iMotor.configAllSettings(DriveConfiguration(0.050));
+
+            iMotor.setNeutralMode(NeutralMode.Brake);
+
             iMotor.setInverted(false); // Don't Invert Motor
 
             iMotor.setSelectedSensorPosition(0); // Reset Motor Encoder
         }
 
+        /**
+         * Applies the Motor Configuration for the Winch Motor
+         * @param iMotor TalonFX Motor
+         * @param inverted Direction Inversion for the Motor (true=inverted)
+         */
         public static void Winch(final TalonFX iMotor, boolean inverted) {
 
             iMotor.configFactoryDefault(); //Reset Motor Configuration before applying any kind of user configuration
             iMotor.configAllSettings(WinchConfiguration()); //Apply new Motor Configuration
 
+            iMotor.setNeutralMode(NeutralMode.Brake);
+
             //iMotor.setSensorPhase(true); // Sensor Phase (tuning) // Not needed for TalonFX Integrated Sensors
             iMotor.setInverted(inverted); // Invert Motor?
 
         }
 
+        /**
+         * Applies the Motor Configuration for the Intake Motors
+         * @param iMotor TalonSRX Motor
+         * @param inverted Direction Inversion for the Motor (true=inverted)
+         */
         public static void Intake(final TalonSRX iMotor, boolean inverted) {
 
             iMotor.configFactoryDefault(); //Reset Motor Configuration before applying any kind of user configuration
             iMotor.configAllSettings(IntakeConfiguration()); //Apply new Motor Configuration
 
+            iMotor.setNeutralMode(NeutralMode.Coast); // Set Motor to Break When Current Not Applied
+
             //iMotor.setSensorPhase(true); // Sensor Phase (tuning) // Not needed for TalonFX Integrated Sensors
             iMotor.setInverted(inverted); // Invert Motor?
         }
 
+        /**
+         * Applies the Motor Configuration for the Index Motors
+         * @param iMotor TalonSRX Motor
+         * @param inverted Direction Inversion for the Motor (true=inverted)
+         */
         public static void Index(final TalonSRX iMotor, boolean inverted) {
 
             iMotor.configFactoryDefault(); //Reset Motor Configuration before applying any kind of user configuration
             iMotor.configAllSettings(IndexConfiguration()); //Apply new Motor Configuration
+
+            iMotor.setNeutralMode(NeutralMode.Brake); // Set Motor to break when current not applied
+            // Useful for Holding Balls in the Index (Not letting them roll down)
 
             //iMotor.setSensorPhase(true); // Sensor Phase (tuning) // Not needed for TalonFX Integrated Sensors
             iMotor.setInverted(inverted); // Invert Motor?

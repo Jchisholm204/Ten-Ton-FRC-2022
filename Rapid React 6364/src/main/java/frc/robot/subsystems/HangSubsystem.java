@@ -16,13 +16,11 @@ public class HangSubsystem extends SubsystemBase {
     public HangSubsystem() {
         try {
             winchMotor = new TalonFX(Constants.RobotMap.winchMtr.port);
-            hangMotor = new TalonFX(Constants.RobotMap.hangMtr.port);
         } catch (Exception e){
             DriverStation.reportError("Error Starting Hang Talons: " + e.getMessage(), true);
         }
 
         Talon.Initialize.Winch(winchMotor, false);
-        Talon.Initialize.Hang(hangMotor, false);
 
     }
 
