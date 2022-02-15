@@ -84,7 +84,7 @@ public class Robot extends TimedRobot {
     //OpDrive.schedule();
     opIndexer.schedule();
     opIntake.schedule();
-    hangCommand.schedule();
+    //hangCommand.schedule();
   }
 
   /** This function is called periodically during operator control. */

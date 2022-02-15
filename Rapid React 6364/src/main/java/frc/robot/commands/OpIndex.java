@@ -2,18 +2,16 @@ package frc.robot.commands;
 
 //Motor Dependencies
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import edu.wpi.first.wpilibj.util.Color;
 
 //Import WPI
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.XboxController;
 
 //Import Robot Files
 import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.Robot;
-
-import javax.swing.*;
 
 public class OpIndex extends CommandBase {
     private final IndexSubsystem indexer;
@@ -35,6 +33,12 @@ public class OpIndex extends CommandBase {
         SmartDashboard.putNumber("Codex", indexer.getCodex());
         SmartDashboard.putBoolean("topPE", indexer.getTopSensor());
         SmartDashboard.putBoolean("botPE", indexer.getBotSensor());
+
+        SmartDashboard.putNumber("Color Proximity", indexer.getColorProximity());
+        SmartDashboard.putNumber("Color IR", indexer.getColorIR());
+        SmartDashboard.putNumber("Color R", indexer.getColor().red);
+        SmartDashboard.putNumber("Color G", indexer.getColor().green);
+        SmartDashboard.putNumber("Color B", indexer.getColor().blue);
 
 
 

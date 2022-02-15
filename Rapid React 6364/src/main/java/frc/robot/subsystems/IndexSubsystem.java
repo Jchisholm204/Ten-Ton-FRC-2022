@@ -6,6 +6,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 //Sensor Imports
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.I2C;
+import com.revrobotics.ColorSensorV3;
+import edu.wpi.first.wpilibj.util.Color;
 
 //WPI
 import edu.wpi.first.wpilibj.DriverStation;
@@ -22,6 +25,8 @@ public class IndexSubsystem extends SubsystemBase{
     private TalonSRX botMtr;
     private TalonSRX feedMtr;
 
+    private static ColorSensorV3 colorSensor;
+
     private static AnalogInput topPESensor;
     private static AnalogInput botPESensor;
 
@@ -36,7 +41,10 @@ public class IndexSubsystem extends SubsystemBase{
         } catch (RuntimeException ex){
             DriverStation.reportError("Error Starting Intake Motors: " + ex.getMessage(), true);
         }
-        
+
+        final I2C.Port i2cPort = I2C.Port.kMXP;
+        colorSensor = new ColorSensorV3(i2cPort);
+
         topPESensor = new AnalogInput(Constants.RobotMap.topIntakePE.port);
         botPESensor = new AnalogInput(Constants.RobotMap.botIntakePE.port);
 
@@ -192,6 +200,18 @@ public class IndexSubsystem extends SubsystemBase{
      */
     public boolean getBotSensor(){
         return botPESensor.getValue() > Constants.Index.bottomPHTriggerValue;
+    }
+
+    public Color getColor(){
+        return colorSensor.getColor();
+    }
+
+    public int getColorProximity(){
+        return colorSensor.getProximity();
+    }
+
+    public double getColorIR(){
+        return colorSensor.getIR();
     }
 
 }
