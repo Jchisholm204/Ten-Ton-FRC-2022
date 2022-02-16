@@ -42,8 +42,8 @@ public class IndexSubsystem extends SubsystemBase{
             DriverStation.reportError("Error Starting Intake Motors: " + ex.getMessage(), true);
         }
 
-        final I2C.Port i2cPort = I2C.Port.kMXP;
-        colorSensor = new ColorSensorV3(i2cPort);
+        final I2C.Port ColorPort = I2C.Port.kOnboard;
+        colorSensor = new ColorSensorV3(ColorPort);
 
         topPESensor = new AnalogInput(Constants.RobotMap.topIntakePE.port);
         botPESensor = new AnalogInput(Constants.RobotMap.botIntakePE.port);
