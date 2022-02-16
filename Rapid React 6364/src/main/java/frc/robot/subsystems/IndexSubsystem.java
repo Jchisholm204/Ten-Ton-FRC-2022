@@ -29,9 +29,7 @@ public class IndexSubsystem extends SubsystemBase{
 
     private static AnalogInput topPESensor;
     private static AnalogInput botPESensor;
-
-    //initialize the codex to track balls inside the intake
-    private static int codex = 0;
+    private static AnalogInput intPESensor;
 
     public IndexSubsystem() {
         try {
@@ -47,6 +45,7 @@ public class IndexSubsystem extends SubsystemBase{
 
         topPESensor = new AnalogInput(Constants.RobotMap.topIntakePE.port);
         botPESensor = new AnalogInput(Constants.RobotMap.botIntakePE.port);
+        intPESensor = new AnalogInput(Constants.RobotMap.intIntakePE.port);
 
         //Motor Sensor Configuration
         Talon.Initialize.Index(topMtr, true);
@@ -55,33 +54,44 @@ public class IndexSubsystem extends SubsystemBase{
 
     }
 
+    //Ball Colors
+    public enum ballColor {
+        // RED Ball
+        red,
+        // Blue Ball
+        blue,
+        // Undetermined Color // Try Adjusting Color Parameters
+        UNDETERMINED,
+        // No Ball in-front of Sensor
+        noBall;
+    }
+
     /**
-     * Run The Codex Program
-     * @param topMper Top Motor Percent Power [0,1]
-     * @param botMper Bottom Motor Percent Power [0,1]
+     * Get The Current Balls Color
+     * @return The Detected Ball Color
      */
-    public void runCodex(double topMper, double botMper){
+    public ballColor getBallColor(){
 
-        if ( getTopSensor() && codex == 0){ codex = 1; };
-        if ( getBotSensor() && codex == 1 ){ codex = 2; };
+        double redMax = 0.2; // The Maximum Value of RED to allow with a BLUE Ball
+        double redMin = 0.3; // The Minimum Value of RED Required in a RED ball
 
-        if ( codex == 2 ){
-            topMtr.set(ControlMode.PercentOutput, 0);
-            botMtr.set(ControlMode.PercentOutput, 0);
-        }
-        else if ( codex == 1 ){
-            topMtr.set(ControlMode.PercentOutput, 0);
-            botMtr.set(ControlMode.PercentOutput, botMper);
-        }
-        else if ( codex == 0 ){
-            topMtr.set(ControlMode.PercentOutput, topMper);
-            botMtr.set(ControlMode.PercentOutput, botMper);
-        }
-        else { 
-            DriverStation.reportError("Codex Overload: " + codex, true);
-            codex = 0;
-        };
+        double blueMax = 0.2; // The Maximum Value of BLUE to allow with a RED Ball
+        double blueMin = 0.3; // The Minimum Value of BLUE Required in a BLUE ball
 
+        double minProximity = Constants.Index.colorProximityTriggerValue;
+
+        if(getColorProximity() < minProximity){
+            return ballColor.noBall;
+        }
+        else if(getColor().red > redMin && getColor().blue < blueMax){
+            return ballColor.red;
+        }
+        else if(getColor().blue > blueMin && getColor().red < redMax){
+            return ballColor.blue;
+        }
+        else{
+            return ballColor.UNDETERMINED;
+        }
     }
 
     /**
@@ -200,6 +210,14 @@ public class IndexSubsystem extends SubsystemBase{
      */
     public boolean getBotSensor(){
         return botPESensor.getValue() > Constants.Index.bottomPHTriggerValue;
+    }
+
+    /**
+     * Get if the Intake PhotoElectric Sensor is Triggered
+     * @return True if Triggered
+     */
+    public boolean getIntakeSensor(){
+        return intPESensor.getValue() > Constants.Index.intakePHTriggerValue;
     }
 
     public Color getColor(){

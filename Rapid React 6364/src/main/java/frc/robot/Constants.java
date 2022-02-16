@@ -11,6 +11,9 @@ public final class Constants {
     public final class Index {
         public static final double bottomPHTriggerValue = 1000;
         public static final double topPHTriggerValue = 1000;
+        public static final double intakePHTriggerValue = 1000;
+
+        public static final double colorProximityTriggerValue = 12;
     }
 
     //Drive Constants
@@ -52,6 +55,7 @@ public final class Constants {
         //Index PhotoElectric Ports (Analog In)
         topIntakePE(0),
         botIntakePE(1),
+        intIntakePE(2),
 
         //Power Distribution Board
         PDP(10);
