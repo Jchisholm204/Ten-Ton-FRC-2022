@@ -29,7 +29,8 @@ public class IndexSubsystem extends SubsystemBase{
 
     private static AnalogInput topPESensor;
     private static AnalogInput botPESensor;
-    private static AnalogInput intPESensor;
+
+    private static int codex = 0;
 
     public IndexSubsystem() {
         try {
@@ -45,7 +46,6 @@ public class IndexSubsystem extends SubsystemBase{
 
         topPESensor = new AnalogInput(Constants.RobotMap.topIntakePE.port);
         botPESensor = new AnalogInput(Constants.RobotMap.botIntakePE.port);
-        intPESensor = new AnalogInput(Constants.RobotMap.intIntakePE.port);
 
         //Motor Sensor Configuration
         Talon.Initialize.Index(topMtr, true);
@@ -72,21 +72,13 @@ public class IndexSubsystem extends SubsystemBase{
      */
     public ballColor getBallColor(){
 
-        double redMax = 0.2; // The Maximum Value of RED to allow with a BLUE Ball
-        double redMin = 0.3; // The Minimum Value of RED Required in a RED ball
-
-        double blueMax = 0.2; // The Maximum Value of BLUE to allow with a RED Ball
-        double blueMin = 0.3; // The Minimum Value of BLUE Required in a BLUE ball
-
-        double minProximity = Constants.Index.colorProximityTriggerValue;
-
-        if(getColorProximity() < minProximity){
+        if(getColorProximity() < Constants.Index.Color.ProxTrigger){
             return ballColor.noBall;
         }
-        else if(getColor().red > redMin && getColor().blue < blueMax){
+        else if(getColor().red > Constants.Index.Color.redMin && getColor().blue < Constants.Index.Color.blueMax){
             return ballColor.red;
         }
-        else if(getColor().blue > blueMin && getColor().red < redMax){
+        else if(getColor().blue > Constants.Index.Color.blueMin && getColor().red < Constants.Index.Color.redMax){
             return ballColor.blue;
         }
         else{
@@ -118,10 +110,32 @@ public class IndexSubsystem extends SubsystemBase{
         codex = 0;
     }
 
-    
-    public void shootSingle(){
-        topMtr.set(ControlMode.PercentOutput, 1);
-        codex = 0;
+    /**
+     * Run The Codex Program
+     * @param topMper Top Motor Percent Power [0,1]
+     * @param botMper Bottom Motor Percent Power [0,1]
+     */
+    public void runCodex(double topMper, double botMper){
+
+        if ( getTopSensor() && codex == 0){ codex = 1; };
+        if ( getBotSensor() && codex == 1 ){ codex = 2; };
+
+        if ( codex == 2 ){
+            topMtr.set(ControlMode.PercentOutput, 0);
+            botMtr.set(ControlMode.PercentOutput, 0);
+        }
+        else if ( codex == 1 ){
+            topMtr.set(ControlMode.PercentOutput, 0);
+            botMtr.set(ControlMode.PercentOutput, botMper);
+        }
+        else if ( codex == 0 ){
+            topMtr.set(ControlMode.PercentOutput, topMper);
+            botMtr.set(ControlMode.PercentOutput, botMper);
+        }
+        else {
+            DriverStation.reportError("Codex Overload: " + codex, true);
+            codex = 0;
+        };
     }
 
     /**
@@ -189,11 +203,18 @@ public class IndexSubsystem extends SubsystemBase{
     }
 
     /**
-     * Stop All Indexer Motors
+     * Stop Top/Bot Indexer Motors
      */
     public void stop(){
         topMtr.set(ControlMode.PercentOutput, 0);
         botMtr.set(ControlMode.PercentOutput, 0);
+    }
+
+    /**
+     * Stop Feed Motor
+     */
+    public void stopFeed(){
+        feedMtr.set(ControlMode.PercentOutput, 0);
     }
 
     /**
@@ -210,14 +231,6 @@ public class IndexSubsystem extends SubsystemBase{
      */
     public boolean getBotSensor(){
         return botPESensor.getValue() > Constants.Index.bottomPHTriggerValue;
-    }
-
-    /**
-     * Get if the Intake PhotoElectric Sensor is Triggered
-     * @return True if Triggered
-     */
-    public boolean getIntakeSensor(){
-        return intPESensor.getValue() > Constants.Index.intakePHTriggerValue;
     }
 
     public Color getColor(){

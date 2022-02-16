@@ -18,6 +18,7 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
 
     public final XboxController master = new XboxController(Constants.RobotMap.Controller_Main.port);
+    public final XboxController partner = new XboxController(Constants.RobotMap.Controller_Partner.port);
 
     private final DriveSubsystem drive = new DriveSubsystem();
     private final IndexSubsystem indexer = new IndexSubsystem();
@@ -55,4 +56,8 @@ public class RobotContainer {
     public XboxController getMaster(){
         return master;
     }
+
+    public XboxController getPartner(){
+        return partner;
+    };
 }
