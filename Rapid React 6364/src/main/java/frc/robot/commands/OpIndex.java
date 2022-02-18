@@ -1,22 +1,19 @@
 package frc.robot.commands;
 
-//Motor Dependencies
+//Dependencies
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.util.Color;
 
 //Import WPI
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.GenericHID;
+
 
 //Import Robot Files
 import frc.robot.Constants;
 import frc.robot.subsystems.IndexSubsystem;
 import frc.robot.Robot;
-
-import java.sql.Time;
 
 public class OpIndex extends CommandBase {
     private final IndexSubsystem indexer;
@@ -26,7 +23,7 @@ public class OpIndex extends CommandBase {
     private boolean invalidColor;
 
     //Set Team Color for Ball Color Detection
-    private static final IndexSubsystem.ballColor teamColor = IndexSubsystem.ballColor.UNDETERMINED;
+    private static Constants.ballColor teamColor;
 
 
     public OpIndex(final IndexSubsystem indexSubSys){
@@ -37,6 +34,9 @@ public class OpIndex extends CommandBase {
     @Override
     public void initialize(){
         indexer.stop();
+
+        //Get Selected Team Color From SmartDashboard
+        teamColor = Robot.sc.getSelected();
     }
 
     @Override
@@ -111,7 +111,7 @@ public class OpIndex extends CommandBase {
             else if(indexer.getColorProximity() > Constants.Index.Color.ProxTrigger) {
 
                 // Ball Color == Team Color: Index the Ball
-                if (indexer.getBallColor() == teamColor) {
+                if (indexer.getBallColor() == teamColor || teamColor == Constants.ballColor.UNDETERMINED) {
                     invalidColor = false;
                     indexer.runCodex(1, 1);
                     WaitTime2 = 4;
@@ -119,7 +119,7 @@ public class OpIndex extends CommandBase {
                 }
 
                 // Robot Unable to Determine Ball Color: Print Error To Terminal and Let Partner Driver Decide What to Do
-                else if(indexer.getBallColor() == IndexSubsystem.ballColor.UNDETERMINED){
+                else if(indexer.getBallColor() == Constants.ballColor.UNDETERMINED){
                     System.out.println("Undetermined Color Registered: " + indexer.getColor());
                     Robot.robotContainer.master.setRumble(GenericHID.RumbleType.kLeftRumble, 0.3);
                     invalidColor = true;

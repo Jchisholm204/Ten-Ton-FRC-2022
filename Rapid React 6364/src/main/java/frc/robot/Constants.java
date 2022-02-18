@@ -1,6 +1,17 @@
 package frc.robot;
 
 public final class Constants {
+
+    public enum ballColor {
+        // RED Ball
+        red,
+        // Blue Ball
+        blue,
+        // Undetermined Color // Try Adjusting Color Parameters
+        UNDETERMINED,
+        // No Ball in-front of Sensor
+        noBall;
+    }
     
     //Talon Setting Constants
     public static final double kFalconMaxRPM = 6000; //Free Speed of Falcon FX ~ 6300

@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.utilities.Network;
 import edu.wpi.first.wpilibj.DriverStation;
-//import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,6 +26,11 @@ public class Robot extends TimedRobot {
   private Command opIndexer;
   private Command opIntake;
   private Command hangCommand;
+
+  public static SendableChooser<Constants.ballColor> sc = new SendableChooser<Constants.ballColor>();
+  public String mBlue = "Blue";
+  public String mRed = "Red";
+  public String mAll = "Disabled";
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -46,6 +51,11 @@ public class Robot extends TimedRobot {
     opIntake = robotContainer.getSimpleIntakeCommand();
     hangCommand = robotContainer.getHangCommand();
 
+    //SmartDashboard Team Ball Color Selection
+    sc.addOption(mBlue, Constants.ballColor.blue);
+    sc.addOption(mRed, Constants.ballColor.red);
+    sc.setDefaultOption(mAll, Constants.ballColor.UNDETERMINED);
+    SmartDashboard.putData("Ball Color Selection:", sc);
   }
 
   /**

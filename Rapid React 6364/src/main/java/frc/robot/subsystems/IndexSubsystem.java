@@ -1,6 +1,6 @@
 package frc.robot.subsystems;
 
-//Motor Imports
+//Imports
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -54,35 +54,23 @@ public class IndexSubsystem extends SubsystemBase{
 
     }
 
-    //Ball Colors
-    public enum ballColor {
-        // RED Ball
-        red,
-        // Blue Ball
-        blue,
-        // Undetermined Color // Try Adjusting Color Parameters
-        UNDETERMINED,
-        // No Ball in-front of Sensor
-        noBall;
-    }
-
     /**
      * Get The Current Balls Color
      * @return The Detected Ball Color
      */
-    public ballColor getBallColor(){
+    public Constants.ballColor getBallColor(){
 
         if(getColorProximity() < Constants.Index.Color.ProxTrigger){
-            return ballColor.noBall;
+            return Constants.ballColor.noBall;
         }
         else if(getColor().red > Constants.Index.Color.redMin && getColor().blue < Constants.Index.Color.blueMax){
-            return ballColor.red;
+            return Constants.ballColor.red;
         }
         else if(getColor().blue > Constants.Index.Color.blueMin && getColor().red < Constants.Index.Color.redMax){
-            return ballColor.blue;
+            return Constants.ballColor.blue;
         }
         else{
-            return ballColor.UNDETERMINED;
+            return Constants.ballColor.UNDETERMINED;
         }
     }
 
