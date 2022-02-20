@@ -1,8 +1,8 @@
 import cv2
 import sys
 
-tracker = cv2.TrackerCSRT_create()
-videoStream = cv2.VideoCapture(0)
+tracker = cv2.TrackerMIL_create()
+videoStream = cv2.VideoCapture(2)
 
 if not videoStream.isOpened():
     print("Could not open Video Stream")
@@ -16,7 +16,9 @@ if not kk:
 
 boundingBox = (287, 23, 86, 320)
 
-boundingBox = cv2.selectROI(img=frame)
+img = cv2.imread("tape.jpg")
+
+boundingBox = cv2.roi
 
 ok = tracker.init(frame, boundingBox)
 
