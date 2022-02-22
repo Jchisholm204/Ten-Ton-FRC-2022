@@ -91,7 +91,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    //OpDrive.schedule();
+    OpDrive.schedule();
     opIndexer.schedule();
     opIntake.schedule();
     //hangCommand.schedule();

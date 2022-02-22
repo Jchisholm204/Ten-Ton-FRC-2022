@@ -33,11 +33,11 @@ public class SimpleIndex extends CommandBase {
         SmartDashboard.putBoolean("topPE", indexer.getTopSensor());
         SmartDashboard.putBoolean("botPE", indexer.getBotSensor());
 
-        SmartDashboard.putNumber("Color Proximity", indexer.getColorProximity());
-        SmartDashboard.putNumber("Color IR", indexer.getColorIR());
-        SmartDashboard.putNumber("Color R", indexer.getColor().red);
-        SmartDashboard.putNumber("Color G", indexer.getColor().green);
-        SmartDashboard.putNumber("Color B", indexer.getColor().blue);
+        //SmartDashboard.putNumber("Color Proximity", indexer.getColorProximity());
+        //SmartDashboard.putNumber("Color IR", indexer.getColorIR());
+        //SmartDashboard.putNumber("Color R", indexer.getColor().red);
+        //SmartDashboard.putNumber("Color G", indexer.getColor().green);
+        //SmartDashboard.putNumber("Color B", indexer.getColor().blue);
 
 
 

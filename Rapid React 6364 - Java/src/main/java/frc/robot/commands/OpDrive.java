@@ -33,8 +33,8 @@ public class OpDrive extends CommandBase{
     public void execute(){
 
         //Smart Dashboard
-        SmartDashboard.putNumber("Right Drive RPM", drivef.getRightRPM());
-        SmartDashboard.putNumber("Left Drive RPM", drivef.getLeftRPM());
+        //SmartDashboard.putNumber("Right Drive RPM", drivef.getRightRPM());
+        //SmartDashboard.putNumber("Left Drive RPM", drivef.getLeftRPM());
         SmartDashboard.putNumber("GyroVal", drivef.getAngle());
 
         //Robot Drive Code
