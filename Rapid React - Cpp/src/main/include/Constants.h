@@ -36,6 +36,8 @@ namespace RobotMap {
         constexpr int BottomIndex = 0;
         constexpr int FeedIndex = 0;
 
+        constexpr int HangMtr = 0;
+
     };
 
     // Analog Devices Port Numbers

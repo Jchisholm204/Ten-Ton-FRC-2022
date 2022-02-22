@@ -34,4 +34,6 @@ class TalonConfiguation {
          * @param iMotor The Motor to Apply The Configuration to
          */
         static void leftDrive(TalonFX &iMotor);
+
+        static void winchMotor(TalonFX &iMotor);
 };
