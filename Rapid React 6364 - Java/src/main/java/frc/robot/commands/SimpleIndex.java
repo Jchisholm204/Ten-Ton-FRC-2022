@@ -55,7 +55,7 @@ public class SimpleIndex extends CommandBase {
             indexer.setBot(ControlMode.PercentOutput, -0.5);
         }
         else{
-            indexer.runCodex(0.8, 1);
+            indexer.runCodex(0.5, 0.5);
         }
 
         //Run Feeder Motor (Sideways Index Module)
@@ -63,7 +63,7 @@ public class SimpleIndex extends CommandBase {
             indexer.setFeed(ControlMode.PercentOutput, 0.1); //Slow down when index full
         }
         else{
-            indexer.setFeed(ControlMode.PercentOutput, 1);
+            indexer.setFeed(ControlMode.PercentOutput, 0.5);
         }
 
     }

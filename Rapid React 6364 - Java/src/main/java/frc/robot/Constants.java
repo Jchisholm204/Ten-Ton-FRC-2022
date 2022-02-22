@@ -72,29 +72,29 @@ public final class Constants {
         Controller_Partner(1),
 
         //Drive Motor Ports (can)
-        driveRM(0),
-        driveRS(0),
-        driveLM(0),
-        driveLS(0),
+        driveRM(4),
+        driveRS(5),
+        driveLM(2),
+        driveLS(3),
 
         //Intake Motor Ports (can)
-        intakeFront(02),
-        intakeRear(03),
+        intakeFront(9),
+        intakeRear(6),
 
         //Index Motor Ports (can)
-        indexTopMtr(01),
-        indexBotMtr(00),
-        indexFeedMtr(12),
+        indexTopMtr(1),
+        indexBotMtr(8),
+        indexFeedMtr(7),
 
         //Winch Motor
-        winchMtr(13),
+        winchMtr(00),
 
         //Index PhotoElectric Ports (Analog In)
         topIntakePE(0),
         botIntakePE(1),
 
         //Power Distribution Board (can)
-        PDP(10);
+        PDP(0);
 
 
         public final int port;

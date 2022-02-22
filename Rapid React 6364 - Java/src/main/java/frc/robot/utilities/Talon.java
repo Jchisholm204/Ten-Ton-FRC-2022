@@ -145,7 +145,7 @@ public class Talon {
 
             iMotor.setNeutralMode(NeutralMode.Coast);
 
-            iMotor.setInverted(true); // Invert Motor
+            iMotor.setInverted(false); // Invert Motor
 
             iMotor.setSelectedSensorPosition(0); // Reset Motor Encoder
         }
@@ -160,7 +160,7 @@ public class Talon {
 
             iMotor.setNeutralMode(NeutralMode.Coast);
 
-            iMotor.setInverted(false); // Don't Invert Motor
+            iMotor.setInverted(true); // Don't Invert Motor
 
             iMotor.setSelectedSensorPosition(0); // Reset Motor Encoder
         }

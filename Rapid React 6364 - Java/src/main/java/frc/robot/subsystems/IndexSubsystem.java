@@ -48,7 +48,7 @@ public class IndexSubsystem extends SubsystemBase{
         botPESensor = new AnalogInput(Constants.RobotMap.botIntakePE.port);
 
         //Motor Sensor Configuration
-        Talon.Initialize.Index(topMtr, true);
+        Talon.Initialize.Index(topMtr, false);
         Talon.Initialize.Index(botMtr, true);
         Talon.Initialize.Index(feedMtr, false);
 

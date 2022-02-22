@@ -40,6 +40,9 @@ public class OpDrive extends CommandBase{
         //Robot Drive Code
         double Yval = 21000 * Exponential.exponential(Robot.robotContainer.master.getLeftY(), driveExp, joyDead, motorMin);
         double Xval = 21000 * Exponential.exponential(Robot.robotContainer.master.getRightX(), driveExp, joyDead, motorMin);
+        SmartDashboard.putNumber("rj", Xval);
+        SmartDashboard.putNumber("lj", Yval);
+
 
         //Arcade Drive Configuration
         drivef.set(ControlMode.Velocity, (Yval - Xval), (Yval + Xval));
