@@ -1,4 +1,5 @@
 #include "subsystems/IndexSubsystem.hpp"
+#include "utilities/Talon.hpp"
 #include "Constants.h"
 
 IndexSubsystem::IndexSubsystem() : 
@@ -8,7 +9,9 @@ IndexSubsystem::IndexSubsystem() :
     topPE(RobotMap::ANALOG::topPE),
     botPE(RobotMap::ANALOG::botPE)  {
         codex = 0;
-
+    TalonConfiguation::index(topMtr, false);
+    TalonConfiguation::index(botMtr, false);
+    TalonConfiguation::index(feedMtr, false);
 }
 
 void IndexSubsystem::shoot(double iPow){

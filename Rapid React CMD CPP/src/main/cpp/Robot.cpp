@@ -42,6 +42,7 @@ void Robot::AutonomousPeriodic() {}
 void Robot::TeleopInit() {
   r_command_opIntake = m_container.GetOpIntakeCommand();
   r_command_opDrive = m_container.GetOpDriveCommand();
+  r_command_opIndex = m_container.GetOpIndexCommand();
 
   if (r_command_opIntake != nullptr) {
     r_command_opIntake->Schedule();
@@ -49,6 +50,10 @@ void Robot::TeleopInit() {
 
   if (r_command_opDrive != nullptr) {
     r_command_opDrive->Schedule();
+  }
+
+  if(r_command_opIndex != nullptr) {
+    r_command_opIndex->Schedule();
   }
 }
 

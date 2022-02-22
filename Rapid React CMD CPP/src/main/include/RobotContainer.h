@@ -11,6 +11,7 @@
 #include "subsystems/DriveSubsystem.hpp"
 #include "commands/OpDriveCommand.hpp"
 #include "subsystems/IndexSubsystem.hpp"
+#include "commands/OpIndexCommand.hpp"
 #include <frc/XboxController.h>
 
 /**
@@ -28,6 +29,8 @@ class RobotContainer {
 
   frc2::Command* GetOpDriveCommand();
 
+  frc2::Command* GetOpIndexCommand();
+
  private:
   // The robot's subsystems and commands are defined here...
   // Subsystems
@@ -38,6 +41,7 @@ class RobotContainer {
   // Commands
   OpIntakeCommand command_OpIntake;
   OpDriveCommand command_OpDrive;
+  OpIndexCommand command_OpIndex;
 
   void ConfigureButtonBindings();
 };

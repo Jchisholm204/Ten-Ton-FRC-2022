@@ -10,7 +10,8 @@ frc::XboxController partner(RobotMap::DriverStation::partnerController);
 
 RobotContainer::RobotContainer() : 
 command_OpIntake(&subsystem_intake), 
-command_OpDrive(&subsystem_drive) {
+command_OpDrive(&subsystem_drive),
+command_OpIndex(&subsystem_index) {
   // Initialize all of your commands and subsystems here
 
 }
@@ -22,4 +23,8 @@ frc2::Command* RobotContainer::GetOpIntakeCommand() {
 
 frc2::Command* RobotContainer::GetOpDriveCommand(){
   return &command_OpDrive;
+}
+
+frc2::Command* RobotContainer::GetOpIndexCommand(){
+  return &command_OpIndex;
 }
