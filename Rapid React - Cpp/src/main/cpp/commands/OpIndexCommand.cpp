@@ -1,5 +1,6 @@
 #include "commands/OpIndexCommand.hpp"
 #include "RobotContainer.h"
+#include "frc/smartdashboard/SmartDashboard.h"
 #include <frc/Timer.h>
 
 OpIndexCommand::OpIndexCommand(IndexSubsystem* SubSystem_index) : index{SubSystem_index} {
@@ -11,6 +12,11 @@ double getClock(){
 }
 
 void OpIndexCommand::Execute(){
+
+    frc::SmartDashboard::PutNumber("Codex: ", index->getCodex());
+    frc::SmartDashboard::PutBoolean("Top PE Sensor: ", index->getTopSensor());
+    frc::SmartDashboard::PutBoolean("Bottom PE Sensor: ", index->getBotSensor());
+
     if(getClock() < (waitSaveTime + 2) ){
 
     }

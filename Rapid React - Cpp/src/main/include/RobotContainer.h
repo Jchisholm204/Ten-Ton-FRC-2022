@@ -47,4 +47,4 @@ class RobotContainer {
 };
 
 extern frc::XboxController master;
-extern frc::XboxController partner;
+//extern frc::XboxController partner;

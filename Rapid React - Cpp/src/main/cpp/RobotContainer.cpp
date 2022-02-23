@@ -6,7 +6,7 @@
 #include "Constants.h"
 
 frc::XboxController master(RobotMap::DriverStation::masterController);
-frc::XboxController partner(RobotMap::DriverStation::partnerController);
+//frc::XboxController partner(RobotMap::DriverStation::partnerController);
 
 RobotContainer::RobotContainer() : 
 command_OpIntake(&subsystem_intake), 

@@ -24,27 +24,30 @@ namespace RobotMap {
     // CAN ID's
     namespace CAN {
 
-        constexpr int Intake_front = 0;
-        constexpr int Intake_rear = 0;
+        constexpr int Intake_front = 9;
+        constexpr int Intake_rear = 6;
 
-        constexpr int driveRM = 0;
-        constexpr int driveRS = 0;
-        constexpr int driveLM = 0;
-        constexpr int driveLS = 0;
+        constexpr int driveRM = 4;
+        constexpr int driveRS = 5;
+        constexpr int driveLM = 2;
+        constexpr int driveLS = 3;
 
-        constexpr int TopIndex = 0;
-        constexpr int BottomIndex = 0;
-        constexpr int FeedIndex = 0;
+        constexpr int TopIndex = 1;
+        constexpr int BottomIndex = 8;
+        constexpr int FeedIndex = 7;
 
         constexpr int HangMtr = 0;
+        constexpr int ClawMtr = 0;
 
-    };
+        constexpr int PDP = 0;
+
+    }
 
     // Analog Devices Port Numbers
     namespace ANALOG {
         constexpr int topPE = 0;
         constexpr int botPE = 1;
-    };
+    }
 
     // PCM Controller IDs
     namespace PCM {
@@ -52,15 +55,19 @@ namespace RobotMap {
         constexpr int frontIntake = 0;
         constexpr int rearIntake = 1;
 
-    };
+    }
 
     namespace DriverStation {
 
         constexpr int masterController = 0;
         constexpr int partnerController = 1;
 
-    };
-};
+    }
+
+    namespace PDP {
+        constexpr int WinchPort = 0;
+    }
+}
 
 namespace driveConstants {
     constexpr double k_opTurnPow = 0.75;
