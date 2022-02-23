@@ -7,22 +7,15 @@ OpIndexCommand::OpIndexCommand(IndexSubsystem* SubSystem_index) : index{SubSyste
     AddRequirements(index);
 }
 
-double getClock(){
-    return double(frc::Timer::GetFPGATimestamp());
-}
-
 void OpIndexCommand::Execute(){
 
     frc::SmartDashboard::PutNumber("Codex: ", index->getCodex());
     frc::SmartDashboard::PutBoolean("Top PE Sensor: ", index->getTopSensor());
     frc::SmartDashboard::PutBoolean("Bottom PE Sensor: ", index->getBotSensor());
 
-    if(getClock() < (waitSaveTime + 2) ){
-
-    }
-    else if(master.GetRightBumperPressed()){
+    if(master.GetRightBumper()){
         index->shoot(1);
-        waitSaveTime = getClock();
+        //waitSaveTime = getClock();
     }
     else if(master.GetLeftBumper()){
         index->setTop(ControlMode::PercentOutput, -0.5);

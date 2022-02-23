@@ -18,8 +18,8 @@ double OpDriveCommand::exponential(double joystickVal, float driveExp, double jo
 }
 
 void OpDriveCommand::Execute(){
-    double Ypow = 21000 * exponential(master.GetLeftY(), 1.2, 0.01, 0);
-    double Xpow = (21000 * driveConstants::k_opTurnPow) * exponential(master.GetRightX(), 1.2, 0.01, 0);
+    double Ypow = 21000 * master.GetLeftY();
+    double Xpow = (21000 * driveConstants::k_opTurnPow) * master.GetRightX();
 
     drive->arcadeDrive(Ypow, Xpow);
 }
