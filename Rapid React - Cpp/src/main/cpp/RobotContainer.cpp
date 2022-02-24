@@ -9,14 +9,15 @@
 frc::XboxController master(RobotMap::DriverStation::masterController);
 frc::XboxController partner(RobotMap::DriverStation::partnerController);
 
-//frc::PowerDistribution pdp;
+frc::PowerDistribution pdp(0, frc::PowerDistribution::ModuleType::kCTRE); //BROKEN (possibly) - WILL STOP CODE FROM RUNNING ON ROBOT
 
-//frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
+frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
 
 RobotContainer::RobotContainer() : 
 command_OpIntake(&subsystem_intake), 
 command_OpDrive(&subsystem_drive),
-command_OpIndex(&subsystem_index) {
+command_OpIndex(&subsystem_index),
+command_OpHang(&subsystem_hang) {
   // Initialize all of your commands and subsystems here
 
 }
@@ -34,6 +35,6 @@ frc2::Command* RobotContainer::GetOpIndexCommand(){
   return &command_OpIndex;
 }
 
-/*frc2::Command* RobotContainer::GetOpHangCommand(){
+frc2::Command* RobotContainer::GetOpHangCommand(){
   return &command_OpHang;
-}*/
+}

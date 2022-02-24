@@ -1,7 +1,6 @@
 #include "subsystems/HangSubsystem.hpp"
 #include "Constants.h"
 #include "utilities/Talon.hpp"
-#include "RobotContainer.h"
 
 HangSubsystem::HangSubsystem() : winchMtr{RobotMap::CAN::HangMtr}, clawMtr{RobotMap::CAN::ClawMtr} {
     TalonConfiguation::winchMotor(winchMtr);

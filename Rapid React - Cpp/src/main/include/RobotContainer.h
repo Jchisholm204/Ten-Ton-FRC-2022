@@ -12,8 +12,8 @@
 #include "commands/OpDriveCommand.hpp"
 #include "subsystems/IndexSubsystem.hpp"
 #include "commands/OpIndexCommand.hpp"
-//#include "subsystems/HangSubsystem.hpp"
-//#include "commands/OpHangCommand.hpp"
+//#include "subsystems/HangSubsystem.hpp" //BREAKS Compiler ??
+#include "commands/OpHangCommand.hpp"
 #include <frc/XboxController.h>
 #include <frc/PowerDistribution.h>
 #include <frc/PneumaticsControlModule.h>
@@ -36,7 +36,7 @@ class RobotContainer {
 
   frc2::Command* GetOpIndexCommand();
 
-  //frc2::Command* GetOpHangCommand();
+  frc2::Command* GetOpHangCommand();
 
  private:
   // The robot's subsystems and commands are defined here...
@@ -44,13 +44,13 @@ class RobotContainer {
   IntakeSubsystem subsystem_intake;
   IndexSubsystem subsystem_index;
   DriveSubsystem subsystem_drive;
-  //HangSubsystem subsystem_hang;
+  HangSubsystem subsystem_hang;
 
   // Commands
   OpIntakeCommand command_OpIntake;
   OpDriveCommand command_OpDrive;
   OpIndexCommand command_OpIndex;
-  //OpHangCommand command_OpHang;
+  OpHangCommand command_OpHang;
 
   void ConfigureButtonBindings();
 };
@@ -66,7 +66,7 @@ extern frc::XboxController master;
 extern frc::XboxController partner;
 
 // Main Power Distribution Board
-//extern frc::PowerDistribution pdp;
+extern frc::PowerDistribution pdp;  //BROKEN - WILL BREAK CODE
 
 // Pneumatics Module Compressor
-//extern frc::Compressor compressor;
+extern frc::Compressor compressor;

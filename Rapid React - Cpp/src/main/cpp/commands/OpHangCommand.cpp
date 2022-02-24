@@ -16,7 +16,7 @@ std::string_view SDcp = "Claw Cur Pos: ";
 
 OpHangCommand::OpHangCommand(HangSubsystem* Subsystem_hang) : hang{Subsystem_hang} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(hang);
+  AddRequirements(Subsystem_hang);
 }
 
 double Wpos;

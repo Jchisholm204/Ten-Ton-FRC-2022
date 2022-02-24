@@ -45,6 +45,7 @@ void Robot::TeleopInit() {
   r_command_opIntake = m_container.GetOpIntakeCommand();
   r_command_opDrive = m_container.GetOpDriveCommand();
   r_command_opIndex = m_container.GetOpIndexCommand();
+  r_command_opHang = m_container.GetOpHangCommand();
 
   if (r_command_opIntake != nullptr) {
     r_command_opIntake->Schedule();
