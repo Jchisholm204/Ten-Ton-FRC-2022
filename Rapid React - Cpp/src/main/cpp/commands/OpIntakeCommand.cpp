@@ -12,7 +12,7 @@ OpIntakeCommand::OpIntakeCommand(IntakeSubsystem* SubSystem_intake) : intake{Sub
 }
 
 
-void OpIntakeCommand::Initialize(){
+void OpIntakeCommand::Initialize(){/*
         if(compressor.Enabled() == false){
         printf("Intake Error; Compressor Not Enabled\n");
             if(compressor.GetPressureSwitchValue() == false){
@@ -21,7 +21,7 @@ void OpIntakeCommand::Initialize(){
         }
         else if(compressor.GetPressureSwitchValue()){
             printf("WARNING: Tank Pressure Low\n");
-        }
+        }*/
 }
 
 void OpIntakeCommand::Execute(){

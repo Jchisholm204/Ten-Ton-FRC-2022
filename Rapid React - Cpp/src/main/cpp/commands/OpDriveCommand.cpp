@@ -1,6 +1,7 @@
 #include "commands/OpDriveCommand.hpp"
 #include "RobotContainer.h"
 #include "Constants.h"
+#include "frc/smartdashboard/SmartDashboard.h"
 
 OpDriveCommand::OpDriveCommand(DriveSubsystem* SubSystem_Drive) : drive{SubSystem_Drive}{
     AddRequirements(drive);
@@ -20,8 +21,10 @@ double OpDriveCommand::exponential(double joystickVal, float driveExp, double jo
 void OpDriveCommand::Execute(){
     double Ypow = 2100 * exponential(master.GetLeftY(), 1.2, 1, 0);
     double Xpow = (2100 * driveConstants::k_opTurnPow) * exponential(master.GetRightX(), 1.2, 1, 1);
+    frc::SmartDashboard::PutNumber("xPow", Xpow);
+    frc::SmartDashboard::PutNumber("yPow", Ypow);
 
-    drive->arcadeDrive(Ypow, Xpow);
+    //drive->arcadeDrive(Ypow, Xpow);
 }
 
 void OpDriveCommand::End(bool interrupted){

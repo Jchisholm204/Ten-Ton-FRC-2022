@@ -11,7 +11,7 @@ IndexSubsystem::IndexSubsystem() :
         codex = 0;
     TalonConfiguation::index(topMtr, false);
     TalonConfiguation::index(botMtr, false);
-    TalonConfiguation::index(feedMtr, false);
+    TalonConfiguation::index(feedMtr, true);
 }
 
 void IndexSubsystem::shoot(double iPow){

@@ -66,7 +66,7 @@ extern frc::XboxController master;
 extern frc::XboxController partner;
 
 // Main Power Distribution Board
-extern frc::PowerDistribution pdp;
+//extern frc::PowerDistribution pdp;
 
 // Pneumatics Module Compressor
-extern frc::Compressor compressor;
+//extern frc::Compressor compressor;

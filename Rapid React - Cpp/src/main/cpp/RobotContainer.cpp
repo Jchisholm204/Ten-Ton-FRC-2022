@@ -9,9 +9,9 @@
 frc::XboxController master(RobotMap::DriverStation::masterController);
 frc::XboxController partner(RobotMap::DriverStation::partnerController);
 
-frc::PowerDistribution pdp;
+//frc::PowerDistribution pdp;
 
-frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
+//frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
 
 RobotContainer::RobotContainer() : 
 command_OpIntake(&subsystem_intake), 
