@@ -20,8 +20,8 @@ double HangSubsystem::getWinchRPM(){
     return c_TalonRPM(winchMtr.GetSelectedSensorVelocity());
 }
 
-double HangSubsystem::getWinchDraw() const{
-    return 0;//pdp.GetCurrent(RobotMap::PDP::WinchPort);
+double HangSubsystem::getWinchDraw() {
+    return winchMtr.GetSupplyCurrent();
 }
 
 void HangSubsystem::setClaw(ControlMode mode, double iPow){

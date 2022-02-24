@@ -7,23 +7,23 @@ OpDriveCommand::OpDriveCommand(DriveSubsystem* SubSystem_Drive) : drive{SubSyste
     AddRequirements(drive);
 }
 
-double OpDriveCommand::exponential(double joystickVal, float driveExp, double joydead, int motorMin){
-    joystickVal = joystickVal*100;
+int OpDriveCommand::exponential(double joystickVal, float driveExp, double joydead, int motorMin, int motorMax){
+    joystickVal = joystickVal*motorMax;
     int joySign;
-    int joyMax = 100 - joydead;
+    int joyMax = motorMax - joydead;
     int joyLive = abs(joystickVal) - joydead;
     if(joystickVal > 0){joySign = 1;}
     else if(joystickVal < 0){joySign = -1;}
     else{joySign = 0;}
-    int power = (joySign * (motorMin + ((100 - motorMin) * (pow(joyLive, driveExp) / pow(joyMax, driveExp)))));
+    int power = (joySign * (motorMin + ((motorMax - motorMin) * (pow(joyLive, driveExp) / pow(joyMax, driveExp)))));
     return power;
 }
 
 void OpDriveCommand::Execute(){
-    double Ypow = exponential(master.GetLeftY(), 1.2, 10, 5)/100;
-    double Xpow = exponential(master.GetRightX(), 1.2, 10, 5)/100;
-    frc::SmartDashboard::PutNumber("xPow", Xpow);
-    frc::SmartDashboard::PutNumber("yPow", Ypow);
+    double Ypow = exponential(master.GetLeftY(), 1.2, 10, 5, 22000);
+    double Xpow = exponential(master.GetRightX(), 1.2, 10, 5, 14000);
+    frc::SmartDashboard::PutNumber("Drive Power", Ypow);
+    frc::SmartDashboard::PutNumber("Turn Power", Xpow);
     drive->set(ControlMode::PercentOutput, (Ypow-Xpow), (Ypow + Xpow));
 }
 

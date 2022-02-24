@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <units/time.h>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -63,10 +65,6 @@ namespace RobotMap {
         constexpr int partnerController = 1;
 
     }
-
-    namespace PDP {
-        constexpr int WinchPort = 0;
-    }
 }
 
 namespace driveConstants {
@@ -74,7 +72,7 @@ namespace driveConstants {
 }
 
 namespace indexConstants {
-    constexpr int k_shootTime = 2;
+    constexpr units::time::second_t k_shootTime{2};
 }
 
 //Macro to convert Talon FX encoder Units Per Rotation (UPR) into Rotations Per Minute (RPM)

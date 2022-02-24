@@ -57,6 +57,10 @@ void Robot::TeleopInit() {
   if(r_command_opIndex != nullptr) {
     r_command_opIndex->Schedule();
   }
+
+  if(r_command_opHang != nullptr) {
+    r_command_opHang->Schedule();
+  }
 }
 
 /**

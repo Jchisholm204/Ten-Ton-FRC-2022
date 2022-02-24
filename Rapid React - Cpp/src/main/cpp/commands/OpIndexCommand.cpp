@@ -4,12 +4,12 @@
 #include <frc/Timer.h>
 #include "Constants.h"
 
-OpIndexCommand::OpIndexCommand(IndexSubsystem* SubSystem_index) : index{SubSystem_index}, shootTime{indexConstants::k_shootTime}, status_running{false} {
+OpIndexCommand::OpIndexCommand(IndexSubsystem* SubSystem_index) : index{SubSystem_index}, status_running{false} {
     AddRequirements(index);
 }
 
 void OpIndexCommand::Initialize(){
-    waitSaveTime = frc::Timer::GetFPGATimestamp() - shootTime;
+    waitSaveTime = frc::Timer::GetFPGATimestamp() - indexConstants::k_shootTime;
 }
 
 void OpIndexCommand::Execute(){
@@ -25,7 +25,7 @@ void OpIndexCommand::Execute(){
 
     // Use Status Running to Stop All Indexing (on/true by default)
     if(status_running){
-    if(frc::Timer::GetFPGATimestamp() < (waitSaveTime + shootTime)){
+    if(frc::Timer::GetFPGATimestamp() < (waitSaveTime + indexConstants::k_shootTime)){
 
     }
     else if(master.GetRightBumperPressed()){

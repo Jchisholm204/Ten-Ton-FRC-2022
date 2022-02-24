@@ -78,9 +78,9 @@ void TalonConfiguation::rightDrive(TalonFX &iMotor){
     // Set the Primary Feedback Sensor (configure the motor's encoder)
     motorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice::IntegratedSensor;
     // Configure the Motor's Integrated PID
-    motorConfig.slot0.kP = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kP = 2.0; // Standard PID kP - used for MagicMotion Movement
     motorConfig.slot0.kI = 0.0; // Standard PID kP - used for MagicMotion Movement
-    motorConfig.slot0.kD = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kD = 12.0; // Standard PID kP - used for MagicMotion Movement
     motorConfig.slot0.kF = 0.0505; // kF - Feed Forward Value - The Minimum Motor Power Required to Move the Motor
 
     motorConfig.slot0.integralZone = 0;
@@ -114,9 +114,9 @@ void TalonConfiguation::leftDrive(TalonFX &iMotor){
     // Set the Primary Feedback Sensor (configure the motor's encoder)
     motorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice::IntegratedSensor;
     // Configure the Motor's Integrated PID
-    motorConfig.slot0.kP = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kP = 2.0; // Standard PID kP - used for MagicMotion Movement
     motorConfig.slot0.kI = 0.0; // Standard PID kP - used for MagicMotion Movement
-    motorConfig.slot0.kD = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kD = 12.0; // Standard PID kP - used for MagicMotion Movement
     motorConfig.slot0.kF = 0.0505; // kF - Feed Forward Value - The Minimum Motor Power Required to Move the Motor
 
     motorConfig.slot0.integralZone = 0;

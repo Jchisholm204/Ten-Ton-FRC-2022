@@ -18,7 +18,6 @@ class OpIndexCommand : public frc2::CommandHelper<frc2::CommandBase, OpIndexComm
     private:
         IndexSubsystem* index;
         units::time::second_t waitSaveTime;
-        units::time::second_t shootTime;
         bool status_running;
 
 };

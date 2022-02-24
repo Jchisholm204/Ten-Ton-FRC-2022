@@ -29,7 +29,7 @@ class HangSubsystem : public frc2::SubsystemBase {
          * Get The Winch Motors Power Draw from the PDP
          * @return The Winches Power Draw in Amps
          */
-        double getWinchDraw() const;
+        double getWinchDraw();
 
         /**
          * Set the Claw Motor
