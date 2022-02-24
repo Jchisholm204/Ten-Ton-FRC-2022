@@ -21,7 +21,7 @@ double HangSubsystem::getWinchRPM(){
 }
 
 double HangSubsystem::getWinchDraw() const{
-    return pdp.GetCurrent(RobotMap::PDP::WinchPort);
+    return 0;//pdp.GetCurrent(RobotMap::PDP::WinchPort);
 }
 
 void HangSubsystem::setClaw(ControlMode mode, double iPow){

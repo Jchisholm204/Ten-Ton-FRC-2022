@@ -15,16 +15,16 @@ double OpDriveCommand::exponential(double joystickVal, float driveExp, double jo
     if(joystickVal > 0){joySign = 1;}
     else if(joystickVal < 0){joySign = -1;}
     else{joySign = 0;}
-    return (joySign * (motorMin + ((100 - motorMin) * (pow(joyLive, driveExp) / pow(joyMax, driveExp)))));
+    int power = (joySign * (motorMin + ((100 - motorMin) * (pow(joyLive, driveExp) / pow(joyMax, driveExp)))));
+    return power;
 }
 
 void OpDriveCommand::Execute(){
-    double Ypow = 2100 * exponential(master.GetLeftY(), 1.2, 1, 0);
-    double Xpow = (2100 * driveConstants::k_opTurnPow) * exponential(master.GetRightX(), 1.2, 1, 1);
+    double Ypow = exponential(master.GetLeftY(), 1.2, 10, 5)/100;
+    double Xpow = exponential(master.GetRightX(), 1.2, 10, 5)/100;
     frc::SmartDashboard::PutNumber("xPow", Xpow);
     frc::SmartDashboard::PutNumber("yPow", Ypow);
-
-    //drive->arcadeDrive(Ypow, Xpow);
+    drive->set(ControlMode::PercentOutput, (Ypow-Xpow), (Ypow + Xpow));
 }
 
 void OpDriveCommand::End(bool interrupted){

@@ -37,7 +37,7 @@ void OpIndexCommand::Execute(){
         index->setBot(ControlMode::PercentOutput, -0.5);
     }
     else{
-        index->runCodex(0.4);
+        index->runCodex(0.6);
     }
 
     //Run Feeder Motor (Sideways Index Module)
