@@ -4,6 +4,8 @@
 
 #include "commands/OpIntakeCommand.hpp"
 #include "RobotContainer.h"
+#include <frc/DriverStation.h>
+
 
 OpIntakeCommand::OpIntakeCommand(IntakeSubsystem* SubSystem_intake) : intake{SubSystem_intake} {
     AddRequirements(intake);
@@ -11,7 +13,15 @@ OpIntakeCommand::OpIntakeCommand(IntakeSubsystem* SubSystem_intake) : intake{Sub
 
 
 void OpIntakeCommand::Initialize(){
-    intake->startCompressor();
+        if(compressor.Enabled() == false){
+        printf("Intake Error; Compressor Not Enabled\n");
+            if(compressor.GetPressureSwitchValue() == false){
+                printf("Tank Pressure Nominal");
+            }
+        }
+        else if(compressor.GetPressureSwitchValue()){
+            printf("WARNING: Tank Pressure Low\n");
+        }
 }
 
 void OpIntakeCommand::Execute(){
@@ -38,7 +48,6 @@ void OpIntakeCommand::Execute(){
 }
 
 void OpIntakeCommand::End(bool interrupted){
-    intake->stopCompressor();
     intake->setFront(ControlMode::PercentOutput, 0);
     intake->setRear(ControlMode::PercentOutput, 0);
 }

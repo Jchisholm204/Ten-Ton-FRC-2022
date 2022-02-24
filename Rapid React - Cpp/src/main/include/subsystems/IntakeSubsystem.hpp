@@ -79,16 +79,6 @@ class IntakeSubsystem : public frc2::SubsystemBase {
    */
   bool getRearState();
 
-  /**
-   * Allow the Compressor to Maintiain Tank Pressure
-   */
-  void startCompressor();
-
-  /**
-   * Stop The Compressor
-   */
-  void stopCompressor();
-
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
@@ -98,7 +88,5 @@ class IntakeSubsystem : public frc2::SubsystemBase {
 
   frc::Solenoid frontPiston;
   frc::Solenoid rearPiston;
-
-  frc::Compressor compressor;
 
 };

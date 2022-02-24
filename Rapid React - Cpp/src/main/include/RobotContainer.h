@@ -12,7 +12,12 @@
 #include "commands/OpDriveCommand.hpp"
 #include "subsystems/IndexSubsystem.hpp"
 #include "commands/OpIndexCommand.hpp"
+//#include "subsystems/HangSubsystem.hpp"
+//#include "commands/OpHangCommand.hpp"
 #include <frc/XboxController.h>
+#include <frc/PowerDistribution.h>
+#include <frc/PneumaticsControlModule.h>
+#include <frc/Compressor.h>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -31,20 +36,37 @@ class RobotContainer {
 
   frc2::Command* GetOpIndexCommand();
 
+  //frc2::Command* GetOpHangCommand();
+
  private:
   // The robot's subsystems and commands are defined here...
   // Subsystems
   IntakeSubsystem subsystem_intake;
   IndexSubsystem subsystem_index;
   DriveSubsystem subsystem_drive;
+  //HangSubsystem subsystem_hang;
 
   // Commands
   OpIntakeCommand command_OpIntake;
   OpDriveCommand command_OpDrive;
   OpIndexCommand command_OpIndex;
+  //OpHangCommand command_OpHang;
 
   void ConfigureButtonBindings();
 };
 
+
+/*extern your Global Variables and Objects here so that they can be accessed globally*/
+//nomnom 
+//intellisense broke no write code noo moreeeee
+
+// Master Controller
 extern frc::XboxController master;
-//extern frc::XboxController partner;
+// Partner Controller
+extern frc::XboxController partner;
+
+// Main Power Distribution Board
+extern frc::PowerDistribution pdp;
+
+// Pneumatics Module Compressor
+extern frc::Compressor compressor;

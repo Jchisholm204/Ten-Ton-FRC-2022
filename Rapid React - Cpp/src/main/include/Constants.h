@@ -72,3 +72,11 @@ namespace RobotMap {
 namespace driveConstants {
     constexpr double k_opTurnPow = 0.75;
 }
+
+namespace indexConstants {
+    constexpr int k_shootTime = 2;
+}
+
+//Macro to convert Talon FX encoder Units Per Rotation (UPR) into Rotations Per Minute (RPM)
+#define c_TalonRPM(upr) (upr*600/2408)
+#define c_TalonUPR(rpm) (rpm*2408/600)

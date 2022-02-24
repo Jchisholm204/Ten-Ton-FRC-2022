@@ -5,8 +5,13 @@
 #include "RobotContainer.h"
 #include "Constants.h"
 
+// Global Variables and Global Objects Go Here (pdp, controllers, pneumatics)
 frc::XboxController master(RobotMap::DriverStation::masterController);
-//frc::XboxController partner(RobotMap::DriverStation::partnerController);
+frc::XboxController partner(RobotMap::DriverStation::partnerController);
+
+frc::PowerDistribution pdp;
+
+frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
 
 RobotContainer::RobotContainer() : 
 command_OpIntake(&subsystem_intake), 
@@ -28,3 +33,7 @@ frc2::Command* RobotContainer::GetOpDriveCommand(){
 frc2::Command* RobotContainer::GetOpIndexCommand(){
   return &command_OpIndex;
 }
+
+/*frc2::Command* RobotContainer::GetOpHangCommand(){
+  return &command_OpHang;
+}*/

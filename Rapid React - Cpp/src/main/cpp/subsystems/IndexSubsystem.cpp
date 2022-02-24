@@ -17,9 +17,10 @@ IndexSubsystem::IndexSubsystem() :
 void IndexSubsystem::shoot(double iPow){
     topMtr.Set(ControlMode::PercentOutput, iPow);
     botMtr.Set(ControlMode::PercentOutput, iPow);
+    codex = 0;
 }
 
-void IndexSubsystem::runCodex(){
+void IndexSubsystem::runCodex(double iPow){
         if ( getTopSensor() && codex == 0){ codex = 1; };
         if ( getBotSensor() && codex == 1 ){ codex = 2; };
 
@@ -29,11 +30,11 @@ void IndexSubsystem::runCodex(){
         }
         else if ( codex == 1 ){
             topMtr.Set(ControlMode::PercentOutput, 0);
-            botMtr.Set(ControlMode::PercentOutput, 1);
+            botMtr.Set(ControlMode::PercentOutput, iPow);
         }
         else if ( codex == 0 ){
-            topMtr.Set(ControlMode::PercentOutput, 1);
-            botMtr.Set(ControlMode::PercentOutput, 1);
+            topMtr.Set(ControlMode::PercentOutput, iPow);
+            botMtr.Set(ControlMode::PercentOutput, iPow);
         }
         else{
             printf("Codex OverFlow");

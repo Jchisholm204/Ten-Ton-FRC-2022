@@ -27,6 +27,7 @@ class Robot : public frc::TimedRobot {
   frc2::Command* r_command_opIntake = nullptr;
   frc2::Command* r_command_opDrive = nullptr;
   frc2::Command* r_command_opIndex = nullptr;
+  frc2::Command* r_command_opHang = nullptr;
 
   RobotContainer m_container;
 };

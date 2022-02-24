@@ -23,7 +23,7 @@ class IndexSubsystem : public frc2::SubsystemBase {
         /**
          * Run the Codexing program
          */
-        void runCodex();
+        void runCodex(double iPow);
 
         /**
          * Reset The Indexers Codex Variable

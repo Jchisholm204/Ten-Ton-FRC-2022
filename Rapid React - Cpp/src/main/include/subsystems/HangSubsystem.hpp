@@ -20,6 +20,12 @@ class HangSubsystem : public frc2::SubsystemBase {
         double getWinch();
 
         /**
+         * Get The Winch Motors Current RPM
+         * @return Revolutes Per Min
+         */
+        double getWinchRPM();
+
+        /**
          * Get The Winch Motors Power Draw from the PDP
          * @return The Winches Power Draw in Amps
          */
@@ -38,9 +44,14 @@ class HangSubsystem : public frc2::SubsystemBase {
          */
         double getClaw();
 
+        /**
+         * Get The Claws Current RPM
+         * @return Revolutes Per Min
+         */
+        double getClawRPM();
+
         
     private:
         TalonFX winchMtr;
         TalonFX clawMtr;
-        frc::PowerDistribution pdp;
 };

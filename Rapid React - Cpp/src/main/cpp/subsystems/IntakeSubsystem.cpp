@@ -10,8 +10,7 @@ IntakeSubsystem::IntakeSubsystem() :
 frontMtr{RobotMap::CAN::Intake_front}, 
 rearMtr{RobotMap::CAN::Intake_rear},
 frontPiston{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::frontIntake},
-rearPiston{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::rearIntake},
-compressor{frc::PneumaticsModuleType::CTREPCM}
+rearPiston{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::rearIntake}
 {
   TalonConfiguation::intake(frontMtr, true);
   TalonConfiguation::intake(rearMtr, false);
@@ -67,12 +66,4 @@ bool IntakeSubsystem::getFrontState(){
 
 bool IntakeSubsystem::getRearState(){
   return rearPiston.Get();
-}
-
-void IntakeSubsystem::startCompressor(){
-  compressor.EnableDigital();
-}
-
-void IntakeSubsystem::stopCompressor(){
-  compressor.Disable();
 }

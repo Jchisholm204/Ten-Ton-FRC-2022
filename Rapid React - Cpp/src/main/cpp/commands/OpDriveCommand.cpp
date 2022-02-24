@@ -7,19 +7,19 @@ OpDriveCommand::OpDriveCommand(DriveSubsystem* SubSystem_Drive) : drive{SubSyste
 }
 
 double OpDriveCommand::exponential(double joystickVal, float driveExp, double joydead, int motorMin){
-  int joySign;
-  int joyMax = 1 - joydead;
-  int joyLive = abs(joystickVal) - joydead;
-  if(joystickVal > 0){joySign = 1;}
-  else if(joystickVal < 0){joySign = -1;}
-  else{joySign = 0;}
-  double power = joySign * (motorMin + ((1 - motorMin) * (pow(joyLive, driveExp) / pow(joyMax, driveExp))));
-  return power;
+    joystickVal = joystickVal*100;
+    int joySign;
+    int joyMax = 100 - joydead;
+    int joyLive = abs(joystickVal) - joydead;
+    if(joystickVal > 0){joySign = 1;}
+    else if(joystickVal < 0){joySign = -1;}
+    else{joySign = 0;}
+    return (joySign * (motorMin + ((100 - motorMin) * (pow(joyLive, driveExp) / pow(joyMax, driveExp)))));
 }
 
 void OpDriveCommand::Execute(){
-    double Ypow = 21000 * master.GetLeftY();
-    double Xpow = (21000 * driveConstants::k_opTurnPow) * master.GetRightX();
+    double Ypow = 2100 * exponential(master.GetLeftY(), 1.2, 1, 0);
+    double Xpow = (2100 * driveConstants::k_opTurnPow) * exponential(master.GetRightX(), 1.2, 1, 1);
 
     drive->arcadeDrive(Ypow, Xpow);
 }
