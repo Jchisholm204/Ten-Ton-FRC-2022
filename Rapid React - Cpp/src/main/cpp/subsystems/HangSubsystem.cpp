@@ -5,7 +5,7 @@
 
 HangSubsystem::HangSubsystem() : winchMtr{RobotMap::CAN::HangMtr}, clawMtr{RobotMap::CAN::ClawMtr} {
     TalonConfiguation::winchMotor(winchMtr);
-    TalonConfiguation::winchMotor(clawMtr);
+    TalonConfiguation::clawMotor(clawMtr);
 }
 
 void HangSubsystem::setWinch(ControlMode mode, double iPow){
