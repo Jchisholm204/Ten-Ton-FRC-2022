@@ -20,8 +20,8 @@ int OpDriveCommand::exponential(double joystickVal, float driveExp, double joyde
 }
 
 void OpDriveCommand::Execute(){
-    double Ypow = exponential(master.GetLeftY(), 1.2, 10, 5, 22000);
-    double Xpow = exponential(master.GetRightX(), 1.2, 10, 5, 14000);
+    double Ypow = exponential(master.GetLeftY(), 1.2, 0.1, 0.1, 1);
+    double Xpow = exponential(master.GetRightX(), 1.2, 0.1, 0.1, 1);
     frc::SmartDashboard::PutNumber("Drive Power", Ypow);
     frc::SmartDashboard::PutNumber("Turn Power", Xpow);
     drive->set(ControlMode::PercentOutput, (Ypow-Xpow), (Ypow + Xpow));

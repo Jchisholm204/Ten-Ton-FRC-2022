@@ -38,8 +38,8 @@ namespace RobotMap {
         constexpr int BottomIndex = 7;
         constexpr int FeedIndex = 8;
 
-        constexpr int HangMtr = 0;
-        constexpr int ClawMtr = 0;
+        constexpr int WinchMtr = 10;
+        constexpr int ClawMtr = 11;
 
         constexpr int PDP = 0;
 

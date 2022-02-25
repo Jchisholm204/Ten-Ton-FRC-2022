@@ -2,7 +2,7 @@
 #include "Constants.h"
 #include "utilities/Talon.hpp"
 
-HangSubsystem::HangSubsystem() : winchMtr{RobotMap::CAN::HangMtr}, clawMtr{RobotMap::CAN::ClawMtr} {
+HangSubsystem::HangSubsystem() : winchMtr{RobotMap::CAN::WinchMtr}, clawMtr{RobotMap::CAN::ClawMtr} {
     TalonConfiguation::winchMotor(winchMtr);
     TalonConfiguation::clawMotor(clawMtr);
 }

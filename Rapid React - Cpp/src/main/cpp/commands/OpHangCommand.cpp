@@ -19,69 +19,48 @@ OpHangCommand::OpHangCommand(HangSubsystem* Subsystem_hang) : hang{Subsystem_han
   AddRequirements(Subsystem_hang);
 }
 
-double Wpos;
-double Cpos;
-
 // Called when the command is initially scheduled.
 void OpHangCommand::Initialize() {
-  frc::SmartDashboard::PutNumber(SDwmv, c_TalonUPR(600));
-  frc::SmartDashboard::PutNumber(SDwp, hang->getWinch());
-  frc::SmartDashboard::PutNumber(SDcmv, c_TalonUPR(600));
-  frc::SmartDashboard::PutNumber(SDcp, hang->getClaw());
-
-  Wpos = hang->getWinch();
-  Cpos = hang->getClaw();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void OpHangCommand::Execute() {
 
-  double Wmv = frc::SmartDashboard::GetNumber(SDwmv, c_TalonUPR(600));
-  frc::SmartDashboard::PutNumber(SDwp, hang->getWinch());
-  
-
   frc::SmartDashboard::PutNumber("Winch Current Draw: ", hang->getWinchDraw());
   frc::SmartDashboard::PutNumber("Winch RPM: ", hang->getWinchRPM());
   frc::SmartDashboard::PutNumber("Claw RPM: ", hang->getClawRPM());
 
-  double Cmv = frc::SmartDashboard::GetNumber(SDcmv, c_TalonUPR(600));
-  frc::SmartDashboard::PutNumber(SDcp, hang->getClaw());
-
   if(partner.GetYButton()){
-    hang->setWinch(ControlMode::Velocity, c_TalonUPR(Wmv));
+    hang->setClaw(ControlMode::Velocity, 1000);
+    frc::SmartDashboard::PutBoolean("on", true);
   }
   else if(partner.GetAButton()){
-    hang->setWinch(ControlMode::Velocity, -c_TalonUPR(Wmv));
+    hang->setClaw(ControlMode::Velocity, -1000);
+    frc::SmartDashboard::PutBoolean("on", true);
   }
   else{
-    hang->setWinch(ControlMode::Position, Wpos);
-  }
-
-  if(partner.GetYButtonReleased() || partner.GetAButtonReleased()){
-    Wpos = hang->getWinch();
+    hang->setClaw(ControlMode::Velocity, 0);
+    frc::SmartDashboard::PutBoolean("on", false);
   }
 
   if(partner.GetXButton()){
-    hang->setWinch(ControlMode::Velocity, c_TalonUPR(Cmv));
+    hang->setWinch(ControlMode::Velocity, 22000);
+    frc::SmartDashboard::PutBoolean("Won", true);
   }
   else if(partner.GetBButton()){
-    hang->setWinch(ControlMode::Velocity, -c_TalonUPR(Cmv));
+    hang->setWinch(ControlMode::Velocity, -22000);
+    frc::SmartDashboard::PutBoolean("Won", true);
   }
   else{
-    hang->setWinch(ControlMode::Position, Cpos);
+    hang->setWinch(ControlMode::Velocity, 0);
+    frc::SmartDashboard::PutBoolean("Won", false);
   }
-
-  if(partner.GetXButtonReleased() || partner.GetBButtonReleased()){
-    Cpos = hang->getClaw();
-  }
-
-
 }
 
 // Called once the command ends or is interrupted.
 void OpHangCommand::End(bool interrupted) {
-  hang->setWinch(ControlMode::Position, hang->getWinch());
-  hang->setClaw(ControlMode::Position, hang->getClaw());
+  hang->setWinch(ControlMode::PercentOutput, 0);
+  hang->setClaw(ControlMode::PercentOutput, 0);
 }
 
 // Returns true when the command should end.
