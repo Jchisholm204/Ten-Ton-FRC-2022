@@ -28,13 +28,14 @@ void OpIndexCommand::Execute(){
     if(frc::Timer::GetFPGATimestamp() < (waitSaveTime + indexConstants::k_shootTime)){
 
     }
-    else if(master.GetRightBumperPressed()){
+    else if(master.GetRightBumperPressed()){ // Shoot 2 Balls
         index->shoot(1);
         waitSaveTime = frc::Timer::GetFPGATimestamp();
     }
-    else if(master.GetLeftBumper()){
-        index->setTop(ControlMode::PercentOutput, -0.5);
-        index->setBot(ControlMode::PercentOutput, -0.5);
+    else if(master.GetLeftBumperPressed()){ // Shoot Top Ball Only
+        index->setTop(ControlMode::PercentOutput, 1);
+        index->resetCodex();
+        waitSaveTime = frc::Timer::GetFPGATimestamp()+units::time::second_t{1};
     }
     else{
         index->runCodex(0.6);
