@@ -7,24 +7,17 @@ OpDriveCommand::OpDriveCommand(DriveSubsystem* SubSystem_Drive) : drive{SubSyste
     AddRequirements(drive);
 }
 
-int OpDriveCommand::exponential(double joystickVal, float driveExp, double joydead, int motorMin, int motorMax){
-    joystickVal = joystickVal*motorMax;
-    int joySign;
-    int joyMax = motorMax - joydead;
-    int joyLive = abs(joystickVal) - joydead;
-    if(joystickVal > 0){joySign = 1;}
-    else if(joystickVal < 0){joySign = -1;}
-    else{joySign = 0;}
-    int power = (joySign * (motorMin + ((motorMax - motorMin) * (pow(joyLive, driveExp) / pow(joyMax, driveExp)))));
-    return power;
-}
-
 void OpDriveCommand::Execute(){
-    double Ypow = exponential(master.GetLeftY(), 1.2, 0.1, 0.1, 1);
-    double Xpow = exponential(master.GetRightX(), 1.2, 0.1, 0.1, 1);
+    /** NOTE:
+     * Exponential Drive Variables should be changed within the Talon.cpp configuration file for the iLeft and iRight Motors
+     * SmartDashboard is an unnessasary debugging tool, the lines referencing may be commented out
+     * drive->arcadeDrive uses ControlMode::Velocity by default
+     */
+    double Ypow = master.GetLeftY()*21000;
+    double Xpow = master.GetRightX()*21000;
     frc::SmartDashboard::PutNumber("Drive Power", Ypow);
     frc::SmartDashboard::PutNumber("Turn Power", Xpow);
-    drive->set(ControlMode::PercentOutput, (Ypow-Xpow), (Ypow + Xpow));
+    drive->arcadeDrive(Ypow, Xpow);
 }
 
 void OpDriveCommand::End(bool interrupted){

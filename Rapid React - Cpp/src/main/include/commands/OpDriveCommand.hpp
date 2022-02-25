@@ -13,6 +13,5 @@ class OpDriveCommand : public frc2::CommandHelper<frc2::CommandBase, OpDriveComm
     void End(bool interrupted) override;
 
     private:
-        int exponential(double joystickVal, float driveExp, double joydead, int motorMin, int motorMax);
         DriveSubsystem* drive;
 };
