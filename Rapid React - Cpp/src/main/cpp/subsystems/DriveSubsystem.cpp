@@ -28,6 +28,6 @@ void DriveSubsystem::set(ControlMode mode, double leftPow, double rightPow){
 }
 
 void DriveSubsystem::arcadeDrive(double iPow, double turnPow){
-    driveRM.Set(ControlMode::Velocity, (iPow - turnPow));
-    driveLM.Set(ControlMode::Velocity, (iPow + turnPow));
+    driveRM.Set(ControlMode::Velocity, (iPow + turnPow));
+    driveLM.Set(ControlMode::Velocity, (iPow - turnPow));
 }

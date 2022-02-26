@@ -34,6 +34,7 @@ void OpIndexCommand::Execute(){
     }
     else if(master.GetLeftBumperPressed()){ // Shoot Top Ball Only
         index->setTop(ControlMode::PercentOutput, 1);
+        index->setBot(ControlMode::PercentOutput, 0);
         index->resetCodex();
         waitSaveTime = frc::Timer::GetFPGATimestamp()+units::time::second_t{1};
     }

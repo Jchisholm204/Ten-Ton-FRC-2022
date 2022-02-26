@@ -29,14 +29,14 @@ void OpIntakeCommand::Execute(){
     if(master.GetAButton()){
         intake->setFront(ControlMode::PercentOutput, 1);   
     }
-    else if(master.GetBButton()){
+    else if(master.GetXButton()){
         intake->setFront(ControlMode::PercentOutput, -1);
     }
     else{
         intake->setFront(ControlMode::PercentOutput, 0);
     }
 
-    if(master.GetXButton()){
+    if(master.GetBButton()){
         intake->setRear(ControlMode::PercentOutput, 1);   
     }
     else if(master.GetYButton()){
