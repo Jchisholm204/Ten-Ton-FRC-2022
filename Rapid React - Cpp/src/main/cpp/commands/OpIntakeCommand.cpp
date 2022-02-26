@@ -12,7 +12,7 @@ OpIntakeCommand::OpIntakeCommand(IntakeSubsystem* SubSystem_intake) : intake{Sub
 }
 
 
-void OpIntakeCommand::Initialize(){/*
+void OpIntakeCommand::Initialize(){
         if(compressor.Enabled() == false){
         printf("Intake Error; Compressor Not Enabled\n");
             if(compressor.GetPressureSwitchValue() == false){
@@ -21,10 +21,29 @@ void OpIntakeCommand::Initialize(){/*
         }
         else if(compressor.GetPressureSwitchValue()){
             printf("WARNING: Tank Pressure Low\n");
-        }*/
+        }
 }
 
 void OpIntakeCommand::Execute(){
+
+    if(master.GetPOV(0)){
+        intake->raise(true, true);
+    }
+    else if(master.GetPOV(180)){
+        intake->lower(true, true);
+    }
+    else if(master.GetPOV(315)){
+        intake->raise(false, true);
+    }
+    else if(master.GetPOV(225)){
+        intake->lower(false, true);
+    }
+    else if(master.GetPOV(45)){
+        intake->raise(true, false);
+    }
+    else if(master.GetPOV(135)){
+        intake->lower(true, false);
+    }
 
     if(master.GetAButton()){
         intake->setFront(ControlMode::PercentOutput, 1);   

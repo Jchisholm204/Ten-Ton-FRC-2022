@@ -17,6 +17,7 @@ void OpIndexCommand::Execute(){
     frc::SmartDashboard::PutNumber("Codex: ", index->getCodex());
     frc::SmartDashboard::PutBoolean("Top PE Sensor: ", index->getTopSensor());
     frc::SmartDashboard::PutBoolean("Bottom PE Sensor: ", index->getBotSensor());
+    frc::SmartDashboard::PutBoolean("Index Enabled: ", status_running);
 
     //Allows Partner Controller To Stop all index control (including shooting)
     if(partner.GetLeftBumperPressed()){

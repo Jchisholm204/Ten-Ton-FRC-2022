@@ -55,6 +55,12 @@ void OpHangCommand::Execute() {
     hang->setWinch(ControlMode::Velocity, 0);
     frc::SmartDashboard::PutBoolean("Won", false);
   }
+
+  if(partner.GetRightBumperPressed()){
+    bool p = hang->GetPressure();
+    hang->ApplyPressure(!p);
+  }
+
 }
 
 // Called once the command ends or is interrupted.

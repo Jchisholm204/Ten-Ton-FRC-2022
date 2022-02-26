@@ -56,6 +56,7 @@ namespace RobotMap {
 
         constexpr int frontIntake = 0;
         constexpr int rearIntake = 1;
+        constexpr int armPiston = 2;
 
     }
 

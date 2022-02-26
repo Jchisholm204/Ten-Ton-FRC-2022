@@ -1,5 +1,6 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/PowerDistribution.h>
+#include <frc/Solenoid.h>
 #include "ctre/Phoenix.h"
 
 class HangSubsystem : public frc2::SubsystemBase {
@@ -50,8 +51,13 @@ class HangSubsystem : public frc2::SubsystemBase {
          */
         double getClawRPM();
 
+        void ApplyPressure(bool on);
+
+        bool GetPressure();
+
         
     private:
         TalonFX winchMtr;
         TalonFX clawMtr;
+        frc::Solenoid arm;
 };

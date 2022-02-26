@@ -2,7 +2,7 @@
 #include "Constants.h"
 #include "utilities/Talon.hpp"
 
-HangSubsystem::HangSubsystem() : winchMtr{RobotMap::CAN::WinchMtr}, clawMtr{RobotMap::CAN::ClawMtr} {
+HangSubsystem::HangSubsystem() : winchMtr{RobotMap::CAN::WinchMtr}, clawMtr{RobotMap::CAN::ClawMtr}, arm{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::armPiston} {
     TalonConfiguation::winchMotor(winchMtr);
     TalonConfiguation::clawMotor(clawMtr);
 }
@@ -33,4 +33,12 @@ double HangSubsystem::getClaw(){
 
 double HangSubsystem::getClawRPM(){
     return c_TalonRPM(clawMtr.GetSelectedSensorVelocity());
+}
+
+void HangSubsystem::ApplyPressure(bool on){
+    arm.Set(on);
+}
+
+bool HangSubsystem::GetPressure(){
+    return arm.Get();
 }

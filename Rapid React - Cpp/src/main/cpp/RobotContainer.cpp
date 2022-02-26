@@ -9,7 +9,13 @@
 frc::XboxController master(RobotMap::DriverStation::masterController);
 frc::XboxController partner(RobotMap::DriverStation::partnerController);
 
-frc::PowerDistribution pdp(0, frc::PowerDistribution::ModuleType::kCTRE); //BROKEN (possibly) - WILL STOP CODE FROM RUNNING ON ROBOT
+/**
+ * NOTE:
+ * Setting the Module Type stops the robot from failing to run the code,
+ * However, it is still unknown as to if this will actually report correct values,
+ * or even report any values at all
+ */
+frc::PowerDistribution pdp(0, frc::PowerDistribution::ModuleType::kCTRE); //BROKEN (possibly)
 
 frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
 
