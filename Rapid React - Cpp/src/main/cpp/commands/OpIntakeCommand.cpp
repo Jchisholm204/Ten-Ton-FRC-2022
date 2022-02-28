@@ -14,7 +14,7 @@ OpIntakeCommand::OpIntakeCommand(IntakeSubsystem* SubSystem_intake) : intake{Sub
 
 void OpIntakeCommand::Initialize(){
         if(compressor.Enabled() == false){
-        printf("Intake Error; Compressor Not Enabled\n");
+        printf("Intake Error: Compressor Not Enabled\n");
             if(compressor.GetPressureSwitchValue() == false){
                 printf("Tank Pressure Nominal");
             }
@@ -26,40 +26,32 @@ void OpIntakeCommand::Initialize(){
 
 void OpIntakeCommand::Execute(){
 
-    if(master.GetPOV(0)){
-        intake->raise(true, true);
-    }
-    else if(master.GetPOV(180)){
-        intake->lower(true, true);
-    }
-    else if(master.GetPOV(315)){
+    if(master.GetPOV(0) == 270){
         intake->raise(false, true);
     }
-    else if(master.GetPOV(225)){
-        intake->lower(false, true);
-    }
-    else if(master.GetPOV(45)){
+    else if(master.GetPOV(0) == 90){
         intake->raise(true, false);
     }
-    else if(master.GetPOV(135)){
-        intake->lower(true, false);
-    }
 
-    if(master.GetAButton()){
-        intake->setFront(ControlMode::PercentOutput, 1);   
+    if(master.GetRightTriggerAxis() > 0.1){
+        intake->setFront(ControlMode::PercentOutput, 1);
+        intake->lower(true, false);
     }
     else if(master.GetXButton()){
         intake->setFront(ControlMode::PercentOutput, -1);
+        intake->lower(true, false);
     }
     else{
         intake->setFront(ControlMode::PercentOutput, 0);
     }
 
-    if(master.GetBButton()){
-        intake->setRear(ControlMode::PercentOutput, 1);   
+    if(master.GetLeftTriggerAxis() > 0.1){
+        intake->setRear(ControlMode::PercentOutput, 1);
+        intake->lower(false, true);  
     }
     else if(master.GetYButton()){
         intake->setRear(ControlMode::PercentOutput, -1);
+        intake->lower(false, true);
     }
     else{
         intake->setRear(ControlMode::PercentOutput, 0);

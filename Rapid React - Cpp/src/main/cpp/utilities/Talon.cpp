@@ -150,17 +150,17 @@ void TalonConfiguation::winchMotor(TalonFX &iMotor){
     // Set the Primary Feedback Sensor (configure the motor's encoder)
     motorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice::IntegratedSensor;
     // Configure the Motor's Integrated PID
-    motorConfig.slot0.kP = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kP = 1.0; // Standard PID kP - used for MagicMotion Movement
     motorConfig.slot0.kI = 0.0; // Standard PID kP - used for MagicMotion Movement
-    motorConfig.slot0.kD = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kD = 80.0; // Standard PID kP - used for MagicMotion Movement
     motorConfig.slot0.kF = 0.0505; // kF - Feed Forward Value - The Minimum Motor Power Required to Move the Motor
 
     motorConfig.slot0.integralZone = 0;
     motorConfig.slot0.allowableClosedloopError = 0;
-    motorConfig.closedloopRamp = 2;
+    motorConfig.closedloopRamp = 0.1;
 
-    motorConfig.motionAcceleration = 1000;
-    motorConfig.motionCruiseVelocity = 22000; //Maximum Speed (encoder units / 100ms) for Magic Motion
+    motorConfig.motionAcceleration = 15000;
+    motorConfig.motionCruiseVelocity = 21000; //Maximum Speed (encoder units / 100ms) for Magic Motion
 
     motorConfig.nominalOutputForward = 0.0;
     motorConfig.nominalOutputReverse = 0.0;
@@ -186,16 +186,16 @@ void TalonConfiguation::clawMotor(TalonFX &iMotor){
     // Set the Primary Feedback Sensor (configure the motor's encoder)
     motorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice::IntegratedSensor;
     // Configure the Motor's Integrated PID
-    motorConfig.slot0.kP = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kP = 2.0; // Standard PID kP - used for MagicMotion Movement
     motorConfig.slot0.kI = 0.0; // Standard PID kP - used for MagicMotion Movement
-    motorConfig.slot0.kD = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kD = 120.0; // Standard PID kP - used for MagicMotion Movement
     motorConfig.slot0.kF = 0.0505; // kF - Feed Forward Value - The Minimum Motor Power Required to Move the Motor
 
     motorConfig.slot0.integralZone = 0;
     motorConfig.slot0.allowableClosedloopError = 0;
-    motorConfig.closedloopRamp = 0.5;
+    motorConfig.closedloopRamp = 0.1;
 
-    motorConfig.motionAcceleration = 1500;
+    motorConfig.motionAcceleration = 20000;
     motorConfig.motionCruiseVelocity = 21000; //Maximum Speed (encoder units / 100ms) for Magic Motion
 
     motorConfig.nominalOutputForward = 0.0;

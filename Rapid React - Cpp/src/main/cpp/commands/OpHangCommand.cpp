@@ -21,6 +21,8 @@ OpHangCommand::OpHangCommand(HangSubsystem* Subsystem_hang) : hang{Subsystem_han
 
 // Called when the command is initially scheduled.
 void OpHangCommand::Initialize() {
+  hang->resetWinch();
+  hang->resetClaw();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -29,30 +31,45 @@ void OpHangCommand::Execute() {
   frc::SmartDashboard::PutNumber("Winch Current Draw: ", hang->getWinchDraw());
   frc::SmartDashboard::PutNumber("Winch RPM: ", hang->getWinchRPM());
   frc::SmartDashboard::PutNumber("Claw RPM: ", hang->getClawRPM());
+  
+  frc::SmartDashboard::PutNumber("wPos", hang->getWinch());
+  frc::SmartDashboard::PutNumber("cPos", hang->getClaw());
 
   if(partner.GetYButton()){
-    hang->setClaw(ControlMode::Velocity, 1000);
+    hang->setClaw(ControlMode::Velocity, 10000);
     frc::SmartDashboard::PutBoolean("on", true);
+    hang->resetClaw();
   }
   else if(partner.GetAButton()){
-    hang->setClaw(ControlMode::Velocity, -1000);
+    hang->setClaw(ControlMode::Velocity, -10000);
     frc::SmartDashboard::PutBoolean("on", true);
+    hang->resetClaw();
+  }
+  else if(partner.GetYButtonReleased() || partner.GetAButtonReleased()){
+    hang->setClaw(ControlMode::PercentOutput, 0);
+    hang->resetClaw();
   }
   else{
-    hang->setClaw(ControlMode::Velocity, 0);
+    hang->setClaw(ControlMode::MotionMagic, 0);
     frc::SmartDashboard::PutBoolean("on", false);
   }
 
   if(partner.GetXButton()){
-    hang->setWinch(ControlMode::Velocity, 22000);
+    hang->setWinch(ControlMode::Velocity, 11000);
     frc::SmartDashboard::PutBoolean("Won", true);
+    hang->resetWinch();
   }
   else if(partner.GetBButton()){
-    hang->setWinch(ControlMode::Velocity, -22000);
+    hang->setWinch(ControlMode::Velocity, -11000);
     frc::SmartDashboard::PutBoolean("Won", true);
+    hang->resetWinch();
+  }
+  else if(partner.GetBButtonReleased() || partner.GetXButtonReleased()){
+    hang->setWinch(ControlMode::PercentOutput, 0);
+    hang->resetWinch();
   }
   else{
-    hang->setWinch(ControlMode::Velocity, 0);
+    hang->setWinch(ControlMode::MotionMagic, 0);
     frc::SmartDashboard::PutBoolean("Won", false);
   }
 

@@ -15,6 +15,10 @@ double HangSubsystem::getWinch(){
     return winchMtr.GetSelectedSensorPosition();
 }
 
+void HangSubsystem::resetWinch(){
+    winchMtr.SetSelectedSensorPosition(0);
+}
+
 double HangSubsystem::getWinchRPM(){
     return c_TalonRPM(winchMtr.GetSelectedSensorVelocity());
 }
@@ -29,6 +33,10 @@ void HangSubsystem::setClaw(ControlMode mode, double iPow){
 
 double HangSubsystem::getClaw(){
     return clawMtr.GetSelectedSensorPosition();
+}
+
+void HangSubsystem::resetClaw(){
+    clawMtr.SetSelectedSensorPosition(0);
 }
 
 double HangSubsystem::getClawRPM(){

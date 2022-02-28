@@ -20,6 +20,8 @@ class HangSubsystem : public frc2::SubsystemBase {
          */
         double getWinch();
 
+        void resetWinch();
+
         /**
          * Get The Winch Motors Current RPM
          * @return Revolutes Per Min
@@ -44,6 +46,8 @@ class HangSubsystem : public frc2::SubsystemBase {
          * @return The Sensor Position
          */
         double getClaw();
+
+        void resetClaw();
 
         /**
          * Get The Claws Current RPM
