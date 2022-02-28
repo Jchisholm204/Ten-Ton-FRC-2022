@@ -18,6 +18,8 @@ bool finished = false;
 
 FILE * recFile;
 
+units::second_t startTime = frc::Timer::GetFPGATimestamp();
+
 // Called when the command is initially scheduled.
 void ReRunRecord::Initialize() {
 
@@ -40,11 +42,12 @@ void ReRunRecord::Initialize() {
       printf("Cannot record to unknown auto");
       break;
   };
+
+  startTime = frc::Timer::GetFPGATimestamp();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ReRunRecord::Execute() {
-  units::second_t startTime = frc::Timer::GetFPGATimestamp();
 
   if(frc::Timer::GetFPGATimestamp() - startTime < units::second_t{15}){
     fprintf(recFile, "%lf\n",drive->getRightVel());
