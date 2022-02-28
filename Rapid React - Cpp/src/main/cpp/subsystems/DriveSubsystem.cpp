@@ -31,3 +31,11 @@ void DriveSubsystem::arcadeDrive(double iPow, double turnPow){
     driveRM.Set(ControlMode::Velocity, (iPow + turnPow));
     driveLM.Set(ControlMode::Velocity, (iPow - turnPow));
 }
+
+double DriveSubsystem::getRightVel(){
+    return driveRM.GetSelectedSensorVelocity();
+}
+
+double DriveSubsystem::getLeftVel(){
+    return driveLM.GetSelectedSensorVelocity();
+}
