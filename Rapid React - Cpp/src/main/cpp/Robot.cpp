@@ -6,9 +6,21 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc2/command/Command.h>
 
 void Robot::RobotInit() {
   compressor.EnableDigital();
+
+  recording_chooser.AddOption("Enabled", 1);
+  recording_chooser.SetDefaultOption("Disabled", 0);
+  recording_chooser.SetName("Recording Selection");
+  frc::SmartDashboard::PutData(&recording_chooser);
+
+  SelectedAuto.SetDefaultOption("No Auto", 0);
+  SelectedAuto.AddOption("Test", 1);
+  SelectedAuto.SetName("Auton Selector");
+  frc::SmartDashboard::PutData(&SelectedAuto);
 }
 
 /**
@@ -37,6 +49,8 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
+  r_command_auto_run = m_container.GetAutoCommand();
+  r_command_auto_run->Schedule();
 }
 
 void Robot::AutonomousPeriodic() {}
@@ -46,6 +60,7 @@ void Robot::TeleopInit() {
   r_command_opDrive = m_container.GetOpDriveCommand();
   r_command_opIndex = m_container.GetOpIndexCommand();
   r_command_opHang = m_container.GetOpHangCommand();
+  r_command_auto_record = m_container.GetRecordCommand();
 
   if (r_command_opIntake != nullptr) {
     r_command_opIntake->Schedule();
@@ -61,6 +76,10 @@ void Robot::TeleopInit() {
 
   if(r_command_opHang != nullptr) {
     r_command_opHang->Schedule();
+  }
+
+  if(recording_chooser.GetSelected() == 1 && r_command_auto_record != nullptr){
+    r_command_auto_record->Schedule();
   }
 }
 

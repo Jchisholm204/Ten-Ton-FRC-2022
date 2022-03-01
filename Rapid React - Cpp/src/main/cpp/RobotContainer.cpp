@@ -9,6 +9,9 @@
 frc::XboxController master(RobotMap::DriverStation::masterController);
 frc::XboxController partner(RobotMap::DriverStation::partnerController);
 
+frc::SendableChooser<int> recording_chooser;
+frc::SendableChooser<int> SelectedAuto;
+
 /**
  * NOTE:
  * Setting the Module Type stops the robot from failing to run the code,
@@ -23,7 +26,9 @@ RobotContainer::RobotContainer() :
 command_OpIntake(&subsystem_intake), 
 command_OpDrive(&subsystem_drive),
 command_OpIndex(&subsystem_index),
-command_OpHang(&subsystem_hang) {
+command_OpHang(&subsystem_hang),
+command_auto_run(&subsystem_drive, &subsystem_index, &subsystem_intake),
+command_auto_record(&subsystem_drive, &subsystem_index, &subsystem_intake) {
   // Initialize all of your commands and subsystems here
 
 }
@@ -43,4 +48,12 @@ frc2::Command* RobotContainer::GetOpIndexCommand(){
 
 frc2::Command* RobotContainer::GetOpHangCommand(){
   return &command_OpHang;
+}
+
+frc2::Command* RobotContainer::GetRecordCommand(){
+  return &command_auto_record;
+}
+
+frc2::Command* RobotContainer::GetAutoCommand(){
+  return &command_auto_run;
 }

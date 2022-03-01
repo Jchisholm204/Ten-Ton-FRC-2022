@@ -27,6 +27,18 @@ class DriveSubsystem : public frc2::SubsystemBase {
      */
   void arcadeDrive(double iPow, double turnPow);
 
+  /**
+   * Get the Right Side of the DriveBase's Velocity
+   * @return encoder units / 100 ms
+   */
+  double getRightVel();
+
+  /**
+   * Get the Left Side of the DriveBase's Velocity
+   * @return encoder units / 100 ms
+   */
+  double getLeftVel();
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

@@ -18,6 +18,10 @@
 #include <frc/PowerDistribution.h>
 #include <frc/PneumaticsControlModule.h>
 #include <frc/Compressor.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include "commands/ReRunAuto.hpp"
+#include "commands/ReRunRecord.hpp"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -38,6 +42,10 @@ class RobotContainer {
 
   frc2::Command* GetOpHangCommand();
 
+  frc2::Command* GetRecordCommand();
+
+  frc2::Command* GetAutoCommand();
+
  private:
   // The robot's subsystems and commands are defined here...
   // Subsystems
@@ -52,9 +60,11 @@ class RobotContainer {
   OpIndexCommand command_OpIndex;
   OpHangCommand command_OpHang;
 
+  ReRunAuto command_auto_run;
+  ReRunRecord command_auto_record;
+
   void ConfigureButtonBindings();
 };
-
 
 /*extern your Global Variables and Objects here so that they can be accessed globally*/
 //nomnom 
@@ -70,3 +80,9 @@ extern frc::PowerDistribution pdp;  //BROKEN - WILL BREAK CODE
 
 // Pneumatics Module Compressor
 extern frc::Compressor compressor;
+
+// ReRun Recording Selector on SmartDashboard
+extern frc::SendableChooser<int> recording_chooser;
+
+// Auton Selector
+extern frc::SendableChooser<int> SelectedAuto;
