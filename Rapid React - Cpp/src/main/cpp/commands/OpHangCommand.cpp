@@ -55,12 +55,12 @@ void OpHangCommand::Execute() {
   }
 
   if(partner.GetXButton()){
-    hang->setWinch(ControlMode::Velocity, 11000);
+    hang->setWinch(ControlMode::Velocity, 8000);
     frc::SmartDashboard::PutBoolean("Won", true);
     hang->resetWinch();
   }
   else if(partner.GetBButton()){
-    hang->setWinch(ControlMode::Velocity, -11000);
+    hang->setWinch(ControlMode::Velocity, -8000);
     frc::SmartDashboard::PutBoolean("Won", true);
     hang->resetWinch();
   }
@@ -73,9 +73,11 @@ void OpHangCommand::Execute() {
     frc::SmartDashboard::PutBoolean("Won", false);
   }
 
-  if(partner.GetRightBumperPressed()){
-    bool p = hang->GetPressure();
-    hang->ApplyPressure(!p);
+  if(partner.GetPOV(0) == 0){
+    hang->ApplyPressure(true);
+  }
+  else if(partner.GetPOV(0) == 180){
+    hang->ApplyPressure(false);
   }
 
 }
