@@ -54,7 +54,7 @@ void OpIndexCommand::Execute(){
     else{ //Status != running
         //Stop All Indexers if Not Running Codex/Indexing Program
         if(partner.GetRightBumper()){
-            index->setTop(ControlMode::PercentOutput, -1);
+            index->setTop(ControlMode::PercentOutput, 0);
             index->setBot(ControlMode::PercentOutput, -1);
             index->setFeed(ControlMode::PercentOutput, -1);
         }

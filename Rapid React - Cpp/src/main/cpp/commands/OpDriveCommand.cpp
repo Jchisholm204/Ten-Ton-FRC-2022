@@ -37,7 +37,7 @@ double exponential(double joyVal, double exPower, double joyDead, double motorMi
             power = 0;
         }
         else{
-            power = power*joySign*5250;
+            power = power*joySign*21000;
         }
         return power;
     }
@@ -48,8 +48,8 @@ void OpDriveCommand::Execute(){
      * SmartDashboard is an unnessasary debugging tool, the lines referencing may be commented out
      * drive->arcadeDrive uses ControlMode::Velocity by default
      */
-    double Ypow = exponential(master.GetLeftY(), 1.4,  0.1, 0.01);
-    double Xpow = 0.6*exponential(master.GetRightX(), 1.4, 0.1, 0.01);
+    double Ypow = exponential(master.GetLeftY(), 1.7,  0.07, 0.01);
+    double Xpow = 0.7*exponential(master.GetRightX(), 1.55, 0.07, 0.01);
     frc::SmartDashboard::PutNumber("Drive Power", Ypow);
     frc::SmartDashboard::PutNumber("Turn Power", Xpow);
     frc::SmartDashboard::PutNumber("joy", master.GetLeftY());

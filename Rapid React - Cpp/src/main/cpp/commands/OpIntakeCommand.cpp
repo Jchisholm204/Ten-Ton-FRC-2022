@@ -26,14 +26,14 @@ void OpIntakeCommand::Initialize(){
 
 void OpIntakeCommand::Execute(){
 
-    if(master.GetPOV(0) == 270){
+    if(master.GetPOV(0) == 270 || partner.GetPOV(0) == 270){
         intake->raise(false, true);
     }
-    else if(master.GetPOV(0) == 90){
+    else if(master.GetPOV(0) == 90 || partner.GetPOV(0) == 90){
         intake->raise(true, false);
     }
 
-    if(master.GetRightTriggerAxis() > 0.1){
+    if(master.GetRightTriggerAxis() > 0.1 || partner.GetRightTriggerAxis() > 0.1){
         intake->setFront(ControlMode::PercentOutput, 1);
         intake->lower(true, false);
     }
@@ -45,7 +45,7 @@ void OpIntakeCommand::Execute(){
         intake->setFront(ControlMode::PercentOutput, 0);
     }
 
-    if(master.GetLeftTriggerAxis() > 0.1){
+    if(master.GetLeftTriggerAxis() > 0.1 || partner.GetLeftTriggerAxis() > 0.1){
         intake->setRear(ControlMode::PercentOutput, 1);
         intake->lower(false, true);  
     }
