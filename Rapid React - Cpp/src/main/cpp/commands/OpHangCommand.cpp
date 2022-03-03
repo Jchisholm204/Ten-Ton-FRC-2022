@@ -29,11 +29,11 @@ void OpHangCommand::Initialize() {
 void OpHangCommand::Execute() {
 
   frc::SmartDashboard::PutNumber("Winch Current Draw: ", hang->getWinchDraw());
-  frc::SmartDashboard::PutNumber("Winch RPM: ", hang->getWinchRPM());
-  frc::SmartDashboard::PutNumber("Claw RPM: ", hang->getClawRPM());
+  //frc::SmartDashboard::PutNumber("Winch RPM: ", hang->getWinchRPM());
+  //frc::SmartDashboard::PutNumber("Claw RPM: ", hang->getClawRPM());
   
-  frc::SmartDashboard::PutNumber("wPos", hang->getWinch());
-  frc::SmartDashboard::PutNumber("cPos", hang->getClaw());
+  //frc::SmartDashboard::PutNumber("wPos", hang->getWinch());
+  //frc::SmartDashboard::PutNumber("cPos", hang->getClaw());
 
   if(partner.GetYButton() && hang->limit_ClawUpper.Get() == false){
     hang->setClaw(ControlMode::Velocity, 10000);

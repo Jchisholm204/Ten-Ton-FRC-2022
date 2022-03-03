@@ -50,9 +50,9 @@ void OpDriveCommand::Execute(){
      */
     double Ypow = exponential(master.GetLeftY(), 1.7,  0.07, 0.01);
     double Xpow = 0.7*exponential(master.GetRightX(), 1.55, 0.07, 0.01);
-    frc::SmartDashboard::PutNumber("Drive Power", Ypow);
-    frc::SmartDashboard::PutNumber("Turn Power", Xpow);
-    frc::SmartDashboard::PutNumber("joy", master.GetLeftY());
+    //frc::SmartDashboard::PutNumber("Drive Power", Ypow);
+    //frc::SmartDashboard::PutNumber("Turn Power", Xpow);
+    //frc::SmartDashboard::PutNumber("joy", master.GetLeftY());
     drive->arcadeDrive(Ypow, Xpow);
 }
 
