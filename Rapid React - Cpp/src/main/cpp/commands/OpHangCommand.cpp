@@ -7,13 +7,13 @@
 #include "ctre/Phoenix.h"
 #include "RobotContainer.h"
 #include "Constants.h"
-
+/*
 //SmartDashboard
 std::string_view SDwmv = "Winch iMax Velocity: ";
 std::string_view SDwp = "Winch Cur Pos: ";
 std::string_view SDcmv = "Claw iMax Velocity: ";
 std::string_view SDcp = "Claw Cur Pos: ";
-
+*/
 OpHangCommand::OpHangCommand(HangSubsystem* Subsystem_hang) : hang{Subsystem_hang} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(Subsystem_hang);
@@ -35,12 +35,16 @@ void OpHangCommand::Execute() {
   //frc::SmartDashboard::PutNumber("wPos", hang->getWinch());
   //frc::SmartDashboard::PutNumber("cPos", hang->getClaw());
 
-  if(partner.GetYButton() && hang->limit_ClawUpper.Get() == false){
+  frc::SmartDashboard::PutBoolean("Lim CU", !hang->limit_ClawUpper.Get());
+  frc::SmartDashboard::PutBoolean("Lim CL", !hang->limit_ClawLower.Get());
+  frc::SmartDashboard::PutBoolean("Lim HL", !hang->limit_HangLower.Get());
+
+  if(partner.GetYButton() && hang->limit_ClawUpper.Get() == true){
     hang->setClaw(ControlMode::Velocity, 10000);
     frc::SmartDashboard::PutBoolean("on", true);
     hang->resetClaw();
   }
-  else if(partner.GetAButton() && hang->limit_ClawLower.Get() == false){
+  else if(partner.GetAButton() && hang->limit_ClawLower.Get() == true){
     hang->setClaw(ControlMode::Velocity, -10000);
     frc::SmartDashboard::PutBoolean("on", true);
     hang->resetClaw();
@@ -59,7 +63,7 @@ void OpHangCommand::Execute() {
     frc::SmartDashboard::PutBoolean("Won", true);
     hang->resetWinch();
   }
-  else if(partner.GetBButton() && hang->limit_HangLower.Get() == false){
+  else if(partner.GetBButton() && hang->limit_HangLower.Get() == true){
     hang->setWinch(ControlMode::Velocity, -8000);
     frc::SmartDashboard::PutBoolean("Won", true);
     hang->resetWinch();

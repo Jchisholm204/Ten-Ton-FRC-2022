@@ -14,13 +14,11 @@ void Robot::RobotInit() {
 
   recording_chooser.AddOption("Enabled", 1);
   recording_chooser.SetDefaultOption("Disabled", 0);
-  recording_chooser.SetName("Recording Selection");
-  frc::SmartDashboard::PutData(&recording_chooser);
+  frc::SmartDashboard::PutData("Recording:", &recording_chooser);
 
   SelectedAuto.SetDefaultOption("No Auto", 0);
   SelectedAuto.AddOption("Test", 1);
-  SelectedAuto.SetName("Auton Selector");
-  frc::SmartDashboard::PutData(&SelectedAuto);
+  frc::SmartDashboard::PutData("Auton Selection",&SelectedAuto);
 }
 
 /**

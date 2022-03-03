@@ -9,9 +9,9 @@
 
 ReRunRecord::ReRunRecord(DriveSubsystem *driveSub, IndexSubsystem *indexSub, IntakeSubsystem *intakeSub) : drive{driveSub}, index{indexSub}, intake{intakeSub} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(driveSub);
-  AddRequirements(indexSub);
-  AddRequirements(intakeSub);
+  //AddRequirements(driveSub);
+  //AddRequirements(indexSub);
+  //AddRequirements(intakeSub);
 }
 
 bool finished = false;
@@ -29,6 +29,7 @@ void ReRunRecord::Initialize() {
   };
 
   int SA = SelectedAuto.GetSelected();
+  frc::SmartDashboard::PutNumber("Selected Auto", SA);
   switch (SA)
   {
     case 0:
