@@ -2,6 +2,7 @@
 #include <frc/PowerDistribution.h>
 #include <frc/Solenoid.h>
 #include "ctre/Phoenix.h"
+#include <frc/DigitalInput.h>
 
 class HangSubsystem : public frc2::SubsystemBase {
     public:
@@ -59,6 +60,9 @@ class HangSubsystem : public frc2::SubsystemBase {
 
         bool GetPressure();
 
+        frc::DigitalInput limit_ClawUpper;
+        frc::DigitalInput limit_ClawLower;
+        frc::DigitalInput limit_HangLower;
         
     private:
         TalonFX winchMtr;

@@ -2,7 +2,14 @@
 #include "Constants.h"
 #include "utilities/Talon.hpp"
 
-HangSubsystem::HangSubsystem() : winchMtr{RobotMap::CAN::WinchMtr}, clawMtr{RobotMap::CAN::ClawMtr}, arm{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::armPiston} {
+HangSubsystem::HangSubsystem() :
+limit_ClawUpper{RobotMap::DIGITAL::Claw_Limit_UPPER},
+limit_ClawLower{RobotMap::DIGITAL::Claw_Limit_LOWER},
+limit_HangLower{RobotMap::DIGITAL::Hang_Limit_LOWER},
+winchMtr{RobotMap::CAN::WinchMtr},
+clawMtr{RobotMap::CAN::ClawMtr},
+arm{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::armPiston}
+{
     TalonConfiguation::winchMotor(winchMtr);
     TalonConfiguation::clawMotor(clawMtr);
 }

@@ -35,12 +35,12 @@ void OpHangCommand::Execute() {
   frc::SmartDashboard::PutNumber("wPos", hang->getWinch());
   frc::SmartDashboard::PutNumber("cPos", hang->getClaw());
 
-  if(partner.GetYButton()){
+  if(partner.GetYButton() && hang->limit_ClawUpper.Get() == false){
     hang->setClaw(ControlMode::Velocity, 10000);
     frc::SmartDashboard::PutBoolean("on", true);
     hang->resetClaw();
   }
-  else if(partner.GetAButton()){
+  else if(partner.GetAButton() && hang->limit_ClawLower.Get() == false){
     hang->setClaw(ControlMode::Velocity, -10000);
     frc::SmartDashboard::PutBoolean("on", true);
     hang->resetClaw();
@@ -59,7 +59,7 @@ void OpHangCommand::Execute() {
     frc::SmartDashboard::PutBoolean("Won", true);
     hang->resetWinch();
   }
-  else if(partner.GetBButton()){
+  else if(partner.GetBButton() && hang->limit_HangLower.Get() == false){
     hang->setWinch(ControlMode::Velocity, -8000);
     frc::SmartDashboard::PutBoolean("Won", true);
     hang->resetWinch();

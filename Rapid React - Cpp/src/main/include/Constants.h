@@ -51,6 +51,12 @@ namespace RobotMap {
         constexpr int botPE = 1;
     }
 
+    namespace DIGITAL {
+        constexpr int Claw_Limit_UPPER = 0;
+        constexpr int Claw_Limit_LOWER = 1;
+        constexpr int Hang_Limit_LOWER = 3;
+    }
+
     // PCM Controller IDs
     namespace PCM {
 
