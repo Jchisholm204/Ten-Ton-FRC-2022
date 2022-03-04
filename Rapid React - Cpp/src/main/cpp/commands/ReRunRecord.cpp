@@ -41,6 +41,7 @@ void ReRunRecord::Initialize() {
       break;
     default:
       printf("Cannot record to unknown auto");
+      finished = true;
       break;
   };
 
@@ -51,8 +52,11 @@ void ReRunRecord::Initialize() {
 void ReRunRecord::Execute() {
 
   if(frc::Timer::GetFPGATimestamp() - startTime < units::second_t{15}){
-    fprintf(recFile, "%lf\n",drive->getRightVel());
-    fprintf(recFile, "%lf\n",drive->getRightVel());
+    fprintf(recFile, "%lf\n", drive->getRightVel());
+    fprintf(recFile, "%lf\n", drive->getRightVel());
+    fprintf(recFile, "%i\n", status_running);
+    fprintf(recFile, "%lf\n", intake->getFrontPow());
+    fprintf(recFile, "%lf\n", intake->getRearPow());
   }
   else{
     printf("Recording Finished");

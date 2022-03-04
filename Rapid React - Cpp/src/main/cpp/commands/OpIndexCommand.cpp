@@ -4,7 +4,9 @@
 #include <frc/Timer.h>
 #include "Constants.h"
 
-OpIndexCommand::OpIndexCommand(IndexSubsystem* SubSystem_index) : index{SubSystem_index}, status_running{false} {
+int status_running = 0;
+
+OpIndexCommand::OpIndexCommand(IndexSubsystem* SubSystem_index) : index{SubSystem_index} {
     AddRequirements(index);
 }
 
@@ -20,26 +22,32 @@ void OpIndexCommand::Execute(){
     frc::SmartDashboard::PutBoolean("Index Enabled: ", status_running);
 
     //Allows Partner Controller To Stop all index control (including shooting)
-    if(partner.GetLeftBumperPressed()){
-        status_running = !status_running;
+    if(partner.GetLeftBumperPressed() && status_running == status::OFF){
+        status_running = status::RUNNING;
+    }
+    else if(partner.GetLeftBumperPressed() && status_running == status::RUNNING){
+        status_running = status::OFF;
     }
 
     // Use Status Running to Stop All Indexing (on/true by default)
-    if(status_running){
+    if(status_running != status::OFF){
     if(frc::Timer::GetFPGATimestamp() < (waitSaveTime + indexConstants::k_shootTime)){
 
     }
     else if(master.GetRightBumperPressed()){ // Shoot 2 Balls
         index->shoot(1);
         waitSaveTime = frc::Timer::GetFPGATimestamp();
+        status_running = status::SHOOT;
     }
     else if(master.GetLeftBumperPressed()){ // Shoot Top Ball Only
         index->setTop(ControlMode::PercentOutput, 1);
         index->setBot(ControlMode::PercentOutput, 0);
         index->resetCodex();
+        status_running = status::SHOT;
         waitSaveTime = frc::Timer::GetFPGATimestamp()+units::time::second_t{1};
     }
     else{
+        status_running = status::RUNNING;
         index->runCodex(0.6);
     }
 
@@ -52,6 +60,7 @@ void OpIndexCommand::Execute(){
     }} //END Status Running
 
     else{ //Status != running
+        status_running = status::OFF;
         //Stop All Indexers if Not Running Codex/Indexing Program
         if(partner.GetRightBumper()){
             index->setTop(ControlMode::PercentOutput, 0);

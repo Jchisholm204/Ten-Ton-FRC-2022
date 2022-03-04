@@ -3,19 +3,29 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.h"
+#include <thread>
+#include <cstdio>
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc2/command/Command.h>
+#include <cameraserver/CameraServer.h>
 
 void Robot::RobotInit() {
+
+  // Enable Digital Control of the Compressor through the Pneumatic Module
   compressor.EnableDigital();
 
+  // Start the Camera Server
+  frc::CameraServer::StartAutomaticCapture();
+
+  // ReRun Recording Selector on SmartDashboard
   recording_chooser.AddOption("Enabled", 1);
   recording_chooser.SetDefaultOption("Disabled", 0);
   frc::SmartDashboard::PutData("Recording:", &recording_chooser);
 
+  // ReRun Auton Selection
   SelectedAuto.SetDefaultOption("No Auto", 0);
   SelectedAuto.AddOption("Test", 1);
   frc::SmartDashboard::PutData("Auton Selection",&SelectedAuto);
