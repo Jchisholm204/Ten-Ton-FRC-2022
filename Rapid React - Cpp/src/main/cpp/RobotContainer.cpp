@@ -18,7 +18,7 @@ frc::SendableChooser<int> SelectedAuto;
  * However, it is still unknown as to if this will actually report correct values,
  * or even report any values at all
  */
-frc::PowerDistribution pdp(0, frc::PowerDistribution::ModuleType::kCTRE); //BROKEN (possibly)
+frc::PowerDistribution pdp(0, frc::PowerDistribution::ModuleType::kCTRE);
 
 frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
 

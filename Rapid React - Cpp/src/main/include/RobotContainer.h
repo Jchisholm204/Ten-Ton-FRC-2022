@@ -67,8 +67,7 @@ class RobotContainer {
 };
 
 /*extern your Global Variables and Objects here so that they can be accessed globally*/
-//nomnom 
-//intellisense broke no write code noo moreeeee
+//nomnom
 
 // Master Controller
 extern frc::XboxController master;
@@ -76,7 +75,7 @@ extern frc::XboxController master;
 extern frc::XboxController partner;
 
 // Main Power Distribution Board
-extern frc::PowerDistribution pdp;  //BROKEN - WILL BREAK CODE
+extern frc::PowerDistribution pdp;
 
 // Pneumatics Module Compressor
 extern frc::Compressor compressor;

@@ -1,6 +1,23 @@
+// Constants.h
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
+
+/** Constants.h
+ * @author Jchisholm204
+ * 
+ * @brief Constants.h
+ * Used to Store Various Information about the robot and its mechanisms
+ * Everything within this file is a constant, 
+ * meaning it is unchanged throughought the programs runtime.
+ * 
+ * @namespace RobotMap - Stores all of the CAN id's, Sensor Ports, PCM ports, and Controller Ports on the { @link } driverstation
+ * 
+ * @namespace indexConstants - Stores Constants for the Index System
+ * 
+ * @namespace auton_s - Stores all of the Numerical constants for ReRun Autos
+ * 
+ */
 
 #pragma once
 
@@ -43,19 +60,20 @@ namespace RobotMap {
 
         constexpr int PDP = 0;
 
-    }
+    }//End CAN
 
-    // Analog Devices Port Numbers
+    // Analog Devices Port IDs
     namespace ANALOG {
         constexpr int topPE = 0;
         constexpr int botPE = 1;
-    }
+    }//End Analog
 
+    // Digital Devices Port IDs
     namespace DIGITAL {
         constexpr int Claw_Limit_UPPER = 9;
         constexpr int Claw_Limit_LOWER = 8;
         constexpr int Hang_Limit_LOWER = 7;
-    }
+    }//End Digital
 
     // PCM Controller IDs
     namespace PCM {
@@ -64,23 +82,61 @@ namespace RobotMap {
         constexpr int rearIntake = 1;
         constexpr int armPiston = 2;
 
-    }
+    }//End PCM
 
+    // DriverStation IDs
     namespace DriverStation {
 
         constexpr int masterController = 0;
         constexpr int partnerController = 1;
 
-    }
-}
+    }//End DriverStation
+}//End RobotMap
 
-namespace driveConstants {
-    constexpr double k_opTurnPow = 0.75;
-}
 
-namespace indexConstants {
+// Stores Indexer Constants:
+// ShootTime, Status..
+namespace kIndex {
+
+    // The Time Delay When Shooting to balls from the Indexers
     constexpr units::time::second_t k_shootTime{2};
-}
+    
+    // The Index's Current Status
+    // Used Primarily for ReRun purposes, but also for partner disable
+    namespace status{
+        constexpr int OFF = 0;
+        constexpr int RUNNING = 1;
+        constexpr int SHOOT = 2;
+        constexpr int SHOT = 3;
+    }//End status
+
+}//End kIndex
+
+// Autons Available to be Selected through SmartDashboard
+// Otherwise known as Linker
+namespace auton_s {
+    // No Auto // Empty
+    constexpr int NoAuto = 0;
+    // No Auto // Empty
+    constexpr int Empty = NoAuto;
+
+    /** - TEST AUTO - 
+    * Use for testing ONLY
+    * Test Files may be renamed through FTP with the 
+    * Rio in order to be turned into a match auto
+    */
+    constexpr int Test = 1;
+
+    // Left 1 Auton Slot
+    constexpr int Left1 = 2;
+    // Left 2 Auton Slot
+    constexpr int Left2 = 3;
+    // Right 1 Auton Slot
+    constexpr int Right1 = 4;
+    // Right 2 Auton Slot
+    constexpr int Right2 = 5;
+
+}//End auton_s
 
 //Macro to convert Talon FX encoder Units Per Rotation (UPR) into Rotations Per Minute (RPM)
 #define c_TalonRPM(upr) (upr*600/2408)

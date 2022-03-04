@@ -18,5 +18,14 @@
   "files.associations": {
     "*.inc": "cpp",
     "cmath": "cpp"
-  }
+  },
+  "cSpell.words": [
+    "Autons",
+    "endof",
+    "lvuser",
+    "Teleop",
+    "teleoperated",
+    "Xpow",
+    "Ypow"
+  ]
 }

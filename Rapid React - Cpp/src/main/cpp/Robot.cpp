@@ -11,6 +11,8 @@
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc2/command/Command.h>
 #include <cameraserver/CameraServer.h>
+#include <frc/DriverStation.h>
+#include <Constants.h>
 
 void Robot::RobotInit() {
 
@@ -21,14 +23,20 @@ void Robot::RobotInit() {
   frc::CameraServer::StartAutomaticCapture();
 
   // ReRun Recording Selector on SmartDashboard
-  recording_chooser.AddOption("Enabled", 1);
-  recording_chooser.SetDefaultOption("Disabled", 0);
-  frc::SmartDashboard::PutData("Recording:", &recording_chooser);
+  if(frc::DriverStation::IsFMSAttached() == false){
+    recording_chooser.SetDefaultOption("Disabled", 0);
+    recording_chooser.AddOption("Enabled", 1);
+    frc::SmartDashboard::PutData(&recording_chooser);
+  }
 
   // ReRun Auton Selection
-  SelectedAuto.SetDefaultOption("No Auto", 0);
-  SelectedAuto.AddOption("Test", 1);
-  frc::SmartDashboard::PutData("Auton Selection",&SelectedAuto);
+  SelectedAuto.SetDefaultOption("No Auto", auton_s::NoAuto);
+  SelectedAuto.AddOption("Test", auton_s::Test);
+  SelectedAuto.AddOption("Left 1", auton_s::Left1);
+  SelectedAuto.AddOption("Left 2", auton_s::Left2);
+  SelectedAuto.AddOption("Right 1", auton_s::Right1);
+  SelectedAuto.AddOption("Right 2", auton_s::Right2);
+  frc::SmartDashboard::PutData(&SelectedAuto);
 }
 
 /**
@@ -58,7 +66,13 @@ void Robot::DisabledPeriodic() {}
  */
 void Robot::AutonomousInit() {
   r_command_auto_run = m_container.GetAutoCommand();
-  r_command_auto_run->Schedule();
+  if(SelectedAuto.GetSelected() != auton_s::NoAuto && r_command_auto_run != nullptr){
+    printf("Auton Confirmation: Scheduling Auton Command");
+    r_command_auto_run->Schedule();
+  }
+  else{
+    printf("Auton Confirmation: No Auto Selected");
+  }
 }
 
 void Robot::AutonomousPeriodic() {}
@@ -86,9 +100,12 @@ void Robot::TeleopInit() {
     r_command_opHang->Schedule();
   }
 
-  if(recording_chooser.GetSelected() == 1 && r_command_auto_record != nullptr){
-    r_command_auto_record->Schedule();
+  if(frc::DriverStation::IsFMSAttached() == false){
+    if(recording_chooser.GetSelected() == 1 && r_command_auto_record != nullptr){
+      r_command_auto_record->Schedule();
+    }
   }
+
 }
 
 /**

@@ -45,7 +45,7 @@ double exponential(double joyVal, double exPower, double joyDead, double motorMi
 void OpDriveCommand::Execute(){
     /** NOTE:
      * Exponential Drive Variables should be changed within the Talon.cpp configuration file for the iLeft and iRight Motors
-     * SmartDashboard is an unnessasary debugging tool, the lines referencing may be commented out
+     * SmartDashboard is an unnecessary debugging tool, the lines referencing may be commented out
      * drive->arcadeDrive uses ControlMode::Velocity by default
      */
     double Ypow = exponential(master.GetLeftY(), 1.7,  0.07, 0.01);

@@ -20,7 +20,8 @@ void IndexSubsystem::shoot(double iPow){
     codex = 0;
 }
 
-void IndexSubsystem::runCodex(double iPow){
+void IndexSubsystem::runCodex(){
+        double iPow = 0.6;
         if ( getTopSensor() && codex == 0){ codex = 1; };
         if ( getBotSensor() && codex == 1 ){ codex = 2; };
 
