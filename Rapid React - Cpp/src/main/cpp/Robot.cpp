@@ -20,7 +20,11 @@ void Robot::RobotInit() {
   compressor.EnableDigital();
 
   // Start the Camera Server
-  frc::CameraServer::StartAutomaticCapture();
+  cs::UsbCamera frontCam = frc::CameraServer::StartAutomaticCapture();
+  frontCam.SetFPS(30);
+  frontCam.SetResolution(320, 240); //160 x 120
+  frontCam.SetExposureAuto();
+  frc::CameraServer::StartAutomaticCapture(frontCam);
 
   // ReRun Recording Selector on SmartDashboard
   if(frc::DriverStation::IsFMSAttached() == false){
