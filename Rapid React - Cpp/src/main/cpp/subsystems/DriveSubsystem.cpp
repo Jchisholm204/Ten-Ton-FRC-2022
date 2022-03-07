@@ -19,7 +19,7 @@ driveLS(RobotMap::CAN::driveLS) {
 
     // Reset the Drive Encoders
     driveRM.SetSelectedSensorPosition(0);
-    driveLS.SetSelectedSensorPosition(0);
+    driveLM.SetSelectedSensorPosition(0);
 }
 
 void DriveSubsystem::set(ControlMode mode, double leftPow, double rightPow){
@@ -28,8 +28,8 @@ void DriveSubsystem::set(ControlMode mode, double leftPow, double rightPow){
 }
 
 void DriveSubsystem::arcadeDrive(double iPow, double turnPow){
-    driveRM.Set(ControlMode::Velocity, (iPow + turnPow));
-    driveLM.Set(ControlMode::Velocity, (iPow - turnPow));
+    driveRM.Set(ControlMode::Velocity, (iPow - turnPow));
+    driveLM.Set(ControlMode::Velocity, (iPow + turnPow));
 }
 
 double DriveSubsystem::getRightVel(){
@@ -38,4 +38,9 @@ double DriveSubsystem::getRightVel(){
 
 double DriveSubsystem::getLeftVel(){
     return driveLM.GetSelectedSensorVelocity();
+}
+
+void DriveSubsystem::resetDrive(){
+    driveRM.SetSelectedSensorPosition(0);
+    driveLM.SetSelectedSensorPosition(0);
 }

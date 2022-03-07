@@ -18,7 +18,7 @@ frc::SendableChooser<int> SelectedAuto;
  * However, it is still unknown as to if this will actually report correct values,
  * or even report any values at all
  */
-frc::PowerDistribution pdp(0, frc::PowerDistribution::ModuleType::kCTRE); //BROKEN (possibly)
+frc::PowerDistribution pdp(0, frc::PowerDistribution::ModuleType::kCTRE);
 
 frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
 
@@ -28,7 +28,8 @@ command_OpDrive(&subsystem_drive),
 command_OpIndex(&subsystem_index),
 command_OpHang(&subsystem_hang),
 command_auto_run(&subsystem_drive, &subsystem_index, &subsystem_intake),
-command_auto_record(&subsystem_drive, &subsystem_index, &subsystem_intake) {
+command_auto_record(&subsystem_drive, &subsystem_index, &subsystem_intake),
+command_sa{&subsystem_index, &subsystem_drive, &subsystem_intake} {
   // Initialize all of your commands and subsystems here
 
 }
@@ -55,5 +56,5 @@ frc2::Command* RobotContainer::GetRecordCommand(){
 }
 
 frc2::Command* RobotContainer::GetAutoCommand(){
-  return &command_auto_run;
+  return &command_sa;
 }

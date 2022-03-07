@@ -9,10 +9,6 @@ class IndexSubsystem : public frc2::SubsystemBase {
     public:
 
         IndexSubsystem();
-
-        //enum BallColor {RED, BLUE, undefined};
-        
-        //BallColor getBallColor();
         
         /**
          * Run the Top Two Indexers
@@ -23,7 +19,7 @@ class IndexSubsystem : public frc2::SubsystemBase {
         /**
          * Run the Codexing program
          */
-        void runCodex(double iPow);
+        void runCodex();
 
         /**
          * Reset The Indexers Codex Variable
@@ -93,8 +89,6 @@ class IndexSubsystem : public frc2::SubsystemBase {
          * @return True if the sensor is currently triggered
          */
         bool getBotSensor();
-
-        //frc::Color getColor();
 
     private:
         TalonSRX topMtr;

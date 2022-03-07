@@ -11,6 +11,8 @@
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc2/command/Command.h>
 #include <cameraserver/CameraServer.h>
+#include <frc/DriverStation.h>
+#include <Constants.h>
 
 void Robot::RobotInit() {
 
@@ -18,17 +20,24 @@ void Robot::RobotInit() {
   compressor.EnableDigital();
 
   // Start the Camera Server
-  frc::CameraServer::StartAutomaticCapture();
+  cs::UsbCamera frontCam = frc::CameraServer::StartAutomaticCapture();
+  frontCam.SetFPS(25);
+  frontCam.SetResolution(80, 50); //160 x 120
+  frc::CameraServer::StartAutomaticCapture(frontCam);
 
   // ReRun Recording Selector on SmartDashboard
-  recording_chooser.AddOption("Enabled", 1);
   recording_chooser.SetDefaultOption("Disabled", 0);
-  frc::SmartDashboard::PutData("Recording:", &recording_chooser);
+  recording_chooser.AddOption("Enabled", 1);
+  frc::SmartDashboard::PutData(&recording_chooser);
 
   // ReRun Auton Selection
-  SelectedAuto.SetDefaultOption("No Auto", 0);
-  SelectedAuto.AddOption("Test", 1);
-  frc::SmartDashboard::PutData("Auton Selection",&SelectedAuto);
+  SelectedAuto.SetDefaultOption("No Auto", auton_s::NoAuto);
+  SelectedAuto.AddOption("Test", auton_s::Test);
+  SelectedAuto.AddOption("Left 1", auton_s::Left1);
+  SelectedAuto.AddOption("Left 2", auton_s::Left2);
+  SelectedAuto.AddOption("Right 1", auton_s::Right1);
+  SelectedAuto.AddOption("Right 2", auton_s::Right2);
+  frc::SmartDashboard::PutData(&SelectedAuto);
 }
 
 /**
@@ -57,8 +66,14 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
+  
   r_command_auto_run = m_container.GetAutoCommand();
-  r_command_auto_run->Schedule();
+  if(r_command_auto_run != nullptr){
+    printf("Auton Confirmation: Scheduling Auton Command");
+    r_command_auto_run->Schedule();
+  }
+  
+ 
 }
 
 void Robot::AutonomousPeriodic() {}
@@ -86,9 +101,12 @@ void Robot::TeleopInit() {
     r_command_opHang->Schedule();
   }
 
-  if(recording_chooser.GetSelected() == 1 && r_command_auto_record != nullptr){
-    r_command_auto_record->Schedule();
+  if(frc::DriverStation::IsFMSAttached() == false){
+    if(recording_chooser.GetSelected() == 1 && r_command_auto_record != nullptr){
+      r_command_auto_record->Schedule();
+    }
   }
+
 }
 
 /**

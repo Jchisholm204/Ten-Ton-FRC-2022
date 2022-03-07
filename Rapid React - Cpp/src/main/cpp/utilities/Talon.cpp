@@ -1,5 +1,6 @@
 #include "utilities/Talon.hpp"
 
+
 void TalonConfiguation::intake(TalonSRX &iMotor, bool inverted){
     // Create the Motor Configuration
     TalonSRXConfiguration motorConfig;
@@ -85,9 +86,9 @@ void TalonConfiguation::rightDrive(TalonFX &iMotor){
 
     motorConfig.slot0.integralZone = 0;
     motorConfig.slot0.allowableClosedloopError = 0;
-    motorConfig.closedloopRamp = 0.48;
+    motorConfig.closedloopRamp = 0.48; //0.48
 
-    motorConfig.motionAcceleration = 8000;
+    motorConfig.motionAcceleration = 8000; //8000
     motorConfig.motionCruiseVelocity = 21000; //Maximum Speed (encoder units / 100ms) for Magic Motion
 
     motorConfig.nominalOutputForward = 0.0;
@@ -102,7 +103,7 @@ void TalonConfiguation::rightDrive(TalonFX &iMotor){
     // Apply our Motor Configuration Profile
     iMotor.ConfigAllSettings(motorConfig);
     //Set the Motor Inversion
-    iMotor.SetInverted(false);
+    iMotor.SetInverted(true);
     //Set the Motors Neutral Mode (What it does when no power is being applied)
     iMotor.SetNeutralMode(NeutralMode::Brake);
 
@@ -121,9 +122,9 @@ void TalonConfiguation::leftDrive(TalonFX &iMotor){
 
     motorConfig.slot0.integralZone = 0;
     motorConfig.slot0.allowableClosedloopError = 0;
-    motorConfig.closedloopRamp = 0.48;
+    motorConfig.closedloopRamp = 0.48; //0.48
 
-    motorConfig.motionAcceleration = 8000;
+    motorConfig.motionAcceleration = 8000; //8000
     motorConfig.motionCruiseVelocity = 21000; //Maximum Speed (encoder units / 100ms) for Magic Motion
 
     motorConfig.nominalOutputForward = 0.0;
@@ -138,7 +139,7 @@ void TalonConfiguation::leftDrive(TalonFX &iMotor){
     // Apply our Motor Configuration Profile
     iMotor.ConfigAllSettings(motorConfig);
     //Set the Motor Inversion
-    iMotor.SetInverted(true);
+    iMotor.SetInverted(false);
     //Set the Motors Neutral Mode (What it does when no power is being applied)
     iMotor.SetNeutralMode(NeutralMode::Brake);
 

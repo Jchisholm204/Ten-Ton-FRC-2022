@@ -48,6 +48,10 @@ class HangSubsystem : public frc2::SubsystemBase {
          */
         double getClaw();
 
+        /**
+         * Reset The Claws Encoder Position
+         * Sets the Encoder to 0
+         */
         void resetClaw();
 
         /**
@@ -56,12 +60,23 @@ class HangSubsystem : public frc2::SubsystemBase {
          */
         double getClawRPM();
 
+        /**
+         * Activate the Hang Arm Pneumatic Cylinder
+         * @param on True to apply pressure, False to release pressure
+         */
         void ApplyPressure(bool on);
 
+        /**
+         * Get if there is currently pressure within the Hang arm Pneumatic
+         * @return true if the cylinder is extended
+         */
         bool GetPressure();
 
+        // Claw Upper Bound Limit Switch
         frc::DigitalInput limit_ClawUpper;
+        // Claw Lower Bound Limit Switch
         frc::DigitalInput limit_ClawLower;
+        // Hang Arm / Winch Lower Bound Limit Switch
         frc::DigitalInput limit_HangLower;
         
     private:

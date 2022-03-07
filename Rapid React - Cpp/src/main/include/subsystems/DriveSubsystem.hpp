@@ -39,6 +39,8 @@ class DriveSubsystem : public frc2::SubsystemBase {
    */
   double getLeftVel();
 
+  void resetDrive();
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

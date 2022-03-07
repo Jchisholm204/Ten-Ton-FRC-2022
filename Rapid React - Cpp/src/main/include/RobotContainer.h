@@ -22,6 +22,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "commands/ReRunAuto.hpp"
 #include "commands/ReRunRecord.hpp"
+#include "commands/SimpleAuto.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -62,13 +63,13 @@ class RobotContainer {
 
   ReRunAuto command_auto_run;
   ReRunRecord command_auto_record;
+  SimpleAuto command_sa;
 
   void ConfigureButtonBindings();
 };
 
 /*extern your Global Variables and Objects here so that they can be accessed globally*/
-//nomnom 
-//intellisense broke no write code noo moreeeee
+//nomnom
 
 // Master Controller
 extern frc::XboxController master;
@@ -76,7 +77,7 @@ extern frc::XboxController master;
 extern frc::XboxController partner;
 
 // Main Power Distribution Board
-extern frc::PowerDistribution pdp;  //BROKEN - WILL BREAK CODE
+extern frc::PowerDistribution pdp;
 
 // Pneumatics Module Compressor
 extern frc::Compressor compressor;
