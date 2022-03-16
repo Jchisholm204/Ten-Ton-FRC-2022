@@ -4,7 +4,20 @@
 
 #pragma once
 
+// Include Files Needed In ALL Subsystems/Commands
 #include <frc2/command/Command.h>
+#include "frc/XboxController.h"
+#include <frc/PneumaticsControlModule.h>
+#include <frc/Compressor.h>
+#include <frc/PowerDistribution.h>
+
+// Include Subsystem Files
+#include "subsystems/DriveSubsystem.hpp"
+#include "subsystems/IndexSubsystem.hpp"
+#include "subsystems/IntakeSubsystem.hpp"
+
+#include "commands/OpDriveCommand.hpp"
+#include "commands/OpIntakeCommand.hpp"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -13,14 +26,29 @@
  * scheduler calls).  Instead, the structure of the robot (including subsystems,
  * commands, and button mappings) should be declared here.
  */
+
+extern frc::XboxController master;
+extern frc::XboxController partner;
+
+extern frc::Compressor compressor;
+
+extern frc::PowerDistribution pdp;
+
 class RobotContainer {
  public:
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
 
- private:
-  // The robot's subsystems and commands are defined here...
+  frc2::Command* GetOpDriveCommand();
 
-  void ConfigureButtonBindings();
+  frc2::Command* GetOpIntakeCommand();
+
+  private:
+    DriveSubsystem subsystem_drive;
+    IndexSubsystem subsystem_index;
+    IntakeSubsystem subsystem_intake;
+
+    OpDriveCommand command_opDrive;
+    OpIntakeCommand command_opIntake;
 };

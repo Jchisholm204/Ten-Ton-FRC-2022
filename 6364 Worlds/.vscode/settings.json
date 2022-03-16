@@ -14,5 +14,19 @@
     "**/.factorypath": true,
     "**/*~": true
   },
-  "C_Cpp.default.configurationProvider": "vscode-wpilib"
+  "C_Cpp.default.configurationProvider": "vscode-wpilib",
+  "cSpell.words": [
+    "AHRS",
+    "CTRE",
+    "CTREPCM",
+    "SPCT",
+    "teleop",
+    "teleoperated",
+    "Xpow",
+    "Ypow"
+  ],
+  "files.associations": {
+    "*.inc": "cpp",
+    "numbers": "cpp"
+  }
 }
