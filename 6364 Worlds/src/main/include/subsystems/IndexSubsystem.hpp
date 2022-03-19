@@ -20,11 +20,11 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/DigitalInput.h>
-#include <rev/CANSparkMax.h>
+//#include <rev/CANSparkMax.h>
 #include <ctre/Phoenix.h>
 
 // Macro For Spark Max Control Type
-#define SPCT rev::CANSparkMax::ControlType
+//#define SPCT rev::CANSparkMax::ControlType
 
 class IndexSubsystem : public frc2::SubsystemBase {
  public:
@@ -32,16 +32,23 @@ class IndexSubsystem : public frc2::SubsystemBase {
 
   /**
    * Set The Top Indexer's Percent Output
-   * @param percentOutput The Spark Max Percent Output [-1.0, 1.0]
+   * @param percentOutput The CTRE Percent Output [-1.0, 1.0]
    */
   void setTop(double percentOutput);
 
+    /**
+   * Set The Top Indexer's Velocity Target
+   * @param percentOutput The CTRE Velocity
+   */
+  void setTopVel(double velocity);
+
   /**
    * Control the Top Indexer's Motor Controller
-   * @param mode The REV Spark Max Motor Control Mode
+   * @param mode The CTRE Motor Control Mode
    * @param iPow The Applied Power
    */
-  void setTop(SPCT mode, double iPow);
+  void setTop(ControlMode mode, double iPow);
+  //void setTop(SPCT mode, double iPow);
 
   /**
    * Get The Top Indexers Percent Output
@@ -98,13 +105,14 @@ class IndexSubsystem : public frc2::SubsystemBase {
   bool getBotPE();
 
  private:
-  rev::CANSparkMax topMtr;
+  //rev::CANSparkMax topMtr;
+  TalonFX topMtr;
   TalonSRX botMtr;
   TalonSRX feedMtr;
 
   frc::DigitalInput topPE;
   frc::DigitalInput bottomPE; 
 
-  rev::SparkMaxPIDController topMtrPID;
+  //rev::SparkMaxPIDController topMtrPID;
   
 };

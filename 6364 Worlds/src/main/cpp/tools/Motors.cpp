@@ -1,12 +1,11 @@
-#include "Motors.hpp"
+#include "tools/Motors.hpp"
 
 /**
  * Motor Configurations
  * @link Motors.hpp
  */
 
-
-void TalonConfiguration::intake(TalonSRX &iMotor, bool inverted){
+void motorConfiguration::Talon::intake(TalonSRX &iMotor, bool inverted){
     // Create the Motor Configuration
     TalonSRXConfiguration motorConfig;
     // Set the Primary Feedback Sensor (configure the motor's encoder)
@@ -42,7 +41,7 @@ void TalonConfiguration::intake(TalonSRX &iMotor, bool inverted){
 
 }
 
-void TalonConfiguration::index(TalonSRX &iMotor, bool inverted){
+void motorConfiguration::Talon::index(TalonSRX &iMotor, bool inverted){
     // Create the Motor Configuration
     TalonSRXConfiguration motorConfig;
     // Set the Primary Feedback Sensor (configure the motor's encoder)
@@ -78,7 +77,43 @@ void TalonConfiguration::index(TalonSRX &iMotor, bool inverted){
 
 }
 
-void TalonConfiguration::rightDrive(TalonFX &iMotor){
+void motorConfiguration::Talon::index(TalonFX &iMotor, bool inverted){
+    // Create the Motor Configuration
+    TalonFXConfiguration motorConfig;
+    // Set the Primary Feedback Sensor (configure the motor's encoder)
+    motorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice::IntegratedSensor;
+    // Configure the Motor's Integrated PID
+    motorConfig.slot0.kP = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kI = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kD = 0.0; // Standard PID kP - used for MagicMotion Movement
+    motorConfig.slot0.kF = 0.0500; // kF - Feed Forward Value - The Minimum Motor Power Required to Move the Motor
+
+    motorConfig.slot0.integralZone = 0;
+    motorConfig.slot0.allowableClosedloopError = 0;
+    motorConfig.closedloopRamp = 0.001;
+
+    motorConfig.motionAcceleration = 20000;
+    motorConfig.motionCruiseVelocity = 22000; //Maximum Speed (encoder units / 100ms) for Magic Motion
+
+    motorConfig.nominalOutputForward = 0.0;
+    motorConfig.nominalOutputReverse = 0.0;
+    motorConfig.peakOutputForward = 1.0;
+    motorConfig.peakOutputReverse = -1.0;
+
+    motorConfig.motionCurveStrength = 0;
+    
+    // Reset the Motor to Factory Settings before Applying Profile
+    iMotor.ConfigFactoryDefault();
+    // Apply our Motor Configuration Profile
+    iMotor.ConfigAllSettings(motorConfig);
+    //Set the Motor Inversion
+    iMotor.SetInverted(inverted);
+    //Set the Motors Neutral Mode (What it does when no power is being applied)
+    iMotor.SetNeutralMode(NeutralMode::Brake);
+
+}
+
+void motorConfiguration::Talon::rightDrive(TalonFX &iMotor){
     // Create the Motor Configuration
     TalonFXConfiguration motorConfig;
     // Set the Primary Feedback Sensor (configure the motor's encoder)
@@ -114,7 +149,7 @@ void TalonConfiguration::rightDrive(TalonFX &iMotor){
 
 }
 
-void TalonConfiguration::leftDrive(TalonFX &iMotor){
+void motorConfiguration::Talon::leftDrive(TalonFX &iMotor){
     // Create the Motor Configuration
     TalonFXConfiguration motorConfig;
     // Set the Primary Feedback Sensor (configure the motor's encoder)
@@ -150,7 +185,7 @@ void TalonConfiguration::leftDrive(TalonFX &iMotor){
 
 }
 
-void TalonConfiguration::winchMotor(TalonFX &iMotor){
+void motorConfiguration::Talon::winchMotor(TalonFX &iMotor){
     // Create the Motor Configuration
     TalonFXConfiguration motorConfig;
     // Set the Primary Feedback Sensor (configure the motor's encoder)
@@ -186,7 +221,7 @@ void TalonConfiguration::winchMotor(TalonFX &iMotor){
 
 }
 
-void TalonConfiguration::clawMotor(TalonFX &iMotor){
+void motorConfiguration::Talon::clawMotor(TalonFX &iMotor){
     // Create the Motor Configuration
     TalonFXConfiguration motorConfig;
     // Set the Primary Feedback Sensor (configure the motor's encoder)
@@ -222,7 +257,7 @@ void TalonConfiguration::clawMotor(TalonFX &iMotor){
 
 }
 
-void SparkConfiguration::index(rev::SparkMaxPIDController &iController, rev::CANSparkMax &iMotor, bool inverted){
+void motorConfiguration::SparkMax::index(rev::SparkMaxPIDController &iController, rev::CANSparkMax &iMotor, bool inverted){
     
     iMotor.RestoreFactoryDefaults();
     iMotor.SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);

@@ -19,22 +19,24 @@
 
 #include "subsystems/IndexSubsystem.hpp"
 #include "Constants.h"
-#include "Motors.hpp"
+#include "tools/Motors.hpp"
 
 IndexSubsystem::IndexSubsystem() :
-    topMtr{RobotMap::CAN::TopIndex, rev::CANSparkMaxLowLevel::MotorType::kBrushless},
+    //topMtr{RobotMap::CAN::TopIndex, rev::CANSparkMaxLowLevel::MotorType::kBrushless},
+    topMtr{RobotMap::CAN::TopIndex},
     botMtr{RobotMap::CAN::BottomIndex},
     feedMtr{RobotMap::CAN::FeedIndex},
     topPE{RobotMap::DIGITAL::Index_PE_top},
-    bottomPE{RobotMap::DIGITAL::Index_PE_bottom},
-    topMtrPID{topMtr.GetPIDController()}
+    bottomPE{RobotMap::DIGITAL::Index_PE_bottom}//,
+    //topMtrPID{topMtr.GetPIDController()}
     {
-        TalonConfiguration::index(botMtr, false);
-        TalonConfiguration::index(feedMtr, false);
-        SparkConfiguration::index(topMtrPID, topMtr, false);
+        motorConfiguration::Talon::index(botMtr, false);
+        motorConfiguration::Talon::index(feedMtr, false);
+        motorConfiguration::Talon::index(topMtr, false);
+        //motorConfiguration::SparkMax::index(topMtrPID, topMtr, false);
     }
 
-
+/*  SPARK MAX
 void IndexSubsystem::setTop(double percentOutput){
     topMtrPID.SetReference(percentOutput, SPCT::kDutyCycle);
 }
@@ -45,6 +47,23 @@ void IndexSubsystem::setTop(SPCT mode, double iPow){
 
 double IndexSubsystem::getTopOutput(){
     return topMtr.Get();
+}
+*/
+
+void IndexSubsystem::setTop(double percentOutput){
+    topMtr.Set(ControlMode::PercentOutput, percentOutput);
+}
+
+void IndexSubsystem::setTop(ControlMode mode, double iPow){
+    topMtr.Set(mode, iPow);
+}
+
+void IndexSubsystem::setTopVel(double velocity){
+    topMtr.Set(ControlMode::Velocity, velocity);
+}
+
+double IndexSubsystem::getTopOutput(){
+    return topMtr.GetMotorOutputPercent();
 }
 
 void IndexSubsystem::setBottom(double percentOutput){

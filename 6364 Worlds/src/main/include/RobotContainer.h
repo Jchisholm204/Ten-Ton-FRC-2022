@@ -18,6 +18,8 @@
 
 #include "commands/OpDriveCommand.hpp"
 #include "commands/OpIntakeCommand.hpp"
+#include "commands/IndexCommands/Index.hpp"
+#include "commands/IndexCommands/ShootLow.hpp"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -37,6 +39,8 @@ extern frc::PowerDistribution pdp;
 class RobotContainer {
  public:
   RobotContainer();
+
+  void ConfigureButtonBindings();
 
   frc2::Command* GetAutonomousCommand();
 

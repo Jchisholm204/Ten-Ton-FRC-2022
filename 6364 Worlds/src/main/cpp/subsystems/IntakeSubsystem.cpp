@@ -14,7 +14,7 @@
  */
 
 #include "subsystems/IntakeSubsystem.hpp"
-#include "Motors.hpp"
+#include "tools/Motors.hpp"
 
 IntakeSubsystem::IntakeSubsystem() :
     frontMtr{RobotMap::CAN::Intake_front}, 
@@ -22,8 +22,8 @@ IntakeSubsystem::IntakeSubsystem() :
     frontSolenoid{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::frontIntake}, 
     rearSolenoid{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::rearIntake} 
     {
-        TalonConfiguration::intake(frontMtr, false);
-        TalonConfiguration::intake(rearMtr, false);
+        motorConfiguration::Talon::intake(frontMtr, false);
+        motorConfiguration::Talon::intake(rearMtr, false);
     }
 
 void IntakeSubsystem::setFront(ControlMode mode, double mPow){

@@ -15,7 +15,7 @@
  */
 
 #include "subsystems/DriveSubsystem.hpp"
-#include "Motors.hpp"
+#include "tools/Motors.hpp"
 
 DriveSubsystem::DriveSubsystem() :
 driveRM{RobotMap::CAN::driveRM},
@@ -24,10 +24,10 @@ driveLM{RobotMap::CAN::driveLM},
 driveLS{RobotMap::CAN::driveLS},
 navX{frc::I2C::kMXP} {
 
-    TalonConfiguration::rightDrive(driveRM);
-    TalonConfiguration::rightDrive(driveRS);
-    TalonConfiguration::leftDrive(driveLM);
-    TalonConfiguration::leftDrive(driveLS);
+    motorConfiguration::Talon::rightDrive(driveRM);
+    motorConfiguration::Talon::rightDrive(driveRS);
+    motorConfiguration::Talon::leftDrive(driveLM);
+    motorConfiguration::Talon::leftDrive(driveLS);
 
     driveRS.Follow(driveRM);
     driveLS.Follow(driveLM);

@@ -17,8 +17,10 @@
   "C_Cpp.default.configurationProvider": "vscode-wpilib",
   "cSpell.words": [
     "AHRS",
+    "Auton",
     "CTRE",
     "CTREPCM",
+    "Pheonix",
     "SPCT",
     "teleop",
     "teleoperated",
