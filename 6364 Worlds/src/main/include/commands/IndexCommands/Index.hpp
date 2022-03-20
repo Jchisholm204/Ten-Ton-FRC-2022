@@ -12,7 +12,13 @@
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/IndexSubsystem.hpp"
 
+#define TopIndexConverter(rpm) (rpm*2408/600)
 
+/**
+ * @brief IndexCommands Namespace
+ * 
+ * Acts as a group for all of the commands that interact with mainly the index subsystem
+ */
 namespace IndexCommands{
 
   /**

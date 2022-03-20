@@ -17,7 +17,7 @@ ShootLow::ShootLow(IndexSubsystem* indexSubsystem) : subsystem{indexSubsystem}, 
 void ShootLow::Initialize() {
   subsystem->setFeed(0);
 
-  subsystem->setTop(0.6);
+  subsystem->setTopVel(TopIndexConverter(fxMaxRPM*0.5));
   subsystem->setBottom(1);
 }
 

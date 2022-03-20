@@ -11,8 +11,6 @@
  * 
  * @namespace indexConstants - Stores Constants for the Index System
  * 
- * @namespace auton_s - Stores all of the Numerical constants for ReRun Autos
- * 
  */
 
 #pragma once
@@ -118,7 +116,7 @@ namespace kIndex {
 
 }//End kIndex
 
-// Autons Available to be Selected through SmartDashboard
+// Autos Available to be Selected through SmartDashboard
 // Otherwise known as Linker
 namespace auton_s {
     // No Auto // Empty
@@ -135,3 +133,5 @@ namespace auton_s {
 //Macro to convert Talon FX encoder Units Per Rotation (UPR) into Rotations Per Minute (RPM)
 #define c_TalonRPM(upr) (upr*600/2408)
 #define c_TalonUPR(rpm) (rpm*2408/600)
+
+#define fxMaxRPM 6300

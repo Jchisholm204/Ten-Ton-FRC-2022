@@ -2,6 +2,20 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+/**
+ * @author Jacob Chisholm
+ * TEAM: 6364
+ * 
+ * RobotContainer
+ * 
+ * The RobotContainer is where the bulk of the button mappings and declarations are.
+ * 
+ * Most Declarations are kept within subsystems and the RobotContainer, However many devices
+ * such as the PDP, PCM Compressor, and controllers are declared publicly without a class to
+ * ensure that they can be globally accessed
+ * 
+ */
+
 #pragma once
 
 // Include Files Needed In ALL Subsystems/Commands
@@ -16,10 +30,15 @@
 #include "subsystems/IndexSubsystem.hpp"
 #include "subsystems/IntakeSubsystem.hpp"
 
-#include "commands/OpDriveCommand.hpp"
-#include "commands/OpIntakeCommand.hpp"
+// Include Commands
+#include "commands/DriveCommands/OpDrive.hpp"
+
+#include "commands/IntakeCommands/OpIntake.hpp"
+
 #include "commands/IndexCommands/Index.hpp"
 #include "commands/IndexCommands/ShootLow.hpp"
+
+#include "commands/AutonCommand.hpp"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -44,15 +63,13 @@ class RobotContainer {
 
   frc2::Command* GetAutonomousCommand();
 
-  frc2::Command* GetOpDriveCommand();
-
-  frc2::Command* GetOpIntakeCommand();
-
   private:
+    // Declare Subsystems as part of RobotContainer
+
     DriveSubsystem subsystem_drive;
     IndexSubsystem subsystem_index;
     IntakeSubsystem subsystem_intake;
 
-    OpDriveCommand command_opDrive;
-    OpIntakeCommand command_opIntake;
+    // Declare our Auto as part of RobotContainer
+    AutonCommand simpleAuto{&subsystem_drive, &subsystem_intake, &subsystem_index};
 };

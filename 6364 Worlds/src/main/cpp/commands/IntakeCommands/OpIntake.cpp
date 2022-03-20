@@ -2,17 +2,17 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/OpIntakeCommand.hpp"
+#include "commands/IntakeCommands/OpIntake.hpp"
 #include "RobotContainer.h"
 #include <frc/DriverStation.h>
 
 
-OpIntakeCommand::OpIntakeCommand(IntakeSubsystem* SubSystem_intake) : intake{SubSystem_intake} {
+IntakeCommands::OpIntake::OpIntake(IntakeSubsystem* SubSystem_intake) : intake{SubSystem_intake} {
     AddRequirements(intake);
 }
 
 
-void OpIntakeCommand::Initialize(){
+void IntakeCommands::OpIntake::Initialize(){
         if(compressor.Enabled() == false){
         printf("Intake Error: Compressor Not Enabled\n");
             if(compressor.GetPressureSwitchValue() == false){
@@ -24,7 +24,7 @@ void OpIntakeCommand::Initialize(){
         }
 }
 
-void OpIntakeCommand::Execute(){
+void IntakeCommands::OpIntake::Execute(){
 
     if(master.GetPOV(0) == 270 || partner.GetPOV(0) == 270){
         intake->raise(false, true);
@@ -58,11 +58,11 @@ void OpIntakeCommand::Execute(){
     }
 }
 
-void OpIntakeCommand::End(bool interrupted){
+void IntakeCommands::OpIntake::End(bool interrupted){
     intake->setFront(ControlMode::PercentOutput, 0);
     intake->setRear(ControlMode::PercentOutput, 0);
 }
 
-bool OpIntakeCommand::IsFinished(){
+bool IntakeCommands::OpIntake::IsFinished(){
     return false;
 }

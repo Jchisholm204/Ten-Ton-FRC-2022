@@ -32,14 +32,6 @@ void Robot::DisabledInit() {
     autonomousCommand->Cancel();
     autonomousCommand = nullptr;
   }
-
-  if(command_OpDrive != nullptr){
-    command_OpDrive->Cancel();
-  }
-
-  if(command_OpIntake != nullptr){
-    command_OpIntake->Cancel();
-  }
   
 }
 
@@ -67,17 +59,6 @@ void Robot::TeleopInit() {
   if (autonomousCommand != nullptr) {
     autonomousCommand->Cancel();
     autonomousCommand = nullptr;
-  }
-
-  command_OpDrive = container.GetOpDriveCommand();
-  command_OpIntake = container.GetOpIntakeCommand();
-
-  if(command_OpDrive != nullptr){
-    command_OpDrive->Schedule();
-  }
-
-  if(command_OpIntake != nullptr){
-    command_OpIntake->Schedule();
   }
 }
 
