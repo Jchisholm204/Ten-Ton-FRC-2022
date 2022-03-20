@@ -16,12 +16,19 @@ Index::Index(IndexSubsystem* indexSubsystem) : subsystem{indexSubsystem}{
 
 // Called when the command is initially scheduled.
 void Index::Initialize() {
-  frc::SmartDashboard::PutBoolean("Indexing Enabled", true);
+  frc::SmartDashboard::PutString("Indexing", "Enabled");
 }
 
 // Called repeatedly when this Command is scheduled to run
 void Index::Execute() {
+
+  // 775 Indexing Power (CTRE Percent Output)
   double iPow = 0.6;
+
+  // F500 Indexing Velocity (CTRE Velocity Closed Loop Control)
+  double vPow = 8000;
+
+
   if ( subsystem->getTopPE() && codex == 0){ codex = 1; };
   if ( subsystem->getBotPE() && codex == 1 ){ codex = 2; };
 
@@ -36,7 +43,7 @@ void Index::Execute() {
     subsystem->setFeed(iPow);
   }
   else if ( codex == 0 ){
-    subsystem->setTop(iPow);
+    subsystem->setTopVel(vPow);
     subsystem->setBottom(iPow);
     subsystem->setFeed(iPow);
   }
@@ -52,7 +59,7 @@ void Index::End(bool interrupted) {
   subsystem->setTop(0);
   subsystem->setBottom(0);
   subsystem->setFeed(0);
-  frc::SmartDashboard::PutBoolean("Indexing Enabled", false);
+  frc::SmartDashboard::PutString("Indexing", "Disabled");
 }
 
 // Returns true when the command should end.
