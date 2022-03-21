@@ -22,6 +22,8 @@ class TalonConfiguation {
          * @param inverted Inverts the Default Direction of the Motor
          */
         static void index(TalonSRX &iMotor, bool inverted);
+        
+        static void index(TalonFX &iMotor, bool inverted);
 
          /**
          * Apply Right Drive Motor Configuration

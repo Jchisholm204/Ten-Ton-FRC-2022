@@ -90,8 +90,10 @@ class IndexSubsystem : public frc2::SubsystemBase {
          */
         bool getBotSensor();
 
+        double getTopMtrRPM();
+
     private:
-        TalonSRX topMtr;
+        TalonFX topMtr;
         TalonSRX botMtr;
         TalonSRX feedMtr;
 

@@ -9,8 +9,8 @@ IndexSubsystem::IndexSubsystem() :
     topPE(RobotMap::ANALOG::topPE),
     botPE(RobotMap::ANALOG::botPE)  {
         codex = 0;
-    TalonConfiguation::index(topMtr, false);
-    TalonConfiguation::index(botMtr, false);
+    TalonConfiguation::index(topMtr, true);
+    TalonConfiguation::index(botMtr, true);
     TalonConfiguation::index(feedMtr, true);
 }
 
@@ -92,4 +92,9 @@ bool IndexSubsystem::getTopSensor(){
 
 bool IndexSubsystem::getBotSensor(){
     return botPE.GetValue() > 1000;
+}
+
+double IndexSubsystem::getTopMtrRPM() {
+    double rawVelocity = topMtr.GetSensorCollection().GetIntegratedSensorVelocity();
+    return rawVelocity / 2048.0 * 10.0 * 60.0;
 }
