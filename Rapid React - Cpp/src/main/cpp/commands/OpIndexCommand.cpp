@@ -55,7 +55,6 @@ void OpIndexCommand::Execute(){
     }
     else{
         frc::SmartDashboard::PutString("IF", "Stopped");
-        index->stop();
     }
 
     if (ShootBalls){

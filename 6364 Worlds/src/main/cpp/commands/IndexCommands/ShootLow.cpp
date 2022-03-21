@@ -16,15 +16,18 @@ ShootLow::ShootLow(IndexSubsystem* indexSubsystem) : subsystem{indexSubsystem}, 
 
 // Called when the command is initially scheduled.
 void ShootLow::Initialize() {
-  subsystem->setFeed(1);
+  startTime = frcTools::Time::Millis();
+  isFinished = false;
 
+  subsystem->setFeed(1);
   subsystem->setTopVel(TopIndexConverter(fxMaxRPM*0.5));
   subsystem->setBottom(1);
+  IndexCommands::codex = 0;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ShootLow::Execute() {
-  if(frcTools::Time::Millis() > startTime + 2000){
+  if(frcTools::Time::Millis() > startTime + 1500){
     isFinished = true;
   }
 }

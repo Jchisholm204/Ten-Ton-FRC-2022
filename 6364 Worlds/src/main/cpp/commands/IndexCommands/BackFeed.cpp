@@ -24,7 +24,7 @@ void IndexCommands::BackFeed::Execute() {
   }
 
   if(feedChecked == true && index->getBotPE() == false){
-    index->setBottom(-0.5);
+    index->setBottom(-0.35);
     index->setTop(ControlMode::PercentOutput, -0.5);
   }
 
@@ -38,6 +38,7 @@ void IndexCommands::BackFeed::Execute() {
 
   if(feedChecked == false){
     index->setBottom(-1);
+    index->setFeed(-0.35);
     index->setTop(ControlMode::PercentOutput, 0);
   }
 }

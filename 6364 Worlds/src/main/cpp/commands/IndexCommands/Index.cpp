@@ -52,6 +52,8 @@ void Index::Execute() {
     codex = 0;
   }
   frc::SmartDashboard::PutNumber("Codex: ", codex);
+  frc::SmartDashboard::PutBoolean("TopPE", subsystem->getTopPE());
+  frc::SmartDashboard::PutBoolean("BotPE", subsystem->getBotPE());
 }
 
 // Called once the command ends or is interrupted.

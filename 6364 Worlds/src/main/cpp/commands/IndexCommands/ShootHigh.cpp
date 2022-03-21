@@ -15,6 +15,9 @@ void IndexCommands::ShootHigh::Initialize() {
   index->setFeed(0);
   index->setBottom(0);
   index->setTopVel(c_TalonUPR(6000));
+
+  startTime = frcTools::Time::Millis();
+  isFinished = false;
 }
 
 // Called repeatedly when this Command is scheduled to run
