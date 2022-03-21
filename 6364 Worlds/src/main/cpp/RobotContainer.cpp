@@ -20,6 +20,8 @@
 #include "Constants.h"
 #include <frc2/command/button/JoystickButton.h>
 
+#include <frc2/command/SequentialCommandGroup.h>
+
 frc::XboxController master(RobotMap::DriverStation::masterController);
 frc::XboxController partner(RobotMap::DriverStation::partnerController);
 
@@ -68,6 +70,12 @@ void RobotContainer::ConfigureButtonBindings() {
  // Shoot Balls Stored within the index when Right Bumper is Pressed
  frc2::JoystickButton(&master, frc::XboxController::Button::kRightBumper)
     .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
+
+  frc2::JoystickButton(&master, frc::XboxController::Button::kLeftBumper)
+    .WhenPressed(new frc2::SequentialCommandGroup{
+      IndexCommands::BackFeed(&subsystem_index),
+      IndexCommands::ShootHigh(&subsystem_index)
+    });
 }
 
 // This Command Returns the Default Autonomous Command

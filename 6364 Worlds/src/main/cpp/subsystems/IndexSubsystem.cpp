@@ -20,6 +20,7 @@
 #include "subsystems/IndexSubsystem.hpp"
 #include "Constants.h"
 #include "tools/Motors.hpp"
+#include <frc/I2C.h>
 
 IndexSubsystem::IndexSubsystem() :
     //topMtr{RobotMap::CAN::TopIndex, rev::CANSparkMaxLowLevel::MotorType::kBrushless},
@@ -27,8 +28,9 @@ IndexSubsystem::IndexSubsystem() :
     botMtr{RobotMap::CAN::BottomIndex},
     feedMtr{RobotMap::CAN::FeedIndex},
     topPE{RobotMap::DIGITAL::Index_PE_top},
-    bottomPE{RobotMap::DIGITAL::Index_PE_bottom}//,
+    bottomPE{RobotMap::DIGITAL::Index_PE_bottom},
     //topMtrPID{topMtr.GetPIDController()}
+    feedColor{frc::I2C::kOnboard}
     {
         motorConfiguration::Talon::index(botMtr, false);
         motorConfiguration::Talon::index(feedMtr, false);
@@ -66,6 +68,10 @@ double IndexSubsystem::getTopOutput(){
     return topMtr.GetMotorOutputPercent();
 }
 
+double IndexSubsystem::getTopVelocity(){
+    return topMtr.GetSelectedSensorVelocity();
+}
+
 void IndexSubsystem::setBottom(double percentOutput){
     botMtr.Set(ControlMode::PercentOutput, percentOutput);
 }
@@ -96,4 +102,12 @@ bool IndexSubsystem::getTopPE(){
 
 bool IndexSubsystem::getBotPE(){
     return bottomPE.Get();
+}
+
+double IndexSubsystem::getFeedProximity(){
+    return feedColor.GetProximity();
+}
+
+bool IndexSubsystem::getFeedBall(){
+    return feedColor.GetProximity() > kIndex::k_colorProxTrigger;
 }

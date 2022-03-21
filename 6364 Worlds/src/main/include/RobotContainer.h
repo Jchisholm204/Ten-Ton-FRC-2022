@@ -37,6 +37,8 @@
 
 #include "commands/IndexCommands/Index.hpp"
 #include "commands/IndexCommands/ShootLow.hpp"
+#include "commands/IndexCommands/BackFeed.hpp"
+#include "commands/IndexCommands/ShootHigh.hpp"
 
 #include "commands/AutonCommand.hpp"
 

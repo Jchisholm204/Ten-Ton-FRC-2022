@@ -40,7 +40,7 @@ namespace IndexCommands{
     private:
       IndexSubsystem* subsystem;
       bool isFinished;
-      units::second_t startTime;
+      double startTime;
 
   };
 }

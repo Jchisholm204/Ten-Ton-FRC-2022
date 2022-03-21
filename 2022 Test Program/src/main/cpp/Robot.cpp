@@ -8,9 +8,13 @@
 #include <frc2/command/CommandScheduler.h>
 #include <frc/AnalogInput.h>
 #include <frc/DigitalInput.h>
+#include <frc/I2C.h>
+#include <rev/ColorSensorV3.h>
 
 frc::DigitalInput dio(0);
 frc::AnalogInput aio(0);
+
+rev::ColorSensorV3 color(frc::I2C::kOnboard);
 
 void Robot::RobotInit() {}
 
@@ -51,9 +55,7 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  printf("dio: %i\t", dio.Get());
-  printf("aio: %d\t", aio.GetValue());
-  printf("aio V: %d\n", aio.GetVoltage());
+  printf("proximity: %i\n", color.GetProximity());
 }
 
 /**

@@ -22,6 +22,7 @@
 #include <frc/DigitalInput.h>
 //#include <rev/CANSparkMax.h>
 #include <ctre/Phoenix.h>
+#include "rev/ColorSensorV3.h"
 
 // Macro For Spark Max Control Type
 //#define SPCT rev::CANSparkMax::ControlType
@@ -55,6 +56,12 @@ class IndexSubsystem : public frc2::SubsystemBase {
    * @returns The Percent Output [-1.0, 1.0]
    */
   double getTopOutput();
+
+  /**
+   * Get The Top Indexers Velocity
+   * @returns The Motors Current Velocity in UPR
+   */
+  double getTopVelocity();
 
   /**
    * Set The Bottom Indexer's Percent Output
@@ -104,6 +111,20 @@ class IndexSubsystem : public frc2::SubsystemBase {
    */
   bool getBotPE();
 
+  /**
+   * Get The Current Proximity reading of the Feed Indexers Color Sensor
+   * @returns The Sensors Current Proximity Value
+   */
+  double getFeedProximity();
+
+  /**
+   * Get If The Color Sensor on the Feed Indexer is Currently Detecting a Ball
+   * @returns TRUE if the Sensor is detecting a ball
+   */
+  bool getFeedBall();
+
+
+
  private:
   //rev::CANSparkMax topMtr;
   TalonFX topMtr;
@@ -112,6 +133,8 @@ class IndexSubsystem : public frc2::SubsystemBase {
 
   frc::DigitalInput topPE;
   frc::DigitalInput bottomPE; 
+
+  rev::ColorSensorV3 feedColor;
 
   //rev::SparkMaxPIDController topMtrPID;
   

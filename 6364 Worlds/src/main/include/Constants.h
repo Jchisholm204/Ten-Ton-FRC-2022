@@ -102,17 +102,11 @@ namespace RobotMap {
 // ShootTime, Status..
 namespace kIndex {
 
-    // The Time Delay When Shooting to balls from the Indexers
-    constexpr units::second_t k_shootTime{2};
+    // The Time Delay When Shooting to balls from the Indexers (in MilliSeconds)
+    constexpr double k_shootTime = 2000;
     
-    // The Index's Current Status
-    // Used Primarily for ReRun purposes, but also for partner disable
-    namespace status{
-        constexpr int OFF = 0;
-        constexpr int RUNNING = 1;
-        constexpr int SHOOT = 2;
-        constexpr int SHOT = 3;
-    }//End status
+    // The Color Proximity Trigger Value for GetFeedBall
+    constexpr double k_colorProxTrigger= 500;
 
 }//End kIndex
 

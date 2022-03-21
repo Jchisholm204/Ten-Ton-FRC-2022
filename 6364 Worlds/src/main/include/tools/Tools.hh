@@ -27,18 +27,18 @@ namespace frcTools{
              * Get The Current running time of the FPGA in MicroSeconds
              * @returns frc::RobotController::GetFPGATime()
              */
-            static uint64_t Micros();
+            static int64_t Micros();
 
             /**
              * Get The Current Running Time of the FPGA In MilliSeconds
              * @returns The Running Time In MilliSeconds with MicroSecond Accuracy
              */
-            static uint64_t Millis();
+            static int64_t Millis();
 
             /**
              * Get The Current Running Time of the FPGA In Seconds
              * @returns The Running Time In Seconds with MicroSecond Accuracy
              */
-            static uint64_t Seconds();
+            static int64_t Seconds();
     };
 } //end FRCTools
