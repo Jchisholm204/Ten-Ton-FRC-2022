@@ -12,6 +12,7 @@
  */
 
 #pragma once
+#include "Constants.h"
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/PneumaticHub.h>
@@ -51,7 +52,7 @@ class IntakeSubsystem : public frc2::SubsystemBase {
    * 
    * @param pPow The Motor Power (Percent Output) [-1, 1]
    */
-  void setRear(double mPow);
+  void setRear(double pPow);
 
   /**
    * Get The Current Moto rPower Applied to the Front Intake
@@ -96,6 +97,8 @@ class IntakeSubsystem : public frc2::SubsystemBase {
   bool getRearState();
 
  private:
-  TalonSRX frontMrt;
+  TalonSRX frontMtr;
   TalonSRX rearMtr;
+  frc::Solenoid frontSolenoid;
+  frc::Solenoid rearSolenoid;
 };

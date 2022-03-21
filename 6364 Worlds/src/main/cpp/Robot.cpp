@@ -26,7 +26,14 @@ void Robot::RobotPeriodic() {
  * can use it to reset any subsystem information you want to clear when the
  * robot is disabled.
  */
-void Robot::DisabledInit() {}
+void Robot::DisabledInit() {
+
+  if (autonomousCommand != nullptr) {
+    autonomousCommand->Cancel();
+    autonomousCommand = nullptr;
+  }
+  
+}
 
 void Robot::DisabledPeriodic() {}
 
@@ -35,10 +42,10 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
-  m_autonomousCommand = m_container.GetAutonomousCommand();
+  autonomousCommand = container.GetAutonomousCommand();
 
-  if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Schedule();
+  if (autonomousCommand != nullptr) {
+    autonomousCommand->Schedule();
   }
 }
 
@@ -49,9 +56,9 @@ void Robot::TeleopInit() {
   // teleop starts running. If you want the autonomous to
   // continue until interrupted by another command, remove
   // this line or comment it out.
-  if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Cancel();
-    m_autonomousCommand = nullptr;
+  if (autonomousCommand != nullptr) {
+    autonomousCommand->Cancel();
+    autonomousCommand = nullptr;
   }
 }
 

@@ -14,5 +14,31 @@
     "**/.factorypath": true,
     "**/*~": true
   },
-  "C_Cpp.default.configurationProvider": "vscode-wpilib"
+  "C_Cpp.default.configurationProvider": "vscode-wpilib",
+  "cSpell.words": [
+    "AHRS",
+    "Auton",
+    "CTRE",
+    "CTREPCM",
+    "Pheonix",
+    "SPCT",
+    "teleop",
+    "teleoperated",
+    "Xpow",
+    "Ypow"
+  ],
+  "files.associations": {
+    "*.b": "brainfuck",
+    "*.inc": "cpp",
+    "numbers": "cpp",
+    "array": "cpp",
+    "hash_map": "cpp",
+    "hash_set": "cpp",
+    "*.tcc": "cpp",
+    "deque": "cpp",
+    "list": "cpp",
+    "string": "cpp",
+    "vector": "cpp",
+    "memory": "cpp"
+  }
 }
