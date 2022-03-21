@@ -27,12 +27,23 @@ DriveCommands::DriveDist::DriveDist(DriveSubsystem* DriveSubsystem, double dista
   AddRequirements(drive);
 
   double dInches = distance;
+
+  // DriveBase Wheel Radius
   double WheelRadius = 4.8; // inches
+  // Motor rotations required for one wheel rotation
   double gearBoxRatio = 18; //18 rotations of the motor for one rotation of the wheel
 
+  // Calculate the Circumference of the wheel given its Radius
   double WheelCircumference = 2 * 3.14159265358979323846 /*pi*/ * WheelRadius;
 
-  distance = (dInches * (2408 * gearBoxRatio)) / WheelCircumference;
+  // Inches / Circumference gives us the number of rotations the wheel has to make
+  double rotations = dInches/WheelCircumference;
+
+  // Convert wheel rotations to Encoder Units by multiplying it by 2408 (one full rotation in encoder units)
+  // And Scale it according to the Gear Box Ratio
+  distance = rotations * 2408 * gearBoxRatio;
+
+  //distance = (dInches * (2408 * gearBoxRatio)) / WheelCircumference;
 
 }
 
