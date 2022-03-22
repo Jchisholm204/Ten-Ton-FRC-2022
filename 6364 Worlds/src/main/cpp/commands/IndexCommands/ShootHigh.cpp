@@ -1,6 +1,12 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+/**
+ * @file ShootHigh.hpp
+ * @author Jacob Chisholm
+ * @brief Index High Shot Command
+ * @date 2022-03-21
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "commands/IndexCommands/ShootHigh.hpp"
 #include "Constants.h"

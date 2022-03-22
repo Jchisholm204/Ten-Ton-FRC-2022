@@ -1,9 +1,16 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+/**
+ * Index Back-Feed Command
+ * 
+ * @author Jacob Chisholm
+ * TEAM: 6364
+ * 
+ * Lowers the balls from the top two indexers into the feed and bottom index.
+ * 
+ * This clears the top index giving the Falcon 500 room to speed up in order to shoot high
+ * 
+ */
 
 #include "commands/IndexCommands/BackFeed.hpp"
-
 #include "commands/IndexCommands/Index.hpp"
 
 IndexCommands::BackFeed::BackFeed(IndexSubsystem* sys_index) : index{sys_index}, isFinished{false}, feedChecked{false}{
