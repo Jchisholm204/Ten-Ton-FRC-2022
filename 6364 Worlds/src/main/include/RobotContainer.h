@@ -29,6 +29,8 @@
 #include "subsystems/DriveSubsystem.hpp"
 #include "subsystems/IndexSubsystem.hpp"
 #include "subsystems/IntakeSubsystem.hpp"
+#include "subsystems/WinchSubsystem.hpp"
+#include "subsystems/ClawSubsystem.hpp"
 
 // Include Commands
 #include "commands/DriveCommands/OpDrive.hpp"
@@ -41,6 +43,10 @@
 #include "commands/IndexCommands/ShootHigh.hpp"
 
 #include "commands/AutonCommand.hpp"
+
+#include "commands/HangCommands/WinchDown.hpp"
+#include "commands/HangCommands/LowerRobot.hpp"
+#include "commands/HangCommands/PneumaticControl.hpp"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -71,6 +77,8 @@ class RobotContainer {
     DriveSubsystem subsystem_drive;
     IndexSubsystem subsystem_index;
     IntakeSubsystem subsystem_intake;
+    WinchSubsystem subsystem_winch;
+    ClawSubsystem subsystem_claw;
 
     // Declare our Auto as part of RobotContainer
     AutonCommand simpleAuto{&subsystem_drive, &subsystem_intake, &subsystem_index};

@@ -6,6 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/DigitalInput.h>
+#include <frc/Solenoid.h>
 #include <ctre/Phoenix.h>
 
 class WinchSubsystem : public frc2::SubsystemBase {
@@ -77,11 +78,21 @@ class WinchSubsystem : public frc2::SubsystemBase {
   bool getLowerLimit();
 
   /**
-   * Will be called periodically whenever the CommandScheduler runs.
+   * @brief Set the Solenoid State
+   * 
+   * @param state TRUE to fire the Arm Pistons
    */
-  void Periodic() override;
+  void setSolenoid(bool state);
+
+  /**
+   * @brief Get the Solenoid's Current State
+   * 
+   * @returns TRUE if the Solenoid is currently active 
+   */
+  bool getSolenoid();
 
  private:
   TalonFX WinchMotor;
   frc::DigitalInput lowerLimit;
+  frc::Solenoid solenoid;
 };

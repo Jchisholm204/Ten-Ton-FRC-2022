@@ -61,6 +61,7 @@ void IntakeCommands::OpIntake::Execute(){
 void IntakeCommands::OpIntake::End(bool interrupted){
     intake->setFront(ControlMode::PercentOutput, 0);
     intake->setRear(ControlMode::PercentOutput, 0);
+    intake->raise();
 }
 
 bool IntakeCommands::OpIntake::IsFinished(){

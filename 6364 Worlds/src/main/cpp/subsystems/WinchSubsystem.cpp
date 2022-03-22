@@ -5,10 +5,12 @@
 #include "subsystems/WinchSubsystem.hpp"
 #include "Constants.h"
 #include "tools/Motors.hpp"
+#include <frc/PneumaticsModuleType.h>
 
 WinchSubsystem::WinchSubsystem() : 
     WinchMotor{RobotMap::CAN::WinchMtr}, 
-    lowerLimit{RobotMap::DIGITAL::Hang_Limit_LOWER} 
+    lowerLimit{RobotMap::DIGITAL::Hang_Limit_LOWER},
+    solenoid{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::armPiston}
 {
     motorConfiguration::Talon::winchMotor(WinchMotor);
 }
@@ -49,5 +51,10 @@ bool WinchSubsystem::getLowerLimit(){
     return lowerLimit.Get();
 }
 
-// This method will be called once per scheduler run
-void WinchSubsystem::Periodic() {}
+void WinchSubsystem::setSolenoid(bool state){
+    solenoid.Set(state);
+}
+
+bool WinchSubsystem::getSolenoid(){
+    return solenoid.Get();
+}

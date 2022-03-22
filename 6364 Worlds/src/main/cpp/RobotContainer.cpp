@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 /**
  * @author Jacob Chisholm
  * TEAM: 6364
@@ -14,6 +10,10 @@
  * such as the PDP, PCM Compressor, and controllers are declared publicly without a class to
  * ensure that they can be globally accessed
  * 
+ * 
+ *  Copyright (c) FIRST and other WPILib contributors.
+ *  Open Source Software; you can modify and/or share it under the terms of
+ *  the WPILib BSD license file in the root directory of this project.
  */
 
 #include "RobotContainer.h"
@@ -52,6 +52,7 @@ RobotContainer::RobotContainer() {
   subsystem_index.SetDefaultCommand(IndexCommands::Index(&subsystem_index));
   subsystem_drive.SetDefaultCommand(DriveCommands::OpDrive(&subsystem_drive));
   subsystem_intake.SetDefaultCommand(IntakeCommands::OpIntake(&subsystem_intake));
+  subsystem_winch.SetDefaultCommand(HangCommands::PneumaticControl(&subsystem_winch));
 }
 
 /**
@@ -87,6 +88,12 @@ void RobotContainer::ConfigureButtonBindings() {
       IndexCommands::BackFeed(&subsystem_index),
       IndexCommands::ShootHigh(&subsystem_index)
     });
+
+  frc2::JoystickButton(&partner, frc::XboxController::Button::kY)
+    .WhenHeld(new HangCommands::WinchCommands::WinchDown(&subsystem_winch));
+
+  frc2::JoystickButton(&partner, frc::XboxController::Button::kA)
+    .WhenHeld(new HangCommands::WinchCommands::LowerRobot(&subsystem_winch));
 }
 
 // This Command Returns the Default Autonomous Command
