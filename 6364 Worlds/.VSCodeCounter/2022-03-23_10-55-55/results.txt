@@ -1,0 +1,111 @@
+Date : 2022-03-23 10:55:55
+Directory : c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds
+Total : 58 files,  2027 codes, 1279 comments, 642 blanks, all 3948 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| C++        |         48 |      1,442 |      1,249 |        599 |      3,290 |
+| JSON       |          5 |        408 |          0 |          1 |        409 |
+| Groovy     |          2 |         82 |         30 |         16 |        128 |
+| Batch      |          1 |         68 |          0 |         22 |         90 |
+| Markdown   |          1 |         22 |          0 |          3 |         25 |
+| Properties |          1 |          5 |          0 |          1 |          6 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                     | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                        |         58 |      2,027 |      1,279 |        642 |      3,948 |
+| .wpilib                                                                                                                  |          1 |          6 |          0 |          0 |          6 |
+| gradle                                                                                                                   |          1 |          5 |          0 |          1 |          6 |
+| gradle\wrapper                                                                                                           |          1 |          5 |          0 |          1 |          6 |
+| src                                                                                                                      |         48 |      1,442 |      1,249 |        599 |      3,290 |
+| src\main                                                                                                                 |         47 |      1,434 |      1,249 |        596 |      3,279 |
+| src\main\cpp                                                                                                             |         23 |        916 |        411 |        297 |      1,624 |
+| src\main\cpp\commands                                                                                                    |         14 |        398 |        201 |        128 |        727 |
+| src\main\cpp\commands\DriveCommands                                                                                      |          3 |         82 |         68 |         28 |        178 |
+| src\main\cpp\commands\HangCommands                                                                                       |          3 |         57 |         45 |         22 |        124 |
+| src\main\cpp\commands\IndexCommands                                                                                      |          5 |        152 |         63 |         53 |        268 |
+| src\main\cpp\commands\IntakeCommands                                                                                     |          2 |         82 |         12 |         15 |        109 |
+| src\main\cpp\subsystems                                                                                                  |          5 |        269 |         70 |         78 |        417 |
+| src\main\cpp\tools                                                                                                       |          2 |        180 |         54 |         60 |        294 |
+| src\main\include                                                                                                         |         24 |        518 |        838 |        299 |      1,655 |
+| src\main\include\commands                                                                                                |         14 |        242 |        325 |        122 |        689 |
+| src\main\include\commands\DriveCommands                                                                                  |          3 |         50 |         53 |         26 |        129 |
+| src\main\include\commands\HangCommands                                                                                   |          3 |         52 |         85 |         30 |        167 |
+| src\main\include\commands\IndexCommands                                                                                  |          5 |         94 |        113 |         43 |        250 |
+| src\main\include\commands\IntakeCommands                                                                                 |          2 |         34 |         66 |         19 |        119 |
+| src\main\include\subsystems                                                                                              |          5 |        138 |        330 |         97 |        565 |
+| src\main\include\tools                                                                                                   |          2 |         30 |         99 |         23 |        152 |
+| src\test                                                                                                                 |          1 |          8 |          0 |          3 |         11 |
+| src\test\cpp                                                                                                             |          1 |          8 |          0 |          3 |         11 |
+| vendordeps                                                                                                               |          4 |        402 |          0 |          1 |        403 |
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                 | language   | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\.wpilib\wpilib_preferences.json                             | JSON       |          6 |          0 |          0 |          6 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\WPILib-License.md                                           | Markdown   |         22 |          0 |          3 |         25 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\build.gradle                                                | Groovy     |         56 |         30 |         14 |        100 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\gradle\wrapper\gradle-wrapper.properties                    | Properties |          5 |          0 |          1 |          6 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\gradlew.bat                                                 | Batch      |         68 |          0 |         22 |         90 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\settings.gradle                                             | Groovy     |         26 |          0 |          2 |         28 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\Robot.cpp                                      | C++        |         34 |         30 |         16 |         80 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\RobotContainer.cpp                             | C++        |         35 |         56 |         15 |        106 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\AutonCommand.cpp                      | C++        |         25 |         13 |         10 |         48 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\DriveCommands\DriveDist.cpp           | C++        |         27 |         32 |         15 |         74 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\DriveCommands\DriveTurn.cpp           | C++        |         16 |         10 |          5 |         31 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\DriveCommands\OpDrive.cpp             | C++        |         39 |         26 |          8 |         73 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\HangCommands\LowerRobot.cpp           | C++        |         13 |         11 |          5 |         29 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\HangCommands\PneumaticControl.cpp     | C++        |         18 |         22 |         10 |         50 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\HangCommands\WinchDown.cpp            | C++        |         26 |         12 |          7 |         45 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\IndexCommands\BackFeed.cpp            | C++        |         36 |         15 |         13 |         64 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\IndexCommands\Index.cpp               | C++        |         47 |         10 |         14 |         71 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\IndexCommands\ShootHigh.cpp           | C++        |         30 |         13 |         10 |         53 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\IndexCommands\ShootLow.cpp            | C++        |         27 |          8 |          9 |         44 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\IndexCommands\Stop.cpp                | C++        |         12 |         17 |          7 |         36 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\IntakeCommands\Intake.cpp             | C++        |         27 |          9 |          4 |         40 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\commands\IntakeCommands\OpIntake.cpp           | C++        |         55 |          3 |         11 |         69 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\subsystems\ClawSubsystem.cpp                   | C++        |         37 |          4 |         13 |         54 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\subsystems\DriveSubsystem.cpp                  | C++        |         76 |         15 |         19 |        110 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\subsystems\IndexSubsystem.cpp                  | C++        |         61 |         34 |         18 |        113 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\subsystems\IntakeSubsystem.cpp                 | C++        |         51 |         14 |         14 |         79 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\subsystems\WinchSubsystem.cpp                  | C++        |         44 |          3 |         14 |         61 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\tools\Motors.cpp                               | C++        |        168 |         54 |         56 |        278 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\cpp\tools\Tools.cpp                                | C++        |         12 |          0 |          4 |         16 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\Constants.h                                | C++        |         50 |         51 |         30 |        131 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\Robot.h                                    | C++        |         19 |          5 |          7 |         31 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\RobotContainer.h                           | C++        |         39 |         28 |         20 |         87 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\AutonCommand.hpp                  | C++        |         12 |          8 |          4 |         24 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\DriveCommands\DriveDist.hpp       | C++        |         21 |         35 |         13 |         69 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\DriveCommands\DriveTurn.hpp       | C++        |         14 |          3 |          7 |         24 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\DriveCommands\OpDrive.hpp         | C++        |         15 |         15 |          6 |         36 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\HangCommands\LowerRobot.hpp       | C++        |         17 |         28 |         10 |         55 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\HangCommands\PneumaticControl.hpp | C++        |         17 |         29 |          9 |         55 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\HangCommands\WinchDown.hpp        | C++        |         18 |         28 |         11 |         57 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\IndexCommands\BackFeed.hpp        | C++        |         19 |         25 |          8 |         52 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\IndexCommands\Index.hpp           | C++        |         19 |         27 |         11 |         57 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\IndexCommands\ShootHigh.hpp       | C++        |         20 |         24 |          7 |         51 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\IndexCommands\ShootLow.hpp        | C++        |         19 |         18 |         10 |         47 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\IndexCommands\Stop.hpp            | C++        |         17 |         19 |          7 |         43 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\IntakeCommands\Intake.hpp         | C++        |         17 |         27 |          9 |         53 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\commands\IntakeCommands\OpIntake.hpp       | C++        |         17 |         39 |         10 |         66 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\subsystems\ClawSubsystem.hpp               | C++        |         21 |         51 |         15 |         87 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\subsystems\DriveSubsystem.hpp              | C++        |         33 |         77 |         22 |        132 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\subsystems\IndexSubsystem.hpp              | C++        |         32 |         83 |         27 |        142 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\subsystems\IntakeSubsystem.hpp             | C++        |         28 |         60 |         17 |        105 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\subsystems\WinchSubsystem.hpp              | C++        |         24 |         59 |         16 |         99 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\tools\Motors.hpp                           | C++        |         20 |         70 |         18 |        108 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\main\include\tools\Tools.hh                             | C++        |         10 |         29 |          5 |         44 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\src\test\cpp\main.cpp                                       | C++        |          8 |          0 |          3 |         11 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\vendordeps\Phoenix.json                                     | JSON       |        257 |          0 |          0 |        257 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\vendordeps\REVLib.json                                      | JSON       |         73 |          0 |          0 |         73 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\vendordeps\WPILibNewCommands.json                           | JSON       |         37 |          0 |          1 |         38 |
+| c:\Users\Jacob\Documents\GitHub\Ten-Ton-FRC-2022\6364 Worlds\vendordeps\navx_frc.json                                    | JSON       |         35 |          0 |          0 |         35 |
+| Total                                                                                                                    |            |      2,027 |      1,279 |        642 |      3,948 |
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
