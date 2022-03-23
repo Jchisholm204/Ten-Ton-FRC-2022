@@ -1,4 +1,13 @@
-
+/**
+ * @file Stop.hpp
+ * @author Jacob Chisholm
+ * @brief Stop All Indexer Movement
+ * @version 1
+ * @date 2022-03-22
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #pragma once
 
 #include <frc2/command/CommandHelper.h>
@@ -15,12 +24,13 @@ namespace IndexCommands{
 
   /**
    * Stop The Index
+   * @param isFinished What the command should return to the scheduler as Finished
    */
   class Stop
       : public frc2::CommandHelper<frc2::CommandBase,
                                   Stop> {
   public:
-    Stop(IndexSubsystem* sys_index);
+    Stop(IndexSubsystem* sys_index, bool isFinished);
 
     void Initialize() override;
 
@@ -28,5 +38,6 @@ namespace IndexCommands{
 
   private:
     IndexSubsystem* index;
+    bool returnFinished;
   };
 }

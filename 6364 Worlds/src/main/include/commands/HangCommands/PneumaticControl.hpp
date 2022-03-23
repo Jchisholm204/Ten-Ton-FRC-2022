@@ -1,6 +1,20 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+/**
+ * @file PneumaticControl.hpp
+ * @author Jacob Chisholm
+ * @brief Partner Control of Hang Pneumatics System
+ * @date 2022-03-22
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ * Partner can press UP on the d-pad to fire the Solenoid
+ * OR
+ * Partner can press DOWN on the d-pad to release pressure from the Solenoid
+ * 
+ * The Solenoid is single action attached to a double action Pneumatic
+ * 
+ * This command is the default command for the Winch Subsystem
+ * 
+ */
 
 #pragma once
 

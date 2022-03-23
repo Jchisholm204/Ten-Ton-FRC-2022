@@ -1,6 +1,20 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+/**
+ * @file PneumaticControl.cpp
+ * @author Jacob Chisholm
+ * @brief Partner Control of Hang Pneumatics System
+ * @date 2022-03-22
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ * Partner can press UP on the d-pad to fire the Solenoid
+ * OR
+ * Partner can press DOWN on the d-pad to release pressure from the Solenoid
+ * 
+ * The Solenoid is single action attached to a double action Pneumatic
+ * 
+ * This command is the default command for the Winch Subsystem
+ * 
+ */
 
 #include "commands/HangCommands/PneumaticControl.hpp"
 #include "RobotContainer.h"
@@ -28,7 +42,8 @@ void HangCommands::PneumaticControl::Execute() {
 // Called once the command ends or is interrupted.
 void HangCommands::PneumaticControl::End(bool interrupted) {}
 
-// Returns true when the command should end.
+// Always Returns FALSE as this is the default command assigned to the Winch Subsystem
+// Default Commands MUST allways return false
 bool HangCommands::PneumaticControl::IsFinished() {
   return false;
 }
