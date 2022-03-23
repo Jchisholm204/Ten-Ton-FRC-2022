@@ -82,21 +82,21 @@ void RobotContainer::ConfigureButtonBindings() {
  // Shoot Balls Stored within the index when Right Bumper is Pressed
  frc2::JoystickButton(&partner, frc::XboxController::Button::kRightBumper)
     .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
-
+/*
   frc2::JoystickButton(&partner, frc::XboxController::Button::kLeftBumper)
     .WhenPressed(new frc2::SequentialCommandGroup{
       IndexCommands::BackFeed(&subsystem_index),
       IndexCommands::ShootHigh(&subsystem_index)
     });
-
-  frc2::JoystickButton(&partner, frc::XboxController::Button::kY)
+*/
+  frc2::JoystickButton(&partner, frc::XboxController::Button::kA)
     .WhenHeld(new HangCommands::WinchCommands::WinchDown(&subsystem_winch));
 
-  frc2::JoystickButton(&partner, frc::XboxController::Button::kA)
+  frc2::JoystickButton(&partner, frc::XboxController::Button::kY)
     .WhenHeld(new HangCommands::WinchCommands::LowerRobot(&subsystem_winch));
 
   frc2::JoystickButton(&partner, frc::XboxController::Button::kLeftBumper)
-    .ToggleWhenPressed(subsystem_winch.GetDefaultCommand());
+    .ToggleWhenPressed(IndexCommands::Stop(&subsystem_index));
 }
 
 // This Command Returns the Default Autonomous Command

@@ -5,7 +5,7 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/DigitalInput.h>
+#include <frc/AnalogInput.h>
 #include <ctre/Phoenix.h>
 
 class ClawSubsystem : public frc2::SubsystemBase {
@@ -69,20 +69,11 @@ class ClawSubsystem : public frc2::SubsystemBase {
   void resetPosition(double zero);
 
   /**
-   * @brief Get if the Claw's Lower Limit Switch is Pressed
+   * @brief Get the Claw's Potentiometer
    * 
-   * @return TRUE if the Limit is pressed
-   * @return FALSE if the Limit switch is open
+   * @returns The Potentiometers Value
    */
-  bool getLowerLimit();
-
-    /**
-   * @brief Get if the Claw's Upper Limit Switch is Pressed
-   * 
-   * @return TRUE if the Limit is pressed
-   * @return FALSE if the Limit switch is open
-   */
-  bool getUpperLimit();
+  double getPot();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -91,6 +82,5 @@ class ClawSubsystem : public frc2::SubsystemBase {
 
  private:
   TalonFX ClawMotor;
-  frc::DigitalInput lowerLimit;
-  frc::DigitalInput upperLimit;
+  frc::AnalogInput Potentiometer;
 };

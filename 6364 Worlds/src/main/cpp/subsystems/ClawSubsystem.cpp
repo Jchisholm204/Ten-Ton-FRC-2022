@@ -8,8 +8,7 @@
 
 ClawSubsystem::ClawSubsystem() : 
     ClawMotor{RobotMap::CAN::ClawMtr}, 
-    lowerLimit{0},
-    upperLimit{0}
+    Potentiometer{RobotMap::ANALOG::ClawPOT}
 {
     motorConfiguration::Talon::clawMotor(ClawMotor);
 }
@@ -46,12 +45,8 @@ void ClawSubsystem::resetPosition(double zero){
     ClawMotor.SetSelectedSensorPosition(zero);
 }
 
-bool ClawSubsystem::getLowerLimit(){
-    return lowerLimit.Get();
-}
-
-bool ClawSubsystem::getUpperLimit(){
-    return upperLimit.Get();
+double ClawSubsystem::getPot(){
+    return Potentiometer.GetValue();
 }
 
 // This method will be called once per scheduler run

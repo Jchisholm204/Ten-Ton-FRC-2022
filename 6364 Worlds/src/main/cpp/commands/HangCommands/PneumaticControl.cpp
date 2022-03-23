@@ -6,8 +6,7 @@
 #include "RobotContainer.h"
 
 HangCommands::PneumaticControl::PneumaticControl(WinchSubsystem* sys_winch) : winch{sys_winch}{
-  //AddRequirements(winch);
-  // DO NOT add winch as a requirement to this command
+  AddRequirements(winch);
 }
 
 // Called when the command is initially scheduled.

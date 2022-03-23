@@ -74,9 +74,9 @@ namespace RobotMap {
 
     // Digital Devices Port IDs
     namespace DIGITAL {
-        constexpr int Index_PE_top = 0;
-        constexpr int Index_PE_bottom = 1;
-        constexpr int Hang_Limit_LOWER = 2;
+        constexpr int Index_PE_top = 1;
+        constexpr int Index_PE_bottom = 2;
+        constexpr int Hang_Limit_LOWER = 0;
     }//End Digital
 
     // PCM Controller IDs

@@ -27,8 +27,8 @@ void WinchCommands::WinchDown::Execute(){
 
   // Vibrate Controller if Winch Solenoid Active while trying to winch down
   if(winch->getSolenoid() == true){
-    partner.SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 0.5);
-    partner.SetRumble(frc::GenericHID::RumbleType::kRightRumble, 0.5);
+    partner.SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 2);
+    partner.SetRumble(frc::GenericHID::RumbleType::kRightRumble, 2);
   }
   else {
     partner.SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 0);

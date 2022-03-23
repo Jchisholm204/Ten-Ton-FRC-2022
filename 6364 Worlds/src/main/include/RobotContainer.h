@@ -41,6 +41,7 @@
 #include "commands/IndexCommands/ShootLow.hpp"
 #include "commands/IndexCommands/BackFeed.hpp"
 #include "commands/IndexCommands/ShootHigh.hpp"
+#include "commands/IndexCommands/Stop.hpp"
 
 #include "commands/AutonCommand.hpp"
 
