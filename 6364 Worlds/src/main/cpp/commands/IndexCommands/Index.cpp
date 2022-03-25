@@ -26,7 +26,7 @@ void Index::Execute() {
   double iPow = 0.6;
 
   // F500 Indexing Velocity (CTRE Velocity Closed Loop Control)
-  double vPow = 8000;
+  double vPow = 5000;
 
 
   if ( subsystem->getTopPE() && codex == 0){ codex = 1; };
@@ -38,7 +38,7 @@ void Index::Execute() {
     subsystem->setFeed(0);
   }
   else if ( codex == 1 ){
-    subsystem->setTop(0);
+    subsystem->setTop(ControlMode::Velocity, 0);
     subsystem->setBottom(iPow);
     subsystem->setFeed(iPow);
   }
