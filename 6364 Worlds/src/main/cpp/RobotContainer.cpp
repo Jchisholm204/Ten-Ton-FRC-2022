@@ -97,7 +97,7 @@ void RobotContainer::ConfigureButtonBindings() {
 
   // Index Toggle Command - Allow Partner controller to stop indexing
   frc2::JoystickButton(&partner, frc::XboxController::Button::kLeftBumper)
-    .ToggleWhenPressed(IndexCommands::Stop(&subsystem_index, false));
+    .ToggleWhenPressed(IndexCommands::Manual(&subsystem_index));
 }
 
 // This Command Returns the Default Autonomous Command

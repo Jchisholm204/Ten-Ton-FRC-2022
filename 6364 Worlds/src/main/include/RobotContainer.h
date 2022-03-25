@@ -33,21 +33,7 @@
 #include "subsystems/ClawSubsystem.hpp"
 
 // Include Commands
-#include "commands/DriveCommands/OpDrive.hpp"
-
-#include "commands/IntakeCommands/OpIntake.hpp"
-
-#include "commands/IndexCommands/Index.hpp"
-#include "commands/IndexCommands/ShootLow.hpp"
-#include "commands/IndexCommands/BackFeed.hpp"
-#include "commands/IndexCommands/ShootHigh.hpp"
-#include "commands/IndexCommands/Stop.hpp"
-
-#include "commands/AutonCommand.hpp"
-
-#include "commands/HangCommands/WinchDown.hpp"
-#include "commands/HangCommands/LowerRobot.hpp"
-#include "commands/HangCommands/PneumaticControl.hpp"
+#include "commands/Commands.inc"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
