@@ -40,12 +40,12 @@ void Index::Execute() {
   else if ( codex == 1 ){
     subsystem->setTop(ControlMode::Velocity, 0);
     subsystem->setBottom(iPow);
-    subsystem->setFeed(iPow);
+    subsystem->setFeed(1);
   }
   else if ( codex == 0 ){
     subsystem->setTopVel(vPow);
     subsystem->setBottom(iPow);
-    subsystem->setFeed(iPow);
+    subsystem->setFeed(1);
   }
   else{
     printf("Codex OverFlow");
