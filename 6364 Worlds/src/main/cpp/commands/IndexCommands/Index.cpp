@@ -54,6 +54,8 @@ void Index::Execute() {
   frc::SmartDashboard::PutNumber("Codex: ", codex);
   frc::SmartDashboard::PutBoolean("TopPE", subsystem->getTopPE());
   frc::SmartDashboard::PutBoolean("BotPE", subsystem->getBotPE());
+  frc::SmartDashboard::PutNumber("Color Prox", subsystem->getFeedProximity());
+  frc::SmartDashboard::PutBoolean("Feed Ball", subsystem->getFeedBall());
 }
 
 // Called once the command ends or is interrupted.

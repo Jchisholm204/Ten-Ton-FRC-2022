@@ -106,7 +106,7 @@ namespace kIndex {
     constexpr double k_shootTime = 2000;
     
     // The Color Proximity Trigger Value for GetFeedBall
-    constexpr double k_colorProxTrigger= 500;
+    constexpr double k_colorProxTrigger= 375;
 
 }//End kIndex
 

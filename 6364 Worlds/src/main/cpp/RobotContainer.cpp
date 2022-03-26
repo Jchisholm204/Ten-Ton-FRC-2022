@@ -89,7 +89,7 @@ void RobotContainer::ConfigureButtonBindings() {
       IndexCommands::ShootHigh(&subsystem_index)
     });
 */
-  frc2::JoystickButton(&partner, frc::XboxController::Button::kA)
+  frc2::JoystickButton(&partner, frc::XboxController::Button::kA) && frc2::Button([this]{return !subsystem_winch.getLowerLimit();})
     .WhenHeld(new HangCommands::WinchCommands::WinchDown(&subsystem_winch));
 
   frc2::JoystickButton(&partner, frc::XboxController::Button::kY)

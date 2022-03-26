@@ -39,6 +39,7 @@
     "list": "cpp",
     "string": "cpp",
     "vector": "cpp",
-    "memory": "cpp"
+    "memory": "cpp",
+    "random": "cpp"
   }
 }
