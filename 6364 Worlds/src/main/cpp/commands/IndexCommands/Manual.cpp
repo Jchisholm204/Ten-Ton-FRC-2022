@@ -37,7 +37,6 @@ void IndexCommands::Manual::Execute() {
     index->setTop(0.15);
   }
 
-  if(partner.GetLeftY() < -0.6){
   else if(partner.GetLeftY() > 0.6){
     index->setTop(-0.5);
   }
