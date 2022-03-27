@@ -11,6 +11,8 @@
 #include "commands/IndexCommands/ShootHigh.hpp"
 #include "Constants.h"
 #include "tools/Tools.hh"
+#include "commands/IndexCommands/Index.hpp"
+#include "frc/smartdashboard/SmartDashboard.h"
 
 IndexCommands::ShootHigh::ShootHigh(IndexSubsystem* sys_index) : index{sys_index}, isFinished{false}, reachedRPM{false} {
   AddRequirements(index);
@@ -20,25 +22,25 @@ IndexCommands::ShootHigh::ShootHigh(IndexSubsystem* sys_index) : index{sys_index
 void IndexCommands::ShootHigh::Initialize() {
   index->setFeed(0);
   index->setBottom(0);
-  index->setTopVel(c_TalonUPR(6000));
+  index->setTopVel(c_TalonUPR(6300));
 
   startTime = frcTools::Time::Millis();
   isFinished = false;
+  IndexCommands::codex = 0;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void IndexCommands::ShootHigh::Execute() {
-  if(c_TalonRPM(index->getTopVelocity()) > 5500){
+
+  frc::SmartDashboard::PutNumber("fw Velocity", index->getTopVelocity());
+  
+  if(index->getTopVelocity() > 17000){
     index->setFeed(1);
     index->setBottom(1);
     reachedRPM = true;
   }
 
-  if(reachedRPM == false){
-    startTime = frcTools::Time::Millis();
-  }
-
-  if(startTime + 2000 > frcTools::Time::Millis()){
+  if(frcTools::Time::Millis() > startTime + 3000){
     isFinished = true;
   }
 }

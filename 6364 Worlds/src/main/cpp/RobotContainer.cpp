@@ -19,11 +19,12 @@
 #include "RobotContainer.h"
 #include "Constants.h"
 #include <frc2/command/button/JoystickButton.h>
-
 #include <frc2/command/SequentialCommandGroup.h>
+#include <frc/Joystick.h>
 
 frc::XboxController master(RobotMap::DriverStation::masterController);
 frc::XboxController partner(RobotMap::DriverStation::partnerController);
+frc::Joystick boi(2);
 
 frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
 frc::PowerDistribution pdp{0, frc::PowerDistribution::ModuleType::kCTRE};
@@ -68,16 +69,21 @@ RobotContainer::RobotContainer() {
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
 
+   // Shoot Balls Stored within the index when Right Bumper is Pressed
+  frc2::JoystickButton(&boi, 1)
+    .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
+
  // Shoot Balls Stored within the index when Right Bumper is Pressed
   frc2::JoystickButton(&master, frc::XboxController::Button::kRightBumper)
     .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
 
   // Shoot High Goal - > first lower balls, then speed up top indexer and shoot from feed and bottom
+  frc2::JoystickButton(&master, frc::XboxController::Button::kA)
+    .WhenPressed(new IndexCommands::BackFeed(&subsystem_index)
+    );
   frc2::JoystickButton(&master, frc::XboxController::Button::kLeftBumper)
-    .WhenPressed(new frc2::SequentialCommandGroup{
-      IndexCommands::BackFeed(&subsystem_index),
-      IndexCommands::ShootHigh(&subsystem_index)
-    });
+    .WhenPressed(new IndexCommands::ShootHigh(&subsystem_index)
+    );
 
  // Shoot Balls Stored within the index when Right Bumper is Pressed
  frc2::JoystickButton(&partner, frc::XboxController::Button::kRightBumper)
@@ -94,6 +100,12 @@ void RobotContainer::ConfigureButtonBindings() {
 
   frc2::JoystickButton(&partner, frc::XboxController::Button::kY)
     .WhenHeld(new HangCommands::WinchCommands::LowerRobot(&subsystem_winch));
+
+  frc2::JoystickButton(&partner, frc::XboxController::Button::kX)
+    .WhenHeld(new HangCommands::ClawCommands::ClawUp(&subsystem_claw));
+
+  frc2::JoystickButton(&partner, frc::XboxController::Button::kB)
+    .WhenHeld(HangCommands::ClawCommands::ClawDown(&subsystem_claw));
 
   // Index Toggle Command - Allow Partner controller to stop indexing
   frc2::JoystickButton(&partner, frc::XboxController::Button::kLeftBumper)

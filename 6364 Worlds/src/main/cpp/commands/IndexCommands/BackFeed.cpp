@@ -13,13 +13,15 @@
 #include "commands/IndexCommands/BackFeed.hpp"
 #include "commands/IndexCommands/Index.hpp"
 
+#include "frc/smartdashboard/SmartDashboard.h"
+
 IndexCommands::BackFeed::BackFeed(IndexSubsystem* sys_index) : index{sys_index}, isFinished{false}, feedChecked{false}{
   AddRequirements(index);
 }
 
 // Called when the command is initially scheduled.
 void IndexCommands::BackFeed::Initialize() {
-
+  feedChecked = false;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -31,8 +33,8 @@ void IndexCommands::BackFeed::Execute() {
   }
 
   if(feedChecked == true && index->getBotPE() == false){
-    index->setBottom(-0.35);
-    index->setTop(ControlMode::PercentOutput, -0.5);
+    index->setBottom(-0.525);
+    index->setTop(ControlMode::PercentOutput, -0.2);
   }
 
   if(feedChecked == true && index->getBotPE() == true){
@@ -44,8 +46,8 @@ void IndexCommands::BackFeed::Execute() {
   
 
   if(feedChecked == false){
-    index->setBottom(-1);
-    index->setFeed(-0.35);
+    index->setBottom(-0.75);
+    index->setFeed(-0.6);
     index->setTop(ControlMode::PercentOutput, 0);
   }
 }

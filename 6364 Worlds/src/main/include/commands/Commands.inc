@@ -26,3 +26,7 @@
 #include "commands/HangCommands/WinchDown.hpp"
 #include "commands/HangCommands/LowerRobot.hpp"
 #include "commands/HangCommands/PneumaticControl.hpp"
+
+// Claw Commands
+#include "commands/HangCommands/ClawUp.hpp"
+#include "commands/HangCommands/ClawDown.hpp"
