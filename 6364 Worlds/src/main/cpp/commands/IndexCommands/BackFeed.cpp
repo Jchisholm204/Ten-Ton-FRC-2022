@@ -12,50 +12,41 @@
 
 #include "commands/IndexCommands/BackFeed.hpp"
 #include "commands/IndexCommands/Index.hpp"
+#include "tools/Tools.hh"
 
 #include "frc/smartdashboard/SmartDashboard.h"
 
-IndexCommands::BackFeed::BackFeed(IndexSubsystem* sys_index) : index{sys_index}, isFinished{false}, feedChecked{false}{
+IndexCommands::BackFeed::BackFeed(IndexSubsystem* sys_index) : index{sys_index}, isFinished{false}, startTime{0}{
   AddRequirements(index);
 }
 
 // Called when the command is initially scheduled.
 void IndexCommands::BackFeed::Initialize() {
-  feedChecked = false;
+  startTime = frcTools::Time::Seconds();
+  index->setTop(-0.5);
+  index->setBottom(-0.6);
+  index->setFeed(-0.6);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void IndexCommands::BackFeed::Execute() {
 
+  // End Command if there is a ball in the Feed Indexer
   if(index->getFeedBall()){
-    feedChecked = true;
-    index->setFeed(0);
-  }
-
-  if(feedChecked == true && index->getBotPE() == false){
-    index->setBottom(-0.525);
-    index->setTop(ControlMode::PercentOutput, -0.2);
-  }
-
-  if(feedChecked == true && index->getBotPE() == true){
-    index->setBottom(0);
-    index->setTop(ControlMode::PercentOutput, 0);
-    index->setFeed(0);
     isFinished = true;
   }
-  
 
-  if(feedChecked == false){
-    index->setBottom(-0.75);
-    index->setFeed(-0.6);
-    index->setTop(ControlMode::PercentOutput, 0);
+  // End Command if it has been running for more than four (4) Seconds
+  if(startTime + 4 < frcTools::Time::Seconds()){
+    isFinished = true;
   }
+
 }
 
 // Called once the command ends or is interrupted.
 void IndexCommands::BackFeed::End(bool interrupted) {
     index->setBottom(0);
-    index->setTop(ControlMode::PercentOutput, 0);
+    index->setTop(0);
     index->setFeed(0);
 }
 

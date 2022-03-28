@@ -28,7 +28,7 @@ namespace IndexCommands {
    * Backfeeds the balls through the index system using the bottom photoelectric sensor
    * and the proximity function of the color sensor
    * 
-   * @returns TRUE once the top ball has settled in the bottom indexer
+   * @returns TRUE once the top ball has settled in the bottom indexer OR if a timer has elapsed
    * 
    */
   class BackFeed
@@ -47,6 +47,6 @@ namespace IndexCommands {
   private:
     IndexSubsystem* index;
     bool isFinished;
-    bool feedChecked;
+    double startTime;
   };
 }
