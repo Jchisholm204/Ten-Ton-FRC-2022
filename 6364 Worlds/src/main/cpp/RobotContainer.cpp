@@ -24,7 +24,7 @@
 
 frc::XboxController master(RobotMap::DriverStation::masterController);
 frc::XboxController partner(RobotMap::DriverStation::partnerController);
-frc::Joystick boi(2);
+frc::Joystick joystick(2);
 
 frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
 frc::PowerDistribution pdp{0, frc::PowerDistribution::ModuleType::kCTRE};
@@ -70,7 +70,7 @@ void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
 
    // Shoot Balls Stored within the index when Right Bumper is Pressed
-  frc2::JoystickButton(&boi, 1)
+  frc2::JoystickButton(&joystick, 1)
     .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
 
  // Shoot Balls Stored within the index when Right Bumper is Pressed
