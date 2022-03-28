@@ -124,6 +124,8 @@ class IndexSubsystem : public frc2::SubsystemBase {
   bool getFeedBall();
 
 
+  void Periodic() override;
+
 
  private:
   //rev::CANSparkMax topMtr;

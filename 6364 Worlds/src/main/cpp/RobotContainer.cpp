@@ -112,7 +112,7 @@ void RobotContainer::ConfigurePartnerBindings() {
 
   // Manual Claw Movement - Lower Claw / Grab Bar
   frc2::JoystickButton(&partner, frc::XboxController::Button::kB)
-    .WhenHeld(HangCommands::ClawCommands::ClawDown(&subsystem_claw));
+    .WhenHeld(new HangCommands::ClawCommands::ClawDown(&subsystem_claw));
 
   /**
    * @brief Index Toggle Command

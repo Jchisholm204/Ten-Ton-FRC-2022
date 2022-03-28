@@ -21,6 +21,7 @@
 #include "Constants.h"
 #include "tools/Motors.hpp"
 #include <frc/I2C.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 IndexSubsystem::IndexSubsystem() :
     //topMtr{RobotMap::CAN::TopIndex, rev::CANSparkMaxLowLevel::MotorType::kBrushless},
@@ -110,4 +111,10 @@ double IndexSubsystem::getFeedProximity(){
 
 bool IndexSubsystem::getFeedBall(){
     return feedColor.GetProximity() > kIndex::k_colorProxTrigger;
+}
+
+void IndexSubsystem::Periodic(){
+    frc::SmartDashboard::PutBoolean("Top PE", getTopPE());
+    frc::SmartDashboard::PutBoolean("Bot PE", getBotPE());
+    frc::SmartDashboard::PutBoolean("Feed Prox", getFeedBall());
 }
