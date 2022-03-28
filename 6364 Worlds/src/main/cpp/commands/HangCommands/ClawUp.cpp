@@ -19,7 +19,7 @@ ClawCommands::ClawUp::ClawUp(ClawSubsystem* sys_claw) : claw{sys_claw}{
 
 // Called when the command is initially scheduled.
 void ClawCommands::ClawUp::Initialize() {
-  claw->set(c_TalonUPR(1000));
+  claw->set(c_TalonUPR(-1000));
 }
 
 // Called once the command ends or is interrupted.
