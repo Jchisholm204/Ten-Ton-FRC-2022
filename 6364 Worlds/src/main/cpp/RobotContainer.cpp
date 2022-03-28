@@ -46,8 +46,11 @@ frc::PowerDistribution pdp{0, frc::PowerDistribution::ModuleType::kCTRE};
  */
 
 RobotContainer::RobotContainer() {
-  // Initialize all of your commands and subsystems here
-  ConfigureButtonBindings();
+
+  // Initialize Controller Button Bindings
+  ConfigureMasterBindings();
+  ConfigurePartnerBindings();
+  ConfigureJoystickBindings();
 
   // Set Default Commands for Subsystems
   subsystem_index.SetDefaultCommand(IndexCommands::Index(&subsystem_index));
@@ -57,7 +60,7 @@ RobotContainer::RobotContainer() {
 }
 
 /**
- * @brief Configure Button Bindings
+ * @brief Configure Master Controller's Button Bindings
  * 
  * Used to Configure any buttons on the controller that could be used to interupt commands.
  * 
@@ -66,50 +69,86 @@ RobotContainer::RobotContainer() {
  * 
  */
 
-void RobotContainer::ConfigureButtonBindings() {
-  // Configure your button bindings here
+void RobotContainer::ConfigureMasterBindings() {
 
-   // Shoot Balls Stored within the index when Right Bumper is Pressed
-  frc2::JoystickButton(&joystick, 1)
-    .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
-
- // Shoot Balls Stored within the index when Right Bumper is Pressed
+  // Shoot Balls Stored within the index when Right Bumper is Pressed
   frc2::JoystickButton(&master, frc::XboxController::Button::kRightBumper)
     .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
 
-  // Shoot High Goal - > first lower balls, then speed up top indexer and shoot from feed and bottom
+  // Backfeed the balls into the lower indexers - Used before shooting high
   frc2::JoystickButton(&master, frc::XboxController::Button::kA)
     .WhenPressed(new IndexCommands::BackFeed(&subsystem_index)
     );
+
+  // Shoot High Goal -> Speeds up top indexer and shoots once it reaches the correct Velocity
   frc2::JoystickButton(&master, frc::XboxController::Button::kLeftBumper)
     .WhenPressed(new IndexCommands::ShootHigh(&subsystem_index)
     );
+}
 
- // Shoot Balls Stored within the index when Right Bumper is Pressed
- frc2::JoystickButton(&partner, frc::XboxController::Button::kRightBumper)
-    .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
-/*
-  frc2::JoystickButton(&partner, frc::XboxController::Button::kLeftBumper)
-    .WhenPressed(new frc2::SequentialCommandGroup{
-      IndexCommands::BackFeed(&subsystem_index),
-      IndexCommands::ShootHigh(&subsystem_index)
-    });
-*/
+/**
+ * @brief Configure Partner Controller's Button Bindings
+ * 
+ * Used to Configure any buttons on the controller that could be used to interupt commands.
+ * 
+ * IE; the shoot command that interrupts the indexing command, or the alignment command that
+ * interrupts the operator drive command.
+ * 
+ */
+
+void RobotContainer::ConfigurePartnerBindings() {
+
+  // Lower Winch Arm / Raise Robot
   frc2::JoystickButton(&partner, frc::XboxController::Button::kA) && frc2::Button([this]{return !subsystem_winch.getLowerLimit();})
     .WhenHeld(new HangCommands::WinchCommands::WinchDown(&subsystem_winch));
 
+  // Raise Winch Arm / Lower Robot
   frc2::JoystickButton(&partner, frc::XboxController::Button::kY)
     .WhenHeld(new HangCommands::WinchCommands::LowerRobot(&subsystem_winch));
 
+  // Manual Claw Movement - Raise Claw / Release Bar
   frc2::JoystickButton(&partner, frc::XboxController::Button::kX)
     .WhenHeld(new HangCommands::ClawCommands::ClawUp(&subsystem_claw));
 
+  // Manual Claw Movement - Lower Claw / Grab Bar
   frc2::JoystickButton(&partner, frc::XboxController::Button::kB)
     .WhenHeld(HangCommands::ClawCommands::ClawDown(&subsystem_claw));
 
-  // Index Toggle Command - Allow Partner controller to stop indexing
+  /**
+   * @brief Index Toggle Command
+   * Note: Shoot Commands will override this command,
+   *       Upon Exiting a shoot command, the Indexing command will resume
+   *       To continue manual operation, the partner controller will have to re-enable the override
+   * 
+   * Allow the partner controller to toggle between indexing modes
+   * 
+   * Default Mode: Automatic Indexing though Photoelectric Sensors
+   *               IndexCommands/Index
+   * 
+   * Override Mode: Manual Indexing through the Partner Controller
+   *                IndexCommands/Manual
+   */
   frc2::JoystickButton(&partner, frc::XboxController::Button::kLeftBumper)
     .ToggleWhenPressed(IndexCommands::Manual(&subsystem_index));
+
+}
+
+/**
+ * @brief Configure The Joystick's Button Bindings
+ * 
+ * Used to Configure any buttons on the controller that could be used to interupt commands.
+ * 
+ * IE; the shoot command that interrupts the indexing command, or the alignment command that
+ * interrupts the operator drive command.
+ * 
+ */
+
+void RobotContainer::ConfigureJoystickBindings() {
+
+   // Shoot Balls Stored within the index when the Trigger is Pressed
+  frc2::JoystickButton(&joystick, 1)
+    .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
+
 }
 
 // This Command Returns the Default Autonomous Command

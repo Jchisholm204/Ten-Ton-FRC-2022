@@ -54,7 +54,11 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  void ConfigureButtonBindings();
+  void ConfigureMasterBindings();
+
+  void ConfigurePartnerBindings();
+
+  void ConfigureJoystickBindings();
 
   frc2::Command* GetAutonomousCommand();
 
