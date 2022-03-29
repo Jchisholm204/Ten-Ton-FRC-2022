@@ -60,7 +60,7 @@ namespace RobotMap {
         constexpr int FeedIndex = 8; //changeTo ~ 7
 
         constexpr int WinchMtr = 10; //changeTo ~ 3
-        constexpr int ClawMtr = 11; //toRemove
+        constexpr int ClawMtr = 11; //
 
         constexpr int PDP = 0;
         constexpr int PCM = 0;

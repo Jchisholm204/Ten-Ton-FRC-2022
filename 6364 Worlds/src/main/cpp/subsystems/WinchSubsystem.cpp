@@ -48,7 +48,7 @@ void WinchSubsystem::resetPosition(double zero){
 }
 
 bool WinchSubsystem::getLowerLimit(){
-    return lowerLimit.Get();
+    return !lowerLimit.Get();
 }
 
 void WinchSubsystem::setSolenoid(bool state){

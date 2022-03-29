@@ -20,7 +20,7 @@ WinchCommands::WinchDown::WinchDown(WinchSubsystem* sys_winch) : winch{sys_winch
 
 // Called when the command is initially scheduled.
 void WinchCommands::WinchDown::Initialize() {
-  winch->set(c_TalonUPR(3000));
+  winch->set(c_TalonUPR(-3000));
 }
 
 void WinchCommands::WinchDown::Execute(){
@@ -42,4 +42,8 @@ void WinchCommands::WinchDown::End(bool interrupted) {
   winch->set(ControlMode::MotionMagic, 0);
   partner.SetRumble(frc::GenericHID::RumbleType::kLeftRumble, 0);
   partner.SetRumble(frc::GenericHID::RumbleType::kRightRumble, 0);
+}
+
+bool WinchCommands::WinchDown::IsFinished(){
+  return winch->getLowerLimit();
 }

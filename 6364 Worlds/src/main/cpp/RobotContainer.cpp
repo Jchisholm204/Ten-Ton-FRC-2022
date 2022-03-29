@@ -99,7 +99,7 @@ void RobotContainer::ConfigureMasterBindings() {
 void RobotContainer::ConfigurePartnerBindings() {
 
   // Lower Winch Arm / Raise Robot
-  frc2::JoystickButton(&partner, frc::XboxController::Button::kA) && frc2::Button([this]{return !subsystem_winch.getLowerLimit();})
+  frc2::JoystickButton(&partner, frc::XboxController::Button::kA)
     .WhenHeld(new HangCommands::WinchCommands::WinchDown(&subsystem_winch));
 
   // Raise Winch Arm / Lower Robot
@@ -146,8 +146,11 @@ void RobotContainer::ConfigurePartnerBindings() {
 void RobotContainer::ConfigureJoystickBindings() {
 
    // Shoot Balls Stored within the index when the Trigger is Pressed
-  frc2::JoystickButton(&joystick, 1)
-    .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
+  (frc2::JoystickButton(&joystick, 1) &&! frc2::JoystickButton(&joystick, 2))
+    .WhenActive(new IndexCommands::ShootHigh(&subsystem_index));
+  
+  (frc2::JoystickButton(&joystick, 1) && frc2::JoystickButton(&joystick, 2))
+    .WhenActive(new IndexCommands::ShootLow(&subsystem_index));
 
 }
 

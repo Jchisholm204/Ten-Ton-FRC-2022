@@ -48,6 +48,8 @@ namespace HangCommands {
 
       void End(bool interrupted) override;
 
+      bool IsFinished() override;
+
       private:
         WinchSubsystem* winch;
     };

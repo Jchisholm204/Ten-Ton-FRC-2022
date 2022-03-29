@@ -251,7 +251,7 @@ void motorConfiguration::Talon::clawMotor(TalonFX &iMotor){
     // Apply our Motor Configuration Profile
     iMotor.ConfigAllSettings(motorConfig);
     //Set the Motor Inversion
-    iMotor.SetInverted(true);
+    iMotor.SetInverted(false);
     //Set the Motors Neutral Mode (What it does when no power is being applied)
     iMotor.SetNeutralMode(NeutralMode::Brake);
 
