@@ -6,6 +6,7 @@
 #include "Constants.h"
 #include "tools/Motors.hpp"
 #include <frc/PneumaticsModuleType.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 WinchSubsystem::WinchSubsystem() : 
     WinchMotor{RobotMap::CAN::WinchMtr}, 
@@ -57,4 +58,10 @@ void WinchSubsystem::setSolenoid(bool state){
 
 bool WinchSubsystem::getSolenoid(){
     return solenoid.Get();
+}
+
+void WinchSubsystem::Periodic(){
+    frc::SmartDashboard::PutNumber("Winch RPM", c_TalonRPM(WinchMotor.GetSelectedSensorVelocity()));
+    frc::SmartDashboard::PutNumber("Winch Amps", WinchMotor.GetSupplyCurrent());
+    frc::SmartDashboard::PutBoolean("Hang Limit", getLowerLimit());
 }

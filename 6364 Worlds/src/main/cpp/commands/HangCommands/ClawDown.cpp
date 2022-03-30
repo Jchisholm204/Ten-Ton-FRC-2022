@@ -19,11 +19,15 @@ ClawCommands::ClawDown::ClawDown(ClawSubsystem* sys_claw) : claw{sys_claw}{
 
 // Called when the command is initially scheduled.
 void ClawCommands::ClawDown::Initialize() {
-  claw->set(c_TalonUPR(1000));
+  claw->set(c_TalonUPR(3000));
 }
 
 // Called once the command ends or is interrupted.
 void ClawCommands::ClawDown::End(bool interrupted) {
   claw->resetPosition();
   claw->set(ControlMode::MotionMagic, 0);
+}
+
+bool ClawCommands::ClawDown::IsFinished(){
+  return false;//claw->getLowerLimit();
 }

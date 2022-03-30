@@ -33,7 +33,7 @@ IndexSubsystem::IndexSubsystem() :
     //topMtrPID{topMtr.GetPIDController()}
     feedColor{frc::I2C::kOnboard}
     {
-        motorConfiguration::Talon::index(botMtr, true);
+        motorConfiguration::Talon::index(botMtr, false);
         motorConfiguration::Talon::index(feedMtr, true);
         motorConfiguration::Talon::index(topMtr, true);
         //motorConfiguration::SparkMax::index(topMtrPID, topMtr, false);

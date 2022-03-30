@@ -5,10 +5,12 @@
 #include "subsystems/ClawSubsystem.hpp"
 #include "Constants.h"
 #include "tools/Motors.hpp"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 ClawSubsystem::ClawSubsystem() : 
     ClawMotor{RobotMap::CAN::ClawMtr}, 
-    Potentiometer{RobotMap::ANALOG::ClawPOT}
+    Potentiometer{RobotMap::ANALOG::ClawPOT},
+    lowerLimit{RobotMap::DIGITAL::ClawLowerLimit}
 {
     motorConfiguration::Talon::clawMotor(ClawMotor);
 }
@@ -49,5 +51,12 @@ double ClawSubsystem::getPot(){
     return Potentiometer.GetValue();
 }
 
+bool ClawSubsystem::getLowerLimit(){
+    return !lowerLimit.Get();
+}
+
 // This method will be called once per scheduler run
-void ClawSubsystem::Periodic() {}
+void ClawSubsystem::Periodic() {
+    frc::SmartDashboard::PutBoolean("Claw Limit", getLowerLimit());
+    frc::SmartDashboard::PutNumber("Claw Amps", ClawMotor.GetSupplyCurrent());
+}

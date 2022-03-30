@@ -91,6 +91,8 @@ class WinchSubsystem : public frc2::SubsystemBase {
    */
   bool getSolenoid();
 
+  void Periodic() override;
+
  private:
   TalonFX WinchMotor;
   frc::DigitalInput lowerLimit;

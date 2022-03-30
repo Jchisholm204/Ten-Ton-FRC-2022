@@ -77,6 +77,7 @@ namespace RobotMap {
         constexpr int Index_PE_top = 1;
         constexpr int Index_PE_bottom = 2;
         constexpr int Hang_Limit_LOWER = 0;
+        constexpr int ClawLowerLimit = 3;
     }//End Digital
 
     // PCM Controller IDs

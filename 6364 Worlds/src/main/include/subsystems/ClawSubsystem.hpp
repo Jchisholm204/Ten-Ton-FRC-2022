@@ -6,6 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/AnalogInput.h>
+#include <frc/DigitalInput.h>
 #include <ctre/Phoenix.h>
 
 class ClawSubsystem : public frc2::SubsystemBase {
@@ -75,6 +76,8 @@ class ClawSubsystem : public frc2::SubsystemBase {
    */
   double getPot();
 
+  bool getLowerLimit();
+
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
@@ -83,4 +86,5 @@ class ClawSubsystem : public frc2::SubsystemBase {
  private:
   TalonFX ClawMotor;
   frc::AnalogInput Potentiometer;
+  frc::DigitalInput lowerLimit;
 };
