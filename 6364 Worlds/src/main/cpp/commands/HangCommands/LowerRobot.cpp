@@ -19,7 +19,7 @@ WinchCommands::LowerRobot::LowerRobot(WinchSubsystem* sys_winch) : winch{sys_win
 
 // Called when the command is initially scheduled.
 void WinchCommands::LowerRobot::Initialize() {
-  winch->set(c_TalonUPR(3000));
+  winch->set(c_TalonUPR(4000));
 }
 
 // Called once the command ends or is interrupted.
