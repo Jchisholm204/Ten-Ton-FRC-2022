@@ -1,0 +1,62 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+#include "commands/IndexCommands/AutoIndex.hpp"
+#include "commands/IndexCommands/Index.hpp"
+#include "frc/smartdashboard/SmartDashboard.h"
+
+using namespace IndexCommands;
+
+AutoIndex::AutoIndex(IndexSubsystem* indexSubsystem) : subsystem{indexSubsystem}{
+  // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(subsystem);
+}
+
+// Called when the command is initially scheduled.
+void AutoIndex::Initialize() {
+  frc::SmartDashboard::PutString("Indexing", "Auton");
+  subsystem->setTop(0);
+}
+
+// Called repeatedly when this Command is scheduled to run
+void AutoIndex::Execute() {
+
+  // 775 Indexing Power (CTRE Percent Output)
+  double iPow = 0.6;
+
+
+  if ( subsystem->getBotPE() && codex == 1){ codex = 2; };
+  if ( subsystem->getFeedBall() && codex == 2 ){ codex = 3; };
+
+  if ( codex == 3 ){
+    subsystem->setBottom(0);
+    subsystem->setFeed(0);
+  }
+  else if ( codex == 2 ){
+    subsystem->setBottom(0);
+    subsystem->setFeed(iPow);
+  }
+  else if ( codex == 1 ){
+    subsystem->setBottom(iPow);
+    subsystem->setFeed(iPow);
+  }
+  else{
+    printf("Codex OverFlow");
+    codex = 1;
+  }
+  frc::SmartDashboard::PutNumber("Codex: ", codex);
+}
+
+// Called once the command ends or is interrupted.
+void AutoIndex::End(bool interrupted) {
+  subsystem->setTop(0);
+  subsystem->setBottom(0);
+  subsystem->setFeed(0);
+  frc::SmartDashboard::PutString("Indexing", "Disabled");
+}
+
+// Returns true when the command should end.
+bool AutoIndex::IsFinished() {
+  return false;
+}
