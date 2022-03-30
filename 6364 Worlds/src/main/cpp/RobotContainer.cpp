@@ -21,6 +21,7 @@
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc/Joystick.h>
+#include <frc2/command/RunCommand.h>
 
 frc::XboxController master(RobotMap::DriverStation::masterController);
 frc::XboxController partner(RobotMap::DriverStation::partnerController);
@@ -99,8 +100,8 @@ void RobotContainer::ConfigureMasterBindings() {
 void RobotContainer::ConfigurePartnerBindings() {
 
   // Lower Winch Arm / Raise Robot
-  frc2::JoystickButton(&partner, frc::XboxController::Button::kA)
-    .WhenHeld(new HangCommands::WinchCommands::WinchDown(&subsystem_winch));
+  (frc2::JoystickButton(&partner, frc::XboxController::Button::kA) &&! frc2::Button([this] {return subsystem_winch.getLowerLimit();}))
+    .WhileActiveContinous(new HangCommands::WinchCommands::WinchDown(&subsystem_winch));
 
   // Raise Winch Arm / Lower Robot
   frc2::JoystickButton(&partner, frc::XboxController::Button::kY)
@@ -151,6 +152,19 @@ void RobotContainer::ConfigureJoystickBindings() {
   
   (frc2::JoystickButton(&joystick, 1) && frc2::JoystickButton(&joystick, 2))
     .WhenActive(new IndexCommands::ShootLow(&subsystem_index));
+
+  frc2::JoystickButton(&joystick, 10)
+    .ToggleWhenPressed(new frc2::RunCommand([this] {
+      subsystem_index.setTop(joystick.GetRawAxis(4));
+      if(joystick.GetRawButton(12)){
+        subsystem_index.setBottom(1);
+        subsystem_index.setFeed(1);
+      }
+      else{
+        subsystem_index.setBottom(0);
+        subsystem_index.setFeed(0);
+      }
+      }));
 
 }
 
