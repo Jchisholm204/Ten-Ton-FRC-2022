@@ -60,7 +60,7 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
     //Drive to Goal
     frc2::ParallelCommandGroup{
       DriveCommands::DriveDist(driveSys, 30000, 0.07, true),
-      frc2::InstantCommand([indexSys] {indexSys->setTop(1);})
+      frc2::InstantCommand([indexSys] {indexSys->setTop(1);}, {indexSys})
     }
   );
 }

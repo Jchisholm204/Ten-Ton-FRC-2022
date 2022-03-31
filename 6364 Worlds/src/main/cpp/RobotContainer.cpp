@@ -167,6 +167,8 @@ void RobotContainer::ConfigureJoystickBindings() {
       },
       {&subsystem_index}));
 
+  // Codex Overrides
+
   frc2::JoystickButton(&joystick, 9)
     .WhenActive(new frc2::InstantCommand([this] {
       IndexCommands::codex = 1;
