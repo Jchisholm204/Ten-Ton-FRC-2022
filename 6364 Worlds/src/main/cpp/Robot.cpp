@@ -7,6 +7,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/RobotController.h>
 
 void Robot::RobotInit() {}
 
@@ -20,6 +21,8 @@ void Robot::RobotInit() {}
  */
 void Robot::RobotPeriodic() {
   frc2::CommandScheduler::GetInstance().Run();
+  frc::SmartDashboard::PutNumber("Robot AMPS", pdp.GetTotalCurrent());
+  //frc::SmartDashboard::PutNumber("FPGA AMPS", frc::RobotController::GetInputCurrent());
 }
 
 /**

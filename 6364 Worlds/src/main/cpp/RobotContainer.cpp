@@ -153,9 +153,9 @@ void RobotContainer::ConfigureJoystickBindings() {
   (frc2::JoystickButton(&joystick, 1) && frc2::JoystickButton(&joystick, 2))
     .WhenActive(new IndexCommands::ShootLow(&subsystem_index));
 
-  frc2::JoystickButton(&joystick, 10)
+  frc2::JoystickButton(&joystick, 11)
     .ToggleWhenPressed(new frc2::RunCommand([this] {
-      subsystem_index.setTop(joystick.GetRawAxis(4));
+      subsystem_index.setTop(joystick.GetRawAxis(3));
       if(joystick.GetRawButton(12)){
         subsystem_index.setBottom(1);
         subsystem_index.setFeed(1);
@@ -164,7 +164,22 @@ void RobotContainer::ConfigureJoystickBindings() {
         subsystem_index.setBottom(0);
         subsystem_index.setFeed(0);
       }
+      },
+      {&subsystem_index}));
+
+  frc2::JoystickButton(&joystick, 9)
+    .WhenActive(new frc2::InstantCommand([this] {
+      IndexCommands::codex = 1;
       }));
+  frc2::JoystickButton(&joystick, 10)
+    .WhenActive(new frc2::InstantCommand([this] {
+      IndexCommands::codex = 2;
+      }));
+  frc2::JoystickButton(&joystick, 7)
+    .WhenActive(new frc2::InstantCommand([this] {
+      IndexCommands::codex = 0;
+      }));
+
 
 }
 

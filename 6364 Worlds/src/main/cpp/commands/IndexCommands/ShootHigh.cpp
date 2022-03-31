@@ -31,8 +31,6 @@ void IndexCommands::ShootHigh::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void IndexCommands::ShootHigh::Execute() {
-
-  frc::SmartDashboard::PutNumber("fw Velocity", index->getTopVelocity());
   
   if(index->getTopVelocity() > 17000){
     index->setFeed(1);

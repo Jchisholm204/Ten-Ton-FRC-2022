@@ -117,4 +117,6 @@ void IndexSubsystem::Periodic(){
     frc::SmartDashboard::PutBoolean("Top PE", getTopPE());
     frc::SmartDashboard::PutBoolean("Bot PE", getBotPE());
     frc::SmartDashboard::PutBoolean("Feed Prox", getFeedBall());
+    frc::SmartDashboard::PutNumber("Top Indx RPM", c_TalonRPM(getTopVelocity()));
+    frc::SmartDashboard::PutNumber("Top AMPS", topMtr.GetSupplyCurrent());
 }
