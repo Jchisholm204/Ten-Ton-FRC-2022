@@ -45,7 +45,6 @@ void AutoIndex::Execute() {
     printf("Codex OverFlow");
     codex = 1;
   }
-  frc::SmartDashboard::PutNumber("Codex: ", codex);
 }
 
 // Called once the command ends or is interrupted.

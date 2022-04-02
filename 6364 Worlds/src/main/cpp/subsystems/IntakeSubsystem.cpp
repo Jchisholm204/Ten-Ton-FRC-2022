@@ -23,7 +23,7 @@ IntakeSubsystem::IntakeSubsystem() :
     rearSolenoid{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::rearIntake} 
     {
         motorConfiguration::Talon::intake(frontMtr, true);
-        motorConfiguration::Talon::intake(rearMtr, true);
+        motorConfiguration::Talon::intake(rearMtr, false);
     }
 
 void IntakeSubsystem::setFront(ControlMode mode, double mPow){

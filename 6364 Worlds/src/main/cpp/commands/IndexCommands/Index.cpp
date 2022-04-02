@@ -51,7 +51,6 @@ void Index::Execute() {
     printf("Codex OverFlow");
     codex = 0;
   }
-  frc::SmartDashboard::PutNumber("Codex: ", codex);
 }
 
 // Called once the command ends or is interrupted.

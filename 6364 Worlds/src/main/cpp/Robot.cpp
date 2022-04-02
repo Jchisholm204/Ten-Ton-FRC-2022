@@ -7,9 +7,17 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <cameraserver/CameraServer.h>
 #include <frc/RobotController.h>
+#include "commands/IndexCommands/Index.hpp"
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+  // Start the Camera Server
+  cs::UsbCamera frontCam = frc::CameraServer::StartAutomaticCapture();
+  frontCam.SetFPS(30);
+  //frontCam.SetResolution(80, 50); //160 x 120
+  frc::CameraServer::StartAutomaticCapture(frontCam);
+}
 
 /**
  * This function is called every robot packet, no matter the mode. Use
@@ -22,6 +30,7 @@ void Robot::RobotInit() {}
 void Robot::RobotPeriodic() {
   frc2::CommandScheduler::GetInstance().Run();
   frc::SmartDashboard::PutNumber("Robot AMPS", pdp.GetTotalCurrent());
+  frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
   //frc::SmartDashboard::PutNumber("FPGA AMPS", frc::RobotController::GetInputCurrent());
 }
 
