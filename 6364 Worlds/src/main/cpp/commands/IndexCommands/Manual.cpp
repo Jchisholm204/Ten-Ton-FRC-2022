@@ -11,6 +11,7 @@
  */
 #include "commands/IndexCommands/Manual.hpp"
 #include "RobotContainer.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 IndexCommands::Manual::Manual(IndexSubsystem* sys_index) : index{sys_index} {
   AddRequirements(index);
@@ -18,6 +19,9 @@ IndexCommands::Manual::Manual(IndexSubsystem* sys_index) : index{sys_index} {
 
 // Called when the command is initially scheduled.
 void IndexCommands::Manual::Initialize() {
+
+  frc::SmartDashboard::PutString("Indexing", "Manual");
+
   index->setTop(0);
   index->setBottom(0);
   index->setFeed(0);
@@ -87,6 +91,9 @@ void IndexCommands::Manual::End(bool interrupted) {
   index->setTop(0);
   index->setBottom(0);
   index->setFeed(0);
+
+  frc::SmartDashboard::PutString("Indexing", "Disabled");
+  
 }
 
 // Returns true when the command should end.

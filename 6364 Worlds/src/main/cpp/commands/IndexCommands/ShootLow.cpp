@@ -4,6 +4,7 @@
 
 #include "commands/IndexCommands/ShootLow.hpp"
 #include "commands/IndexCommands/Index.hpp"
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/Timer.h>
 #include <tools/Tools.hh>
 
@@ -16,6 +17,9 @@ ShootLow::ShootLow(IndexSubsystem* indexSubsystem) : subsystem{indexSubsystem}, 
 
 // Called when the command is initially scheduled.
 void ShootLow::Initialize() {
+
+  frc::SmartDashboard::PutString("Indexing", "Low Shot");
+
   startTime = frcTools::Time::Millis();
   isFinished = false;
 
@@ -35,6 +39,7 @@ void ShootLow::Execute() {
 
 // Called once the command ends or is interrupted.
 void ShootLow::End(bool interrupted) {
+  frc::SmartDashboard::PutString("Indexing", "Disabled");
   IndexCommands::codex = 0;
 }
 

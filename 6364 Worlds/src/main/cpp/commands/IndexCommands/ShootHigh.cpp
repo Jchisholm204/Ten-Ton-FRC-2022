@@ -20,6 +20,9 @@ IndexCommands::ShootHigh::ShootHigh(IndexSubsystem* sys_index) : index{sys_index
 
 // Called when the command is initially scheduled.
 void IndexCommands::ShootHigh::Initialize() {
+
+  frc::SmartDashboard::PutString("Indexing", "High Shot");
+
   index->setFeed(0);
   index->setBottom(0);
   index->setTopVel(c_TalonUPR(6300));
@@ -44,7 +47,9 @@ void IndexCommands::ShootHigh::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void IndexCommands::ShootHigh::End(bool interrupted) {}
+void IndexCommands::ShootHigh::End(bool interrupted) {
+  frc::SmartDashboard::PutString("Indexing", "Disabled");
+}
 
 // Returns true when the command should end.
 bool IndexCommands::ShootHigh::IsFinished() {

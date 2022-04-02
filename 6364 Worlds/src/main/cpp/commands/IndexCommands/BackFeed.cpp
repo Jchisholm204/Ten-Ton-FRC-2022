@@ -22,6 +22,9 @@ IndexCommands::BackFeed::BackFeed(IndexSubsystem* sys_index) : index{sys_index},
 
 // Called when the command is initially scheduled.
 void IndexCommands::BackFeed::Initialize() {
+
+  frc::SmartDashboard::PutString("Indexing", "BackFeed");
+
   startTime = frcTools::Time::Seconds();
   index->setTop(-0.5);
   index->setBottom(-0.6);
@@ -48,6 +51,9 @@ void IndexCommands::BackFeed::End(bool interrupted) {
     index->setBottom(0);
     index->setTop(0);
     index->setFeed(0);
+
+    frc::SmartDashboard::PutString("Indexing", "Disabled");
+
 }
 
 // Returns true when the command should end.

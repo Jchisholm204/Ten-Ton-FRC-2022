@@ -156,7 +156,11 @@ void RobotContainer::ConfigureJoystickBindings() {
   frc2::JoystickButton(&joystick, 11)
     .ToggleWhenPressed(new frc2::RunCommand([this] {
       subsystem_index.setTop((1+joystick.GetRawAxis(3))/2);
-      if(joystick.GetRawButton(12)){
+      if(joystick.GetPOV() == 0){
+        subsystem_index.setBottom(1);
+        subsystem_index.setFeed(1);
+      }
+      else  if(joystick.GetPOV() == 180){
         subsystem_index.setBottom(1);
         subsystem_index.setFeed(1);
       }
