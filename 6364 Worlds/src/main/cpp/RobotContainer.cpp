@@ -161,8 +161,8 @@ void RobotContainer::ConfigureJoystickBindings() {
         subsystem_index.setFeed(1);
       }
       else  if(joystick.GetPOV() == 180){
-        subsystem_index.setBottom(1);
-        subsystem_index.setFeed(1);
+        subsystem_index.setBottom(-1);
+        subsystem_index.setFeed(-1);
       }
       else{
         subsystem_index.setBottom(0);
