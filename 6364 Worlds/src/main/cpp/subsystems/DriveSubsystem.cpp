@@ -16,13 +16,14 @@
 
 #include "subsystems/DriveSubsystem.hpp"
 #include "tools/Motors.hpp"
+#include <frc/SPI.h>
 
 DriveSubsystem::DriveSubsystem() :
 driveRM{RobotMap::CAN::driveRM},
 driveRS{RobotMap::CAN::driveRS},
 driveLM{RobotMap::CAN::driveLM},
 driveLS{RobotMap::CAN::driveLS},
-navX{frc::I2C::kMXP} {
+navX{frc::SPI::kMXP} {
 
     motorConfiguration::Talon::rightDrive(driveRM);
     motorConfiguration::Talon::rightDrive(driveRS);

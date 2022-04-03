@@ -56,8 +56,7 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  printf("1: %i\t", color.GetProximity());
-  printf("2: %i\n", color2.GetProximity());
+  printf("2: %i\n", aio.GetValue());
 }
 
 /**

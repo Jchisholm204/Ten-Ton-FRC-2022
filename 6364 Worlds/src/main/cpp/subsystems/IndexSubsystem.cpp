@@ -31,6 +31,7 @@ IndexSubsystem::IndexSubsystem() :
     topPE{RobotMap::DIGITAL::Index_PE_top},
     bottomPE{RobotMap::DIGITAL::Index_PE_bottom},
     //topMtrPID{topMtr.GetPIDController()}
+    topColor{frc::I2C::kMXP},
     feedColor{frc::I2C::kOnboard}
     {
         motorConfiguration::Talon::index(botMtr, false);
@@ -98,7 +99,7 @@ double IndexSubsystem::getFeedOutput(){
 }
 
 bool IndexSubsystem::getTopPE(){
-    return topPE.Get();
+    return topColor.GetProximity() > 120;
 }
 
 bool IndexSubsystem::getBotPE(){
@@ -114,9 +115,11 @@ bool IndexSubsystem::getFeedBall(){
 }
 
 void IndexSubsystem::Periodic(){
-    frc::SmartDashboard::PutBoolean("Top PE", getTopPE());
-    frc::SmartDashboard::PutBoolean("Bot PE", getBotPE());
+    frc::SmartDashboard::PutBoolean("Top PE", topPE.Get());
+    frc::SmartDashboard::PutBoolean("Bot PE", bottomPE.Get());
     frc::SmartDashboard::PutBoolean("Feed Prox", getFeedBall());
+    frc::SmartDashboard::PutBoolean("Top Ball", getTopPE());
+    frc::SmartDashboard::PutNumber("Top Proxim", topColor.GetProximity());
     frc::SmartDashboard::PutNumber("Top Indx RPM", c_TalonRPM(getTopVelocity()));
     frc::SmartDashboard::PutNumber("Top AMPS", topMtr.GetSupplyCurrent());
 }

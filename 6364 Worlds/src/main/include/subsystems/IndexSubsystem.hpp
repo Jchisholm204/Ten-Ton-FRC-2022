@@ -20,7 +20,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/DigitalInput.h>
-//#include <rev/CANSparkMax.h>
+#include <frc/DigitalGlitchFilter.h>
 #include <ctre/Phoenix.h>
 #include "rev/ColorSensorV3.h"
 
@@ -135,6 +135,8 @@ class IndexSubsystem : public frc2::SubsystemBase {
 
   frc::DigitalInput topPE;
   frc::DigitalInput bottomPE; 
+
+  rev::ColorSensorV3 topColor;
 
   rev::ColorSensorV3 feedColor;
 
