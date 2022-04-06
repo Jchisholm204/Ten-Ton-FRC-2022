@@ -121,6 +121,8 @@ class DriveSubsystem : public frc2::SubsystemBase {
   //Calls ResetDisplacement()
   void resetNavPos();
 
+  void Periodic() override;
+
  private:
   TalonFX driveRM;
   TalonFX driveRS;

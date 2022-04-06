@@ -17,6 +17,7 @@
 #include "subsystems/DriveSubsystem.hpp"
 #include "tools/Motors.hpp"
 #include <frc/SPI.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 DriveSubsystem::DriveSubsystem() :
 driveRM{RobotMap::CAN::driveRM},
@@ -32,6 +33,8 @@ navX{frc::SPI::kMXP} {
 
     driveRS.Follow(driveRM);
     driveLS.Follow(driveLM);
+
+    frc::SmartDashboard::PutBoolean("Reset Gyro Readings", false);
 }
 
 void DriveSubsystem::set(ControlMode mode, double leftPow, double rightPow){
@@ -108,4 +111,25 @@ float DriveSubsystem::getNavPos(Direction d){
 
 void DriveSubsystem::resetNavPos(){
     navX.ResetDisplacement();
+}
+
+float maxPitch = 0;
+float minPitch = 0;
+
+void DriveSubsystem::Periodic(){
+    frc::SmartDashboard::PutNumber("Gyro Tilt", navX.GetRoll());
+    frc::SmartDashboard::PutNumber("Max Tilt", maxPitch);
+    frc::SmartDashboard::PutNumber("Min Tilt", minPitch);
+    if(navX.GetRoll() > maxPitch){
+        maxPitch = navX.GetRoll();
+    }
+    if(navX.GetRoll() < minPitch){
+        minPitch = navX.GetRoll();
+    }
+
+    if(frc::SmartDashboard::GetBoolean("Reset Gyro Readings", false) == true){
+        maxPitch = 0;
+        minPitch = 0;
+         frc::SmartDashboard::PutBoolean("Reset Gyro Readings", false);
+    }
 }
