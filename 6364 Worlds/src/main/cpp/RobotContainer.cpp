@@ -108,11 +108,14 @@ void RobotContainer::ConfigurePartnerBindings() {
     .WhenHeld(new HangCommands::WinchCommands::LowerRobot(&subsystem_winch));
 
   // Manual Claw Movement - Raise Claw / Release Bar
-  frc2::JoystickButton(&partner, frc::XboxController::Button::kB)
-    .WhenHeld(new HangCommands::ClawCommands::ClawUp(&subsystem_claw));
+  (frc2::JoystickButton(&partner, frc::XboxController::Button::kB)
+  &&! frc2::Button([this] {return subsystem_claw.getPot() > 3590;}))
+    .WhileActiveContinous(new HangCommands::ClawCommands::ClawUp(&subsystem_claw));
 
   // Manual Claw Movement - Lower Claw / Grab Bar
-  (frc2::JoystickButton(&partner, frc::XboxController::Button::kX) &&! frc2::Button([this] {return subsystem_claw.getLowerLimit();}))
+  (frc2::JoystickButton(&partner, frc::XboxController::Button::kX)
+  &&! frc2::Button([this] {return subsystem_claw.getPot() < 800;})
+  &&! frc2::Button([this] {return subsystem_claw.getLowerLimit();}))
     .WhileActiveContinous(new HangCommands::ClawCommands::ClawDown(&subsystem_claw));
 
   /**

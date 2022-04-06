@@ -59,4 +59,6 @@ bool ClawSubsystem::getLowerLimit(){
 void ClawSubsystem::Periodic() {
     frc::SmartDashboard::PutBoolean("Claw Limit", getLowerLimit());
     frc::SmartDashboard::PutNumber("Claw Amps", ClawMotor.GetSupplyCurrent());
+    frc::SmartDashboard::PutNumber("Claw Pot", getPot());
+    frc::SmartDashboard::PutNumber("Claw Position", (1-((getPot()-840)/2800))*100);
 }

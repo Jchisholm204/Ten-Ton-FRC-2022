@@ -55,12 +55,12 @@ namespace RobotMap {
         constexpr int driveLM = 2; //changeTo ~ 2
         constexpr int driveLS = 3; //changeTo ~ 12
 
-        constexpr int TopIndex = 1; //changeTo ~ 5 (Going to be a NEO motor anyways)
+        constexpr int TopIndex = 11; //changeTo ~ 5 (Going to be a NEO motor anyways)
         constexpr int BottomIndex = 7; //changeTo ~ 6
         constexpr int FeedIndex = 8; //changeTo ~ 7
 
         constexpr int WinchMtr = 10; //changeTo ~ 3
-        constexpr int ClawMtr = 11; //
+        constexpr int ClawMtr = 1; //
 
         constexpr int PDP = 0;
         constexpr int PCM = 0;
