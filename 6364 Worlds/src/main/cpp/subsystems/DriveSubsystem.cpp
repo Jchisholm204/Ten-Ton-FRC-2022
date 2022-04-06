@@ -113,11 +113,12 @@ void DriveSubsystem::resetNavPos(){
     navX.ResetDisplacement();
 }
 
-float maxPitch = 0;
-float minPitch = 0;
+//float maxPitch = 0;
+//float minPitch = 0;
 
 void DriveSubsystem::Periodic(){
     frc::SmartDashboard::PutNumber("Gyro Tilt", navX.GetRoll());
+    /*
     frc::SmartDashboard::PutNumber("Max Tilt", maxPitch);
     frc::SmartDashboard::PutNumber("Min Tilt", minPitch);
     if(navX.GetRoll() > maxPitch){
@@ -131,5 +132,5 @@ void DriveSubsystem::Periodic(){
         maxPitch = 0;
         minPitch = 0;
          frc::SmartDashboard::PutBoolean("Reset Gyro Readings", false);
-    }
+    }*/
 }

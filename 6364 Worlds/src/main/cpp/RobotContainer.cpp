@@ -18,6 +18,7 @@
 
 #include "RobotContainer.h"
 #include "Constants.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc/Joystick.h>
@@ -109,12 +110,13 @@ void RobotContainer::ConfigurePartnerBindings() {
 
   // Manual Claw Movement - Raise Claw / Release Bar
   (frc2::JoystickButton(&partner, frc::XboxController::Button::kB)
-  &&! frc2::Button([this] {return subsystem_claw.getPot() > 3590;}))
+  &&! frc2::Button([this] {return subsystem_claw.getVirtualLimit() == -1;})
+  &&! frc2::Button([this] {return subsystem_claw.getUpperLimit();}))
     .WhileActiveContinous(new HangCommands::ClawCommands::ClawUp(&subsystem_claw));
 
   // Manual Claw Movement - Lower Claw / Grab Bar
   (frc2::JoystickButton(&partner, frc::XboxController::Button::kX)
-  &&! frc2::Button([this] {return subsystem_claw.getPot() < 800;})
+  &&! frc2::Button([this] {return subsystem_claw.getVirtualLimit() == 1;})
   &&! frc2::Button([this] {return subsystem_claw.getLowerLimit();}))
     .WhileActiveContinous(new HangCommands::ClawCommands::ClawDown(&subsystem_claw));
 
@@ -179,14 +181,17 @@ void RobotContainer::ConfigureJoystickBindings() {
   frc2::JoystickButton(&joystick, 9)
     .WhenActive(new frc2::InstantCommand([this] {
       IndexCommands::codex = 1;
+      frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
       }));
   frc2::JoystickButton(&joystick, 10)
     .WhenActive(new frc2::InstantCommand([this] {
       IndexCommands::codex = 2;
+      frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
       }));
   frc2::JoystickButton(&joystick, 7)
     .WhenActive(new frc2::InstantCommand([this] {
       IndexCommands::codex = 0;
+      frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
       }));
 
 

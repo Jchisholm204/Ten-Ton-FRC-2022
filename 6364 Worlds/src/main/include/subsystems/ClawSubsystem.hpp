@@ -76,7 +76,36 @@ class ClawSubsystem : public frc2::SubsystemBase {
    */
   double getPot();
 
+  /**
+   * @brief Get the Scaled Position of the Claw
+   * 
+   * @return The Scaled Position [0, 100], [top, bottom]
+   */
+  double getScaledPosition();
+
+  /**
+   * @brief Get the Claws Virtual Limit
+   * 
+   * @returns 
+   *  -1 if the claw has reached the upper limit :
+   *  0 if the claw is within bounds :
+   *  1 if the claw has reached the lower limit
+   */
+  int getVirtualLimit();
+
+  /**
+   * @brief Get the Claws Lower Limit
+   * 
+   * @returns TRUE if the Limit is Pressed
+   */
   bool getLowerLimit();
+
+  /**
+   * @brief Get the Claws Upper Limit
+   * 
+   * @returns TRUE if the Limit is Pressed
+   */
+  bool getUpperLimit();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -87,4 +116,5 @@ class ClawSubsystem : public frc2::SubsystemBase {
   TalonFX ClawMotor;
   frc::AnalogInput Potentiometer;
   frc::DigitalInput lowerLimit;
+  frc::DigitalInput upperLimit;
 };

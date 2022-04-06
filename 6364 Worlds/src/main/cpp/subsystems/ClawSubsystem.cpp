@@ -10,7 +10,8 @@
 ClawSubsystem::ClawSubsystem() : 
     ClawMotor{RobotMap::CAN::ClawMtr}, 
     Potentiometer{RobotMap::ANALOG::ClawPOT},
-    lowerLimit{RobotMap::DIGITAL::ClawLowerLimit}
+    lowerLimit{RobotMap::DIGITAL::ClawLowerLimit},
+    upperLimit{RobotMap::DIGITAL::ClawUpperLimit}
 {
     motorConfiguration::Talon::clawMotor(ClawMotor);
 }
@@ -51,8 +52,27 @@ double ClawSubsystem::getPot(){
     return Potentiometer.GetValue();
 }
 
+double ClawSubsystem::getScaledPosition(){
+    return (1-((getPot()-840)/2800))*100;
+}
+
+int ClawSubsystem::getVirtualLimit(){
+    int virtualLimit = 0;
+    if(getPot() > 3590){
+        virtualLimit = -1;
+    }
+    if(getPot() < 800){
+        virtualLimit = 1;
+    }
+    return virtualLimit;
+}
+
 bool ClawSubsystem::getLowerLimit(){
     return !lowerLimit.Get();
+}
+
+bool ClawSubsystem::getUpperLimit(){
+    return !upperLimit.Get();
 }
 
 // This method will be called once per scheduler run
@@ -60,5 +80,5 @@ void ClawSubsystem::Periodic() {
     frc::SmartDashboard::PutBoolean("Claw Limit", getLowerLimit());
     frc::SmartDashboard::PutNumber("Claw Amps", ClawMotor.GetSupplyCurrent());
     frc::SmartDashboard::PutNumber("Claw Pot", getPot());
-    frc::SmartDashboard::PutNumber("Claw Position", (1-((getPot()-840)/2800))*100);
+    frc::SmartDashboard::PutNumber("Claw Position", getScaledPosition());
 }
