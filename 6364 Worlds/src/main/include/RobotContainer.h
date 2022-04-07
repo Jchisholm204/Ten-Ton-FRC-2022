@@ -75,4 +75,6 @@ class RobotContainer {
 
     // Declare our Auto as part of RobotContainer
     AutonCommand simpleAuto{&subsystem_drive, &subsystem_intake, &subsystem_index, &subsystem_limelight};
+
+    IndexCommands::Index indexCommand{&subsystem_index};
 };

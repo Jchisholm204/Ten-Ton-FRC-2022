@@ -55,7 +55,7 @@ RobotContainer::RobotContainer() {
   ConfigureJoystickBindings();
 
   // Set Default Commands for Subsystems
-  subsystem_index.SetDefaultCommand(IndexCommands::Index(&subsystem_index));
+  subsystem_index.SetDefaultCommand(indexCommand);
   subsystem_drive.SetDefaultCommand(DriveCommands::OpDrive(&subsystem_drive));
   subsystem_intake.SetDefaultCommand(IntakeCommands::OpIntake(&subsystem_intake));
   subsystem_winch.SetDefaultCommand(HangCommands::PneumaticControl(&subsystem_winch));
@@ -123,8 +123,7 @@ void RobotContainer::ConfigurePartnerBindings() {
   /**
    * @brief Index Toggle Command
    * Note: Shoot Commands will override this command,
-   *       Upon Exiting a shoot command, the Indexing command will resume
-   *       To continue manual operation, the partner controller will have to re-enable the override
+   *       Upon Exiting a shoot command, the Automatic Indexing NOT resume
    * 
    * Allow the partner controller to toggle between indexing modes
    * 
@@ -135,7 +134,16 @@ void RobotContainer::ConfigurePartnerBindings() {
    *                IndexCommands/Manual
    */
   frc2::JoystickButton(&partner, frc::XboxController::Button::kLeftBumper)
-    .ToggleWhenPressed(IndexCommands::Manual(&subsystem_index));
+    .WhenPressed(frc2::InstantCommand([this] {
+
+      if(indexCommand.IsScheduled()){
+        subsystem_index.SetDefaultCommand(IndexCommands::Manual(&subsystem_index));
+      }
+      else{
+        subsystem_index.SetDefaultCommand(indexCommand);
+      }
+
+      }));
 
 }
 
