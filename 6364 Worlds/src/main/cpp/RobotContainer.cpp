@@ -202,6 +202,11 @@ void RobotContainer::ConfigureJoystickBindings() {
       frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
       }));
 
+  frc2::JoystickButton(&joystick, 8)
+    .ToggleWhenActive(new frc2::RunCommand([this]{
+      subsystem_drive.set(ControlMode::PercentOutput, 
+      -(joystick.GetZ()-joystick.GetY()), -(joystick.GetZ()+joystick.GetY()));
+    }, {&subsystem_drive}));
 
 }
 
