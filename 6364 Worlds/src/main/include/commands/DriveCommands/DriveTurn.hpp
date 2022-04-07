@@ -9,6 +9,11 @@
 
 #include "subsystems/DriveSubsystem.hpp"
 
+/**
+ * @brief DriveCommands Namespace
+ * 
+ * Acts as a group for all of the commands that interact with mainly the drivebase
+ */
 namespace DriveCommands{
 
   class DriveTurn
