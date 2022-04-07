@@ -46,5 +46,6 @@ namespace DriveCommands{
 
     private:
       bool isFinished;
+      DriveSubsystem* drive;
   };
 }// End DriveCommands

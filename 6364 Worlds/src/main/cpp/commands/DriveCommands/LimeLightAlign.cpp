@@ -14,14 +14,16 @@ DriveCommands::LimeLightAlign::LimeLightAlign(LimeLightSubsystem* limelight, Dri
           // This uses the output
           [sys_drive](double output) {
             sys_drive->set(ControlMode::PercentOutput, output, -output);
-          }), isFinished{!limelight->hasTarget()} {
+          }), isFinished{!limelight->hasTarget()}, drive{sys_drive} {
             AddRequirements(sys_drive);
             AddRequirements(limelight);
+            m_controller.DisableContinuousInput();
             m_controller.SetTolerance(Tolerance, endVelocity);
             
           }
 
 // Returns true when the command should end.
 bool DriveCommands::LimeLightAlign::IsFinished() {
-  return GetController().AtSetpoint() && isFinished;
+  drive->set(0);
+  return GetController().AtSetpoint() || isFinished;
 }
