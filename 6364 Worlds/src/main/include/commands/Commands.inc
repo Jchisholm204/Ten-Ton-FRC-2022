@@ -18,6 +18,7 @@
 #include "commands/IndexCommands/ShootHigh.hpp"
 #include "commands/IndexCommands/Stop.hpp"
 #include "commands/IndexCommands/Manual.hpp"
+#include "commands/IndexCommands/AutoIndex.hpp"
 
 // Auton Commands
 #include "commands/AutonCommand.hpp"

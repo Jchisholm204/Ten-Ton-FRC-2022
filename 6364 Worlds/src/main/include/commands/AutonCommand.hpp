@@ -14,10 +14,11 @@
 #include "subsystems/DriveSubsystem.hpp"
 #include "subsystems/IntakeSubsystem.hpp"
 #include "subsystems/IndexSubsystem.hpp"
+#include "subsystems/LimeLightSubsystem.h"
 
 class AutonCommand
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  AutonCommand> {
  public:
-  AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys, IndexSubsystem* indexSys);
+  AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys, IndexSubsystem* indexSys, LimeLightSubsystem* limelight);
 };

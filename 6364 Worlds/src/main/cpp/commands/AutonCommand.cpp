@@ -5,10 +5,7 @@
 
 // Include all of Our Commands
 #include "commands/AutonCommand.hpp"
-#include "commands/DriveCommands/DriveDist.hpp"
-#include "commands/IntakeCommands/Intake.hpp"
-#include "commands/IndexCommands/ShootLow.hpp"
-#include "commands/IndexCommands/AutoIndex.hpp"
+#include "commands/Commands.inc"
 
 // Include all of the WPI Command Group Types
 #include <frc2/command/SequentialCommandGroup.h>
@@ -48,19 +45,29 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
 
 }
 */
-AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys, IndexSubsystem* indexSys) {
+AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys, IndexSubsystem* indexSys, LimeLightSubsystem* limelight) {
   AddCommands(
-        // Lower Rear Intake, Drive Backwards while Indexing
+
+    // Spin up top Indexer
+    frc2::InstantCommand([indexSys] {indexSys->setTop(1);}, {indexSys}),
+    // Drive to Shooting Position
+    DriveCommands::DriveDist(driveSys, -20, 0.07, true),
+    // Wait for Speed and Shoot First Ball High
+    IndexCommands::ShootHigh(indexSys),
+
+    // Lower Rear Intake, Drive Backwards while Indexing
     IntakeCommands::Intake(intakeSys, true, false, true),
     frc2::ParallelRaceGroup{
-      DriveCommands::DriveDist(driveSys, 30000, 0.07, true),
+      DriveCommands::DriveDist(driveSys, -45, 0.07, true),
       IndexCommands::AutoIndex(indexSys)
     },
 
-    //Drive to Goal
+    //  Drive Back to Shooting Position
     frc2::ParallelCommandGroup{
-      DriveCommands::DriveDist(driveSys, 30000, 0.07, true),
+      DriveCommands::DriveDist(driveSys, 45, 0.07, true),
       frc2::InstantCommand([indexSys] {indexSys->setTop(1);}, {indexSys})
-    }
+    },
+    // Shoot High - Second Ball
+    IndexCommands::ShootHigh(indexSys)
   );
 }

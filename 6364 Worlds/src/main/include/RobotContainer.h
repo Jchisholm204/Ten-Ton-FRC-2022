@@ -31,6 +31,7 @@
 #include "subsystems/IntakeSubsystem.hpp"
 #include "subsystems/WinchSubsystem.hpp"
 #include "subsystems/ClawSubsystem.hpp"
+#include "subsystems/LimeLightSubsystem.h"
 
 // Include Commands
 #include "commands/Commands.inc"
@@ -70,7 +71,8 @@ class RobotContainer {
     IntakeSubsystem subsystem_intake;
     WinchSubsystem subsystem_winch;
     ClawSubsystem subsystem_claw;
+    LimeLightSubsystem subsystem_limelight;
 
     // Declare our Auto as part of RobotContainer
-    AutonCommand simpleAuto{&subsystem_drive, &subsystem_intake, &subsystem_index};
+    AutonCommand simpleAuto{&subsystem_drive, &subsystem_intake, &subsystem_index, &subsystem_limelight};
 };
