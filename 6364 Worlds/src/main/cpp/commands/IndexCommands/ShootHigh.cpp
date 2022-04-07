@@ -29,16 +29,21 @@ void IndexCommands::ShootHigh::Initialize() {
 
   startTime = frcTools::Time::Millis();
   isFinished = false;
+  reachedRPM = false;
   IndexCommands::codex = 0;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void IndexCommands::ShootHigh::Execute() {
   
-  if(index->getTopVelocity() > 17000){
-    index->setFeed(1);
+  if(index->getTopVelocity() > 17000 && reachedRPM == false){
     index->setBottom(1);
     reachedRPM = true;
+    spinUpTime = frcTools::Time::Millis();
+  }
+
+  if(reachedRPM && (spinUpTime + 250 < frcTools::Time::Millis())){
+    index->setFeed(1);
   }
 
   if(frcTools::Time::Millis() > startTime + 3000){

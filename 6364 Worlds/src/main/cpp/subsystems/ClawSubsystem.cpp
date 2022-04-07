@@ -61,7 +61,7 @@ int ClawSubsystem::getVirtualLimit(){
     if(getPot() > 3590){
         virtualLimit = -1;
     }
-    if(getPot() < 800){
+    if(getPot() < 811){
         virtualLimit = 1;
     }
     return virtualLimit;

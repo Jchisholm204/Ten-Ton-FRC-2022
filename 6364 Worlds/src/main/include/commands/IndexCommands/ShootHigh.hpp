@@ -47,5 +47,6 @@ namespace IndexCommands{
       bool isFinished;
       bool reachedRPM;
       double startTime;
+      double spinUpTime;
   };
 }

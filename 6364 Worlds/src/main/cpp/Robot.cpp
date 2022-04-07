@@ -29,8 +29,7 @@ void Robot::RobotInit() {
  */
 void Robot::RobotPeriodic() {
   frc2::CommandScheduler::GetInstance().Run();
-  frc::SmartDashboard::PutNumber("Robot AMPS", pdp.GetTotalCurrent());
-  frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
+  //frc::SmartDashboard::PutNumber("Robot AMPS", pdp.GetTotalCurrent());
   //frc::SmartDashboard::PutNumber("FPGA AMPS", frc::RobotController::GetInputCurrent());
 }
 
@@ -78,7 +77,9 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
+}
 
 /**
  * This function is called periodically during test mode.
