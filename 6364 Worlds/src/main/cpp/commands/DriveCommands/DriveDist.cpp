@@ -30,7 +30,7 @@ DriveCommands::DriveDist::DriveDist(DriveSubsystem* DriveSubsystem, double dista
   double dInches = distance;
 
   // DriveBase Wheel Radius
-  double WheelRadius = 4.8; // inches
+  double WheelRadius = 6; // inches
   // Motor rotations required for one wheel rotation
   double gearBoxRatio = 18; //18 rotations of the motor for one rotation of the wheel
 
