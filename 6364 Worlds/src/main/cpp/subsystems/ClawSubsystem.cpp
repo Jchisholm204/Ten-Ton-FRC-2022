@@ -58,10 +58,10 @@ double ClawSubsystem::getScaledPosition(){
 
 int ClawSubsystem::getVirtualLimit(){
     int virtualLimit = 0;
-    if(getPot() > 3590){
+    if(getPot() > kHang::Claw::PotLowerLimit){
         virtualLimit = -1;
     }
-    if(getPot() < 811){
+    if(getPot() < kHang::Claw::PotUpperLimit){
         virtualLimit = 1;
     }
     return virtualLimit;

@@ -112,19 +112,18 @@ namespace kIndex {
 
 }//End kIndex
 
-// Autos Available to be Selected through SmartDashboard
-// Otherwise known as Linker
-namespace auton_s {
-    // No Auto // Empty
-    constexpr int NoAuto = 0;
-    // No Auto // Empty
-    constexpr int Empty = NoAuto;
+namespace kHang {
 
-    constexpr int simpleLowGoal = 1;
-    constexpr int simpleHighGoal = 2;
-    constexpr int taxi = 3;
+    namespace Claw{
+        
+        // The Claw Potentiometer Should Never Read BELOW This Number
+        constexpr int PotUpperLimit = 811;
+        // The Claw Potentiometer Should Never Read ABOVE This Number
+        constexpr int PotLowerLimit = 3590;
 
-}//End auton_s
+    }// End Claw
+
+} // End kHang
 
 //Macro to convert Talon FX encoder Units Per Rotation (UPR) into Rotations Per Minute (RPM)
 #define c_TalonRPM(upr) (upr*600/2408)

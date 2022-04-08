@@ -110,13 +110,11 @@ void RobotContainer::ConfigurePartnerBindings() {
 
   // Manual Claw Movement - Raise Claw / Release Bar
   (frc2::JoystickButton(&partner, frc::XboxController::Button::kB)
-  &&! frc2::Button([this] {return subsystem_claw.getVirtualLimit() == -1;})
   &&! frc2::Button([this] {return subsystem_claw.getUpperLimit();}))
     .WhileActiveContinous(new HangCommands::ClawCommands::ClawUp(&subsystem_claw));
 
   // Manual Claw Movement - Lower Claw / Grab Bar
   (frc2::JoystickButton(&partner, frc::XboxController::Button::kX)
-  &&! frc2::Button([this] {return subsystem_claw.getVirtualLimit() == 1;})
   &&! frc2::Button([this] {return subsystem_claw.getLowerLimit();}))
     .WhileActiveContinous(new HangCommands::ClawCommands::ClawDown(&subsystem_claw));
 

@@ -1,7 +1,7 @@
 /**
- * @file LowerRobot.hpp
+ * @file ClawDown.hpp
  * @author Jacob Chisholm
- * @brief Raise The Winch (lower the robot) and Hold the Position
+ * @brief Lower The Claw (Grab The Bar) and Hold the Position
  * @date 2022-03-21
  * 
  * @copyright Copyright (c) 2022
@@ -22,12 +22,23 @@ void ClawCommands::ClawDown::Initialize() {
   claw->set(c_TalonUPR(3000));
 }
 
+// Called every Scheduler Call
+void ClawCommands::ClawDown::Execute() {
+  if(claw->getPot() > kHang::Claw::PotLowerLimit){
+    claw->set(c_TalonUPR(-1000));
+  }
+  else{
+    claw->set(c_TalonUPR(-3000));
+  }
+}
+
 // Called once the command ends or is interrupted.
 void ClawCommands::ClawDown::End(bool interrupted) {
   claw->resetPosition();
   claw->set(ControlMode::MotionMagic, 0);
 }
 
+// Returns True When The Command Should End
 bool ClawCommands::ClawDown::IsFinished(){
   return false;//claw->getLowerLimit();
 }

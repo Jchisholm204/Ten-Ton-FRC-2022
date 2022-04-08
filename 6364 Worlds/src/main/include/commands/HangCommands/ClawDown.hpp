@@ -1,7 +1,7 @@
 /**
- * @file LowerRobot.hpp
+ * @file ClawDown.hpp
  * @author Jacob Chisholm
- * @brief Raise The Winch (lower the robot) and Hold the Position
+ * @brief Lower The Claw (Grab The Bar) and Hold the Position
  * @date 2022-03-21
  * 
  * @copyright Copyright (c) 2022
@@ -43,6 +43,8 @@ namespace HangCommands {
       ClawDown(ClawSubsystem* sys_claw);
 
       void Initialize() override;
+
+      void Execute() override;
 
       void End(bool interrupted) override;
 
