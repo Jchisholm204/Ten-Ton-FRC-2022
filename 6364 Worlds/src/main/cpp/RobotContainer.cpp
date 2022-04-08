@@ -198,7 +198,7 @@ void RobotContainer::ConfigureJoystickBindings() {
   frc2::JoystickButton(&joystick, 8)
     .ToggleWhenActive(new frc2::RunCommand([this]{
       subsystem_drive.set(ControlMode::PercentOutput, 
-      (joystick.GetY()-joystick.GetZ())*-0.2, (joystick.GetY()+joystick.GetZ())*-0.2);
+      (joystick.GetY()-joystick.GetX())*-0.25, (joystick.GetY()+joystick.GetX())*-0.25);
     }, {&subsystem_drive}));
 
 }
