@@ -22,8 +22,9 @@
  */
 
 #include "commands/DriveCommands/DriveDist.hpp"
+#include "tools/Tools.hh"
 
-DriveCommands::DriveDist::DriveDist(DriveSubsystem* DriveSubsystem, double distance, double error, bool reset) : drive{DriveSubsystem}, resetEnc{reset}, driveDist{distance}, dError{error}, cmdFinished{false}{
+DriveCommands::DriveDist::DriveDist(DriveSubsystem* DriveSubsystem, double distance, double timeout, bool reset) : drive{DriveSubsystem}, resetEnc{reset}, driveDist{distance}, timeout{timeout}{
   AddRequirements(drive);
 
   double dInches = distance;
@@ -41,7 +42,7 @@ DriveCommands::DriveDist::DriveDist(DriveSubsystem* DriveSubsystem, double dista
 
   // Convert wheel rotations to Encoder Units by multiplying it by 2408 (one full rotation in encoder units)
   // And Scale it according to the Gear Box Ratio
-  distance = rotations * 2408 * gearBoxRatio;
+  driveDist = rotations * 2408 * gearBoxRatio;
 
   //distance = (dInches * (2408 * gearBoxRatio)) / WheelCircumference;
 
@@ -53,12 +54,13 @@ void DriveCommands::DriveDist::Initialize() {
     drive->resetDrive();
   }
   drive->set(ControlMode::MotionMagic, driveDist);
+  cmdFinished = false;
+  startTime = frcTools::Time::Millis();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void DriveCommands::DriveDist::Execute() {
-  if(drive->getPos() > (driveDist*(1-dError)) && drive->getPos() < (driveDist*(1+dError)))
-  {
+  if(startTime + timeout < frcTools::Time::Millis()){
     cmdFinished = true;
   }
 }

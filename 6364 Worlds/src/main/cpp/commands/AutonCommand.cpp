@@ -50,23 +50,38 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
 
     // Spin up top Indexer
     frc2::InstantCommand([indexSys] {indexSys->setTop(1);}, {indexSys}),
-    // Drive to Shooting Position
-    DriveCommands::DriveDist(driveSys, -20, 0.07, true),
+
     // Wait for Speed and Shoot First Ball High
     IndexCommands::ShootHigh(indexSys),
 
     // Lower Rear Intake, Drive Backwards while Indexing
-    IntakeCommands::Intake(intakeSys, true, false, true),
+    frc2::InstantCommand([intakeSys]{
+      intakeSys->lower(false, true);
+      intakeSys->setRear(1);
+      }, {intakeSys}),
+
+    // Drive to Ball
     frc2::ParallelRaceGroup{
-      DriveCommands::DriveDist(driveSys, -45, 0.07, true),
+      DriveCommands::DriveDist(driveSys, -45, 5000, true),
       IndexCommands::AutoIndex(indexSys)
     },
 
+    // Set up Indexers for Shot
+    frc2::InstantCommand([indexSys] {
+      indexSys->setTop(1);
+      indexSys->setBottom(0);
+      indexSys->setFeed(0);
+      }, {indexSys}),
+
     //  Drive Back to Shooting Position
-    frc2::ParallelCommandGroup{
-      DriveCommands::DriveDist(driveSys, 45, 0.07, true),
-      frc2::InstantCommand([indexSys] {indexSys->setTop(1);}, {indexSys})
-    },
+    DriveCommands::DriveDist(driveSys, 0, 5000, false),
+
+    // Raise Intake
+    frc2::InstantCommand([intakeSys]{
+      intakeSys->lower(false, false);
+      intakeSys->setRear(0);
+      }, {intakeSys}),
+
     // Shoot High - Second Ball
     IndexCommands::ShootHigh(indexSys)
   );

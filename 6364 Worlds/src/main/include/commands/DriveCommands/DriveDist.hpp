@@ -43,11 +43,11 @@ namespace DriveCommands{
      * 
      * @param DriveSubsystem Pass for the Robots DriveSubsystem
      * @param distance The Distance to drive (in inches) 
-     * @param error Percent error [0,1] : Best between 0.1 and 0.05
+     * @param timeout The Command TimeOut
      * @param reset TRUE to reset the drivebase encoders
      * @returns TRUE when drivebase encoder read within Error
      */
-    DriveDist(DriveSubsystem* DriveSubsystem, double distance, double error, bool reset);
+    DriveDist(DriveSubsystem* DriveSubsystem, double distance, double timeout, bool reset);
 
     void Initialize() override;
 
@@ -61,8 +61,9 @@ namespace DriveCommands{
     DriveSubsystem* drive;
     bool resetEnc;
     double driveDist;
-    double dError;
     bool cmdFinished;
+    double startTime;
+    double timeout;
 };
   
 } // namespace DriveCommands
