@@ -1,3 +1,26 @@
+/**
+ * @file WinchSubsystem.hpp
+ * @author Jacob Chisholm
+ * @brief Winch Subsystem
+ * @version 1.1
+ * @date 2022-04-08
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ * Winch Subsystem:
+ *  Designed for the Ten Ton Robotics 2022 FRC Robot,
+ *  Contains one (1) Falcon 500 Motor acting as the Winch
+ *  Contains one (1) Single Action solenoid for Raising the Hook Bar
+ *  Contains one (1) Lower Bound Limit Switch used to stop the winch fom pulling down to far
+ *  
+ *  Works in parallel with the Claw Subsystem
+ * 
+ *  Default Command:
+ *    HangCommands/Pneumatic Control
+ *          - Controller Operation to fire the single action solenoid
+ * 
+ */
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.

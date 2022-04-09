@@ -2,6 +2,7 @@
  * @file PneumaticControl.cpp
  * @author Jacob Chisholm
  * @brief Partner Control of Hang Pneumatics System
+ * @version 1.0
  * @date 2022-03-22
  * 
  * @copyright Copyright (c) 2022
