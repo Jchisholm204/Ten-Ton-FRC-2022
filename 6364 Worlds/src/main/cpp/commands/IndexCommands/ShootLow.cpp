@@ -5,6 +5,7 @@
 #include "commands/IndexCommands/ShootLow.hpp"
 #include "commands/IndexCommands/Index.hpp"
 #include <frc/smartdashboard/SmartDashboard.h>
+#include "RobotContainer.h"
 #include <frc/Timer.h>
 #include <tools/Tools.hh>
 
@@ -28,6 +29,8 @@ void ShootLow::Initialize() {
   subsystem->setTop(0.55);
   subsystem->setBottom(1);
   IndexCommands::codex = 0;
+
+  compressor.Disable();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -41,6 +44,7 @@ void ShootLow::Execute() {
 void ShootLow::End(bool interrupted) {
   frc::SmartDashboard::PutString("Indexing", "Disabled");
   IndexCommands::codex = 0;
+  compressor.EnableDigital();
 }
 
 // Returns true when the command should end.
