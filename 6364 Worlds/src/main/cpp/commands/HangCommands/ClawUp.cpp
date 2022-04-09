@@ -2,6 +2,7 @@
  * @file ClawUp.hpp
  * @author Jacob Chisholm
  * @brief Raise The Claw (Release the bar) and Hold the Position
+ * @version 2.2
  * @date 2022-03-21
  * 
  * @copyright Copyright (c) 2022

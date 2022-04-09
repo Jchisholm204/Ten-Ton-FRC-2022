@@ -1,6 +1,7 @@
 /** Constants.h
  * @author Jchisholm204
  * @date 3/12/2022
+ * @version 2.32
  * 
  * @brief Constants.h
  * Used to Store Various Information about the robot and its mechanisms
@@ -10,6 +11,8 @@
  * @namespace RobotMap - Stores all of the CAN id's, Sensor Ports, PCM ports, and Controller Ports on the { @link } driverstation
  * 
  * @namespace indexConstants - Stores Constants for the Index System
+ * 
+ * @namespace kHang - Stores all of the Constant Variables associated with the hang
  * 
  */
 
