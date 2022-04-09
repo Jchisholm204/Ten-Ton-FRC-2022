@@ -1,39 +1,43 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Top Ball Color" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="186" y="52"/>
+	</widget>
 	<widget field="Compressor" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="211" y="235"/>
+		<location x="13" y="100"/>
 	</widget>
 	<widget field="Feed Proxim" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="160" y="92"/>
+		<location x="190" y="124"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="63" y="238"/>
+		<location x="438" y="224"/>
 		<property name="Text" value="Low: 811"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="63" y="220"/>
+		<location x="437" y="209"/>
 		<property name="Text" value="High: 3660"/>
 	</static-widget>
 	<widget field="Reset Gyro Readings" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="349" y="89"/>
+		<location x="44" y="245"/>
+		<height>19</height>
 	</widget>
 	<widget field="Gyro Tilt" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="405" y="65"/>
+		<location x="102" y="223"/>
 	</widget>
 	<widget field="Claw Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="177"/>
+		<location x="376" y="161"/>
 	</widget>
 	<widget field="Claw Pot" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="21" y="198"/>
+		<location x="394" y="184"/>
 	</widget>
 	<widget field="Indexing" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="25" y="0"/>
 	</widget>
 	<widget field="Top Ball" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="180" y="47"/>
+		<location x="211" y="5"/>
 	</widget>
 	<widget field="Top Proxim" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="166" y="28"/>
+		<location x="197" y="28"/>
 	</widget>
 	<widget field="Top AMPS" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="17" y="72"/>
@@ -42,31 +46,32 @@
 		<location x="0" y="44"/>
 	</widget>
 	<widget field="Claw Amps" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="13" y="130"/>
+		<location x="387" y="115"/>
 	</widget>
 	<widget field="Claw Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="17" y="154"/>
+		<location x="390" y="138"/>
 	</widget>
 	<widget field="Hang Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="219" y="184"/>
+		<location x="392" y="61"/>
 	</widget>
 	<widget field="Winch Amps" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="211" y="161"/>
+		<location x="383" y="35"/>
 	</widget>
 	<widget field="Winch RPM" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="219" y="139"/>
+		<location x="391" y="10"/>
 	</widget>
 	<widget field="Codex: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="27" y="22"/>
 	</widget>
 	<widget field="Feed Prox" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="171" y="111"/>
+		<location x="203" y="147"/>
 	</widget>
 	<widget field="Bot PE" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="186" y="69"/>
+		<location x="219" y="100"/>
 	</widget>
 	<widget field="Top PE" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="186" y="7"/>
+		<location x="217" y="74"/>
+		<height>19</height>
 	</widget>
 </dashboard>
 <live-window>
@@ -126,9 +131,14 @@
 			<height>19</height>
 			<width>250</width>
 		</widget>
+		<widget field="DigitalInput[6]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="361"/>
+			<height>19</height>
+			<width>250</width>
+		</widget>
 		<location x="25" y="7"/>
 		<width>262</width>
-		<height>367</height>
+		<height>386</height>
 	</widget>
 </live-window>
 	<hidden field="limelight_Interface"/>
