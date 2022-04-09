@@ -89,6 +89,12 @@ void Robot::TeleopInit() {
  */
 void Robot::TeleopPeriodic() {
   frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
+  if(compressor.Enabled() == false && frc::SmartDashboard::GetString("Compressor", "Disabled") == "Enabled"){
+    frc::SmartDashboard::PutString("Compressor", "Disabled");
+  }
+  if(compressor.Enabled() == true && frc::SmartDashboard::GetString("Compressor", "Disabled") == "Disabled"){
+    frc::SmartDashboard::PutString("Compressor", "Enabled");
+  }
 }
 
 /**
