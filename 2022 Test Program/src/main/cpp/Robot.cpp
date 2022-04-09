@@ -6,18 +6,17 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
-#include <frc/AnalogInput.h>
-#include <frc/DigitalInput.h>
-#include <frc/I2C.h>
-#include <rev/ColorSensorV3.h>
+#include <frc/motorcontrol/PWMSparkMax.h>
+#include <frc/Joystick.h>
 
-frc::DigitalInput dio(0);
-frc::AnalogInput aio(0);
+frc::PWMSparkMax leftDrive(0);
+frc::PWMSparkMax rightDrive(1);
 
-rev::ColorSensorV3 color(frc::I2C::kOnboard);
-rev::ColorSensorV3 color2(frc::I2C::kMXP);
+frc::Joystick joystick(0);
 
-void Robot::RobotInit() {}
+
+void Robot::RobotInit() {
+}
 
 /**
  * This function is called every robot packet, no matter the mode. Use
@@ -28,7 +27,7 @@ void Robot::RobotInit() {}
  * LiveWindow and SmartDashboard integrated updating.
  */
 void Robot::RobotPeriodic() {
-  frc2::CommandScheduler::GetInstance().Run();
+  //frc2::CommandScheduler::GetInstance().Run();
 }
 
 /**
@@ -56,7 +55,11 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  printf("2: %i\n", aio.GetValue());
+  double yPow = -joystick.GetY();
+  double xPow = -joystick.GetX();
+
+  rightDrive.Set(yPow - xPow);
+  leftDrive.Set(yPow + xPow);
 }
 
 /**
