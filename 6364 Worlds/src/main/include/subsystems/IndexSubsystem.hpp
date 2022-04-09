@@ -123,6 +123,16 @@ class IndexSubsystem : public frc2::SubsystemBase {
    */
   bool getFeedBall();
 
+  /**
+   * @brief Get The Team Color Selected by the Two Way Toggle Switch in the Electronics Board
+   * @returns TRUE for the blue team, FALSE for the red team
+   */
+  bool getColorSelector();
+
+  bool getRedBall();
+
+  bool getBlueBall();
+
 
   void Periodic() override;
 
@@ -135,6 +145,8 @@ class IndexSubsystem : public frc2::SubsystemBase {
 
   frc::DigitalInput topPE;
   frc::DigitalInput bottomPE; 
+
+  frc::DigitalInput teamSwitch;
 
   rev::ColorSensorV3 topColor;
 

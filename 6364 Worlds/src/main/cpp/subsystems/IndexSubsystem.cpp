@@ -30,6 +30,7 @@ IndexSubsystem::IndexSubsystem() :
     feedMtr{RobotMap::CAN::FeedIndex},
     topPE{RobotMap::DIGITAL::Index_PE_top},
     bottomPE{RobotMap::DIGITAL::Index_PE_bottom},
+    teamSwitch{RobotMap::DIGITAL::teamSwitch},
     //topMtrPID{topMtr.GetPIDController()}
     topColor{frc::I2C::kMXP},
     feedColor{frc::I2C::kOnboard}
@@ -99,7 +100,7 @@ double IndexSubsystem::getFeedOutput(){
 }
 
 bool IndexSubsystem::getTopPE(){
-    return topColor.GetProximity() > 120;
+    return topColor.GetProximity() > kIndex::k_topColorProxTrigger;
 }
 
 bool IndexSubsystem::getBotPE(){
@@ -114,6 +115,18 @@ bool IndexSubsystem::getFeedBall(){
     return feedColor.GetProximity() > kIndex::k_colorProxTrigger;
 }
 
+bool IndexSubsystem::getColorSelector(){
+    return teamSwitch.Get();
+}
+
+bool IndexSubsystem::getRedBall(){
+    return topColor.GetColor().red > kIndex::redMinimum && topColor.GetColor().blue < kIndex::blueMaximum;
+}
+
+bool IndexSubsystem::getBlueBall(){
+    return topColor.GetColor().blue > kIndex::blueMinimum && topColor.GetColor().red < kIndex::redMaximum;
+}
+
 void IndexSubsystem::Periodic(){
     frc::SmartDashboard::PutBoolean("Top PE", topPE.Get());
     frc::SmartDashboard::PutBoolean("Bot PE", bottomPE.Get());
@@ -123,4 +136,16 @@ void IndexSubsystem::Periodic(){
     frc::SmartDashboard::PutNumber("Top Proxim", topColor.GetProximity());
     frc::SmartDashboard::PutNumber("Top Indx RPM", c_TalonRPM(getTopVelocity()));
     frc::SmartDashboard::PutNumber("Top AMPS", topMtr.GetSupplyCurrent());
+    
+    if(getBlueBall()){
+        frc::SmartDashboard::PutString("Top Ball Color", "Blue");
+    }
+    else if(getRedBall()){
+        frc::SmartDashboard::PutString("Top Ball Color", "Red");
+    }
+    else{
+        frc::SmartDashboard::PutString("Top Ball Color", "Unknown");
+    }
+
+    //printf("R: %f \t G: %f \t B: %f \n", topColor.GetColor().red, topColor.GetColor().green, topColor.GetColor().blue);
 }

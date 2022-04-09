@@ -82,6 +82,7 @@ namespace RobotMap {
         constexpr int Hang_Limit_LOWER = 0;
         constexpr int ClawLowerLimit = 3;
         constexpr int ClawUpperLimit = 4;
+        constexpr int teamSwitch = 6;
     }//End Digital
 
     // PCM Controller IDs
@@ -112,6 +113,15 @@ namespace kIndex {
     
     // The Color Proximity Trigger Value for GetFeedBall
     constexpr double k_colorProxTrigger= 375;
+
+    // The Top Color Sensor's Proximity trigger value
+    constexpr int k_topColorProxTrigger = 120;
+
+    constexpr double blueMinimum = 0.4;
+    constexpr double blueMaximum = 0.2;
+
+    constexpr double redMinimum = 0.45;
+    constexpr double redMaximum = 0.2;
 
 }//End kIndex
 

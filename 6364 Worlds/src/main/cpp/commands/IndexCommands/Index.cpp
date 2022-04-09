@@ -19,17 +19,35 @@ void Index::Initialize() {
   frc::SmartDashboard::PutString("Indexing", "Enabled");
 }
 
+// F500 Indexing Velocity (CTRE Velocity Closed Loop Control)
+double vPow = 5000;
+
 // Called repeatedly when this Command is scheduled to run
 void Index::Execute() {
 
   // 775 Indexing Power (CTRE Percent Output)
   double iPow = 0.6;
 
-  // F500 Indexing Velocity (CTRE Velocity Closed Loop Control)
-  double vPow = 5000;
 
+  //if ( subsystem->getTopPE() && codex == 0){ codex = 1; };
 
-  if ( subsystem->getTopPE() && codex == 0){ codex = 1; };
+  if (subsystem->getColorSelector() == true){
+    if(subsystem->getBlueBall() && codex == 0){
+      codex = 1;
+    }
+  }
+  else{
+    if(subsystem->getRedBall() && codex == 0){
+      codex = 1;
+    }
+  }
+  if(subsystem->getTopPE() && subsystem->getBlueBall() == false && subsystem->getRedBall() == false){
+    vPow = 0;
+  }
+  else{
+    vPow = 6000;
+  }
+  
   if ( subsystem->getBotPE() && codex == 1 ){ codex = 2; };
 
   if ( codex == 2 ){
