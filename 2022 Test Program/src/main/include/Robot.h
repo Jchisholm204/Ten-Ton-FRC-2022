@@ -8,6 +8,8 @@
 #include <frc2/command/Command.h>
 
 #include "RobotContainer.h"
+#include <rev/CANSparkMax.h>
+#include <frc/XboxController.h>
 
 class Robot : public frc::TimedRobot {
  public:
@@ -27,4 +29,9 @@ class Robot : public frc::TimedRobot {
   frc2::Command* m_autonomousCommand = nullptr;
 
   RobotContainer m_container;
+
+  rev::CANSparkMax leftDrive{0, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax rightDrive{1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+
+  frc::XboxController master{0};
 };

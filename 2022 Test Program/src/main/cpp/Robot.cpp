@@ -6,13 +6,7 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
-#include <frc/motorcontrol/PWMSparkMax.h>
-#include <frc/Joystick.h>
-
-frc::PWMSparkMax leftDrive(0);
-frc::PWMSparkMax rightDrive(1);
-
-frc::Joystick joystick(0);
+#include <math.h>
 
 
 void Robot::RobotInit() {
@@ -51,12 +45,39 @@ void Robot::AutonomousPeriodic() {}
 void Robot::TeleopInit() {
 }
 
+double exponential(double joyVal, double exPower, double joyDead, double motorMin){
+    double joySign;
+    double joyMax = 1-joyDead;
+    double joyLive;
+    if(joyVal > 0) {
+        joySign = 1;
+    }
+    else if(joyVal < 0) {
+        joySign = -1;
+    }
+    else {
+        joySign = 0;
+    };
+
+    joyLive = abs(joyVal) - joyDead;
+
+    double power = (pow(joyLive, exPower) / pow(joyMax, exPower));
+    if(isnan(power)){
+        power = 0;
+    }
+    else{
+        power = power*joySign*21000;
+    }
+    return power;
+}
+
+
 /**
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  double yPow = -joystick.GetY();
-  double xPow = -joystick.GetX();
+    double yPow = 0.5*exponential(-master.GetLeftY(), 1.7,  0.07, 0.01);
+    double xPow = 0.25*exponential(master.GetRightX(), 1.55, 0.07, 0.01);
 
   rightDrive.Set(yPow - xPow);
   leftDrive.Set(yPow + xPow);
