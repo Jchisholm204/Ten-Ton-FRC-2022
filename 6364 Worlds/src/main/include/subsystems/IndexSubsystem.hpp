@@ -126,11 +126,12 @@ class IndexSubsystem : public frc2::SubsystemBase {
    * Get If The Color Sensor on the Feed Indexer is Currently Detecting a Ball
    * @returns TRUE if the Sensor is detecting a ball
    */
-  bool getFeedBall();
+  bool getFeedIR();
 
   enum TeamColors{
-    red = 0, blue = 1, null
+    red = 0, blue = 1, null = 2
   };
+  
 
   /**
    * @brief Get The Team Color Selected by the Two Way Toggle Switch in the Electronics Board

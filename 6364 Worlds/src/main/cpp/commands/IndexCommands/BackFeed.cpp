@@ -36,7 +36,7 @@ void IndexCommands::BackFeed::Initialize() {
 void IndexCommands::BackFeed::Execute() {
 
   // End Command if there is a ball in the Feed Indexer
-  if(index->getFeedBall()){
+  if(index->getFeedIR()){
     isFinished = true;
   }
 

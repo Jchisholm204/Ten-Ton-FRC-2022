@@ -28,7 +28,7 @@ void AutoIndex::Execute() {
 
 
   if ( subsystem->getBotPE() && codex == 1){ codex = 2; };
-  if ( subsystem->getFeedBall() && codex == 2 ){ codex = 3; };
+  if ( subsystem->getFeedIR() && codex == 2 ){ codex = 3; };
 
   if ( codex == 3 ){
     subsystem->setBottom(0);

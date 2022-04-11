@@ -116,7 +116,7 @@ double IndexSubsystem::getFeedProximity(){
     return feedColor.GetProximity();
 }
 
-bool IndexSubsystem::getFeedBall(){
+bool IndexSubsystem::getFeedIR(){
     return feedColor.GetProximity() > kIndex::k_colorProxTrigger;
 }
 
@@ -152,7 +152,7 @@ IndexSubsystem::TeamColors IndexSubsystem::getBallColor(){
 void IndexSubsystem::Periodic(){
     frc::SmartDashboard::PutBoolean("Top PE", topPE.Get());
     frc::SmartDashboard::PutBoolean("Bot PE", bottomPE.Get());
-    frc::SmartDashboard::PutBoolean("Feed Prox", getFeedBall());
+    frc::SmartDashboard::PutBoolean("Feed Prox", getFeedIR());
     frc::SmartDashboard::PutNumber("Feed Proxim", feedColor.GetProximity());
     frc::SmartDashboard::PutBoolean("Top Ball", getTopPE());
     frc::SmartDashboard::PutNumber("Top Proxim", topColor.GetProximity());
