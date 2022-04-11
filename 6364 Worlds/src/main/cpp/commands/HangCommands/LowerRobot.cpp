@@ -15,6 +15,7 @@ using namespace HangCommands;
 
 WinchCommands::LowerRobot::LowerRobot(WinchSubsystem* sys_winch) : winch{sys_winch}{
   AddRequirements(winch);
+  SetName("Lower Robot");
 }
 
 // Called when the command is initially scheduled.

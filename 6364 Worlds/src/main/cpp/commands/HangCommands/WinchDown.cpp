@@ -16,6 +16,7 @@ using namespace HangCommands;
 
 WinchCommands::WinchDown::WinchDown(WinchSubsystem* sys_winch) : winch{sys_winch}{
   AddRequirements(winch);
+  SetName("WinchDown");
 }
 
 // Called when the command is initially scheduled.

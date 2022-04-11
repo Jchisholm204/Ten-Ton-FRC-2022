@@ -16,6 +16,7 @@ using namespace HangCommands;
 
 ClawCommands::ClawDown::ClawDown(ClawSubsystem* sys_claw) : claw{sys_claw}{
   AddRequirements(claw);
+  SetName("Claw Down");
 }
 
 // Called when the command is initially scheduled.

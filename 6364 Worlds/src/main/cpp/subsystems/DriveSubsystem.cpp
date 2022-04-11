@@ -34,7 +34,8 @@ navX{frc::SPI::kMXP} {
     driveRS.Follow(driveRM);
     driveLS.Follow(driveLM);
 
-    frc::SmartDashboard::PutBoolean("Reset Gyro Readings", false);
+    //frc::SmartDashboard::PutBoolean("Reset Gyro Readings", false);
+    SetName("DriveBase");
 }
 
 void DriveSubsystem::set(ControlMode mode, double leftPow, double rightPow){

@@ -17,6 +17,7 @@ DriveCommands::LimeLightAlign::LimeLightAlign(LimeLightSubsystem* limelight, Dri
           }), isFinished{!limelight->hasTarget()}, drive{sys_drive} {
             AddRequirements(sys_drive);
             AddRequirements(limelight);
+            SetName("LimeLight Alignment");
             m_controller.DisableContinuousInput();
             m_controller.SetTolerance(Tolerance, endVelocity);
             

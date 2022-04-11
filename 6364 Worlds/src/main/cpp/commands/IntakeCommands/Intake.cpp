@@ -10,10 +10,12 @@
 IntakeCommands::Intake::Intake(IntakeSubsystem* IntakeSubsystem, bool on, bool front, bool rear) : intake{IntakeSubsystem}, running{on}, f{front}, r{rear} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(intake);
+  SetName("Intake");
 }
 IntakeCommands::Intake::Intake(IntakeSubsystem* IntakeSubsystem, bool on) : intake{IntakeSubsystem}, running{on}, f{true}, r{true} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(intake);
+  SetName("Intake");
 }
 
 // Called when the command is initially scheduled.

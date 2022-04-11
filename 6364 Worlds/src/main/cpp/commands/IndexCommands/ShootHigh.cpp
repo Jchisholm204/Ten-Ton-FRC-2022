@@ -16,6 +16,7 @@
 
 IndexCommands::ShootHigh::ShootHigh(IndexSubsystem* sys_index) : index{sys_index}, isFinished{false}, reachedRPM{false} {
   AddRequirements(index);
+  SetName("High Shot");
 }
 
 // Called when the command is initially scheduled.

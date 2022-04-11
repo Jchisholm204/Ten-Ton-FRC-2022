@@ -14,6 +14,7 @@ ClawSubsystem::ClawSubsystem() :
     upperLimit{RobotMap::DIGITAL::ClawUpperLimit}
 {
     motorConfiguration::Talon::clawMotor(ClawMotor);
+    SetName("Claw");
 }
 
 void ClawSubsystem::set(double velocity){

@@ -18,6 +18,7 @@
 
 DriveCommands::OpDrive::OpDrive(DriveSubsystem* SubSystem_Drive) : drive{SubSystem_Drive}{
     AddRequirements(drive);
+    SetName("Operator Drive");
 }
 
     /**

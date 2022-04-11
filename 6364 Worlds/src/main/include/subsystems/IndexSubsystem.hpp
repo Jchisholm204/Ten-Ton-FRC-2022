@@ -7,10 +7,13 @@
  * Intake Subsystem:
  *    - 3 Index Motors
  *    - Feed and Bottom Index Powered by Vex Pro 775 and Talon SRX
- *    - Top Index Powered by NEO and Spark Max
+ *    - Top Index Powered by Falcon 500 and Integrated TalonFX
  *    - Top and Bottom Photoelectric Sensors
  *    - Color Sensor Mounted at the base of the Index
+ *    - Color Sensor Mounted near the Top Indexer
+ *    - Toggle Switch Inside the Electronics Board used to select team color
  *
+ *  Default Command:
  *    - Automatic Ball Indexing with Photoelectric and Color Sensors
  *    
  */
@@ -23,9 +26,6 @@
 #include <frc/DigitalGlitchFilter.h>
 #include <ctre/Phoenix.h>
 #include "rev/ColorSensorV3.h"
-
-// Macro For Spark Max Control Type
-//#define SPCT rev::CANSparkMax::ControlType
 
 class IndexSubsystem : public frc2::SubsystemBase {
  public:
@@ -106,6 +106,11 @@ class IndexSubsystem : public frc2::SubsystemBase {
    */
   bool getTopPE();
 
+  /** Get if the Top Color Sensor's IR Object Detection is currently Triggered
+   * @returns TRUE if the sensor is detecting an object
+   */
+  bool getTopIR();
+
   /** Get if the Bottom Photoelectric Sensor is currently Triggered
    * @returns TRUE if the sensor is triggered
    */
@@ -123,22 +128,42 @@ class IndexSubsystem : public frc2::SubsystemBase {
    */
   bool getFeedBall();
 
+  enum TeamColors{
+    red = 0, blue = 1, null
+  };
+
   /**
    * @brief Get The Team Color Selected by the Two Way Toggle Switch in the Electronics Board
-   * @returns TRUE for the blue team, FALSE for the red team
+   * @returns Team red or blue
    */
-  bool getColorSelector();
+  TeamColors getTeam();
 
+  /**
+   * @brief Get if the color sensor is detecting a red ball
+   * 
+   * @return TRUE if the color sensor detects a red ball
+   */
   bool getRedBall();
 
+  /**
+   * @brief Get if the color sensor is detecting a blue ball
+   * 
+   * @return TRUE if the color sensor detects a blue ball
+   */
   bool getBlueBall();
+
+  /**
+   * @brief Get the Ball Color
+   * 
+   * @returns A TeamColor, TeamColors::null if no ball is detected
+   */
+  TeamColors getBallColor();
 
 
   void Periodic() override;
 
 
  private:
-  //rev::CANSparkMax topMtr;
   TalonFX topMtr;
   TalonSRX botMtr;
   TalonSRX feedMtr;
@@ -151,7 +176,5 @@ class IndexSubsystem : public frc2::SubsystemBase {
   rev::ColorSensorV3 topColor;
 
   rev::ColorSensorV3 feedColor;
-
-  //rev::SparkMaxPIDController topMtrPID;
   
 };

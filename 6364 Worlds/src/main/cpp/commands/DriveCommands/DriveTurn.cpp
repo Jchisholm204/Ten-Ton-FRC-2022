@@ -19,6 +19,7 @@ DriveCommands::DriveTurn::DriveTurn(DriveSubsystem* sys_drive, double target)
             sys_drive->set(ControlMode::PercentOutput, output, -output);
           }), isFinished{false} {
             AddRequirements(sys_drive);
+            SetName("DriveTurn");
             sys_drive->resetNav();
             m_controller.SetTolerance(3);
             

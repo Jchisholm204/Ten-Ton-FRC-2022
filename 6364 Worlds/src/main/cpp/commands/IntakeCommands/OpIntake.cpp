@@ -9,6 +9,7 @@
 
 IntakeCommands::OpIntake::OpIntake(IntakeSubsystem* SubSystem_intake) : intake{SubSystem_intake} {
     AddRequirements(intake);
+    SetName("Operator Intake");
 }
 
 

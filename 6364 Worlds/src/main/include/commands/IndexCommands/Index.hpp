@@ -4,6 +4,9 @@
  * @author Jacob Chisholm
  * TEAM: 6364
  * 
+ * Uses Photoelectric, IR Proximity and Color Sensors
+ * Automatically Index Balls Within The Robot's Indexers
+ * 
  */
 
 #pragma once
@@ -33,7 +36,7 @@ namespace IndexCommands{
    * 
    * Default Command For Index Subsystem
    * 
-   * Indexes Balls Using Photoelectric Sensors
+   * Indexes Balls Using Photoelectric, Proximity and Color Sensors
    * 
    * @returns FALSE
    * 

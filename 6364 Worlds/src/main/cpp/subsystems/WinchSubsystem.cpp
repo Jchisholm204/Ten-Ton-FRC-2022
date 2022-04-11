@@ -37,6 +37,7 @@ WinchSubsystem::WinchSubsystem() :
     solenoid{frc::PneumaticsModuleType::CTREPCM, RobotMap::PCM::armPiston}
 {
     motorConfiguration::Talon::winchMotor(WinchMotor);
+    SetName("Winch");
 }
 
 void WinchSubsystem::set(double velocity){

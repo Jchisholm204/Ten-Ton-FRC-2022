@@ -14,6 +14,7 @@
 
 IndexCommands::Stop::Stop(IndexSubsystem* sys_index, bool isFinished) : index{sys_index}, returnFinished{isFinished}{
   AddRequirements(sys_index);
+  SetName("Index Stop Command");
 }
 
 // Called when the command is initially scheduled.

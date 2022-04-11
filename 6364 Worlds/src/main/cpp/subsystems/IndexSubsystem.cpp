@@ -1,18 +1,19 @@
 /**
  * Index Subsystem
  * 
- * @link IndexSubsystem.hpp
- * 
  * @author Jacob Chisholm
  * TEAM: 6364
  * 
  * Intake Subsystem:
  *    - 3 Index Motors
  *    - Feed and Bottom Index Powered by Vex Pro 775 and Talon SRX
- *    - Top Index Powered by NEO and Spark Max
+ *    - Top Index Powered by Falcon 500 and Integrated TalonFX
  *    - Top and Bottom Photoelectric Sensors
  *    - Color Sensor Mounted at the base of the Index
+ *    - Color Sensor Mounted near the Top Indexer
+ *    - Toggle Switch Inside the Electronics Board used to select team color
  *
+ *  Default Command:
  *    - Automatic Ball Indexing with Photoelectric and Color Sensors
  *    
  */
@@ -38,7 +39,7 @@ IndexSubsystem::IndexSubsystem() :
         motorConfiguration::Talon::index(botMtr, false);
         motorConfiguration::Talon::index(feedMtr, true);
         motorConfiguration::Talon::index(topMtr, true);
-        //motorConfiguration::SparkMax::index(topMtrPID, topMtr, false);
+        SetName("Index");
     }
 
 /*  SPARK MAX
@@ -100,6 +101,10 @@ double IndexSubsystem::getFeedOutput(){
 }
 
 bool IndexSubsystem::getTopPE(){
+    return topPE.Get();
+}
+
+bool IndexSubsystem::getTopIR(){
     return topColor.GetProximity() > kIndex::k_topColorProxTrigger;
 }
 
@@ -115,8 +120,13 @@ bool IndexSubsystem::getFeedBall(){
     return feedColor.GetProximity() > kIndex::k_colorProxTrigger;
 }
 
-bool IndexSubsystem::getColorSelector(){
-    return teamSwitch.Get();
+IndexSubsystem::TeamColors IndexSubsystem::getTeam(){
+    if(teamSwitch.Get()){
+        return TeamColors::blue;
+    }
+    else{
+        return TeamColors::red;
+    }
 }
 
 bool IndexSubsystem::getRedBall(){
@@ -125,6 +135,18 @@ bool IndexSubsystem::getRedBall(){
 
 bool IndexSubsystem::getBlueBall(){
     return topColor.GetColor().blue > kIndex::blueMinimum && topColor.GetColor().red < kIndex::redMaximum;
+}
+
+IndexSubsystem::TeamColors IndexSubsystem::getBallColor(){
+    if(topColor.GetColor().blue > kIndex::blueMinimum && topColor.GetColor().red < kIndex::redMaximum){
+        return TeamColors::blue;
+    }
+    else if(topColor.GetColor().red > kIndex::redMinimum && topColor.GetColor().blue < kIndex::blueMaximum){
+        return TeamColors::red;
+    }
+    else{
+        return TeamColors::null;
+    }
 }
 
 void IndexSubsystem::Periodic(){
@@ -137,10 +159,10 @@ void IndexSubsystem::Periodic(){
     frc::SmartDashboard::PutNumber("Top Indx RPM", c_TalonRPM(getTopVelocity()));
     frc::SmartDashboard::PutNumber("Top AMPS", topMtr.GetSupplyCurrent());
     
-    if(getBlueBall()){
+    if(getBallColor() == TeamColors::blue){
         frc::SmartDashboard::PutString("Top Ball Color", "Blue");
     }
-    else if(getRedBall()){
+    else if(getBallColor() == TeamColors::blue){
         frc::SmartDashboard::PutString("Top Ball Color", "Red");
     }
     else{

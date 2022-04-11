@@ -14,6 +14,7 @@ using namespace IndexCommands;
 ShootLow::ShootLow(IndexSubsystem* indexSubsystem) : subsystem{indexSubsystem}, isFinished{false}, startTime{frcTools::Time::Millis()}{
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(indexSubsystem);
+  SetName("Low Shot");
 }
 
 // Called when the command is initially scheduled.

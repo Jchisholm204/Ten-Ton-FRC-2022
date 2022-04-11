@@ -24,6 +24,7 @@ IntakeSubsystem::IntakeSubsystem() :
     {
         motorConfiguration::Talon::intake(frontMtr, true);
         motorConfiguration::Talon::intake(rearMtr, false);
+        SetName("Intake");
     }
 
 void IntakeSubsystem::setFront(ControlMode mode, double mPow){

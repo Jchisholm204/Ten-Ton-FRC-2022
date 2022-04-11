@@ -12,6 +12,7 @@ int IndexCommands::codex = 0;
 Index::Index(IndexSubsystem* indexSubsystem) : subsystem{indexSubsystem}{
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subsystem);
+  SetName("Indexing");
 }
 
 // Called when the command is initially scheduled.
@@ -22,26 +23,23 @@ void Index::Initialize() {
 // F500 Indexing Velocity (CTRE Velocity Closed Loop Control)
 double vPow = 5000;
 
+// 775 Indexing Power (CTRE Percent Output)
+double iPow = 0.6;
+
 // Called repeatedly when this Command is scheduled to run
 void Index::Execute() {
 
-  // 775 Indexing Power (CTRE Percent Output)
-  double iPow = 0.6;
-
-
   //if ( subsystem->getTopPE() && codex == 0){ codex = 1; };
 
-  if (subsystem->getColorSelector() == true){
-    if(subsystem->getBlueBall() && codex == 0){
-      codex = 1;
-    }
+
+  // if BallColor == TeamColor && codex == 0 -> Index ball
+  if (subsystem->getTeam() == subsystem->getBallColor() && codex == 0){
+    codex = 1;
   }
-  else{
-    if(subsystem->getRedBall() && codex == 0){
-      codex = 1;
-    }
-  }
-  if(subsystem->getTopPE() && subsystem->getBlueBall() == false && subsystem->getRedBall() == false){
+
+  // If a ball has been registered by the Proximity Sensor, But the Color is undeterminable, set top indexer drive power to zero
+  // Fixes Balls getting caught too high in the top indexer
+  if(subsystem->getTopIR() && subsystem->getBallColor() == IndexSubsystem::TeamColors::null){
     vPow = 0;
   }
   else{

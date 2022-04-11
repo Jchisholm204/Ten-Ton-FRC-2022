@@ -26,6 +26,7 @@
 
 DriveCommands::DriveDist::DriveDist(DriveSubsystem* DriveSubsystem, double distance, double timeout, bool reset) : drive{DriveSubsystem}, resetEnc{reset}, driveDist{distance}, timeout{timeout}{
   AddRequirements(drive);
+  SetName("Drive Distance");
 
   double dInches = distance;
 

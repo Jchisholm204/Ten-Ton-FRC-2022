@@ -11,6 +11,7 @@ using namespace IndexCommands;
 AutoIndex::AutoIndex(IndexSubsystem* indexSubsystem) : subsystem{indexSubsystem}{
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subsystem);
+  SetName("Auton Indexing");
 }
 
 // Called when the command is initially scheduled.

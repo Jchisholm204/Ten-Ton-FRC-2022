@@ -18,6 +18,7 @@
 
 IndexCommands::BackFeed::BackFeed(IndexSubsystem* sys_index) : index{sys_index}, isFinished{false}, startTime{0}{
   AddRequirements(index);
+  SetName("Index Backfeed");
 }
 
 // Called when the command is initially scheduled.

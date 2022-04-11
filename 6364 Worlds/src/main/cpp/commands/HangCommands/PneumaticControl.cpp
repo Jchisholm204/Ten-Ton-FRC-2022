@@ -22,6 +22,7 @@
 
 HangCommands::PneumaticControl::PneumaticControl(WinchSubsystem* sys_winch) : winch{sys_winch}{
   AddRequirements(winch);
+  SetName("Pneumatic Control");
 }
 
 // Called when the command is initially scheduled.

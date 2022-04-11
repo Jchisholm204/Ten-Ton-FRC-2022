@@ -15,6 +15,7 @@
 
 IndexCommands::Manual::Manual(IndexSubsystem* sys_index) : index{sys_index} {
   AddRequirements(index);
+  SetName("Manual Indexing");
 }
 
 // Called when the command is initially scheduled.
