@@ -46,6 +46,7 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
 }
 */
 AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys, IndexSubsystem* indexSys, LimeLightSubsystem* limelight) {
+  SetName("Autonomous Command Group");
   AddCommands(
 
     // Spin up top Indexer
@@ -62,7 +63,7 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
 
     // Drive to Ball
     frc2::ParallelRaceGroup{
-      DriveCommands::DriveDist(driveSys, -120, 5000, true),
+      DriveCommands::DriveDist(driveSys, -72/*120*/, 5000, true),
       IndexCommands::AutoIndex(indexSys)
     },
 
@@ -74,7 +75,7 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
       }, {indexSys}),
 
     //  Drive Back to Shooting Position
-    DriveCommands::DriveDist(driveSys, 15, 4000, false),
+    DriveCommands::DriveDist(driveSys, 2/*15*/, 4000, false),
 
     // Raise Intake
     frc2::InstantCommand([intakeSys]{

@@ -128,7 +128,7 @@ void motorConfiguration::Talon::rightDrive(TalonFX &iMotor){
     motorConfig.slot0.allowableClosedloopError = 0;
     motorConfig.closedloopRamp = 0.48; //0.48
 
-    motorConfig.motionAcceleration = 8000; //8000
+    motorConfig.motionAcceleration = 14000; //8000
     motorConfig.motionCruiseVelocity = 21000; //Maximum Speed (encoder units / 100ms) for Magic Motion
 
     motorConfig.nominalOutputForward = 0.0;
@@ -136,7 +136,7 @@ void motorConfiguration::Talon::rightDrive(TalonFX &iMotor){
     motorConfig.peakOutputForward = 1.0;
     motorConfig.peakOutputReverse = -1.0;
 
-    motorConfig.motionCurveStrength = 8;
+    motorConfig.motionCurveStrength = 3;
     
     // Reset the Motor to Factory Settings before Applying Profile
     iMotor.ConfigFactoryDefault();
@@ -164,7 +164,7 @@ void motorConfiguration::Talon::leftDrive(TalonFX &iMotor){
     motorConfig.slot0.allowableClosedloopError = 0;
     motorConfig.closedloopRamp = 0.48; //0.48
 
-    motorConfig.motionAcceleration = 8000; //8000
+    motorConfig.motionAcceleration = 14000; //8000
     motorConfig.motionCruiseVelocity = 21000; //Maximum Speed (encoder units / 100ms) for Magic Motion
 
     motorConfig.nominalOutputForward = 0.0;
@@ -172,7 +172,7 @@ void motorConfiguration::Talon::leftDrive(TalonFX &iMotor){
     motorConfig.peakOutputForward = 1.0;
     motorConfig.peakOutputReverse = -1.0;
 
-    motorConfig.motionCurveStrength = 8;
+    motorConfig.motionCurveStrength = 3;
     
     // Reset the Motor to Factory Settings before Applying Profile
     iMotor.ConfigFactoryDefault();
