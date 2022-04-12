@@ -88,21 +88,8 @@ namespace motorConfiguration{
              * @param iMotor The Claw Motor
              */
             static void clawMotor(TalonFX &iMotor);
+
+        private:
+            static TalonFXConfiguration driveProfile();
     };
-
-    /**
-     * Apply a Configuration to a Spark Max Motor Controller
-     */
-    class SparkMax{
-
-        public:
-            /**
-             * Apply Index Motor Configuration
-             * @param iMotor The Motor to Apply The Configuration to
-             * @param inverted Inverts the Default Direction of the Motor
-             */
-            static void index(rev::SparkMaxPIDController &iController, rev::CANSparkMax &iMotor, bool inverted);
-
-    };
-
 }

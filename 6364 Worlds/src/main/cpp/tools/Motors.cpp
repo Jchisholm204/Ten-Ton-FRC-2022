@@ -113,8 +113,9 @@ void motorConfiguration::Talon::index(TalonFX &iMotor, bool inverted){
 
 }
 
-void motorConfiguration::Talon::rightDrive(TalonFX &iMotor){
-    // Create the Motor Configuration
+TalonFXConfiguration motorConfiguration::Talon::driveProfile(){
+
+    // Create The Motor Configuration
     TalonFXConfiguration motorConfig;
     // Set the Primary Feedback Sensor (configure the motor's encoder)
     motorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice::IntegratedSensor;
@@ -137,11 +138,16 @@ void motorConfiguration::Talon::rightDrive(TalonFX &iMotor){
     motorConfig.peakOutputReverse = -1.0;
 
     motorConfig.motionCurveStrength = 3;
+
+    return motorConfig;
+}
+
+void motorConfiguration::Talon::rightDrive(TalonFX &iMotor){
     
     // Reset the Motor to Factory Settings before Applying Profile
     iMotor.ConfigFactoryDefault();
-    // Apply our Motor Configuration Profile
-    iMotor.ConfigAllSettings(motorConfig);
+    // Apply our Drive Motor Configuration Profile
+    iMotor.ConfigAllSettings(driveProfile());
     //Set the Motor Inversion
     iMotor.SetInverted(true);
     //Set the Motors Neutral Mode (What it does when no power is being applied)
@@ -150,34 +156,11 @@ void motorConfiguration::Talon::rightDrive(TalonFX &iMotor){
 }
 
 void motorConfiguration::Talon::leftDrive(TalonFX &iMotor){
-    // Create the Motor Configuration
-    TalonFXConfiguration motorConfig;
-    // Set the Primary Feedback Sensor (configure the motor's encoder)
-    motorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice::IntegratedSensor;
-    // Configure the Motor's Integrated PID
-    motorConfig.slot0.kP = 0.0; // Standard PID kP - used for MagicMotion Movement
-    motorConfig.slot0.kI = 0.0; // Standard PID kP - used for MagicMotion Movement
-    motorConfig.slot0.kD = 0.0; // Standard PID kP - used for MagicMotion Movement
-    motorConfig.slot0.kF = 0.050; // kF - Feed Forward Value - The Minimum Motor Power Required to Move the Motor
 
-    motorConfig.slot0.integralZone = 0;
-    motorConfig.slot0.allowableClosedloopError = 0;
-    motorConfig.closedloopRamp = 0.48; //0.48
-
-    motorConfig.motionAcceleration = 14000; //8000
-    motorConfig.motionCruiseVelocity = 21000; //Maximum Speed (encoder units / 100ms) for Magic Motion
-
-    motorConfig.nominalOutputForward = 0.0;
-    motorConfig.nominalOutputReverse = 0.0;
-    motorConfig.peakOutputForward = 1.0;
-    motorConfig.peakOutputReverse = -1.0;
-
-    motorConfig.motionCurveStrength = 3;
-    
     // Reset the Motor to Factory Settings before Applying Profile
     iMotor.ConfigFactoryDefault();
-    // Apply our Motor Configuration Profile
-    iMotor.ConfigAllSettings(motorConfig);
+    // Apply our Drive Motor Configuration Profile
+    iMotor.ConfigAllSettings(driveProfile());
     //Set the Motor Inversion
     iMotor.SetInverted(false);
     //Set the Motors Neutral Mode (What it does when no power is being applied)
@@ -254,25 +237,5 @@ void motorConfiguration::Talon::clawMotor(TalonFX &iMotor){
     iMotor.SetInverted(true);
     //Set the Motors Neutral Mode (What it does when no power is being applied)
     iMotor.SetNeutralMode(NeutralMode::Brake);
-
-}
-
-void motorConfiguration::SparkMax::index(rev::SparkMaxPIDController &iController, rev::CANSparkMax &iMotor, bool inverted){
-    
-    iMotor.RestoreFactoryDefaults();
-    iMotor.SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
-    iMotor.SetInverted(inverted);
-
-
-    iController.SetSmartMotionMaxAccel(5700*60);
-    iController.SetSmartMotionMaxVelocity(5700);
-    
-    // set PID coefficients
-    iController.SetP(0);
-    iController.SetI(0);
-    iController.SetD(0);
-    iController.SetIZone(0);
-    iController.SetFF(0);
-    iController.SetOutputRange(-1, 1);
 
 }
