@@ -24,6 +24,7 @@
 #include <frc/PneumaticsControlModule.h>
 #include <frc/Compressor.h>
 #include <frc/PowerDistribution.h>
+#include <frc/smartdashboard/SendableChooser.h>
 
 // Include Subsystem Files
 #include "subsystems/DriveSubsystem.hpp"
@@ -51,6 +52,14 @@ extern frc::Compressor compressor;
 
 extern frc::PowerDistribution pdp;
 
+// Allows sDash to disable color sorting if not working correctly
+// Color Sorting ALLWAYS uses the IR sensor.
+extern frc::SendableChooser<bool> ColorSorting;
+
+// Allows sDash to Change the Detection Method for the top Indexer
+// TRUE for IR || FALSE for PE
+extern frc::SendableChooser<bool> topDetectionMethod;
+
 class RobotContainer {
  public:
   RobotContainer();
@@ -62,6 +71,8 @@ class RobotContainer {
   void ConfigureJoystickBindings();
 
   frc2::Command* GetAutonomousCommand();
+
+
 
   private:
     // Declare Subsystems as part of RobotContainer

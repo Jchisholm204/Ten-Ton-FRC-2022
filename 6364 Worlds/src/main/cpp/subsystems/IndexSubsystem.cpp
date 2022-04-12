@@ -23,6 +23,7 @@
 #include "tools/Motors.hpp"
 #include <frc/I2C.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include "RobotContainer.h"
 
 IndexSubsystem::IndexSubsystem() :
     //topMtr{RobotMap::CAN::TopIndex, rev::CANSparkMaxLowLevel::MotorType::kBrushless},
@@ -106,6 +107,15 @@ bool IndexSubsystem::getTopPE(){
 
 bool IndexSubsystem::getTopIR(){
     return topColor.GetProximity() > kIndex::k_topColorProxTrigger;
+}
+
+bool IndexSubsystem::getTopSelectedSensor(){
+    if(topDetectionMethod.GetSelected()){
+        return topColor.GetProximity() > kIndex::k_topColorProxTrigger;
+    }
+    else{
+        return topPE.Get();
+    }
 }
 
 bool IndexSubsystem::getBotPE(){

@@ -20,6 +20,7 @@
 #include <cameraserver/CameraServer.h>
 #include <frc/RobotController.h>
 #include "commands/IndexCommands/Index.hpp"
+#include <frc/smartdashboard/SendableChooser.h>
 
 void Robot::RobotInit() {
   // Start the Camera Server
@@ -27,6 +28,14 @@ void Robot::RobotInit() {
   frontCam.SetFPS(30);
   //frontCam.SetResolution(80, 50); //160 x 120
   frc::CameraServer::StartAutomaticCapture(frontCam);
+
+  ColorSorting.SetDefaultOption("On", true);
+  ColorSorting.AddOption("Off", false);
+  frc::SmartDashboard::PutData(&ColorSorting);
+
+  topDetectionMethod.SetDefaultOption("IR Sensor", true);
+  topDetectionMethod.AddOption("PE Sensor", false);
+  frc::SmartDashboard::PutData(&ColorSorting);
 }
 
 /**

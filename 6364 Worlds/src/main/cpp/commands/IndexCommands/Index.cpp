@@ -4,6 +4,7 @@
 
 #include "commands/IndexCommands/Index.hpp"
 #include "frc/smartdashboard/SmartDashboard.h"
+#include "RobotContainer.h"
 
 using namespace IndexCommands;
 
@@ -32,18 +33,25 @@ void Index::Execute() {
   //if ( subsystem->getTopPE() && codex == 0){ codex = 1; };
 
 
-  // if BallColor == TeamColor && codex == 0 -> Index ball
-  if (subsystem->getTeam() == subsystem->getBallColor() && codex == 0){
-    codex = 1;
-  }
+  // Color Sorting ALLWAYS uses the IR sensor.
 
-  // If a ball has been registered by the Proximity Sensor, But the Color is undeterminable, set top indexer drive power to zero
-  // Fixes Balls getting caught too high in the top indexer
-  if(subsystem->getTopIR() && subsystem->getBallColor() == IndexSubsystem::TeamColors::null){
-    vPow = 0;
+  if(ColorSorting.GetSelected()){
+    // if BallColor == TeamColor && codex == 0 -> Index ball
+    if (subsystem->getTeam() == subsystem->getBallColor() && codex == 0){
+      codex = 1;
+    }
+
+    // If a ball has been registered by the Proximity Sensor, But the Color is undeterminable, set top indexer drive power to zero
+    // Fixes Balls getting caught too high in the top indexer
+    if(subsystem->getTopIR() && subsystem->getBallColor() == IndexSubsystem::TeamColors::null){
+      vPow = 0;
+    }
+    else{
+      vPow = 6000;
+    }
   }
   else{
-    vPow = 6000;
+    if ( subsystem->getTopSelectedSensor() && codex == 0){ codex = 1; };
   }
   
   if ( subsystem->getBotPE() && codex == 1 ){ codex = 2; };

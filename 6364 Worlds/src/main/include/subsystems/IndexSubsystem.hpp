@@ -111,6 +111,13 @@ class IndexSubsystem : public frc2::SubsystemBase {
    */
   bool getTopIR();
 
+  /**
+   * @brief Get the if the Top Index Contains A Ball using the Sensing Method Provided By the Dashboard
+   * 
+   * @return TRUE if the Selected Sensor (IR or PE) Is detecting a ball
+   */
+  bool getTopSelectedSensor();
+
   /** Get if the Bottom Photoelectric Sensor is currently Triggered
    * @returns TRUE if the sensor is triggered
    */
