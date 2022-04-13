@@ -29,13 +29,17 @@ void Robot::RobotInit() {
   //frontCam.SetResolution(80, 50); //160 x 120
   frc::CameraServer::StartAutomaticCapture(frontCam);
 
-  ColorSorting.SetDefaultOption("On", true);
-  ColorSorting.AddOption("Off", false);
-  frc::SmartDashboard::PutData(&ColorSorting);
-
   topDetectionMethod.SetDefaultOption("IR Sensor", true);
   topDetectionMethod.AddOption("PE Sensor", false);
   frc::SmartDashboard::PutData(&topDetectionMethod);
+<<<<<<< Updated upstream
+=======
+
+  teamColor.SetDefaultOption("Disabled", IndexSubsystem::TeamColors::null);
+  teamColor.AddOption("Blue", IndexSubsystem::TeamColors::blue);
+  teamColor.AddOption("Red", IndexSubsystem::TeamColors::red);
+  frc::SmartDashboard::PutData(&teamColor);
+>>>>>>> Stashed changes
 }
 
 /**

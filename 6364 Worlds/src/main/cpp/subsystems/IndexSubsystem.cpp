@@ -32,8 +32,7 @@ IndexSubsystem::IndexSubsystem() :
     feedMtr{RobotMap::CAN::FeedIndex},
     topPE{RobotMap::DIGITAL::Index_PE_top},
     bottomPE{RobotMap::DIGITAL::Index_PE_bottom},
-    teamSwitch{RobotMap::DIGITAL::teamSwitch},
-    //topMtrPID{topMtr.GetPIDController()}
+    //teamSwitch{RobotMap::DIGITAL::teamSwitch},
     topColor{frc::I2C::kMXP},
     feedColor{frc::I2C::kOnboard}
     {
@@ -129,7 +128,7 @@ double IndexSubsystem::getFeedProximity(){
 bool IndexSubsystem::getFeedIR(){
     return feedColor.GetProximity() > kIndex::k_colorProxTrigger;
 }
-
+/*
 IndexSubsystem::TeamColors IndexSubsystem::getTeam(){
     if(teamSwitch.Get()){
         return TeamColors::blue;
@@ -137,7 +136,7 @@ IndexSubsystem::TeamColors IndexSubsystem::getTeam(){
     else{
         return TeamColors::red;
     }
-}
+}*/
 
 bool IndexSubsystem::getRedBall(){
     return topColor.GetColor().red > kIndex::redMinimum && topColor.GetColor().blue < kIndex::blueMaximum;

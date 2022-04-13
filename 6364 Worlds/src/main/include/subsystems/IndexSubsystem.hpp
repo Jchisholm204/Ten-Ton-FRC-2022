@@ -144,7 +144,7 @@ class IndexSubsystem : public frc2::SubsystemBase {
    * @brief Get The Team Color Selected by the Two Way Toggle Switch in the Electronics Board
    * @returns Team red or blue
    */
-  TeamColors getTeam();
+  //TeamColors getTeam();
 
   /**
    * @brief Get if the color sensor is detecting a red ball
@@ -177,9 +177,7 @@ class IndexSubsystem : public frc2::SubsystemBase {
   TalonSRX feedMtr;
 
   frc::DigitalInput topPE;
-  frc::DigitalInput bottomPE; 
-
-  frc::DigitalInput teamSwitch;
+  frc::DigitalInput bottomPE;
 
   rev::ColorSensorV3 topColor;
 
