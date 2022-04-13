@@ -24,11 +24,6 @@
 #include <frc/I2C.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "RobotContainer.h"
-#include "networktables/NetworkTable.h"
-#include "networktables/NetworkTableInstance.h"
-#include "networktables/NetworkTableEntry.h"
-#include "networktables/NetworkTableValue.h"
-#include "wpi/span.h"
 
 IndexSubsystem::IndexSubsystem() :
     //topMtr{RobotMap::CAN::TopIndex, rev::CANSparkMaxLowLevel::MotorType::kBrushless},
