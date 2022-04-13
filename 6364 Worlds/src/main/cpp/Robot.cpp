@@ -64,6 +64,8 @@ void Robot::DisabledInit() {
     autonomousCommand->Cancel();
     autonomousCommand = nullptr;
   }
+
+  frc::SmartDashboard::PutString("Compressor", "Disabled");
   
 }
 
