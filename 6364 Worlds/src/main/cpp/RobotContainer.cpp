@@ -31,14 +31,6 @@ frc::Joystick joystick(2);
 frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
 frc::PowerDistribution pdp{0, frc::PowerDistribution::ModuleType::kCTRE};
 
-<<<<<<< Updated upstream
-// Allows sDash to disable color sorting if not working correctly
-// Color Sorting ALLWAYS uses the IR sensor.
-frc::SendableChooser<bool> ColorSorting;
-
-// Allows sDash to Change the Detection Method for the top Indexer
-=======
->>>>>>> Stashed changes
 // TRUE for IR || FALSE for PE
 frc::SendableChooser<bool> topDetectionMethod;
 
