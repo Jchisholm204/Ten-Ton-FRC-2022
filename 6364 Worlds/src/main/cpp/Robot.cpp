@@ -35,7 +35,7 @@ void Robot::RobotInit() {
 
   topDetectionMethod.SetDefaultOption("IR Sensor", true);
   topDetectionMethod.AddOption("PE Sensor", false);
-  frc::SmartDashboard::PutData(&ColorSorting);
+  frc::SmartDashboard::PutData(&topDetectionMethod);
 }
 
 /**

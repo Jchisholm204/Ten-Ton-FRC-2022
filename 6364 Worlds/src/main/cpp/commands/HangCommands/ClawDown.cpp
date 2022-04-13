@@ -26,11 +26,11 @@ void ClawCommands::ClawDown::Initialize() {
 
 // Called every Scheduler Call
 void ClawCommands::ClawDown::Execute() {
-  if(claw->getPot() > kHang::Claw::PotLowerLimit){
-    claw->set(c_TalonUPR(-1000));
+  if(claw->getPot() < kHang::Claw::PotLowerLimit){
+    claw->set(c_TalonUPR(1000));
   }
   else{
-    claw->set(c_TalonUPR(-3000));
+    claw->set(c_TalonUPR(3000));
   }
 }
 

@@ -1,21 +1,41 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Claw Lower" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="379" y="146"/>
+	</widget>
+	<widget field="Claw Upper" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="379" y="124"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="364" y="250"/>
+		<property name="Text" value="Color Sorting"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="256" y="251"/>
+		<property name="Text" value="Top Sensing Method"/>
+	</static-widget>
+	<widget field="SendableChooser[1]" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="262" y="256"/>
+	</widget>
+	<widget field="SendableChooser[0]" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="365" y="253"/>
+	</widget>
 	<widget field="Top Ball Color" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="186" y="52"/>
 	</widget>
 	<widget field="Compressor" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="13" y="100"/>
+		<location x="8" y="101"/>
 	</widget>
 	<widget field="Feed Proxim" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="190" y="124"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="438" y="224"/>
-		<property name="Text" value="Low: 811"/>
+		<location x="437" y="233"/>
+		<property name="Text" value="Low: 900"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="437" y="209"/>
-		<property name="Text" value="High: 3660"/>
+		<location x="432" y="217"/>
+		<property name="Text" value="High: 3840"/>
 	</static-widget>
 	<widget field="Reset Gyro Readings" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="44" y="245"/>
@@ -25,10 +45,10 @@
 		<location x="102" y="223"/>
 	</widget>
 	<widget field="Claw Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="376" y="161"/>
+		<location x="370" y="170"/>
 	</widget>
 	<widget field="Claw Pot" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="394" y="184"/>
+		<location x="390" y="192"/>
 	</widget>
 	<widget field="Indexing" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="25" y="0"/>
@@ -40,16 +60,13 @@
 		<location x="197" y="28"/>
 	</widget>
 	<widget field="Top AMPS" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="17" y="72"/>
+		<location x="15" y="72"/>
 	</widget>
 	<widget field="Top Indx RPM" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="44"/>
 	</widget>
 	<widget field="Claw Amps" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="387" y="115"/>
-	</widget>
-	<widget field="Claw Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="390" y="138"/>
+		<location x="379" y="104"/>
 	</widget>
 	<widget field="Hang Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="392" y="61"/>
@@ -136,13 +153,39 @@
 			<height>19</height>
 			<width>250</width>
 		</widget>
+		<widget field="DriveBase" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="6" y="380"/>
+			<height>19</height>
+			<width>250</width>
+		</widget>
+		<widget field="Winch" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="6" y="399"/>
+			<height>19</height>
+			<width>250</width>
+		</widget>
+		<widget field="Intake" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="6" y="418"/>
+			<height>19</height>
+			<width>250</width>
+		</widget>
+		<widget field="Index" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="6" y="437"/>
+			<height>19</height>
+			<width>250</width>
+		</widget>
+		<widget field="Claw" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="6" y="456"/>
+			<height>19</height>
+			<width>250</width>
+		</widget>
 		<location x="25" y="7"/>
 		<width>262</width>
-		<height>386</height>
+		<height>481</height>
 	</widget>
 </live-window>
 	<hidden field="limelight_Interface"/>
 	<hidden field="Compressor Enabled:"/>
+	<hidden field="Claw Limit"/>
 	<hidden field="limelight_PipelineName"/>
 	<hidden field="Min Tilt"/>
 	<hidden field="Robot AMPS"/>

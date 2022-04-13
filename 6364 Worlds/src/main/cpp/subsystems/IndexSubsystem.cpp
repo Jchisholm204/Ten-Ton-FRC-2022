@@ -24,6 +24,11 @@
 #include <frc/I2C.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "RobotContainer.h"
+#include "networktables/NetworkTable.h"
+#include "networktables/NetworkTableInstance.h"
+#include "networktables/NetworkTableEntry.h"
+#include "networktables/NetworkTableValue.h"
+#include "wpi/span.h"
 
 IndexSubsystem::IndexSubsystem() :
     //topMtr{RobotMap::CAN::TopIndex, rev::CANSparkMaxLowLevel::MotorType::kBrushless},
@@ -164,7 +169,7 @@ void IndexSubsystem::Periodic(){
     frc::SmartDashboard::PutBoolean("Bot PE", bottomPE.Get());
     frc::SmartDashboard::PutBoolean("Feed Prox", getFeedIR());
     frc::SmartDashboard::PutNumber("Feed Proxim", feedColor.GetProximity());
-    frc::SmartDashboard::PutBoolean("Top Ball", getTopPE());
+    frc::SmartDashboard::PutBoolean("Top Ball", getTopSelectedSensor());
     frc::SmartDashboard::PutNumber("Top Proxim", topColor.GetProximity());
     frc::SmartDashboard::PutNumber("Top Indx RPM", c_TalonRPM(getTopVelocity()));
     frc::SmartDashboard::PutNumber("Top AMPS", topMtr.GetSupplyCurrent());

@@ -35,7 +35,7 @@ void Index::Execute() {
 
   // Color Sorting ALLWAYS uses the IR sensor.
 
-  if(ColorSorting.GetSelected()){
+  if(ColorSorting.GetSelected() && topDetectionMethod.GetSelected()){
     // if BallColor == TeamColor && codex == 0 -> Index ball
     if (subsystem->getTeam() == subsystem->getBallColor() && codex == 0){
       codex = 1;

@@ -129,10 +129,10 @@ namespace kHang {
 
     namespace Claw{
         
-        // The Claw Potentiometer Should Never Read BELOW This Number
-        constexpr int PotUpperLimit = 811;
         // The Claw Potentiometer Should Never Read ABOVE This Number
-        constexpr int PotLowerLimit = 3590;
+        constexpr int PotUpperLimit = 3500;
+        // The Claw Potentiometer Should Never Read BELOW This Number
+        constexpr int PotLowerLimit = 1200;
 
     }// End Claw
 

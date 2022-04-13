@@ -26,7 +26,7 @@ void ClawCommands::ClawUp::Initialize() {
 
 // Called every Scheduler Call
 void ClawCommands::ClawUp::Execute() {
-  if(claw->getPot() < kHang::Claw::PotUpperLimit){
+  if(claw->getPot() > kHang::Claw::PotUpperLimit){
     claw->set(c_TalonUPR(-3000));
   }
   else{

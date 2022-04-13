@@ -78,7 +78,8 @@ bool ClawSubsystem::getUpperLimit(){
 
 // This method will be called once per scheduler run
 void ClawSubsystem::Periodic() {
-    frc::SmartDashboard::PutBoolean("Claw Limit", getLowerLimit());
+    frc::SmartDashboard::PutBoolean("Claw Lower", getLowerLimit());
+    frc::SmartDashboard::PutBoolean("Claw Upper", getUpperLimit());
     frc::SmartDashboard::PutNumber("Claw Amps", ClawMotor.GetSupplyCurrent());
     frc::SmartDashboard::PutNumber("Claw Pot", getPot());
     frc::SmartDashboard::PutNumber("Claw Position", getScaledPosition());
