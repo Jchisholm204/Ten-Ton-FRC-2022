@@ -63,7 +63,7 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
 
     // Drive to Ball
     frc2::ParallelRaceGroup{
-      DriveCommands::DriveDist(driveSys, -72/*120*/, 5000, true),
+      DriveCommands::DriveDist(driveSys, -80/*120*/, 3500, true),
       IndexCommands::AutoIndex(indexSys)
     },
 
@@ -75,7 +75,7 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
       }, {indexSys}),
 
     //  Drive Back to Shooting Position
-    DriveCommands::DriveDist(driveSys, 2/*15*/, 4000, false),
+    DriveCommands::DriveDist(driveSys, 5/*15*/, 4000, false),
 
     // Raise Intake
     frc2::InstantCommand([intakeSys]{

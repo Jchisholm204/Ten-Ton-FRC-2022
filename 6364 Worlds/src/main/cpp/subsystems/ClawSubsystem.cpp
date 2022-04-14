@@ -54,7 +54,7 @@ double ClawSubsystem::getPot(){
 }
 
 double ClawSubsystem::getScaledPosition(){
-    return (1-((getPot()-840)/2800))*100;
+    return (1-((getPot()-900)/2800))*100;
 }
 
 int ClawSubsystem::getVirtualLimit(){

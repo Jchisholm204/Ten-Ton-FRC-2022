@@ -93,6 +93,9 @@ void RobotContainer::ConfigureMasterBindings() {
   frc2::JoystickButton(&master, frc::XboxController::Button::kLeftBumper)
     .WhenPressed(new IndexCommands::ShootHigh(&subsystem_index)
     );
+
+  frc2::JoystickButton(&master, frc::XboxController::Button::kA)
+    .ToggleWhenPressed(IndexCommands::AutoIndex(&subsystem_index));
 }
 
 /**

@@ -43,7 +43,7 @@ void IndexCommands::ShootHigh::Execute() {
     spinUpTime = frcTools::Time::Millis();
   }
 
-  if(reachedRPM && (spinUpTime + 250 < frcTools::Time::Millis())){
+  if(reachedRPM && (spinUpTime + 333 < frcTools::Time::Millis())){
     index->setFeed(1);
   }
 
