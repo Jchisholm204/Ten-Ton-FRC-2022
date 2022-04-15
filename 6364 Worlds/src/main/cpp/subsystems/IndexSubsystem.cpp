@@ -31,8 +31,7 @@ IndexSubsystem::IndexSubsystem() :
     botMtr{RobotMap::CAN::BottomIndex},
     feedMtr{RobotMap::CAN::FeedIndex},
     feedPE{RobotMap::DIGITAL::Index_PE_feed},
-    topColor{frc::I2C::kMXP},
-    bottomColor{frc::I2C::kOnboard}
+    topColor{frc::I2C::kMXP}
     {
         motorConfiguration::Talon::index(botMtr, false);
         motorConfiguration::Talon::index(feedMtr, true);
@@ -89,7 +88,7 @@ bool IndexSubsystem::getTopIR(){
 }
 
 bool IndexSubsystem::getBotIR(){
-    return bottomColor.GetProximity() > kIndex::k_colorProxTrigger;
+    return nt::NetworkTableInstance::GetDefault().GetTable("rpi")->GetNumber("proximity1", -1) > kIndex::k_colorProxTrigger;
 }
 
 bool IndexSubsystem::getFeedPE(){
@@ -129,7 +128,8 @@ void IndexSubsystem::Periodic(){
     frc::SmartDashboard::PutBoolean("Top IR", getTopIR());
     frc::SmartDashboard::PutBoolean("Bottom IR", getBotIR());
     frc::SmartDashboard::PutBoolean("Feed PE", getFeedPE());
-    frc::SmartDashboard::PutNumber("Bot Proxim", bottomColor.GetProximity());
+    //Bottom Color no longer attached to roborio
+    //frc::SmartDashboard::PutNumber("Bot Proxim", bottomColor.GetProximity());
     frc::SmartDashboard::PutNumber("Top Proxim", topColor.GetProximity());
     frc::SmartDashboard::PutNumber("Top Indx RPM", c_TalonRPM(getTopVelocity()));
     frc::SmartDashboard::PutNumber("Top AMPS", topMtr.GetSupplyCurrent());

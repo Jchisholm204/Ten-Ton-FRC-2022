@@ -26,6 +26,8 @@
 #include <frc/DigitalGlitchFilter.h>
 #include <ctre/Phoenix.h>
 #include "rev/ColorSensorV3.h"
+#include "networktables/NetworkTableInstance.h"
+
 
 class IndexSubsystem : public frc2::SubsystemBase {
  public:
@@ -161,7 +163,5 @@ class IndexSubsystem : public frc2::SubsystemBase {
   frc::DigitalInput feedPE;
 
   rev::ColorSensorV3 topColor;
-
-  rev::ColorSensorV3 bottomColor;
   
 };
