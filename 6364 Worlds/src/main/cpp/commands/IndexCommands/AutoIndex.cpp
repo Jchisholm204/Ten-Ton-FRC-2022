@@ -23,12 +23,13 @@ void AutoIndex::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void AutoIndex::Execute() {
 
-  // 775 Indexing Power (CTRE Percent Output)
-  double iPow = 0.6;
+  // 775 Indexing Powers (CTRE Percent Output)
+  double feedPow = 1;
+  double backPow = 0.6;
 
 
-  if ( subsystem->getBotPE() && codex == 1){ codex = 2; };
-  if ( subsystem->getFeedIR() && codex == 2 ){ codex = 3; };
+  if ( subsystem->getBotIR() && codex == 1){ codex = 2; };
+  if ( subsystem->getFeedPE() && codex == 2 ){ codex = 3; };
 
   if ( codex == 3 ){
     subsystem->setBottom(0);
@@ -36,11 +37,11 @@ void AutoIndex::Execute() {
   }
   else if ( codex == 2 ){
     subsystem->setBottom(0);
-    subsystem->setFeed(iPow);
+    subsystem->setFeed(feedPow);
   }
   else if ( codex == 1 ){
-    subsystem->setBottom(iPow);
-    subsystem->setFeed(iPow);
+    subsystem->setBottom(backPow);
+    subsystem->setFeed(feedPow);
   }
   else{
     printf("Codex OverFlow");

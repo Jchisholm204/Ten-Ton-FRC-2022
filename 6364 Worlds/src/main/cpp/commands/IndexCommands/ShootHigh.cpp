@@ -27,8 +27,10 @@ void IndexCommands::ShootHigh::Initialize() {
   index->setFeed(0);
   index->setBottom(0);
   index->setTopVel(c_TalonUPR(6300));
+  //index->setTop(1);
 
   startTime = frcTools::Time::Millis();
+  spinUpTime = frcTools::Time::Millis();
   isFinished = false;
   reachedRPM = false;
   IndexCommands::codex = 0;

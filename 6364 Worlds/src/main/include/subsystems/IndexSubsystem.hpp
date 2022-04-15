@@ -101,39 +101,21 @@ class IndexSubsystem : public frc2::SubsystemBase {
    */
   double getFeedOutput();
 
-  /** Get if the Top Photoelectric Sensor is currently Triggered
-   * @returns TRUE if the sensor is triggered
-   */
-  bool getTopPE();
-
   /** Get if the Top Color Sensor's IR Object Detection is currently Triggered
    * @returns TRUE if the sensor is detecting an object
    */
   bool getTopIR();
 
-  /**
-   * @brief Get the if the Top Index Contains A Ball using the Sensing Method Provided By the Dashboard
-   * 
-   * @return TRUE if the Selected Sensor (IR or PE) Is detecting a ball
-   */
-  bool getTopSelectedSensor();
-
-  /** Get if the Bottom Photoelectric Sensor is currently Triggered
+  /** Get if the Top Color Sensor's IR Object Detection is currently Triggered
    * @returns TRUE if the sensor is triggered
    */
-  bool getBotPE();
+  bool getBotIR();
 
   /**
-   * Get The Current Proximity reading of the Feed Indexers Color Sensor
-   * @returns The Sensors Current Proximity Value
-   */
-  double getFeedProximity();
-
-  /**
-   * Get If The Color Sensor on the Feed Indexer is Currently Detecting a Ball
+   * Get If The PhotoElectric Sensor on the Feed Indexer is Currently Detecting a Ball
    * @returns TRUE if the Sensor is detecting a ball
    */
-  bool getFeedIR();
+  bool getFeedPE();
 
   enum TeamColors{
     red = 0, blue = 1, null = 2
@@ -176,11 +158,10 @@ class IndexSubsystem : public frc2::SubsystemBase {
   TalonSRX botMtr;
   TalonSRX feedMtr;
 
-  frc::DigitalInput topPE;
-  frc::DigitalInput bottomPE;
+  frc::DigitalInput feedPE;
 
   rev::ColorSensorV3 topColor;
 
-  rev::ColorSensorV3 feedColor;
+  rev::ColorSensorV3 bottomColor;
   
 };

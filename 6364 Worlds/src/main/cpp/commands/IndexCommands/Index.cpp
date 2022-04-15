@@ -51,10 +51,10 @@ void Index::Execute() {
     }
   }
   else{
-    if ( subsystem->getTopSelectedSensor() && codex == 0){ codex = 1; };
+    if ( subsystem->getTopIR() && codex == 0){ codex = 1; };
   }
   
-  if ( subsystem->getBotPE() && codex == 1 ){ codex = 2; };
+  if ( subsystem->getBotIR() && codex == 1 ){ codex = 2; };
 
   if ( codex == 2 ){
     subsystem->setTop(0);

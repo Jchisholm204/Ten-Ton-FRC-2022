@@ -52,10 +52,6 @@ extern frc::Compressor compressor;
 
 extern frc::PowerDistribution pdp;
 
-// Allows sDash to Change the Detection Method for the top Indexer
-// TRUE for IR || FALSE for PE
-extern frc::SendableChooser<bool> topDetectionMethod;
-
 // Set the Robots Team Color for Color Sorting Through sDash
 extern frc::SendableChooser<IndexSubsystem::TeamColors> teamColor;
 

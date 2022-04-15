@@ -31,9 +31,6 @@ frc::Joystick joystick(2);
 frc::Compressor compressor(frc::PneumaticsModuleType::CTREPCM);
 frc::PowerDistribution pdp{0, frc::PowerDistribution::ModuleType::kCTRE};
 
-// TRUE for IR || FALSE for PE
-frc::SendableChooser<bool> topDetectionMethod;
-
 // Set the Robots Team Color for Color Sorting Through sDash
 frc::SendableChooser<IndexSubsystem::TeamColors> teamColor;
 
@@ -83,11 +80,6 @@ void RobotContainer::ConfigureMasterBindings() {
   // Shoot Balls Stored within the index when Right Bumper is Pressed
   frc2::JoystickButton(&master, frc::XboxController::Button::kRightBumper)
     .WhenPressed(new IndexCommands::ShootLow(&subsystem_index));
-
-  // Backfeed the balls into the lower indexers - Used before shooting high
-  frc2::JoystickButton(&master, frc::XboxController::Button::kA)
-    .WhenPressed(new IndexCommands::BackFeed(&subsystem_index)
-    );
 
   // Shoot High Goal -> Speeds up top indexer and shoots once it reaches the correct Velocity
   frc2::JoystickButton(&master, frc::XboxController::Button::kLeftBumper)

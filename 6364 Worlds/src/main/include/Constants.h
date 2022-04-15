@@ -77,12 +77,10 @@ namespace RobotMap {
 
     // Digital Devices Port IDs
     namespace DIGITAL {
-        constexpr int Index_PE_top = 1;
-        constexpr int Index_PE_bottom = 2;
+        constexpr int Index_PE_feed = 1;
         constexpr int Hang_Limit_LOWER = 0;
         constexpr int ClawLowerLimit = 3;
         constexpr int ClawUpperLimit = 4;
-        constexpr int teamSwitch = 6;
     }//End Digital
 
     // PCM Controller IDs
@@ -112,10 +110,7 @@ namespace kIndex {
     constexpr double k_shootTime = 2000;
     
     // The Color Proximity Trigger Value for GetFeedBall
-    constexpr double k_colorProxTrigger= 375;
-
-    // The Top Color Sensor's Proximity trigger value
-    constexpr int k_topColorProxTrigger = 120;
+    constexpr double k_colorProxTrigger= 200;
 
     constexpr double blueMinimum = 0.4;
     constexpr double blueMaximum = 0.2;

@@ -30,31 +30,15 @@ IndexSubsystem::IndexSubsystem() :
     topMtr{RobotMap::CAN::TopIndex},
     botMtr{RobotMap::CAN::BottomIndex},
     feedMtr{RobotMap::CAN::FeedIndex},
-    topPE{RobotMap::DIGITAL::Index_PE_top},
-    bottomPE{RobotMap::DIGITAL::Index_PE_bottom},
-    //teamSwitch{RobotMap::DIGITAL::teamSwitch},
+    feedPE{RobotMap::DIGITAL::Index_PE_feed},
     topColor{frc::I2C::kMXP},
-    feedColor{frc::I2C::kOnboard}
+    bottomColor{frc::I2C::kOnboard}
     {
         motorConfiguration::Talon::index(botMtr, false);
         motorConfiguration::Talon::index(feedMtr, true);
         motorConfiguration::Talon::index(topMtr, true);
         SetName("Index");
     }
-
-/*  SPARK MAX
-void IndexSubsystem::setTop(double percentOutput){
-    topMtrPID.SetReference(percentOutput, SPCT::kDutyCycle);
-}
-
-void IndexSubsystem::setTop(SPCT mode, double iPow){
-    topMtrPID.SetReference(iPow, mode);
-}
-
-double IndexSubsystem::getTopOutput(){
-    return topMtr.Get();
-}
-*/
 
 void IndexSubsystem::setTop(double percentOutput){
     topMtr.Set(ControlMode::PercentOutput, percentOutput);
@@ -100,33 +84,16 @@ double IndexSubsystem::getFeedOutput(){
     return feedMtr.GetMotorOutputPercent();
 }
 
-bool IndexSubsystem::getTopPE(){
-    return topPE.Get();
-}
-
 bool IndexSubsystem::getTopIR(){
-    return topColor.GetProximity() > kIndex::k_topColorProxTrigger;
+    return topColor.GetProximity() > kIndex::k_colorProxTrigger;
 }
 
-bool IndexSubsystem::getTopSelectedSensor(){
-    if(topDetectionMethod.GetSelected()){
-        return topColor.GetProximity() > kIndex::k_topColorProxTrigger;
-    }
-    else{
-        return topPE.Get();
-    }
+bool IndexSubsystem::getBotIR(){
+    return bottomColor.GetProximity() > kIndex::k_colorProxTrigger;
 }
 
-bool IndexSubsystem::getBotPE(){
-    return bottomPE.Get();
-}
-
-double IndexSubsystem::getFeedProximity(){
-    return feedColor.GetProximity();
-}
-
-bool IndexSubsystem::getFeedIR(){
-    return feedColor.GetProximity() > kIndex::k_colorProxTrigger;
+bool IndexSubsystem::getFeedPE(){
+    return feedPE.Get();
 }
 /*
 IndexSubsystem::TeamColors IndexSubsystem::getTeam(){
@@ -159,11 +126,10 @@ IndexSubsystem::TeamColors IndexSubsystem::getBallColor(){
 }
 
 void IndexSubsystem::Periodic(){
-    frc::SmartDashboard::PutBoolean("Top PE", topPE.Get());
-    frc::SmartDashboard::PutBoolean("Bot PE", bottomPE.Get());
-    frc::SmartDashboard::PutBoolean("Feed Prox", getFeedIR());
-    frc::SmartDashboard::PutNumber("Feed Proxim", feedColor.GetProximity());
-    frc::SmartDashboard::PutBoolean("Top Ball", getTopSelectedSensor());
+    frc::SmartDashboard::PutBoolean("Top IR", getTopIR());
+    frc::SmartDashboard::PutBoolean("Bottom IR", getBotIR());
+    frc::SmartDashboard::PutBoolean("Feed PE", getFeedPE());
+    frc::SmartDashboard::PutNumber("Bot Proxim", bottomColor.GetProximity());
     frc::SmartDashboard::PutNumber("Top Proxim", topColor.GetProximity());
     frc::SmartDashboard::PutNumber("Top Indx RPM", c_TalonRPM(getTopVelocity()));
     frc::SmartDashboard::PutNumber("Top AMPS", topMtr.GetSupplyCurrent());
