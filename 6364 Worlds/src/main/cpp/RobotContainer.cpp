@@ -87,6 +87,7 @@ void RobotContainer::ConfigureMasterBindings() {
     .WhenPressed(new IndexCommands::ShootHigh(&subsystem_index)
     );
 
+  // Master A -> Runs Auton Indexing sequence for high goal shooting
   frc2::JoystickButton(&master, frc::XboxController::Button::kA)
     .ToggleWhenPressed(IndexCommands::AutoIndex(&subsystem_index));
 

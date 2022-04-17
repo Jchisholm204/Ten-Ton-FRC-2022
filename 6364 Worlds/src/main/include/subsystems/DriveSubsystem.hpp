@@ -6,6 +6,7 @@
  * 
  * Drive Subsystem:
  *    - 4 Falcon FX 500 Motors
+ *    - 1 VEX EDR Ultrasonic Sensor
  *    - Master and Slave configuration
  *    - Exponential Controller with Deadband
  *    - NavX Gyro
@@ -122,6 +123,11 @@ class DriveSubsystem : public frc2::SubsystemBase {
   //Calls ResetDisplacement()
   void resetNavPos();
 
+  /**
+   * @brief Get the Distance Measured by the Front Ultrasonic
+   * 
+   * @return The Distance in Meters
+   */
   double getUltrasonic();
 
   void Periodic() override;

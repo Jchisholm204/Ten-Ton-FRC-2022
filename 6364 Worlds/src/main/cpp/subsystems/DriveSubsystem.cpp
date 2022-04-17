@@ -8,6 +8,7 @@
  * 
  * Drive Subsystem:
  *    - 4 Falcon FX 500 Motors
+ *    - 1 VEX EDR Ultrasonic Sensor
  *    - Master and Slave configuration
  *    - Exponential Controller with Deadband
  *    - NavX Gyro

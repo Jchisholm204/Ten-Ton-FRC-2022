@@ -83,11 +83,12 @@ double IndexSubsystem::getFeedOutput(){
     return feedMtr.GetMotorOutputPercent();
 }
 
-bool IndexSubsystem::getTopIR(){
+bool IndexSubsystem::getTopIR(){ // Top IR Located on Rio XMP I2C port
     return topColor.GetProximity() > kIndex::k_colorProxTrigger;
 }
 
-bool IndexSubsystem::getBotIR(){
+bool IndexSubsystem::getBotIR(){ // Bot IR Located on Raspberry Pi I2C port
+    //Get Current reading from Pi through NetworkTables
     return nt::NetworkTableInstance::GetDefault().GetTable("rpi")->GetNumber("proximity1", -1) > kIndex::k_colorProxTrigger;
 }
 

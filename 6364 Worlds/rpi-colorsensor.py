@@ -411,7 +411,10 @@ def readConfig():
 
 if __name__ == "__main__":
     import time
-    time.sleep(0.1)
+
+    time.sleep(60) #sleep 60 seconds to wait for rio and radio startup
+
+
     if len(sys.argv) >= 2:
         configFile = sys.argv[1]
 
