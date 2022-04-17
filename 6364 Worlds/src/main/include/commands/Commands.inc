@@ -7,6 +7,7 @@
 #include "commands/DriveCommands/DriveTurn.hpp"
 #include "commands/DriveCommands/DriveDist.hpp"
 #include "commands/DriveCommands/LimeLightAlign.hpp"
+#include "commands/DriveCommands/HighGoalDistAlign.hpp"
 
 // Intake Commands
 #include "commands/IntakeCommands/OpIntake.hpp"

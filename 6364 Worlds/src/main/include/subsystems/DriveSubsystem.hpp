@@ -17,6 +17,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <ctre/Phoenix.h>
+#include <frc/Ultrasonic.h>
 #include <AHRS.h>
 
 /**
@@ -121,6 +122,8 @@ class DriveSubsystem : public frc2::SubsystemBase {
   //Calls ResetDisplacement()
   void resetNavPos();
 
+  double getUltrasonic();
+
   void Periodic() override;
 
  private:
@@ -130,4 +133,6 @@ class DriveSubsystem : public frc2::SubsystemBase {
   TalonFX driveLS;
 
   AHRS navX;
+
+  frc::Ultrasonic ultrasonic;
 };

@@ -81,6 +81,9 @@ namespace RobotMap {
         constexpr int Hang_Limit_LOWER = 0;
         constexpr int ClawLowerLimit = 3;
         constexpr int ClawUpperLimit = 4;
+
+        constexpr int driveUltrasonicPing = 6;
+        constexpr int driveUltrasonicEcho = 7;
     }//End Digital
 
     // PCM Controller IDs
@@ -132,6 +135,10 @@ namespace kHang {
     }// End Claw
 
 } // End kHang
+
+namespace kDrive {
+    constexpr double ultrasonicTV = 0.338;
+}// End kDrive
 
 //Macro to convert Talon FX encoder Units Per Rotation (UPR) into Rotations Per Minute (RPM)
 #define c_TalonRPM(upr) (upr*600/2408)

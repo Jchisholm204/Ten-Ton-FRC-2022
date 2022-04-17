@@ -88,6 +88,9 @@ void RobotContainer::ConfigureMasterBindings() {
 
   frc2::JoystickButton(&master, frc::XboxController::Button::kA)
     .ToggleWhenPressed(IndexCommands::AutoIndex(&subsystem_index));
+
+  frc2::JoystickButton(&master, frc::XboxController::Button::kB)
+    .WhenHeld(DriveCommands::HighGoalDistAlign(&subsystem_drive));
 }
 
 /**

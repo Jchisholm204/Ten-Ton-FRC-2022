@@ -62,7 +62,7 @@ void DriveCommands::OpDrive::Execute(){
      * drive->arcadeDrive uses ControlMode::Velocity by default
      */
     double Ypow = 1.0*exponential(-master.GetLeftY(), 1.7,  0.07, 0.01);
-    double Xpow = 0.75*exponential(master.GetRightX(), 1.55, 0.07, 0.01);
+    double Xpow = 0.6*exponential(master.GetRightX(), 1.55, 0.07, 0.01);
     //frc::SmartDashboard::PutNumber("Drive Power", Ypow);
     //frc::SmartDashboard::PutNumber("Turn Power", Xpow);
     //frc::SmartDashboard::PutNumber("joy", master.GetLeftY());

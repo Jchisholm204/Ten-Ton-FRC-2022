@@ -24,7 +24,9 @@ driveRM{RobotMap::CAN::driveRM},
 driveRS{RobotMap::CAN::driveRS},
 driveLM{RobotMap::CAN::driveLM},
 driveLS{RobotMap::CAN::driveLS},
-navX{frc::SPI::kMXP} {
+navX{frc::SPI::kMXP},
+//Input, Output
+ultrasonic{RobotMap::DIGITAL::driveUltrasonicPing, RobotMap::DIGITAL::driveUltrasonicEcho} {
 
     motorConfiguration::Talon::rightDrive(driveRM);
     motorConfiguration::Talon::rightDrive(driveRS);
@@ -33,6 +35,8 @@ navX{frc::SPI::kMXP} {
 
     driveRS.Follow(driveRM);
     driveLS.Follow(driveLM);
+
+    ultrasonic.SetAutomaticMode(true);
 
     //frc::SmartDashboard::PutBoolean("Reset Gyro Readings", false);
     SetName("DriveBase");
@@ -114,11 +118,15 @@ void DriveSubsystem::resetNavPos(){
     navX.ResetDisplacement();
 }
 
+double DriveSubsystem::getUltrasonic(){
+    return double(ultrasonic.GetRange());
+}
+
 //float maxPitch = 0;
 //float minPitch = 0;
 
 void DriveSubsystem::Periodic(){
-    frc::SmartDashboard::PutNumber("Gyro Tilt", navX.GetRoll());
+    frc::SmartDashboard::PutNumber("Drive Ultrasonic", getUltrasonic());
     /*
     frc::SmartDashboard::PutNumber("Max Tilt", maxPitch);
     frc::SmartDashboard::PutNumber("Min Tilt", minPitch);
