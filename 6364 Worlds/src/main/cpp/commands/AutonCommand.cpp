@@ -26,13 +26,13 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
     // Lower Rear Intake, Drive Backwards while Indexing
     frc2::ParallelRaceGroup{
       IntakeCommands::Intake(intakeSys, true, false, true),
-      DriveCommands::DriveDist(driveSys, 30000, 0.07, true),
+      DriveCommands::DriveDist(driveSys, -80, 3500, true),
       IndexCommands::Index(indexSys)
     },
 
     // Drive Forwards While Indexing
     frc2::ParallelRaceGroup{
-      DriveCommands::DriveDist(driveSys, 30000, 0.07, false),
+      DriveCommands::DriveDist(driveSys, 10, 3500, false),
       IndexCommands::Index(indexSys)
     },
 
