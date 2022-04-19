@@ -20,6 +20,7 @@
 #include "commands/IndexCommands/Stop.hpp"
 #include "commands/IndexCommands/Manual.hpp"
 #include "commands/IndexCommands/AutoIndex.hpp"
+#include "commands/IndexCommands/HighIndex.hpp"
 
 // Auton Commands
 #include "commands/AutonCommand.hpp"

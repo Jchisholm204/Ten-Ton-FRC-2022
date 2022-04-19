@@ -8,10 +8,11 @@
  *    - 3 Index Motors
  *    - Feed and Bottom Index Powered by Vex Pro 775 and Talon SRX
  *    - Top Index Powered by Falcon 500 and Integrated TalonFX
- *    - Top and Bottom Photoelectric Sensors
- *    - Color Sensor Mounted at the base of the Index
- *    - Color Sensor Mounted near the Top Indexer
- *    - Toggle Switch Inside the Electronics Board used to select team color
+ *    - Photoelectric Sensor Mounted within the Electronics board on the feed indexer
+ *    - Color Sensors mounted near the Top and Bottom Indexers
+ *    - SmartDashboard Sendable Chooser used to change TeamColor
+ *        - Setting TeamColor to none (null) Disables Color Sorting
+ *        - More Information within Indexing Commands
  *
  *  Default Command:
  *    - Automatic Ball Indexing with Photoelectric and Color Sensors
@@ -23,7 +24,6 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/DigitalInput.h>
-#include <frc/DigitalGlitchFilter.h>
 #include <ctre/Phoenix.h>
 #include "rev/ColorSensorV3.h"
 #include "networktables/NetworkTableInstance.h"
@@ -120,7 +120,7 @@ class IndexSubsystem : public frc2::SubsystemBase {
   bool getFeedPE();
 
   enum TeamColors{
-    red = 0, blue = 1, null = 2
+    red = 1, blue = 2, null = 3
   };
   
 
@@ -145,11 +145,18 @@ class IndexSubsystem : public frc2::SubsystemBase {
   bool getBlueBall();
 
   /**
-   * @brief Get the Ball Color
+   * @brief Get the Top Ball Color
    * 
    * @returns A TeamColor, TeamColors::null if no ball is detected
    */
-  TeamColors getBallColor();
+  TeamColors getTopBallColor();
+
+  /**
+   * @brief Get the Bottom Ball Color
+   * 
+   * @returns A TeamColor, TeamColors::null if no ball is detected
+   */
+  TeamColors getBottomBallColor();
 
 
   void Periodic() override;

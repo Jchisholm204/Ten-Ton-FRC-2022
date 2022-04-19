@@ -37,13 +37,13 @@ void Index::Execute() {
 
   if(teamColor.GetSelected() != IndexSubsystem::TeamColors::null){
     // if BallColor == TeamColor && codex == 0 -> Index ball
-    if (teamColor.GetSelected() == subsystem->getBallColor() && codex == 0){
+    if (teamColor.GetSelected() == subsystem->getTopBallColor() && codex == 0){
       codex = 1;
     }
 
     // If a ball has been registered by the Proximity Sensor, But the Color is undeterminable, set top indexer drive power to zero
     // Fixes Balls getting caught too high in the top indexer
-    if(subsystem->getTopIR() && subsystem->getBallColor() == IndexSubsystem::TeamColors::null){
+    if(subsystem->getTopIR() && subsystem->getTopBallColor() == IndexSubsystem::TeamColors::null){
       vPow = 0;
     }
     else{

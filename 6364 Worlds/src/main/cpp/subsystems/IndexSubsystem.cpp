@@ -113,11 +113,25 @@ bool IndexSubsystem::getBlueBall(){
     return topColor.GetColor().blue > kIndex::blueMinimum && topColor.GetColor().red < kIndex::redMaximum;
 }
 
-IndexSubsystem::TeamColors IndexSubsystem::getBallColor(){
+IndexSubsystem::TeamColors IndexSubsystem::getTopBallColor(){
     if(topColor.GetColor().blue > kIndex::blueMinimum && topColor.GetColor().red < kIndex::redMaximum){
         return TeamColors::blue;
     }
     else if(topColor.GetColor().red > kIndex::redMinimum && topColor.GetColor().blue < kIndex::blueMaximum){
+        return TeamColors::red;
+    }
+    else{
+        return TeamColors::null;
+    }
+}
+
+IndexSubsystem::TeamColors IndexSubsystem::getBottomBallColor(){
+    double defaultVals[] = {0, 0, 0};
+    std::vector<double> botColor = nt::NetworkTableInstance().GetDefault().GetTable("rpi")->GetNumberArray("color1", defaultVals);
+    if(botColor[2] > kIndex::blueMinimum && botColor[0] < kIndex::redMaximum){
+        return TeamColors::blue;
+    }
+    else if(botColor[0] > kIndex::redMinimum && botColor[2] < kIndex::blueMaximum){
         return TeamColors::red;
     }
     else{
@@ -135,14 +149,24 @@ void IndexSubsystem::Periodic(){
     frc::SmartDashboard::PutNumber("Top Indx RPM", c_TalonRPM(getTopVelocity()));
     frc::SmartDashboard::PutNumber("Top AMPS", topMtr.GetSupplyCurrent());
     
-    if(getBallColor() == TeamColors::blue){
+    if(getTopBallColor() == TeamColors::blue){
         frc::SmartDashboard::PutString("Top Ball Color", "Blue");
     }
-    else if(getBallColor() == TeamColors::blue){
+    else if(getTopBallColor() == TeamColors::blue){
         frc::SmartDashboard::PutString("Top Ball Color", "Red");
     }
     else{
         frc::SmartDashboard::PutString("Top Ball Color", "Unknown");
+    }
+
+    if(getBottomBallColor() == TeamColors::blue){
+        frc::SmartDashboard::PutString("Bottom Ball Color", "Blue");
+    }
+    else if(getBottomBallColor() == TeamColors::blue){
+        frc::SmartDashboard::PutString("Bottom Ball Color", "Red");
+    }
+    else{
+        frc::SmartDashboard::PutString("Bottom Ball Color", "Unknown");
     }
 
     //printf("R: %f \t G: %f \t B: %f \n", topColor.GetColor().red, topColor.GetColor().green, topColor.GetColor().blue);
