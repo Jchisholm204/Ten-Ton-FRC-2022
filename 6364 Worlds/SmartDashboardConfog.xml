@@ -1,13 +1,28 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="B" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="334"/>
+	</widget>
+	<widget field="G" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="314"/>
+	</widget>
+	<widget field="R" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="294"/>
+	</widget>
+	<widget field="Bottom Ball Color" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="163"/>
+	</widget>
+	<widget field="SendableChooser[0]" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="20" y="210"/>
+	</widget>
 	<widget field="Drive Ultrasonic" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="105"/>
+		<location x="3" y="124"/>
 	</widget>
 	<widget field="Indexing" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="10" y="22"/>
+		<location x="28" y="1"/>
 	</widget>
 	<widget field="Codex: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="13" y="2"/>
+		<location x="29" y="21"/>
 	</widget>
 	<widget field="Bot Proxim" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="200" y="98"/>
@@ -46,7 +61,7 @@
 		<property name="Text" value="High: 3840"/>
 	</static-widget>
 	<widget field="Gyro Tilt" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="12" y="132"/>
+		<location x="20" y="143"/>
 	</widget>
 	<widget field="Claw Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="370" y="170"/>
@@ -75,102 +90,118 @@
 	<widget field="Winch RPM" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="391" y="10"/>
 	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="30" y="199"/>
+		<property name="Text" value="Color Sorting"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="437" y="233"/>
+		<property name="Text" value="Low: 900"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="432" y="217"/>
+		<property name="Text" value="High: 3840"/>
+	</static-widget>
+	<widget field="limelight_Stream" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="685" y="86"/>
+	</widget>
+	<widget field="limelight_Interface" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="682" y="62"/>
+	</widget>
+	<widget field="limelight_PipelineName" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="658" y="36"/>
+	</widget>
 </dashboard>
 <live-window>
 	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="navX-Sensor[4]" type="Gyro" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
-			<location x="0" y="0"/>
-			<height>0</height>
-			<width>0</width>
-		</widget>
-		<widget field="navX-Sensor[4]" type="Gyro" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
-			<location x="0" y="0"/>
-			<height>0</height>
-			<width>0</width>
-		</widget>
-		<widget field="Ultrasonic[7]" type="Ultrasonic" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+		<widget field="DriveBase" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 			<location x="6" y="15"/>
 			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
-		<widget field="DriveBase" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<widget field="Ultrasonic[7]" type="Ultrasonic" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
 			<location x="6" y="34"/>
 			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
 		<widget field="DigitalInput[0]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
 			<location x="6" y="53"/>
 			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
-		<widget field="Index" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<widget field="AnalogInput[0]" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
 			<location x="6" y="72"/>
 			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
 		<widget field="Winch" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 			<location x="6" y="91"/>
 			<height>19</height>
-			<width>193</width>
-		</widget>
-		<widget field="Solenoid[0,1]" type="Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
-			<location x="41" y="110"/>
-			<height>21</height>
-			<width>121</width>
-		</widget>
-		<widget field="AnalogInput[0]" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
-			<location x="6" y="131"/>
-			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
 		<widget field="Intake" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-			<location x="6" y="150"/>
+			<location x="6" y="110"/>
 			<height>19</height>
-			<width>193</width>
-		</widget>
-		<widget field="Claw" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-			<location x="6" y="169"/>
-			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
 		<widget field="Solenoid[0,0]" type="Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
-			<location x="41" y="188"/>
+			<location x="69" y="129"/>
 			<height>21</height>
 			<width>121</width>
 		</widget>
 		<widget field="Solenoid[0,2]" type="Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
-			<location x="41" y="209"/>
+			<location x="69" y="150"/>
 			<height>21</height>
 			<width>121</width>
 		</widget>
 		<widget field="frc2::SubsystemBase" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-			<location x="6" y="230"/>
+			<location x="6" y="171"/>
 			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
-		<widget field="DigitalInput[4]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="249"/>
+		<widget field="Solenoid[0,1]" type="Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="69" y="190"/>
+			<height>21</height>
+			<width>121</width>
+		</widget>
+		<widget field="Index" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="6" y="211"/>
 			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
 		<widget field="DigitalInput[3]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="230"/>
+			<height>19</height>
+			<width>250</width>
+		</widget>
+		<widget field="Claw" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="6" y="249"/>
+			<height>19</height>
+			<width>250</width>
+		</widget>
+		<widget field="DigitalInput[4]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
 			<location x="6" y="268"/>
 			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
 		<widget field="Counter[0]" type="Counter" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
 			<location x="6" y="287"/>
 			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
 		<widget field="DigitalInput[1]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
 			<location x="6" y="306"/>
 			<height>19</height>
-			<width>193</width>
+			<width>250</width>
 		</widget>
-		<location x="30" y="8"/>
-		<width>205</width>
-		<height>331</height>
+		<widget field="navX-Sensor[4]" type="Gyro" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+			<location x="6" y="325"/>
+			<height>150</height>
+			<width>250</width>
+		</widget>
+		<location x="31" y="7"/>
+		<width>262</width>
+		<height>481</height>
 	</widget>
 </live-window>
 </xml>

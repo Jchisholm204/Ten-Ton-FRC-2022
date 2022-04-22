@@ -33,3 +33,5 @@
 // Claw Commands
 #include "commands/HangCommands/ClawUp.hpp"
 #include "commands/HangCommands/ClawDown.hpp"
+
+#include "commands/Await.h"

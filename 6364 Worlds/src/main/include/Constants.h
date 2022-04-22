@@ -113,13 +113,13 @@ namespace kIndex {
     constexpr double k_shootTime = 2000;
     
     // The Color Proximity Trigger Value for GetFeedBall
-    constexpr double k_colorProxTrigger= 200;
+    constexpr double k_colorProxTrigger= 100;
 
-    constexpr double blueMinimum = 0.4;
+    constexpr double blueMinimum = 0.37;
     constexpr double blueMaximum = 0.2;
 
     constexpr double redMinimum = 0.45;
-    constexpr double redMaximum = 0.2;
+    constexpr double redMaximum = 0.3;
 
 }//End kIndex
 
@@ -137,7 +137,7 @@ namespace kHang {
 } // End kHang
 
 namespace kDrive {
-    constexpr double ultrasonicTV = 0.338;
+    constexpr double ultrasonicTV = 0.5;
 }// End kDrive
 
 //Macro to convert Talon FX encoder Units Per Rotation (UPR) into Rotations Per Minute (RPM)

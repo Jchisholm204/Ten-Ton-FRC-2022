@@ -36,6 +36,7 @@ IndexSubsystem::IndexSubsystem() :
         motorConfiguration::Talon::index(botMtr, false);
         motorConfiguration::Talon::index(feedMtr, true);
         motorConfiguration::Talon::index(topMtr, true);
+        //topColor.ConfigureColorSensor(rev::ColorSensorV3::ColorResolution::k20bit, rev::ColorSensorV3::ColorMeasurementRate::k25ms);
         SetName("Index");
     }
 
@@ -84,7 +85,7 @@ double IndexSubsystem::getFeedOutput(){
 }
 
 bool IndexSubsystem::getTopIR(){ // Top IR Located on Rio XMP I2C port
-    return topColor.GetProximity() > kIndex::k_colorProxTrigger;
+    return (topColor.GetProximity()-40) > kIndex::k_colorProxTrigger;
 }
 
 bool IndexSubsystem::getBotIR(){ // Bot IR Located on Raspberry Pi I2C port
@@ -145,14 +146,14 @@ void IndexSubsystem::Periodic(){
     frc::SmartDashboard::PutBoolean("Feed PE", getFeedPE());
     //Bottom Color no longer attached to roborio
     //frc::SmartDashboard::PutNumber("Bot Proxim", bottomColor.GetProximity());
-    frc::SmartDashboard::PutNumber("Top Proxim", topColor.GetProximity());
+    frc::SmartDashboard::PutNumber("Top Proxim", topColor.GetProximity()-40);
     frc::SmartDashboard::PutNumber("Top Indx RPM", c_TalonRPM(getTopVelocity()));
     frc::SmartDashboard::PutNumber("Top AMPS", topMtr.GetSupplyCurrent());
     
     if(getTopBallColor() == TeamColors::blue){
         frc::SmartDashboard::PutString("Top Ball Color", "Blue");
     }
-    else if(getTopBallColor() == TeamColors::blue){
+    else if(getTopBallColor() == TeamColors::red){
         frc::SmartDashboard::PutString("Top Ball Color", "Red");
     }
     else{
@@ -162,12 +163,22 @@ void IndexSubsystem::Periodic(){
     if(getBottomBallColor() == TeamColors::blue){
         frc::SmartDashboard::PutString("Bottom Ball Color", "Blue");
     }
-    else if(getBottomBallColor() == TeamColors::blue){
+    else if(getBottomBallColor() == TeamColors::red){
         frc::SmartDashboard::PutString("Bottom Ball Color", "Red");
     }
     else{
         frc::SmartDashboard::PutString("Bottom Ball Color", "Unknown");
     }
+    frc::SmartDashboard::PutNumber("R", topColor.GetColor().red);
+    frc::SmartDashboard::PutNumber("G", topColor.GetColor().green);
+    frc::SmartDashboard::PutNumber("B", topColor.GetColor().blue);
+/*
+    double defaultVals[] = {0, 0, 0};
+    std::vector<double> botColor = nt::NetworkTableInstance().GetDefault().GetTable("rpi")->GetNumberArray("color1", defaultVals);
 
+    frc::SmartDashboard::PutNumber("R", botColor[0]);
+    frc::SmartDashboard::PutNumber("G", botColor[1]);
+    frc::SmartDashboard::PutNumber("B", botColor[2]);
+*/
     //printf("R: %f \t G: %f \t B: %f \n", topColor.GetColor().red, topColor.GetColor().green, topColor.GetColor().blue);
 }
