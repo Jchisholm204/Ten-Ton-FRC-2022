@@ -41,31 +41,31 @@ void HighIndex::Execute() {
   double backPow = 0.6;
 
   if(teamColor.GetSelected() != IndexSubsystem::TeamColors::null){
-    if (teamColor.GetSelected() == subsystem->getBottomBallColor() && codex == 1){
-      codex = 2;
+    if (teamColor.GetSelected() == subsystem->getBottomBallColor() && codex == 0){
+      codex = 1;
     }
   }
   else{
-    if ( subsystem->getBotIR() && codex == 1){ codex = 2; };
+    if ( subsystem->getBotIR() && codex == 0){ codex = 1; };
   }
 
-  if ( subsystem->getFeedPE() && codex == 2 ){ codex = 3; };
+  if ( subsystem->getFeedPE() && codex == 1 ){ codex = 2; };
 
-  if ( codex == 3 ){
+  if ( codex == 2 ){
     subsystem->setBottom(0);
     subsystem->setFeed(0);
   }
-  else if ( codex == 2 ){
+  else if ( codex == 1 ){
     subsystem->setBottom(0);
     subsystem->setFeed(feedPow);
   }
-  else if ( codex == 1 ){
+  else if ( codex == 0 ){
     subsystem->setBottom(backPow);
     subsystem->setFeed(feedPow);
   }
   else{
     printf("Codex OverFlow");
-    codex = 1;
+    codex = 0;
   }
 }
 

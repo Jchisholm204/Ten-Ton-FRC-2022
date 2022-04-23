@@ -137,7 +137,7 @@ namespace kHang {
 } // End kHang
 
 namespace kDrive {
-    constexpr double ultrasonicTV = 0.5;
+    constexpr double ultrasonicTV = 0.54;
 }// End kDrive
 
 //Macro to convert Talon FX encoder Units Per Rotation (UPR) into Rotations Per Minute (RPM)

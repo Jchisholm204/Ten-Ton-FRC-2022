@@ -24,7 +24,7 @@ using namespace DriveCommands;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 HighGoalDistAlign::HighGoalDistAlign(DriveSubsystem* drive)
     : CommandHelper(
-          frc2::PIDController(10, 0, 50),
+          frc2::PIDController(20, 0, 160),
           // This should return the measurement
           [drive] { return drive->getUltrasonic(); },
           // This should return the setpoint (can also be a constant)

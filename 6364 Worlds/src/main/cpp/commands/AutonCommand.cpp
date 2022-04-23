@@ -75,7 +75,7 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
       }, {indexSys}),
 
     //  Drive Back to Shooting Position
-    DriveCommands::DriveDist(driveSys, 0, 3000, false),
+    DriveCommands::DriveDist(driveSys, 0, 2000, false),
 
     // Raise Intake
     frc2::InstantCommand([intakeSys]{
@@ -93,6 +93,6 @@ AutonCommand::AutonCommand(DriveSubsystem* driveSys, IntakeSubsystem* intakeSys,
     IndexCommands::ShootHigh(indexSys),
 
     // Spend Remaining time driving backwards
-    DriveCommands::DriveDist(driveSys, -50, 3000, true)
+    DriveCommands::DriveDist(driveSys, -50, 2000, true)
   );
 }

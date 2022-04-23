@@ -59,7 +59,7 @@ RobotContainer::RobotContainer() {
   ConfigureJoystickBindings();
 
   // Set Default Commands for Subsystems
-  subsystem_index.SetDefaultCommand(IndexCommands::Index(&subsystem_index));
+  subsystem_index.SetDefaultCommand(IndexCommands::HighIndex(&subsystem_index));
   subsystem_drive.SetDefaultCommand(DriveCommands::OpDrive(&subsystem_drive));
   subsystem_intake.SetDefaultCommand(IntakeCommands::OpIntake(&subsystem_intake));
   subsystem_winch.SetDefaultCommand(HangCommands::PneumaticControl(&subsystem_winch));
@@ -89,7 +89,7 @@ void RobotContainer::ConfigureMasterBindings() {
 
   // Master A -> Runs Auton Indexing sequence for high goal shooting
   frc2::JoystickButton(&master, frc::XboxController::Button::kA)
-    .ToggleWhenPressed(IndexCommands::HighIndex(&subsystem_index));
+    .ToggleWhenPressed(IndexCommands::Index(&subsystem_index));
 
   frc2::JoystickButton(&master, frc::XboxController::Button::kB)
     .WhenHeld(DriveCommands::HighGoalDistAlign(&subsystem_drive));
@@ -155,7 +155,7 @@ void RobotContainer::ConfigurePartnerBindings() {
  */
 
 void RobotContainer::ConfigureJoystickBindings() {
-
+/*
    // Shoot Balls Stored within the index when the Trigger is Pressed
   (frc2::JoystickButton(&joystick, 1) &&! frc2::JoystickButton(&joystick, 2))
     .WhenActive(new IndexCommands::ShootHigh(&subsystem_index));
@@ -181,7 +181,7 @@ void RobotContainer::ConfigureJoystickBindings() {
       }
       },
       {&subsystem_index}));
-
+*/
   // Codex Overrides
 
   frc2::JoystickButton(&joystick, 9)
@@ -194,11 +194,19 @@ void RobotContainer::ConfigureJoystickBindings() {
       IndexCommands::codex = 2;
       frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
       }));
+  frc2::JoystickButton(&joystick, 12)
+    .WhenActive(new frc2::InstantCommand([this] {
+      IndexCommands::codex = 3;
+      frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
+      }));
   frc2::JoystickButton(&joystick, 7)
     .WhenActive(new frc2::InstantCommand([this] {
       IndexCommands::codex = 0;
       frc::SmartDashboard::PutNumber("Codex: ", IndexCommands::codex);
       }));
+
+  frc2::JoystickButton(&joystick, 11)
+    .WhenHeld(DriveCommands::HighGoalDistAlign(&subsystem_drive));
 /*
   frc2::JoystickButton(&joystick, 8)
     .ToggleWhenActive(new frc2::RunCommand([this]{
