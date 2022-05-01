@@ -1,3 +1,4 @@
-Date,Time In,Time Out,Time Spent,Time Toltal
-01/21/2022,2022-01-21 19:57:33.379288,19:57:48,14.82123,0
-01/21/2022,2022-01-21 19:59:04.810111,19:59:11,6.284,14.82123
+Date,Time In,Time Out,Time Spent (Seconds),Time Toltal (Seconds)
+05/01/2022,10:41:17,10:42:02,44.953231,200000000
+Date,Time In,Time Out,Time Spent (Seconds),Time Toltal (Seconds)
+05/01/2022,10:42:49,10:43:30,41.015658,44
