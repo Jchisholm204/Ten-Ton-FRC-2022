@@ -13,7 +13,7 @@ def getTotalTime(user):
         reader = csv.reader(timeFile)
         #Go Through The Users Logs
         for row in reader:
-            if row[3] != 'Time Spent':
+            if row[3] != 'Time Spent (Seconds)':
                 # Add all of the Users Time Together
                 tTime += float(row[3])
 
