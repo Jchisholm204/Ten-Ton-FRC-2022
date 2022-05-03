@@ -9,6 +9,8 @@ RobotContainer::RobotContainer() {
 
   // Configure the button bindings
   ConfigureButtonBindings();
+
+  subsystem_turret.SetDefaultCommand(LimeLightTracking(&subsystem_limelight, &subsystem_turret));
 }
 
 void RobotContainer::ConfigureButtonBindings() {

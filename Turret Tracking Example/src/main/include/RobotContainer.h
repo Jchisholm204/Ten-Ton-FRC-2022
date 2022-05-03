@@ -5,6 +5,10 @@
 #pragma once
 
 #include <frc2/command/Command.h>
+#include "subsystems/TurretSubsystem.h"
+#include "subsystems/LimeLightSubsystem.h"
+#include "subsystems/NavXSubsystem.h"
+#include "commands/LimeLightTracking.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -15,8 +19,13 @@
  */
 class RobotContainer {
  public:
+
   RobotContainer();
-  
 
   void ConfigureButtonBindings();
+
+  private:
+    LimeLightSubsystem subsystem_limelight;
+    TurretSubsystem subsystem_turret;
+    NavXSubsystem subsystem_navx;
 };

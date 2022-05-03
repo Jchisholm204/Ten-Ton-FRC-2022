@@ -9,7 +9,6 @@
 
 #include "RobotContainer.h"
 
-#include <AHRS.h>
 #include <ctre/Phoenix.h>
 
 class Robot : public frc::TimedRobot {
@@ -25,10 +24,5 @@ class Robot : public frc::TimedRobot {
   void TestPeriodic() override;
 
  private:
-  
-  AHRS NavX{frc::SPI::kMXP};
-  TalonSRX turretMotor{1};
-
-
   RobotContainer m_container;
 };
