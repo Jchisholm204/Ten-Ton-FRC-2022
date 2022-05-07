@@ -9,6 +9,14 @@
 #include "subsystems/LimeLightSubsystem.h"
 #include "subsystems/NavXSubsystem.h"
 #include "commands/LimeLightTracking.h"
+#include "subsystems/ShooterSubsystem.h"
+
+#include <frc/XboxController.h>
+#include <frc2/command/button/JoystickButton.h>
+#include <frc2/command/button/Button.h>
+#include <frc2/command/RunCommand.h>
+#include <frc2/command/InstantCommand.h>
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -28,4 +36,5 @@ class RobotContainer {
     LimeLightSubsystem subsystem_limelight;
     TurretSubsystem subsystem_turret;
     NavXSubsystem subsystem_navx;
+    ShooterSubsystem subsystem_shooter;
 };

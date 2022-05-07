@@ -14,10 +14,6 @@
  * 
  * The Most Basic Form of Turret Tracking
  * 
- * This program applies the rate of change in the position of the target measured by the limelight into the motor;
- * 
- * Using a PID controller would be another way to do this, but using velocities on a 1:1 seems to be more responsive.
- * It should be noted that as of writing this, the added responsiveness has only been measured using input values from the NavX, not the limelight
  */
 class LimeLightTracking
     : public frc2::CommandHelper<frc2::CommandBase, LimeLightTracking> {
@@ -35,4 +31,11 @@ class LimeLightTracking
   private:
     LimeLightSubsystem* limelight;
     TurretSubsystem* turret;
+    float error = {0};
+    float error_prior = {0};
+    float integral = {0};
+    float integral_prior = {0};
+    float derivitive = {0};
+    float output = {0};
+
 };

@@ -15,6 +15,20 @@
  */
 
 
-namespace RobotContainer
+namespace RobotMap
 {
+    namespace CAN
+    {
+        constexpr int TurretMotor = 0;
+        constexpr int FlyWheelMotor = 2;
+        constexpr int BackSpinMotor = 3;
+        constexpr int FWFeedMotor = 4;
+    } // namespace CAN
 } // namespace RobotContainer
+
+namespace Turret
+{
+    constexpr float kP = 1.0;
+    constexpr float kI = 0.0;
+    constexpr float kD = 0.0;
+} // namespace Turret
