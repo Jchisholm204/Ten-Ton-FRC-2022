@@ -1,5 +1,17 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Steering" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="174"/>
+	</widget>
+	<widget field="Power" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="153"/>
+	</widget>
+	<widget field="Throttle RAW" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="30" y="278"/>
+	</widget>
+	<widget field="Steering RAW" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="34" y="250"/>
+	</widget>
 	<widget field="B" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="224" y="259"/>
 	</widget>
@@ -102,5 +114,25 @@
 	</widget>
 </dashboard>
 <live-window>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="DigitalInput[0]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="16"/>
+			<height>20</height>
+			<width>92</width>
+		</widget>
+		<widget field="AnalogInput[1]" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="6" y="36"/>
+			<height>20</height>
+			<width>92</width>
+		</widget>
+		<widget field="AnalogInput[0]" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="6" y="56"/>
+			<height>20</height>
+			<width>92</width>
+		</widget>
+		<location x="0" y="0"/>
+		<width>104</width>
+		<height>82</height>
+	</widget>
 </live-window>
 </xml>
