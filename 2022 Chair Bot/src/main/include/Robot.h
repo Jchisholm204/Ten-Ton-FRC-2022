@@ -32,8 +32,8 @@ class Robot : public frc::TimedRobot {
 
   RobotContainer m_container;
 
-  rev::CANSparkMax leftDrive{0, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax rightDrive{1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax leftDrive{1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax rightDrive{2, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
 
   frc::AnalogInput throttle{0};
   frc::AnalogInput steering{1};

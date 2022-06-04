@@ -10,6 +10,8 @@
 
 
 void Robot::RobotInit() {
+    rightDrive.SetInverted(true);
+    leftDrive.SetInverted(false);
 }
 
 /**
@@ -106,25 +108,28 @@ void Robot::TeleopPeriodic() {
     frc::SmartDashboard::PutNumber("Right", rPow);
     
     if(throttle.GetValue() < 1800){
-        yPow = -(1800.-double(throttle.GetValue()))/500.;
+        yPow = -(1800.0-double(throttle.GetValue()))/450.0;
     }
     else{
         yPow = 0.;
     }
 
     if(brake.Get()){
-        yPow = -yPow/4.;
+        yPow = -(yPow*0.25);
+    }
+    else{
+        yPow = yPow*0.25;
     }
 
     xPow = (double(steering.GetValue())-2000.)/2000.;
 
     if(xPow > 0){
-        rPow = yPow - abs(xPow);
+        rPow = yPow*(1-abs(xPow));
         lPow = yPow;
     }
     else if(xPow < 0){
         rPow = yPow;
-        lPow = yPow - abs(xPow);
+        lPow = yPow*(1-abs(xPow));
     }
     else{
         rPow = yPow;
